@@ -1,0 +1,49 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production",
+        "bem": "cd resources/gulp && gulp"
+    },
+    "devDependencies": {
+        "@inertiajs/inertia": "^0.8.4",
+        "@inertiajs/inertia-vue3": "^0.3.5",
+        "@inertiajs/progress": "^0.2.4",
+        "@tailwindcss/forms": "^0.2.1",
+        "@vue/compiler-sfc": "^3.0.5",
+        "autoprefixer": "^10.2.4",
+        "axios": "^0.21",
+        "cssnano": "^4.1.10",
+        "gulp-postcss": "^9.0.0",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "postcss": "^8.2.7",
+        "postcss-import": "^12.0.1",
+        "postcss-mixins": "^7.0.3",
+        "postcss-nested": "^5.0.5",
+        "postcss-pxtorem": "^6.0.0",
+        "precss": "^4.0.0",
+        "tailwindcss": "^2.0.3",
+        "vue": "^3.0.5",
+        "vue-loader": "^16.1.2"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.34",
+        "@fortawesome/free-brands-svg-icons": "^5.15.2",
+        "@fortawesome/free-regular-svg-icons": "^5.15.2",
+        "@fortawesome/free-solid-svg-icons": "^5.15.2",
+        "@fortawesome/vue-fontawesome": "^3.0.0-3",
+        "@splidejs/splide": "^2.4.21",
+        "bootstrap": "^4.6.0",
+        "classnames": "^2.3.1",
+        "font-awesome": "^4.7.0",
+        "jquery": "^3.6.0",
+        "jquery.easing": "git+https://github.com/gdsmith/jquery.easing.git",
+        "popper.js": "^1.16.1"
+    }
+}

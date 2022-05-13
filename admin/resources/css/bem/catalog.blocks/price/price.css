@@ -1,0 +1,7 @@
+.price {
+    font-size: 22px;
+}
+
+.price:after {
+    content: ' P';
+}

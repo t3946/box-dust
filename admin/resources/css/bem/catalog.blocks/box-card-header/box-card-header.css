@@ -1,0 +1,8 @@
+.box-card-header {
+    flex: 0 1;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: Bebas, sans-serif;
+    font-size: 22px;
+}

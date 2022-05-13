@@ -1,0 +1,10 @@
+@import "styles/utils/Utils.module";
+
+div.select {
+  width: 100%;
+  font-size: pxToRem(18);
+
+  @include breakpoint(lg) {
+    font-size: pxToRem(14);
+  }
+}

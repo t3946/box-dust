@@ -1,0 +1,17 @@
+@use "sass:math";
+
+$baseFontSize: 16;
+
+@function pxToRem($pixels, $context: $baseFontSize) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  $result: math.div($pixels, $context) * 1rem;
+
+  @return $result;
+}

@@ -1,0 +1,39 @@
+@import "styles/utils/Utils.module.scss";
+
+.headerMenu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: pxToRem(50);
+}
+
+.headerMenuItem {
+  font-family: MyriadPro-Regular,sans-serif;
+
+
+  &:last-child {
+    .headerMenuItemLink {
+      padding: pxToRem(17) 0 pxToRem(17) pxToRem(10);
+    }
+  }
+}
+
+.headerMenuItemLink {
+  padding: pxToRem(17) pxToRem(10);
+  font-size: 1rem;
+  line-height: 1rem;
+  display: block;
+  height: pxToRem(50);
+  box-sizing: border-box;
+  text-decoration: none;
+  color: #ffffff;
+
+  &:hover, &_active {
+    color: #faee0f;
+    background: #120027;
+    transition: .2s linear;
+    text-shadow: 0 0 0 #faee0f;
+    text-decoration: none;
+  }
+}
+

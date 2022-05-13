@@ -1,0 +1,18 @@
+@import "styles/utils/Utils.module";
+
+div.list {
+  max-height: pxToRem(205);
+  scrollbar-color: dark;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: pxToRem(7);
+    background-color: #f8f9fa;
+    padding: pxToRem(5);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: pxToRem(10);
+    background-color: #d9d9d9;
+  }
+}

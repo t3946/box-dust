@@ -1,0 +1,23 @@
+@import "bootstrap/dist/css/bootstrap.css";
+@import "bootstrap/dist/css/bootstrap-grid.css";
+@import "bootstrap/dist/css/bootstrap-utilities.css";
+@import "swiper/css";
+@import 'swiper/css/effect-fade';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background: linear-gradient(106deg, #060019, #120034) #0c0027;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}

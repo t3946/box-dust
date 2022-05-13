@@ -1,0 +1,97 @@
+@import "styles/utils/Utils.module.scss";
+
+.categoryTile {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: pxToRem(30);
+  background-color: #30006d;
+  width: 100%;
+  color: #ffffff;
+  font-family: "MyriadPro-Regular", sans-serif;
+  box-shadow: 0 1px rgba(101, 55, 162, .45) inset, 0 -1px rgb(34 1 75) inset;
+  background-image: linear-gradient(to bottom, rgba(72, 20, 139, .61), #30006D);
+  padding: pxToRem(20);
+  box-sizing: border-box;
+  text-shadow: 0 0 3px #ffffff;
+  user-select: none;
+  cursor: pointer;
+}
+
+.categoryTile1 {
+  grid-area: t1;
+}
+
+.categoryTile2 {
+  grid-area: t2;
+}
+
+.categoryTile3 {
+  grid-area: t3;
+}
+
+.categoryTile4 {
+  grid-area: t4;
+}
+
+.categoryTile5 {
+  grid-area: t5;
+}
+
+.categoryTile6 {
+  grid-area: t6;
+}
+
+.categoryTile7 {
+  grid-area: t7;
+  background-size: 100%;
+  align-items: center;
+  background: #0a0a0a url("/images/pages/main/apple-category-bg.png") no-repeat center center;
+  box-shadow: inset 0 1px rgb(76, 76, 76, 0.30);
+  background-size: contain;
+}
+
+.categoryTile8 {
+  grid-area: t8;
+}
+
+.categoryTiles {
+  display: grid;
+  margin: auto;
+  grid-gap: pxToRem(10);
+  justify-items: center;
+  justify-content: space-between;
+  grid-template-areas: "t1 t2 t3 t3 t4" "t5 t6 t6 t7 t8";
+  width: 100%;
+  height: pxToRem(1365);
+  grid-template-rows: repeat(5,1fr);
+  grid-template-columns: repeat(2,1fr);
+
+  @include breakpoint(sm) {
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "t1 t2" "t3 t3" "t4 t5" "t6 t6" "t7 t8";
+    //height: pxToRem(1305);
+  }
+
+  @include breakpoint(md) {
+    grid-template-rows: repeat(3,1fr);
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    grid-template-areas:
+        "t1 t2 t2 t4"
+        "t3 t3 t6 t6"
+        "t5 t7 t7 t8";
+    height: pxToRem(696);
+  }
+
+  @include breakpoint(lg) {
+    grid-template-rows: repeat(2,1fr);
+    grid-template-columns: repeat(5,1fr);
+    grid-template-areas: "t1 t2 t3 t3 t4" "t5 t6 t6 t7 t8";
+    height: pxToRem(450);
+  }
+
+  @include breakpoint(xl) {
+    height: pxToRem(552);
+  }
+}

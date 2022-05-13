@@ -1,0 +1,9 @@
+.last-prize {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}

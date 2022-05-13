@@ -1,0 +1,7 @@
+.box-card-plate__allin {
+    background-image: url("/images/cards/allin-bg-plate.png");
+}
+
+.box-card-plate__allin:after {
+    content: 'ALLIN';
+}

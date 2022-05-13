@@ -1,0 +1,4 @@
+.skew-slide__active {
+    flex-grow: 1;
+    cursor: default;
+}

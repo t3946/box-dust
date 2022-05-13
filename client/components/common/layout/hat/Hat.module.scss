@@ -1,0 +1,42 @@
+@import "styles/utils/Utils.module.scss";
+
+.hat {
+  background: #30006d;
+
+  &__registration {
+    margin: 0 pxToRem(20) 0 0;
+  }
+}
+
+.headerMenuPanel {
+  background: #1b003c;
+  height: pxToRem(50);
+  border-top: 1px solid #420e84;
+  box-shadow: inset 0 2px 4px -2px #000;
+}
+
+.loginButton {
+  box-sizing: border-box;
+  height: pxToRem(62);
+  line-height: 2.625rem;
+  padding: pxToRem(10) pxToRem(30);
+  box-shadow: 0 4px 0 0 #b29406, -1px 0 0 0 #b29406, -1px 4px 0 0 #b29406;
+}
+
+.registrationButton {
+  font-family: Lato Regular,sans-serif;
+  color: #fff;
+  font-size: pxToRem(18);
+
+  &:hover {
+    color: #faee0f;
+    text-decoration: underline;
+  }
+}
+
+.headerUiColumn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100px;
+}
