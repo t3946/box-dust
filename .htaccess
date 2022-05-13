@@ -1,2 +1,0 @@
-ProxyPass /main http://127.0.0.1:3000/main
-ProxyPassReverse /main http://127.0.0.1:3000/main

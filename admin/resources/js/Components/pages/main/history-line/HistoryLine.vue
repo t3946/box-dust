@@ -62,6 +62,8 @@ export default {
         const items = [];
         const { map, library } = this.prizesHistory;
 
+        console.log({ map, library });
+
         for ( let i = 0; i < map.boxes.length; i++ ) {
             const boxId = map.boxes[ i ];
             const winnerId = map.winners[ i ];

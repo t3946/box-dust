@@ -35,10 +35,10 @@ class FakeHistory
 
         for ($i = 0; $i < $prizes_number; $i++) {
             $winner = ($last_winner && (mt_rand(0, 100) > 75)) ? $last_winner : $fake_users[mt_rand(0, $total_users - 1)];
-            $history['map']['winners'][] = $winner->fake_user_id;
+            $history['map']['winners'][] = $winner->f_user_id;
 
-            if (!isset($history['library']['winners'][$winner->fake_user_id])) {
-                $history['library']['winners'][$winner->fake_user_id] = [
+            if (!isset($history['library']['winners'][$winner->f_user_id])) {
+                $history['library']['winners'][$winner->f_user_id] = [
                     'name' => $winner->name,
                 ];
             }
