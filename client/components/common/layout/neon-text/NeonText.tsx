@@ -15,8 +15,6 @@ interface IProps {
 export const NeonText: React.FC<IProps> = function (props) {
   const { text, theme = ETheme.pink } = props;
 
-  console.log("NeonText");
-
   return (
     <span className={cn([Styles.neonText, Styles[`neonText_theme_${theme}`]])}>
       <span className={cn(Styles.before, Styles[`before_theme_${theme}`])} />
