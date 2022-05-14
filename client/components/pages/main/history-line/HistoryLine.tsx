@@ -1,7 +1,6 @@
 import * as React from "react";
 import Item from "@components/pages/main/history-line/Item";
 import Styles from "@components/pages/main/history-line/HistoryLine.module.css";
-import cn from "classnames";
 import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -9,10 +8,8 @@ interface IProps {
   history: any;
 }
 
-
 export const HistoryLine: React.FC<IProps> = function (props) {
   const { history } = props;
-  const items = [];
   const slides = [];
 
   SwiperCore.use([Autoplay]);
