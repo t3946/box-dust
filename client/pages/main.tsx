@@ -5,6 +5,7 @@ import useSelector from "@hooks/useSelector";
 import SliderMain from "@components/pages/main/SliderMain";
 import SliderLastTopPrize from "@components/pages/main/SliderLastTopPrize";
 import dynamic from "next/dynamic";
+import NeonText, { ITheme } from "@components/common/layout/neon-text/NeonText";
 
 const DynamicHistoryLineWithNoSSR = dynamic(
   () => import("@components/pages/main/history-line/HistoryLine"),
@@ -22,6 +23,14 @@ export default function Main() {
       <Head>
         <title>Box Dust</title>
       </Head>
+
+      <div>
+        <NeonText theme={ITheme.pink} text={"Pink"} />
+      </div>
+      <br/>
+      <div>
+        <NeonText theme={ITheme.yellow} text={"Yellow"} />
+      </div>
 
       <section className="events mt-4 row">
         <div className="col-9 lg:text-right pl-0 d-none d-lg-block">

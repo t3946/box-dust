@@ -2,7 +2,8 @@
 @import "bootstrap/dist/css/bootstrap-grid.css";
 @import "bootstrap/dist/css/bootstrap-utilities.css";
 @import "swiper/css";
-@import 'swiper/css/effect-fade';
+@import "swiper/css/effect-fade";
+@import "public/fonts/fonts.css";
 
 html,
 body {
