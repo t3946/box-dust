@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import Catalog from "@components/pages/main/Catalog";
 import NeonText, { ETheme } from "@components/common/layout/neon-text/NeonText";
 import cn from "classnames";
+import Delivery from "@components/pages/main/Delivery";
 import Styles from "@components/pages/main/Main.module.scss";
 
 const DynamicHistoryLineWithNoSSR = dynamic(
@@ -72,7 +73,9 @@ export const Main: React.FC = function () {
       </section>
 
       <section className="row mt-5">
-        <div className="col-12">{/*<delivery />*/}</div>
+        <div className="col-12">
+          <Delivery />
+        </div>
       </section>
 
       <section className="row mt-5">
