@@ -2,18 +2,18 @@ import * as React from "react";
 import Styles from "@components/common/layout/neon-text/NeonText.module.scss";
 import cn from "classnames";
 
-export enum ITheme {
+export enum ETheme {
   pink = "pink",
   yellow = "yellow",
 }
 
 interface IProps {
   text: string;
-  theme?: ITheme;
+  theme?: ETheme;
 }
 
 export const NeonText: React.FC<IProps> = function (props) {
-  const { text, theme = ITheme.pink } = props;
+  const { text, theme = ETheme.pink } = props;
 
   console.log("NeonText");
 

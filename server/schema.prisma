@@ -37,7 +37,7 @@ model box_categories {
   created_at  DateTime?   @db.Timestamp(0)
   updated_at  DateTime?   @db.Timestamp(0)
   order       Int         @default(255) @db.UnsignedTinyInt
-  box_boxes   box_boxes[]
+  boxes       box_boxes[]
 }
 
 model box_images {

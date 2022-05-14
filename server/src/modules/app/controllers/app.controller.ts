@@ -15,7 +15,7 @@ export class AppController {
         order: 'asc',
       },
       include: {
-        box_boxes: true,
+        boxes: true,
       },
     });
 

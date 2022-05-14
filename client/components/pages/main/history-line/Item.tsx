@@ -2,6 +2,7 @@ import * as React from "react";
 import Styles from "@components/pages/main/history-line/Item.module.css";
 import IconArrowRight from "@components/common/icons/pages/arrow-right/ArrowRight";
 import cn from "classnames";
+import getImageUrl from "@utils/getImageUrl";
 
 interface IProps {
   item: any;
@@ -9,16 +10,6 @@ interface IProps {
 
 export const Item: React.FC<IProps> = function (props) {
   const { item } = props;
-
-  function getImageUrl(path: string) {
-    path = path.replaceAll("\\", "/");
-
-    if (path === "box-default") {
-      return "http://box-dust/images/box-default.png";
-    }
-
-    return "http://box-dust/storage/" + path;
-  }
 
   return (
     <>
