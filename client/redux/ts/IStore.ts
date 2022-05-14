@@ -3,4 +3,5 @@ export default interface IStore {
   categories: {
     selectedCategory: Record<any, any>;
   };
+  history: Record<any, any>[];
 }

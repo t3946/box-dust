@@ -4,10 +4,18 @@ import SelectCategory from "@components/pages/main/SelectCategory";
 import useSelector from "@hooks/useSelector";
 import SliderMain from "@components/pages/main/SliderMain";
 import SliderLastTopPrize from "@components/pages/main/SliderLastTopPrize";
-import axios from "axios";
+import dynamic from "next/dynamic";
+
+const DynamicHistoryLineWithNoSSR = dynamic(
+  () => import("@components/pages/main/history-line/HistoryLine"),
+  {
+    ssr: false,
+  }
+);
 
 export default function Main() {
   const catalog = useSelector((state) => state.catalog);
+  const history = useSelector((state) => state.history);
 
   return (
     <>
@@ -29,7 +37,7 @@ export default function Main() {
         </div>
 
         <div className="col-12 mt-4 pl-0 pr-0">
-          {/*<HistoryLine :prizesHistory="prizesHistory" />*/}
+          <DynamicHistoryLineWithNoSSR history={history} />
         </div>
       </section>
 

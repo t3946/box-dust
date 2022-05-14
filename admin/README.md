@@ -16,4 +16,6 @@ App
 Создать ссылку в папке \public на \storage\app\public
 
 ## Windows
+d:
 mklink /D "D:\storage" "D:\OpenServer\domains\localhost\box-dust\storage\app\public"
+mklink /D "D:\storage" "D:\OpenServer\domains\localhost\box-dust\admin\storage\app\public"

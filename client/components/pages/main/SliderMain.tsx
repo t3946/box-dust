@@ -1,4 +1,3 @@
-// Import Swiper React components
 import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Styles from "@components/pages/main/SliderMain.module.scss";
@@ -6,7 +5,9 @@ import * as React from "react";
 
 export const SliderMain: React.FC = function () {
   const slides = [];
+
   SwiperCore.use([Autoplay]);
+
   for (let i = 0; i < 5; i++) {
     slides.push(
       <SwiperSlide className={Styles.slide} key={`main-page-slide-${i}`}>
