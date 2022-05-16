@@ -80,7 +80,16 @@
 }
 
 .reviewsContainer {
-  height: pxToRem(500);
+  height: pxToRem(300);
+
+  @include breakpoint(md) {
+    height: pxToRem(400);
+  }
+
+  @include breakpoint(lg) {
+    height: pxToRem(500);
+  }
+
   overflow-y: scroll;
 }
 
@@ -90,4 +99,12 @@
 
 .headerImage {
   width: pxToRem(130);
+}
+
+.headerContainer {
+  padding: 0 pxToRem(10) 0 0;
+
+  @include breakpoint(md) {
+    padding: 0;
+  }
 }

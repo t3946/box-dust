@@ -42,25 +42,22 @@ export const Reviews: React.FC<IProps> = function (props) {
 
   return (
     <div>
-      <div className="d-flex align-items-center justify-content-center mb-4">
+      <div
+        className={cn([
+          Styles.headerContainer,
+          "d-flex align-items-center justify-content-center mb-4",
+        ])}
+      >
         <img
           className={Styles.headerImage}
           src="/images/pages/main/reviews.png"
           alt=""
         />
+
         <div>
-          <h2 className={cn([Styles.header, "mb-0"])}> Отзывы </h2>
+          <h2 className={cn([Styles.header, "mb-0"])}>Отзывы</h2>
         </div>
       </div>
-
-      <button
-        className={cn([Styles.button, "w-100", "mb-3"])}
-        type={"button"}
-        onClick={loadMore}
-        disabled={isLoadingNewReviews}
-      >
-        Больше отзывов
-      </button>
 
       <div
         className={cn([
@@ -70,6 +67,15 @@ export const Reviews: React.FC<IProps> = function (props) {
           "mb-3",
         ])}
       >
+        <button
+          className={cn([Styles.button, "w-100", "mb-3"])}
+          type={"button"}
+          onClick={loadMore}
+          disabled={isLoadingNewReviews}
+        >
+          Больше отзывов
+        </button>
+
         {items}
       </div>
 

@@ -15,7 +15,11 @@ export const Delivery: React.FC = function () {
         "flex-sm-row",
       ])}
     >
-      <img className={Styles.headerImage} src="/images/pages/main/delivery-box.png" alt="" />
+      <img
+        className={Styles.headerImage}
+        src="/images/pages/main/delivery-box.png"
+        alt=""
+      />
 
       <div>
         <h2 className={cn([Styles.title1, "mb-2", "mb-xl-4"])}>

@@ -4,6 +4,7 @@ import Select from "@components/common/ui/select/Select";
 import useSelector from "@hooks/useSelector";
 import { setSelected } from "@redux/actions/Categories";
 import { useDispatch } from "react-redux";
+import Styles from "@components/pages/main/SelectCategory.module.scss";
 
 interface IProps {
   catalog: Record<any, any>[];
@@ -42,7 +43,7 @@ export const SelectCategory: React.FC<IProps> = function (props) {
           }}
           instanceId={"select-category"}
           classes={{
-            select: "d-sm-none",
+            select: ["d-sm-none", Styles.select],
           }}
         />
       </div>
