@@ -5,12 +5,20 @@ import cn from "classnames";
 export const Delivery: React.FC = function () {
   return (
     <div
-      className={cn(["d-flex", "align-items-center", "justify-content-center"])}
+      className={cn([
+        "d-flex",
+        "align-items-center",
+        "justify-content-center",
+        "flex-column",
+        "text-center",
+        "text-sm-left",
+        "flex-sm-row",
+      ])}
     >
-      <img src="/images/pages/main/delivery-box.png" alt="" />
+      <img className={Styles.headerImage} src="/images/pages/main/delivery-box.png" alt="" />
 
       <div>
-        <h2 className={cn([Styles.title1, "mb-4"])}>
+        <h2 className={cn([Styles.title1, "mb-2", "mb-xl-4"])}>
           Доставка по России и странам СНГ <b className="strong">бесплатно</b>
         </h2>
 
