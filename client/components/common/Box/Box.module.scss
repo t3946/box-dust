@@ -148,7 +148,8 @@
   font-size: 22px;
 
   &:after {
-    content: ' P';
+    font-family: Rouble, sans-serif;
+    content: 'p';
   }
 }
 
