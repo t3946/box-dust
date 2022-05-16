@@ -4,10 +4,10 @@ import getStore from "../redux/Store";
 import React from "react";
 import { SSRProvider } from "react-bootstrap";
 import axios from "axios";
-import App from "next/app";
+import NextApp from "next/app";
 import Page from "@components/common/layout/page/Page";
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
     <Provider store={getStore(pageProps.storeInitialData)}>
       <SSRProvider>
@@ -19,20 +19,23 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-MyApp.getInitialProps = async (appContext) => {
-  const catalog = await axios
-    .get("http://localhost:3001/api/get-catalog")
-    .then((res) => {
-      return res.data.catalog;
-    });
+App.getInitialProps = async (appContext) => {
+  const baseUrl = "http://localhost:3001/api";
+  const catalog = await axios.get(baseUrl + "/get-catalog").then((res) => {
+    return res.data.catalog;
+  });
 
   const historyPrizes = await axios
-    .get("http://localhost:3001/api/f-history/get")
+    .get(baseUrl + "/f-history/get")
     .then((res) => {
       return res.data.history;
     });
 
-  const appProps = await App.getInitialProps(appContext);
+  const reviews = await axios.get(baseUrl + "/reviews/1").then((res) => {
+    return res.data.reviews;
+  });
+
+  const appProps = await NextApp.getInitialProps(appContext);
 
   appProps.pageProps.storeInitialData = {
     catalog,
@@ -42,9 +45,13 @@ MyApp.getInitialProps = async (appContext) => {
     history: {
       prizes: historyPrizes,
     },
+    reviews: {
+      list: reviews,
+      skip: 1,
+    },
   };
 
   return { ...appProps };
 };
 
-export default MyApp;
+export default App;

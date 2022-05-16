@@ -9,6 +9,7 @@ import NeonText, { ETheme } from "@components/common/layout/neon-text/NeonText";
 import cn from "classnames";
 import Delivery from "@components/pages/main/Delivery";
 import Styles from "@components/pages/main/Main.module.scss";
+import Reviews from "@components/pages/main/reviews/Reviews";
 
 const DynamicHistoryLineWithNoSSR = dynamic(
   () => import("@components/pages/main/history-line/HistoryLine"),
@@ -20,6 +21,7 @@ const DynamicHistoryLineWithNoSSR = dynamic(
 export const Main: React.FC = function () {
   const catalog = useSelector((state) => state.catalog);
   const history = useSelector((state) => state.history);
+  const reviews = useSelector((state) => state.reviews.list);
   const selectedCategory = useSelector(
     (state) => state.categories.selectedCategory
   );
@@ -79,8 +81,8 @@ export const Main: React.FC = function () {
       </section>
 
       <section className="row mt-5">
-        <div className="col-12 col-md-6 d-flex justify-content-center align-items-start">
-          {/*<Reviews :reviews="reviews" />*/}
+        <div className="col-12 col-md-6">
+          <Reviews reviews={reviews} />
         </div>
 
         <div className="col-12 col-md-6 d-flex justify-content-center align-items-start">

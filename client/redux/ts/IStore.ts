@@ -4,4 +4,7 @@ export default interface IStore {
     selectedCategory: Record<any, any>;
   };
   history: Record<any, any>[];
+  reviews: {
+    list: Record<any, any>[];
+  };
 }

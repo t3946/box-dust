@@ -101,10 +101,10 @@ model box_rare_statuses {
 }
 
 model box_reviews {
-  review_id   Int          @id @default(autoincrement()) @db.UnsignedInt
-  text        String?      @db.VarChar(256)
-  user_id     Int?         @db.UnsignedInt
-  box_f_users box_f_users? @relation(fields: [user_id], references: [f_user_id], onDelete: Cascade, map: "box_reviews_box_fake_users_fake_user_id_fk")
+  review_id Int          @id @default(autoincrement()) @db.UnsignedInt
+  text      String?      @db.VarChar(256)
+  user_id   Int?         @db.UnsignedInt
+  user      box_f_users? @relation(fields: [user_id], references: [f_user_id], onDelete: Cascade, map: "box_reviews_box_fake_users_fake_user_id_fk")
 
   @@index([user_id], map: "box_reviews_box_fake_users_fake_user_id_fk")
 }
