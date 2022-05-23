@@ -2,6 +2,7 @@ import * as React from "react";
 import Styles from "@components/common/Box/Box.module.scss";
 import cn from "classnames";
 import getImageUrl from "@utils/getImageUrl";
+import Link from "next/link";
 
 interface IProps {
   box: Record<any, any>;
@@ -51,9 +52,11 @@ export const Box: React.FC<IProps> = function (props) {
       </div>
 
       <div className={Styles.footer}>
-        <a href="/roulette">
-          <button className={Styles.button}>открыть</button>
-        </a>
+        <Link href={`/box/${box.box_id}/open`}>
+          <a>
+            <button className={Styles.button}>открыть</button>
+          </a>
+        </Link>
       </div>
     </div>
   );
