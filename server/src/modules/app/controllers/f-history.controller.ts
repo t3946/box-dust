@@ -22,6 +22,7 @@ export class FHistoryController {
         box: {
           select: {
             box_id: true,
+            name: true,
             small_image: {
               select: {
                 name: true,
@@ -32,6 +33,7 @@ export class FHistoryController {
         item: {
           select: {
             item_id: true,
+            name: true,
             image: true,
           },
         },

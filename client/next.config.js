@@ -29,6 +29,7 @@ module.exports = withImages(
             "@components": path.resolve("components/"),
             "@hooks": path.resolve("hooks/"),
             "@utils": path.resolve("utils/"),
+            "@submodules": path.resolve("submodules/"),
           },
         },
       };

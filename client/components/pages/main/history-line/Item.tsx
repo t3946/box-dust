@@ -26,7 +26,8 @@ export const Item: React.FC<IProps> = function (props) {
             <img
               className={Styles.image}
               src={getImageUrl(item.box.small_image.name)}
-              alt=""
+              alt={item.box.name}
+              title ={item.box.name}
             />
           </div>
 
@@ -39,8 +40,9 @@ export const Item: React.FC<IProps> = function (props) {
           <div className="col-4 d-flex align-items-center justify-content-center p-0">
             <img
               className={Styles.image}
-              src={getImageUrl(item.item.image)}
-              alt=""
+              src={getImageUrl(item.item.image.name)}
+              alt={item.item.name}
+              title={item.item.name}
             />
           </div>
         </div>

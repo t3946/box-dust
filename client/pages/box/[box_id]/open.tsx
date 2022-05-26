@@ -4,23 +4,25 @@ import { useRouter } from "next/router";
 import useSelector from "@hooks/useSelector";
 import NeonText from "@components/common/layout/neon-text/NeonText";
 import MainHeader from "@components/common/layout/main-header/MainHeader";
+import dynamic from "next/dynamic";
+import axios from "axios";
+import { NextPageContext } from "next";
 
-export default function Page() {
-  const router = useRouter();
-  const catalog = useSelector((state) => state.catalog);
-  const box_id = parseInt(router.query.box_id as string);
-  let box;
+const Game = dynamic(() => import("@components/pages/box/Game"), { ssr: false });
 
-  for (const category of catalog) {
-    for (const boxItem of category.boxes) {
-      if (boxItem.box_id === box_id) {
-        box = boxItem;
-        break;
-      }
-    }
+export async function getServerSideProps(context: NextPageContext) {
+  const { box_id } = context.query;
+  const box = await axios
+    .get(`http://127.0.0.1:3001/api/box/${box_id}`)
+    .then((res) => res.data.box);
 
-    if (box) break;
-  }
+  return { props: { box } };
+}
+
+export default function Page(props: any) {
+  const { box } = props;
+
+  console.log({ box });
 
   return (
     <>
@@ -35,6 +37,8 @@ export default function Page() {
           </MainHeader>
         </div>
       </div>
+
+      <Game items={box.items} />
     </>
   );
 }
