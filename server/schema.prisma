@@ -42,7 +42,7 @@ model box_categories {
 
 model box_images {
   image_id                                       Int         @id @default(autoincrement()) @db.UnsignedInt
-  name                                           String      @unique(map: "box_images_name_unique") @db.VarChar(32)
+  name                                           String      @unique(map: "box_images_name_unique") @db.VarChar(255)
   width                                          Int         @db.UnsignedSmallInt
   height                                         Int         @db.UnsignedSmallInt
   created_at                                     DateTime?   @db.Timestamp(0)
@@ -63,12 +63,11 @@ model box_items {
   updated_at     DateTime?          @db.Timestamp(0)
   box_id         Int?               @db.UnsignedInt
   image_id       Int?               @db.UnsignedInt
-  image          String?            @db.VarChar(255)
   rare_status_id Int?               @db.UnsignedInt
   cost_to_us     Float
   short_name     String             @db.VarChar(255)
   box            box_boxes?         @relation(fields: [box_id], references: [box_id], onDelete: Cascade, map: "box_items_box_boxes_box_id_fk")
-  box_images     box_images?        @relation(fields: [image_id], references: [image_id], onUpdate: SetNull, map: "box_items_box_images_image_id_fk")
+  image          box_images?        @relation(fields: [image_id], references: [image_id], onUpdate: SetNull, map: "box_items_box_images_image_id_fk")
   rare_statuses  box_rare_statuses? @relation(fields: [rare_status_id], references: [rare_status_id], onUpdate: SetNull, map: "box_items_box_rare_statuses_rare_status_id_fk")
   box_f_history  box_f_history[]
   box_prizes     box_prizes[]
