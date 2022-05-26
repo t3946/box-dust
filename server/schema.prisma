@@ -24,7 +24,7 @@ model box_boxes {
   box_categories box_categories? @relation(fields: [category_id], references: [category_id], onUpdate: SetNull, map: "box_boxes_box_categories_category_id_fk")
   small_image    box_images?     @relation("box_boxes_small_image_idTobox_images", fields: [small_image_id], references: [image_id], onUpdate: SetNull, map: "box_boxes_box_images_image_id_fk_2")
   box_f_history  box_f_history[]
-  box_items      box_items[]
+  items          box_items[]
 
   @@index([big_image_id], map: "box_boxes_big_image_id_foreign")
   @@index([category_id], map: "box_boxes_category_id_foreign")
