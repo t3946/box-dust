@@ -37,7 +37,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/main', function () {
     return Inertia::render('Main', [
-        'lastTopPrizes' => PrizesService::getLastTopPrizes(),
+//        'lastTopPrizes' => PrizesService::getLastTopPrizes(),
         'menu' => CatalogService::buildCatalog(),
         'prizesHistory' => FakeHistoryService::get(),
         'reviews' => FakeReviewsService::get(0, 10),

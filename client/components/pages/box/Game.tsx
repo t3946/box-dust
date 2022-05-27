@@ -1,6 +1,5 @@
 import React from "react";
 import { createApp } from "@submodules/roulette/src/app";
-import { Application } from "pixi.js";
 import Style from "@components/pages/box/Game.module.scss";
 
 interface IProps {
@@ -9,11 +8,8 @@ interface IProps {
 
 export const Game: React.FC<IProps> = function (props) {
   const { items } = props;
-  const [scene, setScene] = React.useState(0);
-  const [counter, setCounter] = React.useState(null);
-
-  // console.log({ items });
-
+  const [scene, setScene] = React.useState<any>(null);
+  const [counter, setCounter] = React.useState(0);
   const rouletteItems = items.map((boxItem) => {
     return {
       id: boxItem.item_id,

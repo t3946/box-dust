@@ -10,7 +10,7 @@
             <div class="col col-lg-3 pr-0">
                 <!-- Коробка не указана в этой карточке -->
                 <div class="events-panel">
-                    <LastTopPrize :lastTopPrizes="lastTopPrizes" />
+<!--                    <LastTopPrize :lastTopPrizes="lastTopPrizes" />-->
                 </div>
             </div>
 

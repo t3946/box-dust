@@ -9,14 +9,20 @@ export enum ETheme {
 
 interface IProps {
   text: string;
+  className?: any;
   theme?: ETheme;
 }
 
 export const NeonText: React.FC<IProps> = function (props) {
-  const { text, theme = ETheme.pink } = props;
+  const { text, theme = ETheme.pink, className } = props;
 
   return (
-    <span className={cn([Styles.neonText, Styles[`neonText_theme_${theme}`]])}>
+    <span
+      className={cn(
+        [Styles.neonText, Styles[`neonText_theme_${theme}`]],
+        props.className
+      )}
+    >
       <span className={cn(Styles.before, Styles[`before_theme_${theme}`])} />
 
       <span>{text}</span>
