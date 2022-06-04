@@ -10,20 +10,15 @@ import ButtonBlinkFlat, {
 
 export interface IProps {
   prize: Record<any, any>;
+  show: boolean;
+  handleClose: any;
 }
 
 export const PrizeModal: React.FC<IProps> = function (props) {
-  const { prize } = props;
-  const [show, setShow] = React.useState(false);
+  const { prize, show, handleClose } = props;
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
-
       <Modal
         show={show}
         onHide={handleClose}

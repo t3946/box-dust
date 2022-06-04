@@ -14,6 +14,10 @@ export interface IProps {
 
 export const Box: React.FC<IProps> = function (props) {
   const { box } = props;
+  const [modalPrizeShow, setModalPrizeShow] = React.useState(false);
+  const handleModalPrizeClose = () => setModalPrizeShow(false);
+  const handleModalPrizeShow = () => setModalPrizeShow(true);
+  const [prize, setPrize] = React.useState(box.items[0]);
 
   return (
     <>
@@ -25,9 +29,17 @@ export const Box: React.FC<IProps> = function (props) {
         </div>
       </div>
 
-      <Game items={box.items} />
+      <Game
+        items={box.items}
+        handleModalPrizeShow={handleModalPrizeShow}
+        setPrize={setPrize}
+      />
 
-      <PrizeModal prize={box.items[0]} />
+      <PrizeModal
+        show={modalPrizeShow}
+        prize={prize}
+        handleClose={handleModalPrizeClose}
+      />
     </>
   );
 };
