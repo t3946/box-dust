@@ -1,5 +1,5 @@
 import { Controller, Get, Param, Res } from '@nestjs/common';
-import { AppService } from '../services/app.service';
+import { AppService } from '@src/app/services/app.service';
 
 const PrismaClient = require('@prisma/client').PrismaClient;
 const prisma = new PrismaClient();
