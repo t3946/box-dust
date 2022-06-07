@@ -71,9 +71,9 @@ export const LoginModal: React.FC = function () {
               className={Style.check}
             />
 
-            <Link href="/main" className={"font-calibri"}>
+            <a href={"#"} className={cn([StyleLink.link, "font-calibri"])}>
               Забыли Пароль?
-            </Link>
+            </a>
           </div>
 
           <div
