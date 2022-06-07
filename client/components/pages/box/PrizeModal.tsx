@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Modal, Button, Row, Col } from "react-bootstrap";
+import { Modal, Row, Col } from "react-bootstrap";
 import Style from "@components/pages/box/PrizeModal.module.scss";
 import NeonText from "@components/common/layout/neon-text/NeonText";
 import cn from "classnames";

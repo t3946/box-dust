@@ -7,4 +7,11 @@ export default interface IStore {
   reviews: {
     list: Record<any, any>[];
   };
+  popup: {
+    modal: {
+      login: {
+        show: boolean;
+      };
+    };
+  };
 }

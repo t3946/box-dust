@@ -3,8 +3,20 @@ import Navigation from "@components/common/layout/hat/Navigation";
 import Styles from "@components/common/layout/hat/Hat.module.scss";
 import cn from "classnames";
 import ConvexButton from "@components/common/ui/convex-button/ConvexButton";
+import { modalOpen } from "@redux/reducer/Popup";
+import { useDispatch } from "react-redux";
 
 export const Hat: React.FC = function () {
+  const dispatch = useDispatch();
+
+  function openModalLogin() {
+    dispatch(
+      modalOpen({
+        modal: "login",
+      })
+    );
+  }
+
   return (
     <header className={cn(Styles.hat)}>
       <div className={cn([Styles.headerUiColumn, "col-12", "px-3"])}>
@@ -14,9 +26,9 @@ export const Hat: React.FC = function () {
           </a>
         </div>
 
-        <a className="" href="#">
-          <ConvexButton classes={Styles.loginButton}>Войти</ConvexButton>
-        </a>
+        <ConvexButton classes={Styles.loginButton} onClick={openModalLogin}>
+          Войти
+        </ConvexButton>
       </div>
 
       <div

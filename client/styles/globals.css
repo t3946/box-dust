@@ -28,6 +28,14 @@ a {
   color: #d30155;
 }
 
+.form-text-helper {
+  color: #c2c2c2;
+}
+
+.font-calibri {
+  font-family: 'Calibri', serif;
+}
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 1rem;
 }
