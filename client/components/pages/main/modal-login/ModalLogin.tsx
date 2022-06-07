@@ -2,16 +2,10 @@ import * as React from "react";
 import Modal from "@components/common/layout/modal/Modal";
 import ModalHeader from "@components/common/layout/modal/ModalHeader";
 import ModalBody from "@components/common/layout/modal/ModalBody";
-import {
-  Button,
-  InputGroup,
-  FormControl,
-  Form as RBForm,
-} from "react-bootstrap";
+import { InputGroup, FormControl, Form as RBForm } from "react-bootstrap";
 import IconLock from "@components/common/icons/lock/Lock";
 import IconEmail from "@components/common/icons/email/Email";
-import Style from "@components/pages/main/LoginModal.module.scss";
-import Link from "@components/common/link/Link";
+import Style from "@components/pages/main/modal-login/ModalLogin.module.scss";
 import cn from "classnames";
 import FormButton from "@components/common/form/button/Button";
 import { useDispatch } from "react-redux";
@@ -19,7 +13,7 @@ import useSelector from "@hooks/useSelector";
 import { modalClose } from "@redux/reducer/Popup";
 import StyleLink from "@components/common/link/Link.module.scss";
 
-export const LoginModal: React.FC = function () {
+export const ModalLogin: React.FC = function () {
   const dispatch = useDispatch();
   const show = useSelector((state) => state.popup.modal.login.show);
 
@@ -97,4 +91,4 @@ export const LoginModal: React.FC = function () {
   );
 };
 
-export default LoginModal;
+export default ModalLogin;
