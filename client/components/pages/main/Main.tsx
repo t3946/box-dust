@@ -11,6 +11,7 @@ import Delivery from "@components/pages/main/Delivery";
 import Styles from "@components/pages/main/Main.module.scss";
 import Reviews from "@components/pages/main/reviews/Reviews";
 import ModalLogin from "@components/pages/main/modal-login/ModalLogin";
+import ModalRegister from "@components/pages/main/modal-register/ModalRegister";
 
 const DynamicHistoryLineWithNoSSR = dynamic(
   () => import("@components/pages/main/history-line/HistoryLine"),
@@ -44,8 +45,6 @@ export const Main: React.FC = function () {
   return (
     <>
       <section className="events mt-4 row">
-        <ModalLogin />
-
         <div className="col-9 lg:text-right pl-0 d-none d-lg-block">
           <SliderMain />
         </div>
@@ -92,6 +91,9 @@ export const Main: React.FC = function () {
           {/*<FAQ />*/}
         </div>
       </section>
+
+      <ModalLogin />
+      <ModalRegister />
     </>
   );
 };

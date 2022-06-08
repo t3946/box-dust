@@ -5,6 +5,9 @@ const initialState: any = {
     login: {
       show: false,
     },
+    register: {
+      show: false,
+    },
   },
 };
 

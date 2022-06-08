@@ -12,6 +12,9 @@ export default interface IStore {
       login: {
         show: boolean;
       };
+      register: {
+        show: boolean;
+      };
     };
   };
 }
