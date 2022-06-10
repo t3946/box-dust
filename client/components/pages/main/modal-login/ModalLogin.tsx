@@ -116,6 +116,7 @@ export const ModalLogin: React.FC = function () {
                       "d-flex",
                       "justify-content-between",
                       "mb-3",
+                      "w-100",
                     ])}
                   >
                     <RBForm.Check

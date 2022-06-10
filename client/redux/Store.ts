@@ -7,6 +7,7 @@ import Categories from "@redux/reducer/Categories";
 import History from "@redux/reducer/History";
 import Reviews from "@redux/reducer/Reviews";
 import Popup from "@redux/reducer/Popup";
+import User from "@redux/reducer/User";
 import { configureStore } from "@reduxjs/toolkit";
 
 const getStore = (function () {
@@ -23,6 +24,7 @@ const getStore = (function () {
           history: History,
           reviews: Reviews,
           popup: Popup,
+          user: User,
         },
         preloadedState,
         enhancers: [applyMiddleware(sagaMiddleware)],

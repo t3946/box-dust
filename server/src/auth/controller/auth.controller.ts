@@ -26,7 +26,7 @@ export class AuthController {
     // res.header('Access-Control-Allow-Headers', '*');
     // res.header('Access-Control-Allow-Origin', '*');
     // res.header('Access-Control-Allow-Credentials', 'true');
-    res.sendStatus(200);
+    res.json({ user: req.user.user });
   }
 }
 

@@ -32,7 +32,7 @@ export class AuthService {
         });
 
         if (!user) {
-          console.log("no user", {login});
+          console.log('no user', { login });
           return done(null, false);
         }
 
@@ -55,7 +55,9 @@ export class AuthService {
           process.env.SESSION_AUTHORISATION_SECRET,
         );
 
-        done(null, { authToken: token });
+        delete user.password;
+
+        done(null, { user, authToken: token });
       }),
     );
   }

@@ -9,8 +9,7 @@ function* register(action: any): Generator {
     return res.data.user;
   });
 
-  //todo: сохранить пользователя в хранилище после регистрации
-  // yield put({ type: "REVIEWS_ADD", data: { reviews } });
+  yield put({ type: "user/setUser", payload: { user } });
 
   if (callback) {
     yield callback();
@@ -23,8 +22,7 @@ function* login(action: any): Generator {
     return res.data.user;
   });
 
-  //todo: сохранить пользователя в хранилище после авторизации
-  // yield put({ type: "REVIEWS_ADD", data: { reviews } });
+  yield put({ type: "user/setUser", payload: { user } });
 
   if (callback) {
     yield callback();
