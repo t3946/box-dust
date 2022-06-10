@@ -42,6 +42,11 @@ export const ModalLogin: React.FC = function () {
 
         callback() {
           formikHelpers.setSubmitting(false);
+          dispatch(
+            modalClose({
+              modal: "login",
+            })
+          );
         },
       })
     );
@@ -140,12 +145,13 @@ export const ModalLogin: React.FC = function () {
                       "justify-content-center",
                       "mb-3",
                       "font-calibri",
+                      Style.noAccount
                     ])}
                   >
                     <span className="form-text-helper">Нет аккаунта?</span>
                     <a
                       href={"#"}
-                      className={cn([StyleLink.link, "ms-1"])}
+                      className={cn([StyleLink.link, "ms-2"])}
                       onClick={(e) => {
                         e.stopPropagation();
                         closeLoginModal();

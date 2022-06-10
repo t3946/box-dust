@@ -2,10 +2,6 @@
 
 .hat {
   background: #30006d;
-
-  &__registration {
-    margin: 0 pxToRem(20) 0 0;
-  }
 }
 
 .headerMenuPanel {
@@ -23,20 +19,35 @@
   box-shadow: 0 4px 0 0 #b29406, -1px 0 0 0 #b29406, -1px 4px 0 0 #b29406;
 }
 
-.registrationButton {
-  font-family: Lato Regular,sans-serif;
-  color: #fff;
-  font-size: pxToRem(18);
-
-  &:hover {
-    color: #faee0f;
-    text-decoration: underline;
-  }
-}
-
 .headerUiColumn {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   height: 100px;
+}
+
+.logo {
+  height: pxToRem(100);
+}
+
+.navItem {
+  display: inline-block;
+  font-size: pxToRem(20);
+
+  &:before {
+    content: "|";
+    margin: 0 pxToRem(20);
+  }
+
+  &:first-child {
+    &:before {
+      content: "";
+    }
+  }
+}
+
+.navLink {
+  &:hover {
+    color: #faee0f;
+  }
 }

@@ -17,4 +17,7 @@ export default interface IStore {
       };
     };
   };
+  user: {
+    user: Record<any, any>;
+  };
 }

@@ -5,9 +5,12 @@ import cn from "classnames";
 import ConvexButton from "@components/common/ui/convex-button/ConvexButton";
 import { modalOpen } from "@redux/reducer/Popup";
 import { useDispatch } from "react-redux";
+import useSelector from "@hooks/useSelector";
+import UserPanel from "@components/common/layout/hat/UserPanel";
 
 export const Hat: React.FC = function () {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
 
   function openModalLogin() {
     dispatch(
@@ -19,18 +22,51 @@ export const Hat: React.FC = function () {
 
   return (
     <header className={cn(Styles.hat)}>
-      <div className={cn([Styles.headerUiColumn, "col-12", "px-3"])}>
-        <div className={Styles.hat__registration}>
-          <a className={Styles.registrationButton} href="#">
-            Регистрация
-          </a>
+      <div>
+        <div className="row m-lg-0">
+          <div className="col-3">
+            <img src={"/images/pages/main/logo.png"} className={Styles.logo} />
+          </div>
+
+          <div className="col-5 d-flex align-items-center justify-content-center">
+            <ul className={"list-unstyled m-0"}>
+              <li className={Styles.navItem}>
+                <a href="#" className={Styles.navLink}>
+                  Коробки
+                </a>
+              </li>
+              <li className={Styles.navItem}>
+                <a href="#" className={Styles.navLink}>
+                  Доставка
+                </a>
+              </li>
+              <li className={Styles.navItem}>
+                <a href="#" className={Styles.navLink}>
+                  Отзывы
+                </a>
+              </li>
+              <li className={Styles.navItem}>
+                <a href="#" className={Styles.navLink}>
+                  Контакты
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className={cn([Styles.headerUiColumn, "col-4"])}>
+            {!user && (
+              <ConvexButton
+                classes={Styles.loginButton}
+                onClick={openModalLogin}
+              >
+                Войти
+              </ConvexButton>
+            )}
+
+            {user && <UserPanel />}
+          </div>
         </div>
-
-        <ConvexButton classes={Styles.loginButton} onClick={openModalLogin}>
-          Войти
-        </ConvexButton>
       </div>
-
       <div
         className={cn([
           Styles.headerMenuPanel,
