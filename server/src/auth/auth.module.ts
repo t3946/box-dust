@@ -2,11 +2,12 @@ import { Module, MiddlewareConsumer } from '@nestjs/common';
 import { AuthController } from '@src/auth/controller/auth.controller';
 import { AppService } from '@src/app/services/app.service';
 import { AuthService } from '@src/auth/services/auth.service';
+import { PasswordService } from '@src/user/service/password.service';
 const passport = require('passport');
 
 @Module({
   controllers: [AuthController],
-  providers: [AppService, AuthService],
+  providers: [AppService, AuthService, PasswordService],
 })
 export class AuthModule {
   configure(consumer: MiddlewareConsumer) {

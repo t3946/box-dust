@@ -12,10 +12,40 @@ import { useDispatch } from "react-redux";
 import useSelector from "@hooks/useSelector";
 import { modalClose, modalOpen } from "@redux/reducer/Popup";
 import StyleLink from "@components/common/link/Link.module.scss";
+import { login } from "@redux/actions/User";
+import * as Yup from "yup";
+import { FormikHelpers } from "formik/dist/types";
+import { Formik } from "formik";
+import { Form as FormikForm } from "formik";
 
 export const ModalLogin: React.FC = function () {
   const dispatch = useDispatch();
   const show = useSelector((state) => state.popup.modal.login.show);
+  const initialValues = {
+    login: "svialence@yandex.ru",
+    password: "admin1",
+  };
+  const validationSchema = Yup.object().shape({
+    login: Yup.string().min(3).max(64),
+    password: Yup.string().min(6).max(32),
+  });
+
+  function submit(
+    values: typeof initialValues,
+    formikHelpers: FormikHelpers<typeof values>
+  ) {
+    formikHelpers.setSubmitting(true);
+
+    dispatch(
+      login({
+        data: values,
+
+        callback() {
+          formikHelpers.setSubmitting(false);
+        },
+      })
+    );
+  }
 
   function closeLoginModal() {
     dispatch(
@@ -43,65 +73,93 @@ export const ModalLogin: React.FC = function () {
         />
 
         <ModalBody>
-          <InputGroup className="mb-3">
-            <InputGroup.Text id="basic-addon1">
-              <IconEmail className={Style.inputGroupIcon} />
-            </InputGroup.Text>
-            <FormControl
-              placeholder="E-mail"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          </InputGroup>
-
-          <InputGroup className="mb-3">
-            <InputGroup.Text id="basic-addon1">
-              <IconLock className={Style.inputGroupIcon} />
-            </InputGroup.Text>
-            <FormControl
-              placeholder="Пароль"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-              type={"password"}
-            />
-          </InputGroup>
-
-          <div className={cn(["d-flex", "justify-content-between", "mb-3"])}>
-            <RBForm.Check
-              type={"checkbox"}
-              id={"remember-me"}
-              label={"Запомнить меня"}
-              className={Style.check}
-            />
-
-            <a href={"#"} className={cn([StyleLink.link, "font-calibri"])}>
-              Забыли Пароль?
-            </a>
-          </div>
-
-          <div
-            className={cn([
-              "d-flex",
-              "justify-content-center",
-              "mb-3",
-              "font-calibri",
-            ])}
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={submit}
           >
-            <span className="form-text-helper">Нет аккаунта?</span>
-            <a
-              href={"#"}
-              className={cn([StyleLink.link, "ms-1"])}
-              onClick={(e) => {
-                e.stopPropagation();
-                closeLoginModal();
-                setTimeout(openRegisterModal, 150);
-              }}
-            >
-              Регистрация
-            </a>
-          </div>
+            {({ errors, values, touched, isSubmitting, handleChange }) => {
+              return (
+                <FormikForm className="d-flex align-items-end flex-column">
+                  <InputGroup className="mb-3">
+                    <InputGroup.Text id="basic-addon1">
+                      <IconEmail className={Style.inputGroupIcon} />
+                    </InputGroup.Text>
+                    <FormControl
+                      id="login"
+                      placeholder="E-mail"
+                      aria-label="Username"
+                      aria-describedby="basic-addon1"
+                      value={values.login}
+                      onChange={handleChange}
+                    />
+                  </InputGroup>
 
-          <FormButton>Войти</FormButton>
+                  <InputGroup className="mb-3">
+                    <InputGroup.Text id="basic-addon1">
+                      <IconLock className={Style.inputGroupIcon} />
+                    </InputGroup.Text>
+
+                    <FormControl
+                      id={"password"}
+                      value={values.password}
+                      placeholder="Пароль"
+                      aria-label="Username"
+                      aria-describedby="basic-addon1"
+                      type={"password"}
+                      onChange={handleChange}
+                    />
+                  </InputGroup>
+
+                  <div
+                    className={cn([
+                      "d-flex",
+                      "justify-content-between",
+                      "mb-3",
+                    ])}
+                  >
+                    <RBForm.Check
+                      type={"checkbox"}
+                      id={"remember-me"}
+                      label={"Запомнить меня"}
+                      className={Style.check}
+                    />
+
+                    <a
+                      href={"#"}
+                      className={cn([StyleLink.link, "font-calibri"])}
+                    >
+                      Забыли Пароль?
+                    </a>
+                  </div>
+
+                  <div
+                    className={cn([
+                      "d-flex",
+                      "justify-content-center",
+                      "mb-3",
+                      "font-calibri",
+                    ])}
+                  >
+                    <span className="form-text-helper">Нет аккаунта?</span>
+                    <a
+                      href={"#"}
+                      className={cn([StyleLink.link, "ms-1"])}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        closeLoginModal();
+                        setTimeout(openRegisterModal, 150);
+                      }}
+                    >
+                      Регистрация
+                    </a>
+                  </div>
+
+                  <FormButton type={"submit"}>Войти</FormButton>
+                </FormikForm>
+              );
+            }}
+          </Formik>
         </ModalBody>
       </Modal>
     </>

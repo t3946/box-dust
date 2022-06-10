@@ -82,9 +82,9 @@ model box_prizes {
   created_at DateTime?  @db.Timestamp(0)
   updated_at DateTime?  @db.Timestamp(0)
   item_id    Int?       @db.UnsignedInt
-  user_id    BigInt?    @db.UnsignedBigInt
+  user_id    Int?       @db.UnsignedInt
   box_items  box_items? @relation(fields: [item_id], references: [item_id], onDelete: Cascade, map: "box_prizes_box_items_item_id_fk")
-  users      users?     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "box_prizes_user_id_foreign")
+  box_users  box_users? @relation(fields: [user_id], references: [user_id], onDelete: Restrict, onUpdate: Restrict, map: "box_prizes_box_users_user_id_fk")
 
   @@index([item_id], map: "box_prizes_item_id_foreign")
   @@index([user_id], map: "box_prizes_user_id_foreign")
@@ -365,7 +365,6 @@ model users {
   updated_at        DateTime?    @db.Timestamp(0)
   google_id         String?      @unique(map: "users_google_id_uindex") @db.VarChar(256)
   roles             roles?       @relation(fields: [role_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "users_role_id_foreign")
-  box_prizes        box_prizes[]
   user_roles        user_roles[]
 
   @@index([role_id], map: "users_role_id_foreign")
@@ -392,6 +391,17 @@ model box_f_users {
   updated_at    DateTime?       @db.Timestamp(0)
   box_f_history box_f_history[]
   box_reviews   box_reviews[]
+}
+
+model box_users {
+  user_id    Int          @id @default(autoincrement()) @db.UnsignedInt
+  name       String?      @db.VarChar(255)
+  email      String       @db.VarChar(255)
+  password   String       @db.VarChar(255)
+  avatar     String?      @db.VarChar(255)
+  balance    Int          @default(0) @db.UnsignedInt
+  created    DateTime?    @default(now()) @db.DateTime(0)
+  box_prizes box_prizes[]
 }
 
 enum clients_gender {

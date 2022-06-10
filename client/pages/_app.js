@@ -20,7 +20,7 @@ function App({ Component, pageProps }) {
 }
 
 App.getInitialProps = async (appContext) => {
-  const baseUrl = "http://localhost:3001/api";
+  const baseUrl = "http://localhost:3080/api";
   const catalog = await axios.get(baseUrl + "/category").then((res) => {
     return res.data.catalog;
   });

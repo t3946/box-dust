@@ -1,21 +1,61 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaClient } from '@prisma/client';
+import { PasswordService } from '@src/user/service/password.service';
+
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const jwt = require('jsonwebtoken');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
+const prisma = new PrismaClient();
 
 @Injectable()
 export class AuthService {
   private localStrategy() {
+    const strategyOptions = {
+      usernameField: 'login',
+      passwordField: 'password',
+      passReqToCallback: true,
+    };
+
     passport.use(
-      new LocalStrategy(function (username, password, done) {
+      new LocalStrategy(strategyOptions, async function (
+        req,
+        login,
+        password,
+        done,
+      ) {
+        const user = await prisma.box_users.findFirst({
+          where: {
+            email: login,
+          },
+        });
+
+        if (!user) {
+          console.log("no user", {login});
+          return done(null, false);
+        }
+
+        const passwordService = new PasswordService();
+        const isPasswordsMatch = await passwordService.comparePassword(
+          password,
+          user.password,
+        );
+
+        if (!isPasswordsMatch) {
+          return done(null, false);
+        }
+
         const token = jwt.sign(
-          { foo: 'bar' },
+          {
+            user: {
+              user_id: user.user_id,
+            },
+          },
           process.env.SESSION_AUTHORISATION_SECRET,
         );
 
-        done(null, { name: username, auth: 'local', token });
+        done(null, { authToken: token });
       }),
     );
   }
@@ -38,7 +78,7 @@ export class AuthService {
     };
 
     passport.use(
-      new JwtStrategy(opts, function (jwt_payload, done) {
+      new JwtStrategy(opts, async function (jwt_payload, done) {
         const expiredAt = new Date(
           (jwt_payload.iat + parseInt(process.env.SESSION_EXP_TIME_S)) * 1000,
         );
@@ -49,22 +89,20 @@ export class AuthService {
           return done(null, false);
         }
 
-        console.log({ jwt_payload });
-        // User.findOne({id: jwt_payload.sub}, function(err, user) {
-        //   if (err) {
-        //     return done(err, false);
-        //   }
-        //   if (user) {
-        //     return done(null, user);
-        //   } else {
-        //     return done(null, false);
-        //     // or you could create a new account
-        //   }
-        // });
-
-        done(null, {
-          jwt_payload,
+        const user = await prisma.box_users.findUnique({
+          where: {
+            user_id: jwt_payload.user.user_id,
+          },
         });
+
+        //user from session doesn't exits
+        if (!user) {
+          return done(null, false);
+        }
+
+        delete user.password;
+
+        done(null, user);
       }),
     );
   }
