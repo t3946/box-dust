@@ -21,8 +21,8 @@ export const Hat: React.FC = function () {
   }
 
   return (
-    <header className={cn(Styles.hat)}>
-      <div>
+    <>
+      <header className={cn(Styles.hat)}>
         <div className="row m-lg-0">
           <div className="col-3">
             <img src={"/images/pages/main/logo.png"} className={Styles.logo} />
@@ -66,7 +66,8 @@ export const Hat: React.FC = function () {
             {user && <UserPanel />}
           </div>
         </div>
-      </div>
+      </header>
+
       <div
         className={cn([
           Styles.headerMenuPanel,
@@ -77,7 +78,7 @@ export const Hat: React.FC = function () {
       >
         <Navigation />
       </div>
-    </header>
+    </>
   );
 };
 

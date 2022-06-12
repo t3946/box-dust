@@ -6,6 +6,7 @@
   text-overflow: ellipsis;
   max-width: pxToRem(200);
   overflow: hidden;
+  line-height: 1;
 }
 
 .avatarImageContainer {
@@ -28,4 +29,24 @@
 
 .buttonWrapper {
   height: pxToRem(100);
+}
+
+.balance {
+  font-family: Calibri, serif;
+  font-size: pxToRem(16);
+  font-variant: small-caps;
+  line-height: 1;
+}
+
+.balanceNumber {
+  font-variant: normal;
+  font-size: pxToRem(18);
+  color: #faee0f;
+  font-weight: bold;
+
+  &:after {
+    font-family: Rouble, sans-serif;
+    content: 'p';
+    font-size: 0.8em;
+  }
 }

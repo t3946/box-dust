@@ -9,7 +9,12 @@ export const UserPanel: React.FC = function () {
 
   return (
     <div className={"d-flex w-100 justify-content-end"}>
-      <div className={cn("d-flex align-items-center cursor-pointer", Style.buttonWrapper)}>
+      <div
+        className={cn(
+          "d-flex align-items-center cursor-pointer",
+          Style.buttonWrapper
+        )}
+      >
         <div className={cn(Style.avatarImageContainer, "flex-shrink-0")}>
           <img
             src={"/images/default-avatar.png"}
@@ -17,7 +22,15 @@ export const UserPanel: React.FC = function () {
           />
         </div>
 
-        <span className={cn(Style.userName, "mx-3")}>{user.name}</span>
+        <div className={cn("mx-3", "d-flex", "flex-column", "align-items-end")}>
+          <span className={Style.userName}>{user.name}</span>
+          <span className={Style.balance}>
+            баланс:{" "}
+            <span className={Style.balanceNumber}>
+              {(user.balance / 100).toFixed(2).toLocaleString("Ru")}
+            </span>
+          </span>
+        </div>
 
         <ChevronDown className={cn("flex-shrink-0", Style.chevron)} />
       </div>

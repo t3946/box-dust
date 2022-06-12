@@ -145,7 +145,7 @@ export const ModalLogin: React.FC = function () {
                       "justify-content-center",
                       "mb-3",
                       "font-calibri",
-                      Style.noAccount
+                      Style.noAccount,
                     ])}
                   >
                     <span className="form-text-helper">Нет аккаунта?</span>
