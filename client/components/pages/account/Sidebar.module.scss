@@ -1,0 +1,36 @@
+@import "styles/utils/Utils.module.scss";
+
+.sidebar {
+  &_item {
+    margin: 0 0 pxToRem(8) 0;
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.item {
+  display: flex;
+  color: black;
+  background: #ffffff;
+  height: pxToRem(40);
+  font-size: pxToRem(18);
+  padding: 0 pxToRem(10);
+  align-items: center;
+  font-family: Calibri, serif;
+
+  &:hover {
+    color: #000000;
+    background: #eeeeee;
+  }
+
+  &__active {
+    font-weight: bold;
+    background: #eeeeee;
+
+    &:hover {
+      color: #000000;
+      cursor: default;
+    }
+  }
+}

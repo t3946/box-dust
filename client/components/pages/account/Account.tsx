@@ -13,7 +13,7 @@ export const Account: React.FC = function () {
   }
 
   return (
-    <div className={"mt-3"}>
+    <div>
       <div className={cn(Style.userInfoPanel, "row m-lg-0")}>
         <div className="col d-flex flex-row">
           <div className={"d-flex flex-column"}>
