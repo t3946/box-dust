@@ -1,0 +1,40 @@
+@import "styles/utils/Utils.module.scss";
+
+.avatarImage {
+  width: pxToRem(200);
+  height: pxToRem(200);
+}
+
+.userInfoPanel {
+  background-color: #ffffff;
+  color: black;
+  padding: 12px 0;
+}
+
+.userName {
+  font-size: pxToRem(48);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.userNameString {
+  max-width: pxToRem(500);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+}
+
+.stat {
+  font-size: pxToRem(24);
+}
+
+.balance {
+  color: #4c1d95;
+}
+
+.balanceNumber {
+  &:after {
+    font-family: Rouble, sans-serif;
+    content: 'p';
+  }
+}

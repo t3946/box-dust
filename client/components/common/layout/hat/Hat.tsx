@@ -7,10 +7,13 @@ import { modalOpen } from "@redux/reducer/Popup";
 import { useDispatch } from "react-redux";
 import useSelector from "@hooks/useSelector";
 import UserPanel from "@components/common/layout/hat/UserPanel";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export const Hat: React.FC = function () {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
+  const router = useRouter();
 
   function openModalLogin() {
     dispatch(
@@ -25,7 +28,14 @@ export const Hat: React.FC = function () {
       <header className={cn(Styles.hat)}>
         <div className="row m-lg-0">
           <div className="col-3">
-            <img src={"/images/pages/main/logo.png"} className={Styles.logo} />
+            <Link href={"/main"}>
+              <a>
+                <img
+                  src={"/images/pages/main/logo.png"}
+                  className={Styles.logo}
+                />
+              </a>
+            </Link>
           </div>
 
           <div className="col-5 d-flex align-items-center justify-content-center">
@@ -68,16 +78,18 @@ export const Hat: React.FC = function () {
         </div>
       </header>
 
-      <div
-        className={cn([
-          Styles.headerMenuPanel,
-          "col-12",
-          "d-none",
-          "d-lg-block",
-        ])}
-      >
-        <Navigation />
-      </div>
+      {router.route !== "/account" && (
+        <div
+          className={cn([
+            Styles.headerMenuPanel,
+            "col-12",
+            "d-none",
+            "d-lg-block",
+          ])}
+        >
+          <Navigation />
+        </div>
+      )}
     </>
   );
 };

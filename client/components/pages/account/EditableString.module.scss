@@ -1,0 +1,25 @@
+@import "styles/utils/Utils.module.scss";
+
+.editableString {
+  position: relative;
+  padding: 0 pxToRem(30) 0 0;
+  cursor: pointer;
+
+  &_icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #aaaaaa;
+    transition: all 0.15s linear;
+  }
+
+  &:hover {
+    .editIcon {
+      color: #000000;
+    }
+  }
+}
+
+.editIcon {
+  width: pxToRem(20);
+}

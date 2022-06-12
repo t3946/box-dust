@@ -7,7 +7,7 @@ import Box from "@components/pages/box/Box";
 export async function getServerSideProps(context: NextPageContext) {
   const { box_id } = context.query;
   const box = await axios
-    .get(`http://127.0.0.1:3001/api/box/${box_id}`)
+    .get(`http://127.0.0.1:3080/api/box/${box_id}`)
     .then((res) => res.data.box);
 
   return { props: { box } };
