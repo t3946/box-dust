@@ -33,4 +33,14 @@
       cursor: default;
     }
   }
+
+  &__logout {
+    color: #4c1d95;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover {
+      color: #000000;
+    }
+  }
 }

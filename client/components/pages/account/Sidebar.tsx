@@ -19,10 +19,6 @@ export const Sidebar: React.FC = function () {
       label: "Пополнить счёт",
       route: "/account/payment",
     },
-    {
-      label: "Выход",
-      route: "/account/logout",
-    },
   ];
 
   const itemTemplates = [];
@@ -44,6 +40,12 @@ export const Sidebar: React.FC = function () {
       </li>
     );
   }
+
+  itemTemplates.push(
+    <li className={cn(Style.sidebar_item, "mt-3")}>
+      <span className={cn(Style.item, Style.item__logout)}>Выход</span>
+    </li>
+  );
 
   return (
     <div>
