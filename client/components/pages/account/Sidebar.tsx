@@ -9,19 +9,19 @@ export const Sidebar: React.FC = function () {
   const items = [
     {
       label: "Профиль",
-      route: "/account",
+      route: "/account/profile",
     },
     {
       label: "Склад",
-      route: "/stock",
+      route: "/account/stock",
     },
     {
       label: "Пополнить счёт",
-      route: "/payment",
+      route: "/account/payment",
     },
     {
       label: "Выход",
-      route: "/logout",
+      route: "/account/logout",
     },
   ];
 

@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import Account from "@components/pages/account/Account";
 import useSelector from "@hooks/useSelector";
 import { useRouter } from "next/router";
-import Sidebar from "@components/pages/account/Sidebar";
+import PageAccount from "@components/common/layout/page/PageAccount";
 
 export default function Page() {
   const user = useSelector((state) => state.user.user);
@@ -21,17 +21,9 @@ export default function Page() {
         <title>Профиль</title>
       </Head>
 
-      <div className={"mt-3"}>
-        <div className="row">
-          <div className="col-2 pe-1">
-            <Sidebar />
-          </div>
+      <PageAccount>
 
-          <div className="col-10">
-            <Account />
-          </div>
-        </div>
-      </div>
+      </PageAccount>
     </>
   );
 }

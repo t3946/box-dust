@@ -10,7 +10,7 @@ export const UserPanel: React.FC = function () {
 
   return (
     <div className={"d-flex w-100 justify-content-end"}>
-      <Link href={"/account"}>
+      <Link href={"/account/profile"}>
         <a>
           {" "}
           <div
