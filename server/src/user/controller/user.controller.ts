@@ -27,6 +27,24 @@ export class UserController {
       user,
     });
   }
+
+  @Get('stock')
+  public async getStock(@Res() res, @Req() req) {
+    const stock = await prisma.box_stock_items.findMany({
+      where: {
+        user_id: parseInt(req.user.user_id),
+      },
+      select: {
+        stock_item_id: true,
+        item: true,
+        total: true,
+      },
+    });
+
+    res.json({
+      stock,
+    });
+  }
 }
 
 export default UserController;

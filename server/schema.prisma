@@ -53,24 +53,25 @@ model box_images {
 }
 
 model box_items {
-  item_id        Int                @id @default(autoincrement()) @db.UnsignedInt
-  name           String             @db.VarChar(255)
-  description    String             @db.Text
-  list_price     Float
-  stock          Boolean
-  demo           Boolean
-  created_at     DateTime?          @db.Timestamp(0)
-  updated_at     DateTime?          @db.Timestamp(0)
-  box_id         Int?               @db.UnsignedInt
-  image_id       Int?               @db.UnsignedInt
-  rare_status_id Int?               @db.UnsignedInt
-  cost_to_us     Float
-  short_name     String             @db.VarChar(255)
-  box            box_boxes?         @relation(fields: [box_id], references: [box_id], onDelete: Cascade, map: "box_items_box_boxes_box_id_fk")
-  image          box_images?        @relation(fields: [image_id], references: [image_id], onUpdate: SetNull, map: "box_items_box_images_image_id_fk")
-  rare_statuses  box_rare_statuses? @relation(fields: [rare_status_id], references: [rare_status_id], onUpdate: SetNull, map: "box_items_box_rare_statuses_rare_status_id_fk")
-  box_f_history  box_f_history[]
-  box_prizes     box_prizes[]
+  item_id         Int                @id @default(autoincrement()) @db.UnsignedInt
+  name            String             @db.VarChar(255)
+  description     String             @db.Text
+  list_price      Float
+  stock           Boolean
+  demo            Boolean
+  created_at      DateTime?          @db.Timestamp(0)
+  updated_at      DateTime?          @db.Timestamp(0)
+  box_id          Int?               @db.UnsignedInt
+  image_id        Int?               @db.UnsignedInt
+  rare_status_id  Int?               @db.UnsignedInt
+  cost_to_us      Float
+  short_name      String             @db.VarChar(255)
+  box             box_boxes?         @relation(fields: [box_id], references: [box_id], onDelete: Cascade, map: "box_items_box_boxes_box_id_fk")
+  image           box_images?        @relation(fields: [image_id], references: [image_id], onUpdate: SetNull, map: "box_items_box_images_image_id_fk")
+  rare_statuses   box_rare_statuses? @relation(fields: [rare_status_id], references: [rare_status_id], onUpdate: SetNull, map: "box_items_box_rare_statuses_rare_status_id_fk")
+  box_f_history   box_f_history[]
+  box_prizes      box_prizes[]
+  box_stock_items box_stock_items[]
 
   @@index([box_id], map: "box_items_box_id_foreign")
   @@index([image_id], map: "box_items_image_id_foreign")
@@ -82,9 +83,9 @@ model box_prizes {
   created_at DateTime?  @db.Timestamp(0)
   updated_at DateTime?  @db.Timestamp(0)
   item_id    Int?       @db.UnsignedInt
-  user_id    Int?       @db.UnsignedInt
+  user_id    Int        @db.UnsignedInt
   box_items  box_items? @relation(fields: [item_id], references: [item_id], onDelete: Cascade, map: "box_prizes_box_items_item_id_fk")
-  box_users  box_users? @relation(fields: [user_id], references: [user_id], onDelete: Restrict, onUpdate: Restrict, map: "box_prizes_box_users_user_id_fk")
+  box_users  box_users  @relation(fields: [user_id], references: [user_id], onDelete: Cascade, map: "box_prizes_box_users_user_id_fk")
 
   @@index([item_id], map: "box_prizes_item_id_foreign")
   @@index([user_id], map: "box_prizes_user_id_foreign")
@@ -394,14 +395,27 @@ model box_f_users {
 }
 
 model box_users {
-  user_id    Int          @id @default(autoincrement()) @db.UnsignedInt
-  name       String?      @db.VarChar(255)
-  email      String       @db.VarChar(255)
-  password   String       @db.VarChar(255)
-  avatar     String?      @db.VarChar(255)
-  balance    Int          @default(0) @db.UnsignedInt
-  created    DateTime?    @default(now()) @db.DateTime(0)
-  box_prizes box_prizes[]
+  user_id         Int               @id @default(autoincrement()) @db.UnsignedInt
+  name            String?           @db.VarChar(255)
+  email           String            @unique(map: "box_users_email_uindex") @db.VarChar(255)
+  password        String            @db.VarChar(255)
+  avatar          String?           @db.VarChar(255)
+  balance         Int               @default(0) @db.UnsignedInt
+  created         DateTime?         @default(now()) @db.DateTime(0)
+  box_prizes      box_prizes[]
+  box_stock_items box_stock_items[]
+}
+
+model box_stock_items {
+  stock_item_id Int       @id @default(autoincrement()) @db.UnsignedInt
+  item_id       Int       @db.UnsignedInt
+  user_id       Int       @db.UnsignedInt
+  total         Int       @db.UnsignedInt
+  item     box_items @relation(fields: [item_id], references: [item_id], onDelete: Cascade, map: "box_stock_items_box_items_item_id_fk")
+  user     box_users @relation(fields: [user_id], references: [user_id], onDelete: Cascade, map: "box_stock_items_box_users_user_id_fk")
+
+  @@index([item_id], map: "box_stock_items_box_items_item_id_fk")
+  @@index([user_id], map: "box_stock_items_box_users_user_id_fk")
 }
 
 enum clients_gender {
