@@ -20,6 +20,13 @@ function App({ Component, pageProps }) {
 }
 
 App.getInitialProps = async (appContext) => {
+  const appProps = await NextApp.getInitialProps(appContext);
+
+  if (typeof window !== "undefined") {
+    appProps.pageProps.storeInitialData = {};
+    return { ...appProps };
+  }
+
   const baseUrl = "http://localhost:3080/api";
   const catalog = await axios.get(baseUrl + "/category").then((res) => {
     return res.data.catalog;
