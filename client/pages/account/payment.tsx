@@ -18,7 +18,7 @@ export default function Page() {
   return (
     <>
       <Head>
-        <title>Профиль</title>
+        <title>Оплата</title>
       </Head>
 
       <PageAccount>

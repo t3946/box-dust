@@ -68,7 +68,7 @@ model box_items {
   short_name      String             @db.VarChar(255)
   box             box_boxes?         @relation(fields: [box_id], references: [box_id], onDelete: Cascade, map: "box_items_box_boxes_box_id_fk")
   image           box_images?        @relation(fields: [image_id], references: [image_id], onUpdate: SetNull, map: "box_items_box_images_image_id_fk")
-  rare_statuses   box_rare_statuses? @relation(fields: [rare_status_id], references: [rare_status_id], onUpdate: SetNull, map: "box_items_box_rare_statuses_rare_status_id_fk")
+  rare   box_rare_statuses? @relation(fields: [rare_status_id], references: [rare_status_id], onUpdate: SetNull, map: "box_items_box_rare_statuses_rare_status_id_fk")
   box_f_history   box_f_history[]
   box_prizes      box_prizes[]
   box_stock_items box_stock_items[]

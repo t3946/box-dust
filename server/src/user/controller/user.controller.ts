@@ -36,7 +36,20 @@ export class UserController {
       },
       select: {
         stock_item_id: true,
-        item: true,
+        item: {
+          include: {
+            image: {
+              select: {
+                name: true,
+              },
+            },
+            rare: {
+              select: {
+                slug: true,
+              },
+            },
+          },
+        },
         total: true,
       },
     });
