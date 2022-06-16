@@ -3,6 +3,9 @@ import Style from "@components/pages/account/Sidebar.module.scss";
 import cn from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Cookie from "js-cookie";
+import { useDispatch } from "react-redux";
+import { setUser } from "@redux/reducer/User";
 
 export const Sidebar: React.FC = function () {
   const router = useRouter();
@@ -20,14 +23,14 @@ export const Sidebar: React.FC = function () {
       route: "/account/payment",
     },
   ];
-
   const itemTemplates = [];
+  const dispatch = useDispatch();
 
   for (let i = 0; i < items.length; i++) {
     const { label, route } = items[i];
 
     itemTemplates.push(
-      <li className={Style.sidebar_item}>
+      <li className={Style.sidebar_item} key={`sidebar-item-${i}`}>
         <Link href={route}>
           <a
             className={cn(Style.item, {
@@ -42,16 +45,21 @@ export const Sidebar: React.FC = function () {
   }
 
   itemTemplates.push(
-    <li className={cn(Style.sidebar_item, "mt-3")}>
+    <li
+      onClick={logout}
+      className={cn(Style.sidebar_item, "mt-3")}
+      key={`sidebar-item-${items.length}`}
+    >
       <span className={cn(Style.item, Style.item__logout)}>Выход</span>
     </li>
   );
 
-  return (
-    <div>
-      <ul className={cn("list-unstyled", "m-0")}>{itemTemplates}</ul>
-    </div>
-  );
+  function logout() {
+    dispatch(setUser({ user: null }));
+    Cookie.remove("auth");
+  }
+
+  return <ul className={cn("list-unstyled", "m-0")}>{itemTemplates}</ul>;
 };
 
 export default Sidebar;
