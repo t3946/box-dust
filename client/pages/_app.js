@@ -42,7 +42,19 @@ App.getInitialProps = async (appContext) => {
     return res.data.reviews;
   });
 
-  const appProps = await NextApp.getInitialProps(appContext);
+  const user = await axios
+    .get(baseUrl + "/auth/info", {
+      withCredentials: true,
+      headers: {
+        cookie: `auth=${appContext.ctx.req?.cookies?.auth}`,
+      },
+    })
+    .then((res) => {
+      return res.data.user;
+    })
+    .catch((err) => {
+      return null;
+    });
 
   appProps.pageProps.storeInitialData = {
     catalog,
@@ -55,6 +67,9 @@ App.getInitialProps = async (appContext) => {
     reviews: {
       list: reviews,
       skip: 1,
+    },
+    user: {
+      user,
     },
   };
 
