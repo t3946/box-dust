@@ -46,13 +46,17 @@
 }
 
 .name {
-  border-top: 1px solid #420e84;
+  border-top: 2px solid #420e84;
+  font-weight: bold;
+  color: #9474bc;
 
   &_theme_gold {
+    color: #ffd700;
     border-color: #ffd700;
   }
 
   &_theme_silver {
+    color: #c0c0c0;
     border-color: #c0c0c0;
   }
 }
