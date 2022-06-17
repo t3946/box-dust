@@ -15,6 +15,10 @@ export default interface IStore {
       register: {
         show: boolean;
       };
+      stockItem: {
+        show: boolean;
+        item: Record<any, any>;
+      };
     };
   };
   user: {

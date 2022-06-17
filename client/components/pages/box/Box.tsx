@@ -37,7 +37,7 @@ export const Box: React.FC<IProps> = function (props) {
 
       <PrizeModal
         show={modalPrizeShow}
-        prize={prize}
+        item={prize}
         handleClose={handleModalPrizeClose}
       />
     </>

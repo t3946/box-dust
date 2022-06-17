@@ -8,6 +8,10 @@ const initialState: any = {
     register: {
       show: false,
     },
+    stockItem: {
+      show: false,
+      item: null,
+    },
   },
 };
 
@@ -22,9 +26,16 @@ const popupSlice = createSlice({
     modalClose(state, action) {
       state.modal[action.payload.modal].show = false;
     },
+
+    setData(state, action) {
+      state.modal[action.payload.modal] = {
+        ...state.modal[action.payload.modal],
+        ...action.payload.data,
+      };
+    },
   },
 });
 
-export const { modalOpen, modalClose } = popupSlice.actions;
+export const { modalOpen, modalClose, setData } = popupSlice.actions;
 
 export default popupSlice.reducer;

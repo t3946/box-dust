@@ -1,21 +1,19 @@
 import * as React from "react";
 import { Modal, Row, Col } from "react-bootstrap";
-import Style from "@components/pages/box/PrizeModal.module.scss";
-import NeonText from "@components/common/layout/neon-text/NeonText";
+import Style from "@components/common/layout/modal-box-item/ModalBoxItem.module.scss";
 import cn from "classnames";
 import getImageUrl from "@utils/getImageUrl";
-import ButtonBlinkFlat, {
-  ETheme,
-} from "@components/common/ui/button-blink-flat/ButtonBlinkFlat";
+import CrossLarge from "@components/common/icons/cross-large/CrossLarge";
 
 export interface IProps {
   item: Record<any, any>;
   show: boolean;
   handleClose: any;
+  actions?: any;
 }
 
-export const PrizeModal: React.FC<IProps> = function (props) {
-  const { item, show, handleClose } = props;
+export const ModalBoxItem: React.FC<IProps> = function (props) {
+  const { item, show, handleClose, actions } = props;
 
   return (
     <>
@@ -27,13 +25,12 @@ export const PrizeModal: React.FC<IProps> = function (props) {
         dialogClassName={Style.dialog}
       >
         <Modal.Body>
-          <div className={cn(["text-center", "mt-3", "mb-4"])}>
-            <NeonText text={"Поздравляем!"} className={Style.header} />
+          <div className={Style.closeButton} onClick={handleClose}>
+            <CrossLarge className={Style.closeButtonIcon} />
           </div>
 
           <div>
             <h2 className={cn(["text-center my-4 mt-md-4", Style.titleSecond])}>
-              Ваш выигрыш: <br />
               <span className="d-md-none">{item.short_name}</span>
               <span className="d-none d-md-block">{item.name}</span>
             </h2>
@@ -53,16 +50,7 @@ export const PrizeModal: React.FC<IProps> = function (props) {
                 <div dangerouslySetInnerHTML={{ __html: item.description }} />
 
                 <div className="mt-4 d-flex justify-content-md-between flex-column flex-lg-row">
-                  <ButtonBlinkFlat
-                    theme={ETheme.success}
-                    className={["mb-3", "mb-lg-0"]}
-                  >
-                    Сохранить
-                  </ButtonBlinkFlat>
-
-                  <ButtonBlinkFlat theme={ETheme.danger}>
-                    Продать
-                  </ButtonBlinkFlat>
+                  {actions}
                 </div>
               </Col>
             </Row>
@@ -73,4 +61,4 @@ export const PrizeModal: React.FC<IProps> = function (props) {
   );
 };
 
-export default PrizeModal;
+export default ModalBoxItem;

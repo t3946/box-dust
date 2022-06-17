@@ -6,12 +6,12 @@ import Badge from "react-bootstrap/Badge";
 export interface IProps {
   stockItem: Record<any, any>;
   className?: any;
+  onClick: any;
 }
 
 export const StockItem: React.FC<IProps> = function (props) {
-  const { stockItem, className } = props;
+  const { stockItem, className, onClick } = props;
   const { item, total } = stockItem;
-
   const rareSlugItemThemeMap = {
     rare: Style.item_theme_gold,
     normal: Style.item_theme_silver,
@@ -20,6 +20,7 @@ export const StockItem: React.FC<IProps> = function (props) {
     rare: Style.name_theme_gold,
     normal: Style.name_theme_silver,
   };
+
   return (
     <div className={cn(className)}>
       <div
@@ -28,6 +29,7 @@ export const StockItem: React.FC<IProps> = function (props) {
           Style.item,
           rareSlugItemThemeMap[item.rare.slug]
         )}
+        onClick={onClick}
       >
         <Badge pill bg="light" text="dark" className={Style.item__badge}>
           {total}
