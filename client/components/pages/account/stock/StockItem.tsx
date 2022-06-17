@@ -40,7 +40,8 @@ export const StockItem: React.FC<IProps> = function (props) {
             Style.imageContainer,
             "d-flex",
             "justify-content-center",
-            "p-2"
+            "px-2",
+            "py-4"
           )}
         >
           <img
