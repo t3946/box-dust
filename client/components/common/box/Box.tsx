@@ -1,5 +1,5 @@
 import * as React from "react";
-import Styles from "@components/common/Box/Box.module.scss";
+import Styles from "@components/common/box/Box.module.scss";
 import cn from "classnames";
 import getImageUrl from "@utils/getImageUrl";
 import Link from "next/link";

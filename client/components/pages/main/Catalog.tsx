@@ -1,5 +1,5 @@
 import * as React from "react";
-import Box, { ETheme } from "@components/common/Box/Box";
+import Box, { ETheme } from "@components/common/box/Box";
 import Styles from "@components/pages/main/Catalog.module.scss";
 
 interface IProps {
