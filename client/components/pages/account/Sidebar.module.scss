@@ -18,15 +18,17 @@
   padding: 0 pxToRem(10);
   align-items: center;
   font-family: Calibri, serif;
+  border-radius: 2px;
+  transition: all 0.15s ease-out;
 
   &:hover {
     color: #000000;
-    background: #eeeeee;
+    background: #dddddd;
   }
 
   &__active {
     font-weight: bold;
-    background: #eeeeee;
+    background: #dddddd;
 
     &:hover {
       color: #000000;
