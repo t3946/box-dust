@@ -9,7 +9,7 @@ import Stock from "@components/pages/account/stock/Stock";
 
 export async function getServerSideProps(context: NextPageContext) {
   const stock = await axios
-    .get(`http://127.0.0.1:3080/api/user/stock`, {
+    .get(`http://127.0.0.1:3080/api/stock/get`, {
       withCredentials: true,
       headers: {
         cookie: `auth=${context.req?.cookies?.auth}`,

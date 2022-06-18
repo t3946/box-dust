@@ -19,7 +19,7 @@ export const Sidebar: React.FC = function () {
       route: "/account/stock",
     },
     {
-      label: "Пополнить счёт",
+      label: "Баланс",
       route: "/account/payment",
     },
   ];

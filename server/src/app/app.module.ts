@@ -6,9 +6,10 @@ import CategoryController from '@src/app/controllers/category.controller';
 import BoxController from '@src/app/controllers/box.controller';
 import { AppService } from '@src/app/services/app.service';
 import { UserModule } from '@src/user/user.module';
+import { StockModule } from '@src/stock/stock.module';
 
 @Module({
-  imports: [UserModule],
+  imports: [UserModule, StockModule],
   controllers: [
     AppController,
     FHistoryController,
