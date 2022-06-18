@@ -36,7 +36,7 @@ export const ModalBoxItem: React.FC<IProps> = function (props) {
             </h2>
           </div>
 
-          <div className={"my-3"}>
+          <div className={"my-2 my-md-3"}>
             <Row>
               <Col xs={12} md={5} className={"text-center mb-3 mb-md-0"}>
                 <img
@@ -49,9 +49,7 @@ export const ModalBoxItem: React.FC<IProps> = function (props) {
               <Col xs={12} md={7}>
                 <div dangerouslySetInnerHTML={{ __html: item.description }} />
 
-                <div className="mt-4 d-flex justify-content-md-between flex-column flex-lg-row">
-                  {actions}
-                </div>
+                <div className="mt-4">{actions}</div>
               </Col>
             </Row>
           </div>

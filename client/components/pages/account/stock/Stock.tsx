@@ -15,12 +15,12 @@ export const Stock: React.FC<IProps> = function (props) {
   const stockItems = [];
   const dispatch = useDispatch();
 
-  function openItemInModal(item) {
+  function openItemInModal(stockItem: any) {
     dispatch(
       setData({
         modal: "stockItem",
         data: {
-          item,
+          item: stockItem,
           show: true,
         },
       })
@@ -33,10 +33,14 @@ export const Stock: React.FC<IProps> = function (props) {
         stockItem={stockItem}
         key={`stock-item-${stockItem.stock_item_id}`}
         className={"col-3 mb-3"}
-        onClick={() => openItemInModal(stockItem.item)}
+        onClick={() => openItemInModal(stockItem)}
       />
     );
   }
+
+  useEffect(() => {
+    openItemInModal(stock[0]);
+  });
 
   return (
     <div>

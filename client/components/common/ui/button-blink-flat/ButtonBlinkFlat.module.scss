@@ -1,3 +1,5 @@
+@import "styles/utils/Utils.module.scss";
+
 /*источник*/
 /*https://bootstraptema.ru/stuff/snippets_bootstrap/button/gradient_stil_knopok_bootstrap_4/23-1-0-3173*/
 
@@ -6,10 +8,15 @@
   font-size: 13px;
   font-weight: bold;
   letter-spacing: 1px;
-  padding: 17px 39px;
+  padding: pxToRem(10) pxToRem(16);
   text-transform: uppercase;
   box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.2);
   color: #ffffff;
+  white-space: nowrap;
+
+  @include breakpoint(sm) {
+    padding: pxToRem(17) pxToRem(39);
+  }
 }
 
 
