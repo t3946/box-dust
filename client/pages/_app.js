@@ -1,6 +1,6 @@
 import "@styles/globals.css";
 import { Provider } from "react-redux";
-import getStore from "../redux/Store";
+import getStore from "@redux/Store";
 import React from "react";
 import { SSRProvider } from "react-bootstrap";
 import axios from "axios";

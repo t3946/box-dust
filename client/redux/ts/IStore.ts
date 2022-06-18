@@ -17,11 +17,14 @@ export default interface IStore {
       };
       stockItem: {
         show: boolean;
-        item: Record<any, any>;
+        stock_item_id: number;
       };
     };
   };
   user: {
     user: Record<any, any>;
+  };
+  stock: {
+    stock: Record<any, any>[];
   };
 }

@@ -4,23 +4,29 @@ import ModalStockItem from "@components/pages/account/stock/ModalStockItem";
 import { setData } from "@redux/reducer/Popup";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { setState } from "@redux/reducer/Stock";
+import useSelector from "@hooks/useSelector";
 
 export interface IProps {
-  stock: any[];
   header: string;
 }
 
 export const Stock: React.FC<IProps> = function (props) {
-  const { stock, header } = props;
+  const { header } = props;
   const stockItems = [];
   const dispatch = useDispatch();
+  const stock = useSelector((state) => state.stock.stock);
 
-  function openItemInModal(stockItem: any) {
+  if (!stock) {
+    return null;
+  }
+
+  function openItemInModal(stock_item_id: any) {
     dispatch(
       setData({
         modal: "stockItem",
         data: {
-          item: stockItem,
+          stock_item_id: stock_item_id,
           show: true,
         },
       })
@@ -33,14 +39,14 @@ export const Stock: React.FC<IProps> = function (props) {
         stockItem={stockItem}
         key={`stock-item-${stockItem.stock_item_id}`}
         className={"col-3 mb-3"}
-        onClick={() => openItemInModal(stockItem)}
+        onClick={() => openItemInModal(stockItem.stock_item_id)}
       />
     );
   }
 
-  useEffect(() => {
-    openItemInModal(stock[0]);
-  });
+  // useEffect(() => {
+  //   openItemInModal(stock[0]);
+  // });
 
   return (
     <div>

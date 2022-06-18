@@ -6,6 +6,8 @@ import PageAccount from "@components/common/layout/page/PageAccount";
 import { NextPageContext } from "next";
 import axios from "axios";
 import Stock from "@components/pages/account/stock/Stock";
+import { setState } from "@redux/reducer/Stock";
+import { useDispatch } from "react-redux";
 
 export async function getServerSideProps(context: NextPageContext) {
   const stock = await axios
@@ -20,16 +22,21 @@ export async function getServerSideProps(context: NextPageContext) {
   return { props: { stock } };
 }
 
-export default function Page(props) {
+export default function Page(props: any) {
   const { stock } = props;
   const user = useSelector((state) => state.user.user);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!user && router) {
       router.push("/main");
     }
   });
+
+  useEffect(() => {
+    dispatch(setState({ stock }));
+  }, []);
 
   const header = "Склад";
 
@@ -40,7 +47,7 @@ export default function Page(props) {
       </Head>
 
       <PageAccount>
-        <Stock stock={stock} header={header} />
+        <Stock header={header} />
       </PageAccount>
     </>
   );

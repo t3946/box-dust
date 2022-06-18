@@ -10,7 +10,7 @@ const initialState: any = {
     },
     stockItem: {
       show: false,
-      item: null,
+      stock_item_id: null,
     },
   },
 };

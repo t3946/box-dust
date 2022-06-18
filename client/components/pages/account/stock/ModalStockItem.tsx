@@ -11,11 +11,15 @@ import ButtonBlinkFlat, {
 } from "@components/common/ui/button-blink-flat/ButtonBlinkFlat";
 import Style from "@components/pages/account/stock/ModalStockItem.module.scss";
 import cn from "classnames";
+import { sell } from "@redux/actions/Stock";
+import { FormikHelpers } from "formik/dist/types";
 
 export const ModalStockItem: React.FC = function () {
-  const { show, item: stockItem } = useSelector(
+  const { show, stock_item_id } = useSelector(
     (state) => state.popup.modal.stockItem
   );
+  const { stock } = useSelector((state) => state.stock);
+  const stockItem = stock.find((e) => e.stock_item_id === stock_item_id);
 
   if (!stockItem) {
     return null;
@@ -39,8 +43,34 @@ export const ModalStockItem: React.FC = function () {
     count: Yup.number().required().min(1).max(total),
   });
 
-  function submit() {
-    alert("Submit");
+  function submit(
+    values: typeof initialValues,
+    formikHelpers: FormikHelpers<typeof values>
+  ) {
+    formikHelpers.setSubmitting(true);
+
+    function sendForm() {
+      dispatch(
+        sell({
+          data: {
+            stock_item_id: stockItem.stock_item_id,
+            count: values.count,
+          },
+
+          callback() {
+            formikHelpers.setSubmitting(false);
+          },
+        })
+      );
+    }
+
+    if (values.count === stockItem.total) {
+      close();
+      setTimeout(sendForm, 300);
+      return;
+    }
+
+    sendForm();
   }
 
   function actionsTemplate() {
@@ -98,6 +128,7 @@ export const ModalStockItem: React.FC = function () {
                       <ButtonBlinkFlat
                         theme={ETheme.primary}
                         className={cn("py-2")}
+                        type={"submit"}
                       >
                         <span>Продать</span> <br />
                         <span className={Style.sellForText}>

@@ -11,6 +11,10 @@ const userSlice = createSlice({
     setUser(state, action: any) {
       state.user = action.payload.user;
     },
+
+    balanceAdd(state, action: any) {
+      state.user.balance += action.payload.count;
+    },
   },
 });
 
