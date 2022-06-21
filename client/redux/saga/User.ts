@@ -29,7 +29,22 @@ function* login(action: any): Generator {
   }
 }
 
+function* update(action: any): Generator {
+  const { data, callback } = action.payload;
+
+  yield axios.post("/api/auth/update", data).then((res) => {
+    return res.data.user;
+  });
+
+  // yield put({ type: "user/setUser", payload: { user } });
+
+  if (callback) {
+    yield callback();
+  }
+}
+
 export default function* User(): SagaIterator {
-  yield takeLatest("USER_REGISTRATION", register);
-  yield takeLatest("USER_LOGIN", login);
+  yield takeLatest("user/register", register);
+  yield takeLatest("user/login", login);
+  yield takeLatest("user/updateName", update);
 }

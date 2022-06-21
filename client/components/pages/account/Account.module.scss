@@ -1,14 +1,17 @@
 @import "styles/utils/Utils.module.scss";
 
 .avatarImage {
-  width: pxToRem(200);
-  height: pxToRem(200);
+  $size: pxToRem(200);
+  width: $size;
+  height: $size;
+  border-radius: $size / 2;
 }
 
 .userInfoPanel {
   background-color: #ffffff;
   color: black;
-  padding: 12px 0;
+  padding: pxToRem(24) pxToRem(20);
+  border-radius: 2px;
 }
 
 .userName {

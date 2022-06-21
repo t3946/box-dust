@@ -28,7 +28,7 @@ export const UserPanel: React.FC = function () {
             </div>
 
             <div
-              className={cn("mx-3", "d-flex", "flex-column", "align-items-end")}
+              className={cn("mx-3", "d-flex", "flex-column")}
             >
               <span className={Style.userName}>{user.name}</span>
               <span className={Style.balance}>

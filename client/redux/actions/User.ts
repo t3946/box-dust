@@ -1,13 +1,16 @@
 import ISagaPayload from "@redux/ts/ISagaPayload";
 
-const prefix = "USER";
-
 export const registration = (payload: ISagaPayload): any => ({
-  type: `${prefix}_REGISTRATION`,
+  type: `user/register`,
   payload,
 });
 
 export const login = (payload: ISagaPayload): any => ({
-  type: `${prefix}_LOGIN`,
+  type: `user/login`,
+  payload,
+});
+
+export const update = (payload: ISagaPayload): any => ({
+  type: `user/update`,
   payload,
 });

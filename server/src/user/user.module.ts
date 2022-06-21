@@ -4,6 +4,7 @@ import { PasswordService } from '@src/user/service/password.service';
 import { AuthModule } from '@src/auth/auth.module';
 
 const passport = require('passport');
+const { body, validationResult } = require('express-validator');
 
 @Module({
   imports: [AuthModule],
@@ -20,5 +21,9 @@ export class UserModule {
       )
       .exclude('/api/user/register')
       .forRoutes('/api/user/*');
+
+    consumer
+      .apply(body('name').matches(/^[A-z]{2,31}$/), body('email').isEmail())
+      .forRoutes('/api/user/update');
   }
 }

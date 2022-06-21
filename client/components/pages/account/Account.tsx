@@ -3,8 +3,8 @@ import useSelector from "@hooks/useSelector";
 import Style from "@components/pages/account/Account.module.scss";
 import cn from "classnames";
 import FormButton from "@components/common/form/button/Button";
-import EditableString from "@components/pages/account/EditableString";
 import balanceToString from "@utils/balanceToString";
+import { update } from "@redux/actions/User";
 
 export const Account: React.FC = function () {
   const user = useSelector((state) => state.user.user);
@@ -20,18 +20,25 @@ export const Account: React.FC = function () {
           <div className={"d-flex flex-column"}>
             <img
               src={"/images/default-avatar.png"}
-              alt=""
+              alt="Аватар"
               className={Style.avatarImage}
             />
-            <FormButton className={"mt-2"}>редактировать</FormButton>
           </div>
 
           <div className={"ms-5"}>
-            <EditableString className={cn(Style.userName, "mb-3")}>
-              <span className={Style.userNameString}>{user.name}</span>
-            </EditableString>
+            <ul className={cn(Style.stat, "list-unstyled")}>
+              <li className={"mb-1"}>
+                <span className={cn(Style.userName, "mb-3")}>
+                  <span className={Style.userNameString}>{user.name}</span>
+                </span>
+              </li>
+              <li className={"mb-1"}>Почта: {user.email}</li>
+              <li className={"mt-2"}>
+                <FormButton className={"mt-2"}>редактировать</FormButton>
+              </li>
+            </ul>
 
-            <ul className={cn(Style.stat, "list-unstyled m-0")}>
+            <ul className={cn(Style.stat, "list-unstyled mt-3")}>
               <li>Призов на складе: 0</li>
               <li>Игр сыграно: 0</li>
               <li className={cn(Style.balance, "mt-2", "fw-bold")}>
