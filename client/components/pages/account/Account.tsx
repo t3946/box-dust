@@ -4,6 +4,7 @@ import Style from "@components/pages/account/Account.module.scss";
 import cn from "classnames";
 import FormButton from "@components/common/form/button/Button";
 import EditableString from "@components/pages/account/EditableString";
+import balanceToString from "@utils/balanceToString";
 
 export const Account: React.FC = function () {
   const user = useSelector((state) => state.user.user);
@@ -36,7 +37,7 @@ export const Account: React.FC = function () {
               <li className={cn(Style.balance, "mt-2", "fw-bold")}>
                 Баланс:{" "}
                 <span className={Style.balanceNumber}>
-                  {(user.balance / 100).toFixed(2).toLocaleString("Ru")}
+                  {balanceToString(user.balance)}
                 </span>
               </li>
             </ul>

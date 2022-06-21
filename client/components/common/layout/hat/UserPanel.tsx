@@ -4,6 +4,7 @@ import useSelector from "@hooks/useSelector";
 import cn from "classnames";
 import ChevronDown from "@components/common/icons/chevron-down/ChevronDown";
 import Link from "next/link";
+import balanceToString from "@utils/balanceToString";
 
 export const UserPanel: React.FC = function () {
   const user = useSelector((state) => state.user.user);
@@ -33,7 +34,7 @@ export const UserPanel: React.FC = function () {
               <span className={Style.balance}>
                 баланс:{" "}
                 <span className={Style.balanceNumber}>
-                  {(user.balance / 100).toFixed(2).toLocaleString("Ru")}
+                  {balanceToString(user.balance)}
                 </span>
               </span>
             </div>
