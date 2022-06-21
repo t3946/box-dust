@@ -7,13 +7,6 @@
   border-radius: $size / 2;
 }
 
-.userInfoPanel {
-  background-color: #ffffff;
-  color: black;
-  padding: pxToRem(24) pxToRem(20);
-  border-radius: 2px;
-}
-
 .userName {
   font-size: pxToRem(48);
   text-transform: uppercase;
