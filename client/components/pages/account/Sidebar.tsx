@@ -6,9 +6,12 @@ import { useRouter } from "next/router";
 import Cookie from "js-cookie";
 import { useDispatch } from "react-redux";
 import { setUser } from "@redux/reducer/User";
+import Badge from "@components/common/badge/Badge";
+import useSelector from "@hooks/useSelector";
 
 export const Sidebar: React.FC = function () {
   const router = useRouter();
+  const { stock } = useSelector((state) => state.stock);
   const items = [
     {
       label: "Профиль",
@@ -17,6 +20,7 @@ export const Sidebar: React.FC = function () {
     {
       label: "Склад",
       route: "/account/stock",
+      badge: stock.reduce((accumulator, cur) => accumulator + cur.total, 0),
     },
     {
       label: "Баланс",
@@ -27,17 +31,24 @@ export const Sidebar: React.FC = function () {
   const dispatch = useDispatch();
 
   for (let i = 0; i < items.length; i++) {
-    const { label, route } = items[i];
+    const { label, route, badge } = items[i];
 
     itemTemplates.push(
       <li className={Style.sidebar_item} key={`sidebar-item-${i}`}>
         <Link href={route}>
           <a
-            className={cn(Style.item, {
-              [Style.item__active]: router.route === route,
-            })}
+            className={cn(
+              Style.item,
+              {
+                [Style.item__active]: router.route === route,
+              },
+              "position-relative",
+              "d-flex",
+              "justify-content-between"
+            )}
           >
-            {label}
+            <span>{label}</span>
+            {!!badge && <Badge>{badge}</Badge>}
           </a>
         </Link>
       </li>
