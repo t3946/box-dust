@@ -1,9 +1,16 @@
 import * as React from "react";
 import Style from "@components/common/layout/account/Panel.module.scss";
 import { PropsWithChildren } from "react";
+import cn from "classnames";
 
-export const Panel: React.FC<PropsWithChildren<any>> = function (props) {
-  return <div className={Style.panel}>{props.children}</div>;
+export interface IProps {
+  className?: any;
+}
+
+export const Panel: React.FC<PropsWithChildren<IProps>> = function (props) {
+  const { className } = props;
+
+  return <div className={cn(Style.panel, className)}>{props.children}</div>;
 };
 
 export default Panel;

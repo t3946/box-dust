@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { setState } from "@redux/reducer/Stock";
 import useSelector from "@hooks/useSelector";
+import PanelNoItems from "@components/common/layout/account/PanelNoItems";
 
 export interface IProps {
   header: string;
@@ -54,7 +55,7 @@ export const Stock: React.FC<IProps> = function (props) {
 
       <div className="row">{stockItems}</div>
 
-      <ModalStockItem />
+      {stock.length > 0 ? <ModalStockItem /> : <PanelNoItems text={"Нет вещей на складе"} />}
     </div>
   );
 };
