@@ -4,6 +4,32 @@ import { PasswordService } from '@src/user/service/password.service';
 
 const prisma = new PrismaClient();
 
+export async function getUserStock(user_id) {
+  return await prisma.box_stock_items.findMany({
+    where: {
+      user_id: parseInt(user_id),
+    },
+    select: {
+      stock_item_id: true,
+      item: {
+        include: {
+          image: {
+            select: {
+              name: true,
+            },
+          },
+          rare: {
+            select: {
+              slug: true,
+            },
+          },
+        },
+      },
+      total: true,
+    },
+  });
+}
+
 @Controller('api/stock')
 export class StockController {
   constructor(private readonly passwordService: PasswordService) {}
@@ -58,29 +84,7 @@ export class StockController {
 
   @Get('get')
   public async get(@Res() res, @Req() req) {
-    const stock = await prisma.box_stock_items.findMany({
-      where: {
-        user_id: parseInt(req.user.user_id),
-      },
-      select: {
-        stock_item_id: true,
-        item: {
-          include: {
-            image: {
-              select: {
-                name: true,
-              },
-            },
-            rare: {
-              select: {
-                slug: true,
-              },
-            },
-          },
-        },
-        total: true,
-      },
-    });
+    const stock = await getUserStock(parseInt(req.user.user_id));
 
     res.json({
       stock,

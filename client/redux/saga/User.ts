@@ -1,6 +1,6 @@
 import { takeLatest, put } from "redux-saga/effects";
 import { SagaIterator } from "redux-saga";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 function* register(action: any): Generator {
   const { data, callback } = action.payload;
@@ -18,11 +18,14 @@ function* register(action: any): Generator {
 
 function* login(action: any): Generator {
   const { data, callback } = action.payload;
-  const user = yield axios.post("/api/auth/login", data).then((res) => {
-    return res.data.user;
-  });
+  const { user, stock } = yield axios
+    .post("/api/auth/login", data)
+    .then((res): Record<any, any> => {
+      return res.data;
+    });
 
   yield put({ type: "user/setUser", payload: { user } });
+  yield put({ type: "stock/setState", payload: { stock } });
 
   if (callback) {
     yield callback();

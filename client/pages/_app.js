@@ -31,6 +31,9 @@ App.getInitialProps = async (appContext) => {
   const catalog = await axios.get(baseUrl + "/category").then((res) => {
     return res.data.catalog;
   });
+  const headers = {
+    cookie: `auth=${appContext.ctx.req?.cookies?.auth}`,
+  };
 
   const historyPrizes = await axios
     .get(baseUrl + "/f-history/get")
@@ -42,12 +45,20 @@ App.getInitialProps = async (appContext) => {
     return res.data.reviews;
   });
 
+  const stock = await axios
+    .get(baseUrl + "/stock/get", {
+      withCredentials: true,
+      headers,
+    })
+    .then((res) => res.data.stock)
+    .catch(() => {
+      return [];
+    });
+
   const user = await axios
     .get(baseUrl + "/auth/info", {
       withCredentials: true,
-      headers: {
-        cookie: `auth=${appContext.ctx.req?.cookies?.auth}`,
-      },
+      headers,
     })
     .then((res) => {
       return res.data.user;
@@ -70,6 +81,9 @@ App.getInitialProps = async (appContext) => {
     },
     user: {
       user,
+    },
+    stock: {
+      stock,
     },
   };
 

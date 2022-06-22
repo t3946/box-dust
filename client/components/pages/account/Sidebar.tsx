@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "@redux/reducer/User";
 import Badge from "@components/common/badge/Badge";
 import useSelector from "@hooks/useSelector";
+import { setState } from "@redux/reducer/Stock";
 
 export const Sidebar: React.FC = function () {
   const router = useRouter();
@@ -67,6 +68,7 @@ export const Sidebar: React.FC = function () {
 
   function logout() {
     dispatch(setUser({ user: null }));
+    dispatch(setState({ stock: [] }));
     Cookie.remove("auth");
   }
 

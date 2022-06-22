@@ -2,6 +2,7 @@ import { AuthService } from '@src/auth/services/auth.service';
 import { Controller, Get, Post, Res, Req } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 import { PasswordService } from '@src/user/service/password.service';
+import { getUserStock } from '@src/stock/controller/stock.controller';
 
 const prisma = new PrismaClient();
 
@@ -22,7 +23,8 @@ export class AuthController {
   @Post('login')
   public async login(@Res() res, @Req() req) {
     res.cookie('auth', req.user.authToken);
-    res.json({ user: req.user.user });
+    const stock = await getUserStock(req.user.user.user_id);
+    res.json({ user: req.user.user, stock });
   }
 }
 

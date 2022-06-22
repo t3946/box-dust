@@ -16,7 +16,7 @@ const initialState: any = {
 };
 
 const popupSlice = createSlice({
-  name: "todos",
+  name: "popup",
   initialState,
   reducers: {
     modalOpen(state, action) {
