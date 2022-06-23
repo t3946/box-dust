@@ -3,46 +3,57 @@ import Style from "@components/common/layout/hat/UserPanel.module.scss";
 import useSelector from "@hooks/useSelector";
 import cn from "classnames";
 import ChevronDown from "@components/common/icons/chevron-down/ChevronDown";
-import Link from "next/link";
 import balanceToString from "@utils/balanceToString";
+import { useState } from "react";
 
-export const UserPanel: React.FC = function () {
+interface IProps {
+  onToggle?: any;
+}
+
+export const UserPanel: React.FC<IProps> = function (props) {
+  const { onToggle } = props;
   const user = useSelector((state) => state.user.user);
+  const [open, setOpen] = useState(false);
+
+  function toggle() {
+    setOpen(!open);
+
+    if (typeof onToggle === "function") {
+      onToggle(open);
+    }
+  }
 
   return (
-    <div className={"d-flex w-100 justify-content-end"}>
-      <Link href={"/account/profile"}>
-        <a>
-          {" "}
-          <div
-            className={cn(
-              "d-flex align-items-center cursor-pointer",
-              Style.buttonWrapper
-            )}
-          >
-            <div className={cn(Style.avatarImageContainer, "flex-shrink-0")}>
-              <img
-                src={"/images/default-avatar.png"}
-                className={Style.avatarImage}
-              />
-            </div>
+    <div
+      className={cn(
+        "d-flex align-items-center cursor-pointer",
+        Style.buttonWrapper
+      )}
+      onClick={toggle}
+    >
+      <div className={cn(Style.avatarImageContainer, "flex-shrink-0")}>
+        <img
+          src={"/images/default-avatar.png"}
+          className={Style.avatarImage}
+          alt={"Аватар"}
+        />
+      </div>
 
-            <div
-              className={cn("mx-3", "d-flex", "flex-column")}
-            >
-              <span className={Style.userName}>{user.name}</span>
-              <span className={Style.balance}>
-                баланс:{" "}
-                <span className={Style.balanceNumber}>
-                  {balanceToString(user.balance)}
-                </span>
-              </span>
-            </div>
+      <div className={cn("mx-3", "d-flex", "flex-column", "flex-grow-1")}>
+        <span className={Style.userName}>{user.name}</span>
+        <span className={Style.balance}>
+          баланс:{" "}
+          <span className={Style.balanceNumber}>
+            {balanceToString(user.balance)}
+          </span>
+        </span>
+      </div>
 
-            <ChevronDown className={cn("flex-shrink-0", Style.chevron)} />
-          </div>
-        </a>
-      </Link>
+      <ChevronDown
+        className={cn("flex-shrink-0", Style.chevron, {
+          [Style.chevron_open]: open,
+        })}
+      />
     </div>
   );
 };

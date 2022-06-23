@@ -7,7 +7,7 @@ import useSelector from "@hooks/useSelector";
 import Link from "next/link";
 import MenuButton from "@components/common/layout/hat/mobile/MenuButton";
 import Style from "@components/common/layout/hat/mobile/HatMobile.module.scss";
-import Sidebar from "@components/common/layout/hat/mobile/SideBar";
+import Sidebar from "@components/common/layout/hat/mobile/Sidebar";
 
 export const HatMobile: React.FC = function () {
   const dispatch = useDispatch();
@@ -30,36 +30,44 @@ export const HatMobile: React.FC = function () {
 
   return (
     <>
-      <header
-        className={cn(HatStyle.hat, "row", "py-2", Style.hat, "d-md-none")}
-      >
-        <div className="col-auto d-flex align-items-center" onClick={openMenu}>
-          <MenuButton show={showMenu} />
+      <header className={cn(Style.hat__wrapper)}>
+        <div
+          className={cn(HatStyle.hat, "row", "py-2", Style.hat, "d-md-none")}
+        >
+          <div
+            className="col-auto d-flex align-items-center"
+            onClick={openMenu}
+          >
+            <MenuButton show={showMenu} />
+          </div>
+
+          <div className="col d-flex justify-content-center align-items-center">
+            <Link href={"/main"}>
+              <a>
+                <img
+                  src={"/images/pages/main/logo.png"}
+                  alt={"box dust"}
+                  className={cn(
+                    HatStyle.logo,
+                    "w-100",
+                    Style.logo,
+                    "user-select-none",
+                    "user-drag-none"
+                  )}
+                />
+              </a>
+            </Link>
+          </div>
+
+          <div className={cn(["col-auto", "align-items-center", "d-flex"])}>
+            <img
+              src={avatar}
+              className={cn(Style.avatar, "user-select-none", "user-drag-none")}
+            />
+          </div>
         </div>
 
-        <div className="col d-flex justify-content-center align-items-center">
-          <Link href={"/main"}>
-            <a>
-              <img
-                src={"/images/pages/main/logo.png"}
-                alt={"box dust"}
-                className={cn(
-                  HatStyle.logo,
-                  "w-100",
-                  Style.logo,
-                  "user-select-none",
-                  "user-drag-none"
-                )}
-              />
-            </a>
-          </Link>
-        </div>
-
-        <div className={cn(["col-auto", "align-items-center", "d-flex"])}>
-          <img src={avatar} className={cn(Style.avatar, "user-select-none", "user-drag-none")} />
-        </div>
-
-        <Sidebar visible={showMenu} />
+        <Sidebar visible={showMenu} className={"row"} />
       </header>
     </>
   );

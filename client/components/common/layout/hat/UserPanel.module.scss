@@ -25,6 +25,11 @@
 
 .chevron {
   width: pxToRem(20);
+  transition: all 0.15s linear;
+
+  &_open {
+    transform: rotate(180deg);
+  }
 }
 
 .buttonWrapper {

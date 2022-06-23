@@ -1,5 +1,13 @@
 @import "styles/utils/Utils.module.scss";
 
+.hat {
+  &__wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+}
+
 .avatar {
   $size: pxToRem(60);
   width: $size;
@@ -10,9 +18,6 @@
 .hat {
   height: pxToRem(70);
   box-sizing: content-box;
-  position: sticky;
-  top: 0;
-  z-index: 100;
 }
 
 .logo {
