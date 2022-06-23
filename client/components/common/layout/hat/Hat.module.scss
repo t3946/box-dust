@@ -29,25 +29,3 @@
 .logo {
   height: pxToRem(100);
 }
-
-.navItem {
-  display: inline-block;
-  font-size: pxToRem(20);
-
-  &:before {
-    content: "|";
-    margin: 0 pxToRem(20);
-  }
-
-  &:first-child {
-    &:before {
-      content: "";
-    }
-  }
-}
-
-.navLink {
-  &:hover {
-    color: #faee0f;
-  }
-}

@@ -9,6 +9,9 @@ import useSelector from "@hooks/useSelector";
 import UserPanel from "@components/common/layout/hat/UserPanel";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import MenuDesktop from "@components/common/layout/hat/MenuDesktop";
+import MenuButton from "@components/common/layout/hat/mobile/MenuButton";
+import HatMobile from "@components/common/layout/hat/mobile/HatMobile";
 
 export const Hat: React.FC = function () {
   const dispatch = useDispatch();
@@ -25,42 +28,24 @@ export const Hat: React.FC = function () {
 
   return (
     <>
-      <header className={cn(Styles.hat)}>
+      <HatMobile />
+
+      <header className={cn(Styles.hat, "d-none", "d-md-block")}>
         <div className="row m-lg-0">
           <div className="col-3">
             <Link href={"/main"}>
               <a>
                 <img
                   src={"/images/pages/main/logo.png"}
+                  alt={"site log"}
                   className={Styles.logo}
                 />
               </a>
             </Link>
           </div>
 
-          <div className="col-5 d-flex align-items-center justify-content-center">
-            <ul className={"list-unstyled m-0"}>
-              <li className={Styles.navItem}>
-                <a href="#" className={Styles.navLink}>
-                  Коробки
-                </a>
-              </li>
-              <li className={Styles.navItem}>
-                <a href="#" className={Styles.navLink}>
-                  Доставка
-                </a>
-              </li>
-              <li className={Styles.navItem}>
-                <a href="#" className={Styles.navLink}>
-                  Отзывы
-                </a>
-              </li>
-              <li className={Styles.navItem}>
-                <a href="#" className={Styles.navLink}>
-                  Контакты
-                </a>
-              </li>
-            </ul>
+          <div className="col-5 d-none d-lg-flex align-items-center justify-content-center">
+            <MenuDesktop />
           </div>
 
           <div className={cn([Styles.headerUiColumn, "col-4"])}>
@@ -79,14 +64,7 @@ export const Hat: React.FC = function () {
       </header>
 
       {router.route !== "/account" && (
-        <div
-          className={cn([
-            Styles.headerMenuPanel,
-            "col-12",
-            "d-none",
-            "d-lg-block",
-          ])}
-        >
+        <div className={cn([Styles.headerMenuPanel, "col-12"])}>
           <Navigation />
         </div>
       )}

@@ -1,0 +1,20 @@
+@import "styles/utils/Utils.module.scss";
+
+.container {
+  width: 85%;
+  background-color: #1b003c;
+  position: absolute;
+  $hatHeight: pxToRem(100);
+  inset: 100% 0 0 0;
+  top: 100%;
+  height: 100px;
+  z-index: 10;
+  transform: translate(-110%, 0);
+  transition: all 0.3s ease-out;
+  opacity: 0;
+
+  &_show {
+    transform: translate(0%, 0);
+    opacity: 1;
+  }
+}
