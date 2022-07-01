@@ -1,5 +1,10 @@
 @import "styles/utils/Utils.module";
 
+div.control {
+  border: none;
+  border-radius: 2px;
+}
+
 div.select {
   width: 100%;
   font-size: pxToRem(18);

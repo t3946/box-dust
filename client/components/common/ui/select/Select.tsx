@@ -10,7 +10,7 @@ import IndicatorsContainer from "@components/common/ui/select/IndicatorsContaine
 import DropdownIndicator from "@components/common/ui/select/DropdownIndicator";
 import IndicatorSeparator from "@components/common/ui/select/IndicatorSeparator";
 
-import Styles from "@components/common/ui/select/Select.module.scss";
+import Style from "@components/common/ui/select/Select.module.scss";
 
 interface IProps {
   options: any;
@@ -40,7 +40,7 @@ interface IProps {
 
 const Select = function (props: IProps) {
   const {
-    classes,
+    classes = {},
     options,
     placeholder = "",
     disabled,
@@ -54,9 +54,12 @@ const Select = function (props: IProps) {
     isSearchable = true,
     instanceId,
   } = props;
+
+  classes.control = cn(classes.control, Style.control);
+
   return (
     <ReactSelect
-      className={cn(Styles.select, classes?.select)}
+      className={cn(Style.select, classes?.select)}
       defaultMenuIsOpen={defaultIsOpen}
       isClearable={clearable}
       onChange={(newValue) => {

@@ -22,7 +22,7 @@ export const HatMobile: React.FC = function () {
     );
   }
 
-  const [showSidebar, setShowSidebar] = React.useState(true);
+  const [showSidebar, setShowSidebar] = React.useState(false);
 
   function openMenu() {
     setShowSidebar(!showSidebar);

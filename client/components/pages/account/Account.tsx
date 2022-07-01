@@ -16,8 +16,8 @@ export const Account: React.FC = function () {
 
   return (
     <Panel>
-      <div className="d-flex flex-row">
-        <div className={"d-flex flex-column"}>
+      <div className="d-flex flex-column flex-lg-row">
+        <div className={"d-flex"}>
           <img
             src={"/images/default-avatar.png"}
             alt="Аватар"
@@ -25,14 +25,16 @@ export const Account: React.FC = function () {
           />
         </div>
 
-        <div className={"ms-5"}>
+        <div className={"ms-lg-5"}>
           <ul className={cn(Style.stat, "list-unstyled")}>
             <li className={"mb-1"}>
               <span className={cn(Style.userName, "mb-3")}>
                 <span className={Style.userNameString}>{user.name}</span>
               </span>
             </li>
+
             <li className={"mb-1"}>Почта: {user.email}</li>
+
             <li className={"mt-2"}>
               <Link href={"/account/profile/edit"}>
                 <a>
