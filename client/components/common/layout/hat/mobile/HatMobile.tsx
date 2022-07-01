@@ -22,10 +22,10 @@ export const HatMobile: React.FC = function () {
     );
   }
 
-  const [showMenu, setShowMenu] = React.useState(true);
+  const [showSidebar, setShowSidebar] = React.useState(true);
 
   function openMenu() {
-    setShowMenu(!showMenu);
+    setShowSidebar(!showSidebar);
   }
 
   return (
@@ -38,7 +38,7 @@ export const HatMobile: React.FC = function () {
             className="col-auto d-flex align-items-center"
             onClick={openMenu}
           >
-            <MenuButton show={showMenu} />
+            <MenuButton show={showSidebar} />
           </div>
 
           <div className="col d-flex justify-content-center align-items-center">
@@ -67,7 +67,11 @@ export const HatMobile: React.FC = function () {
           </div>
         </div>
 
-        <Sidebar visible={showMenu} className={"row"} />
+        <Sidebar
+          visible={showSidebar}
+          className={"row"}
+          setShowSidebar={setShowSidebar}
+        />
       </header>
     </>
   );

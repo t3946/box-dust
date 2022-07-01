@@ -5,6 +5,7 @@ import cn from "classnames";
 export const Delivery: React.FC = function () {
   return (
     <div
+      id={"delivery"}
       className={cn([
         "d-flex",
         "align-items-center",

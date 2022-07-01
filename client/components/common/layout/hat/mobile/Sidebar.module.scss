@@ -1,7 +1,7 @@
 @import "styles/utils/Utils.module.scss";
 
 .container {
-  width: 85%;
+  width: pxToRem(300);
   background-color: #1b003c;
   position: absolute;
   $hatHeight: pxToRem(100);
@@ -10,11 +10,27 @@
   height: 100px;
   z-index: 10;
   transform: translate(-110%, 0);
-  transition: all 0.3s ease-out;
+  transition-property: opacity, transform;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
   opacity: 0;
 
   &_show {
     transform: translate(0%, 0);
     opacity: 1;
   }
+}
+
+.loginButtonContainer {
+  padding: pxToRem(12);
+}
+
+.loginButton {
+  font-size: pxToRem(42);
+  line-height: 1;
+}
+
+.menuDivider {
+  background-color: #30006d;
+  height: pxToRem(2);
 }

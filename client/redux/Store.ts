@@ -8,6 +8,7 @@ import History from "@redux/reducer/History";
 import Reviews from "@redux/reducer/Reviews";
 import Popup from "@redux/reducer/Popup";
 import User from "@redux/reducer/User";
+import Menu from "@redux/reducer/Menu";
 import Stock from "@redux/reducer/Stock";
 import { configureStore } from "@reduxjs/toolkit";
 
@@ -27,6 +28,8 @@ const getStore = (function () {
           popup: Popup,
           user: User,
           stock: Stock,
+          menu: Menu,
+          accountMenu: Menu,
         },
         preloadedState,
         enhancers: [applyMiddleware(sagaMiddleware)],

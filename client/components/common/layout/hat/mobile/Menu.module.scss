@@ -1,0 +1,31 @@
+@import "styles/utils/Utils.module.scss";
+
+.item {
+  $borderColor: #30006d;
+  border-bottom: 1px solid $borderColor;
+  font-size: pxToRem(20);
+  padding: pxToRem(20) pxToRem(12);
+  line-height: 1;
+  background-color: #14002b;
+
+  &_micro {
+    padding: pxToRem(12) pxToRem(12);
+    font-size: pxToRem(18);
+  }
+
+  &_first {
+    border-top: 1px solid $borderColor;
+  }
+
+  &:active, &:hover {
+    color: #faee0f;
+    background-color: #0e001e;
+  }
+}
+
+.icon {
+  width: 10px;
+  transform: rotate(-90deg);
+  color: #c0c0c0;
+  opacity: 0.3;
+}

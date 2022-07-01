@@ -27,4 +27,5 @@ export default interface IStore {
   stock: {
     stock: Record<any, any>[];
   };
+  menu: Record<"account" | "navigation", { label: string; route: string }[]>;
 }

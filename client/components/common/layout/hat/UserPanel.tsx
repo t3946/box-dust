@@ -8,10 +8,11 @@ import { useState } from "react";
 
 interface IProps {
   onToggle?: any;
+  className?: any;
 }
 
 export const UserPanel: React.FC<IProps> = function (props) {
-  const { onToggle } = props;
+  const { onToggle, className } = props;
   const user = useSelector((state) => state.user.user);
   const [open, setOpen] = useState(false);
 
@@ -27,7 +28,8 @@ export const UserPanel: React.FC<IProps> = function (props) {
     <div
       className={cn(
         "d-flex align-items-center cursor-pointer",
-        Style.buttonWrapper
+        Style.buttonWrapper,
+        className
       )}
       onClick={toggle}
     >
