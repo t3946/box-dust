@@ -14,10 +14,14 @@
 }
 
 .userNameString {
-  max-width: pxToRem(500);
+  max-width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
   display: block;
+
+  @include breakpoint(lg) {
+    max-width: pxToRem(500);
+  }
 }
 
 .stat {

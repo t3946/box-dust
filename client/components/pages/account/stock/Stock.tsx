@@ -3,10 +3,9 @@ import StockItem from "@components/pages/account/stock/StockItem";
 import ModalStockItem from "@components/pages/account/stock/ModalStockItem";
 import { setData } from "@redux/reducer/Popup";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { setState } from "@redux/reducer/Stock";
 import useSelector from "@hooks/useSelector";
 import PanelNoItems from "@components/common/layout/account/PanelNoItems";
+import cn from "classnames";
 
 export interface IProps {
   header: string;
@@ -39,7 +38,7 @@ export const Stock: React.FC<IProps> = function (props) {
       <StockItem
         stockItem={stockItem}
         key={`stock-item-${stockItem.stock_item_id}`}
-        className={"col-3 mb-3"}
+        className={cn("col-12", "col-md-6", "col-lg-3", "mb-3")}
         onClick={() => openItemInModal(stockItem.stock_item_id)}
       />
     );
@@ -55,7 +54,11 @@ export const Stock: React.FC<IProps> = function (props) {
 
       <div className="row">{stockItems}</div>
 
-      {stock.length > 0 ? <ModalStockItem /> : <PanelNoItems text={"Нет вещей на складе"} />}
+      {stock.length > 0 ? (
+        <ModalStockItem />
+      ) : (
+        <PanelNoItems text={"Нет вещей на складе"} />
+      )}
     </div>
   );
 };

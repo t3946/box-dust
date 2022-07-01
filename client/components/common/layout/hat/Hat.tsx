@@ -10,7 +10,6 @@ import UserPanel from "@components/common/layout/hat/UserPanel";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import MenuDesktop from "@components/common/layout/hat/MenuDesktop";
-import MenuButton from "@components/common/layout/hat/mobile/MenuButton";
 import HatMobile from "@components/common/layout/hat/mobile/HatMobile";
 
 export const Hat: React.FC = function () {
@@ -64,7 +63,14 @@ export const Hat: React.FC = function () {
       </header>
 
       {router.route !== "/account" && (
-        <div className={cn([Styles.headerMenuPanel, "col-12"])}>
+        <div
+          className={cn([
+            Styles.headerMenuPanel,
+            "col-12",
+            "d-none",
+            "d-lg-block",
+          ])}
+        >
           <Navigation />
         </div>
       )}

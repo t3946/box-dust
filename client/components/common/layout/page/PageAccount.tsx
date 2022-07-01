@@ -13,7 +13,7 @@ export const PageAccount: React.FC<PropsWithChildren<any>> = function (props) {
         </div>
 
         <div className="col-lg-10">
-          <SelectPage className={Style.page__mobilMenu} />
+          <SelectPage className={[Style.page__mobilMenu, "d-lg-none"]} />
           {props.children}
         </div>
       </div>

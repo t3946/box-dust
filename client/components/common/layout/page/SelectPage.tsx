@@ -36,7 +36,7 @@ export const SelectCategory: React.FC<IProps> = function (props) {
       }}
       instanceId={"select-category"}
       classes={{
-        select: ["d-sm-none", Styles.select, className],
+        select: [Styles.select, className],
       }}
       clearable={false}
     />
