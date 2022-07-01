@@ -1,7 +1,6 @@
 import React from "react";
 import cn from "classnames";
 import ReactSelect, { components } from "react-select";
-
 import Input from "@components/common/ui/select/Input";
 import Control from "@components/common/ui/select/Control";
 import Option from "@components/common/ui/select/Option";

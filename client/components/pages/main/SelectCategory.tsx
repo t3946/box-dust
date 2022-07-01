@@ -45,6 +45,7 @@ export const SelectCategory: React.FC<IProps> = function (props) {
           classes={{
             select: ["d-sm-none", Styles.select],
           }}
+          clearable={false}
         />
       </div>
 
