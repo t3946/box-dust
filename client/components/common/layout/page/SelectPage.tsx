@@ -18,9 +18,13 @@ export const SelectCategory: React.FC<IProps> = function (props) {
       value: link.route,
     };
   });
-  const selectedOption = accountMenu.find(
-    (elem) => elem.route === route.pathname
-  );
+  const elem = accountMenu.find((elem) => elem.route === route.pathname);
+  const selectedOption = elem
+    ? {
+        label: elem.label,
+        value: elem.route,
+      }
+    : undefined;
 
   return (
     <Select

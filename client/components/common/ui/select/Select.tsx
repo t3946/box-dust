@@ -16,7 +16,7 @@ interface IProps {
   options: any;
   disabled?: boolean;
   name: string;
-  value: { value: any; label: string };
+  value?: { value: any; label: string };
   clearable?: boolean;
   isValid?: boolean;
   isInvalid?: boolean;
@@ -70,6 +70,8 @@ const Select = function (props: IProps) {
       value={value}
       name={name}
       options={options}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       classes={classes}
       isSearchable={isSearchable}
       isValid={isValid}
