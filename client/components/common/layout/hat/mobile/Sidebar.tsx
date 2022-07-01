@@ -18,6 +18,7 @@ export const Sidebar: React.FC<IProps> = function (props: IProps) {
   const { className, setShowSidebar } = props;
   const refContainer = useRef<any>();
   const user = useSelector((state) => state.user.user);
+  const [showAccountMenu, setShowAccountMenu] = React.useState(false);
 
   function resizeMenu() {
     if (typeof window === "undefined") {
@@ -46,11 +47,15 @@ export const Sidebar: React.FC<IProps> = function (props: IProps) {
     if (user) {
       return (
         <div>
-          <UserPanel className={[Style.loginButtonContainer, "py-0"]} />
+          <UserPanel
+            className={[Style.loginButtonContainer, "py-0"]}
+            onToggle={setShowAccountMenu}
+          />
           <MenuAccount
             onClick={() => {
               setShowSidebar(false);
             }}
+            show={showAccountMenu}
           />
           <div className={Style.menuDivider}></div>
         </div>

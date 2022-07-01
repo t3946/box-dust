@@ -20,7 +20,7 @@ export const UserPanel: React.FC<IProps> = function (props) {
     setOpen(!open);
 
     if (typeof onToggle === "function") {
-      onToggle(open);
+      onToggle(!open);
     }
   }
 

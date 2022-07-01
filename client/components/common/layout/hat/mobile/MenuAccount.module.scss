@@ -1,0 +1,11 @@
+.menu {
+  overflow: hidden;
+
+  &_visible {
+    height: auto;
+  }
+
+  &_hidden {
+    height: 0;
+  }
+}
