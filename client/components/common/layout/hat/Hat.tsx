@@ -51,7 +51,7 @@ export const Hat: React.FC = function () {
           <div className={cn([Styles.headerUiColumn, "col-4"])}>
             {!user && (
               <ConvexButton
-                classes={Styles.loginButton}
+                className={Styles.loginButton}
                 onClick={openModalLogin}
               >
                 Войти

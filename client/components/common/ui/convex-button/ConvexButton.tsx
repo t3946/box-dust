@@ -7,17 +7,17 @@ import { ButtonType } from "@restart/ui/Button";
 interface IProps {
   onClick?: any;
   type?: ButtonType;
-  classes?: any;
+  className?: any;
 }
 
 export const ConvexButton: React.FC<PropsWithChildren<IProps>> = function (
   props
 ) {
-  const { onClick, type = "button", children, classes } = props;
+  const { onClick, type = "button", children, className } = props;
 
   return (
     <button
-      className={cn([Styles.convexButton, classes])}
+      className={cn([Styles.convexButton, className])}
       type={type}
       onClick={onClick}
     >
