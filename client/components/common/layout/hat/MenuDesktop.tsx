@@ -35,7 +35,7 @@ export const MenuDesktop: React.FC = function () {
     );
   }
 
-  return <ul className={"list-unstyled m-0"}>{items}</ul>;
+  return <ul className={"list-unstyled m-0 d-none d-xl-block"}>{items}</ul>;
 };
 
 export default MenuDesktop;

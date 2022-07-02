@@ -1,5 +1,11 @@
+@import "styles/utils/Utils.module.scss";
+
 .page {
   &__mobilMenu {
     margin-bottom: calc(var(--bs-gutter-x) * 0.5);
   }
+}
+
+.logoutButton {
+  margin-top: pxToRem(12);
 }

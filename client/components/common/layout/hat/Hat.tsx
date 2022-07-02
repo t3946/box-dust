@@ -27,11 +27,11 @@ export const Hat: React.FC = function () {
 
   return (
     <>
-      <HatMobile />
+      <HatMobile className={["d-lg-none"]} />
 
-      <header className={cn(Styles.hat, "d-none", "d-md-block")}>
+      <header className={cn(Styles.hat, "d-none", "d-lg-block")}>
         <div className="row m-lg-0">
-          <div className="col-3">
+          <div className={cn("col-auto")}>
             <Link href={"/main"}>
               <a>
                 <img
@@ -43,11 +43,11 @@ export const Hat: React.FC = function () {
             </Link>
           </div>
 
-          <div className="col-5 d-none d-lg-flex align-items-center justify-content-center">
+          <div className="col d-none d-lg-flex align-items-center justify-content-center">
             <MenuDesktop />
           </div>
 
-          <div className={cn([Styles.headerUiColumn, "col-4"])}>
+          <div className={cn([Styles.headerUiColumn, "col-auto"])}>
             {!user && (
               <ConvexButton
                 className={Styles.loginButton}

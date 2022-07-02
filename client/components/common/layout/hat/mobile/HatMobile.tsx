@@ -8,8 +8,14 @@ import Link from "next/link";
 import MenuButton from "@components/common/layout/hat/mobile/MenuButton";
 import Style from "@components/common/layout/hat/mobile/HatMobile.module.scss";
 import Sidebar from "@components/common/layout/hat/mobile/Sidebar";
+import IconUser from "@components/common/icons/user/User";
 
-export const HatMobile: React.FC = function () {
+export interface IProps {
+  className?: any;
+}
+
+export const HatMobile: React.FC<IProps> = function (props) {
+  const { className } = props;
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
   const avatar = user?.avatar || "/images/default-avatar.png";
@@ -28,12 +34,23 @@ export const HatMobile: React.FC = function () {
     setShowSidebar(!showSidebar);
   }
 
+  function userPreview() {
+    if (user) {
+      return (
+        <img
+          src={avatar}
+          className={cn(Style.avatar, "user-select-none", "user-drag-none")}
+        />
+      );
+    }
+
+    return <IconUser className={Style.loginIcon} />;
+  }
+
   return (
     <>
-      <header className={cn(Style.hat__wrapper)}>
-        <div
-          className={cn(HatStyle.hat, "row", "py-2", Style.hat, "d-md-none")}
-        >
+      <header className={cn(Style.hat__wrapper, className)}>
+        <div className={cn(HatStyle.hat, "row", "py-2", Style.hat)}>
           <div
             className="col-auto d-flex align-items-center"
             onClick={openMenu}
@@ -49,7 +66,8 @@ export const HatMobile: React.FC = function () {
                   alt={"box dust"}
                   className={cn(
                     HatStyle.logo,
-                    "w-100",
+                    "mw-100",
+                    "h-auto",
                     Style.logo,
                     "user-select-none",
                     "user-drag-none"
@@ -58,12 +76,8 @@ export const HatMobile: React.FC = function () {
               </a>
             </Link>
           </div>
-
           <div className={cn(["col-auto", "align-items-center", "d-flex"])}>
-            <img
-              src={avatar}
-              className={cn(Style.avatar, "user-select-none", "user-drag-none")}
-            />
+            {userPreview()}
           </div>
         </div>
 

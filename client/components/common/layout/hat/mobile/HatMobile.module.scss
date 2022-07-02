@@ -23,3 +23,18 @@
 .logo {
   max-height: pxToRem(70);
 }
+
+.loginButton {
+  background: radial-gradient(#fefd25, #fec012);
+  border: none;
+  outline: none;
+  border-radius: 100px;
+  font-family: "Gilroy-SemiBold", sans-serif;
+  font-size: pxToRem(24);
+  line-height: 1;
+  padding: 5px 10px;
+}
+
+.loginIcon {
+  width: pxToRem(35);
+}

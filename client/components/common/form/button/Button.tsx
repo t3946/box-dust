@@ -8,10 +8,11 @@ export interface IProps extends PropsWithChildren<any> {
   type?: ButtonHTMLAttributes<any>["type"];
   className?: any;
   disabled?: boolean;
+  onClick?: any;
 }
 
 export const Button: React.FC<IProps> = function (props) {
-  const { children, type = "button", className, disabled } = props;
+  const { children, onClick, type = "button", className, disabled } = props;
 
   return (
     <RBButton
@@ -20,6 +21,7 @@ export const Button: React.FC<IProps> = function (props) {
         [Style.button_disabled]: disabled,
       })}
       disabled={disabled}
+      onClick={onClick}
     >
       {children}
     </RBButton>
