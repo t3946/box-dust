@@ -7,6 +7,8 @@ import useSelector from "@hooks/useSelector";
 import ConvexButton from "@components/common/ui/convex-button/ConvexButton";
 import Menu from "@components/common/layout/hat/mobile/Menu";
 import MenuAccount from "@components/common/layout/hat/mobile/MenuAccount";
+import { modalOpen } from "@redux/reducer/Popup";
+import { useDispatch } from "react-redux";
 
 interface IProps {
   className?: any;
@@ -19,6 +21,7 @@ export const Sidebar: React.FC<IProps> = function (props: IProps) {
   const refContainer = useRef<any>();
   const user = useSelector((state) => state.user.user);
   const [showAccountMenu, setShowAccountMenu] = React.useState(false);
+  const dispatch = useDispatch();
 
   function resizeMenu() {
     if (typeof window === "undefined") {
@@ -27,6 +30,14 @@ export const Sidebar: React.FC<IProps> = function (props: IProps) {
 
     const hatHeight = 86;
     refContainer.current.style.height = window.innerHeight - hatHeight + "px";
+  }
+
+  function openModalLogin() {
+    dispatch(
+      modalOpen({
+        modal: "login",
+      })
+    );
   }
 
   useEffect(() => {
@@ -56,6 +67,7 @@ export const Sidebar: React.FC<IProps> = function (props: IProps) {
               setShowSidebar(false);
             }}
             show={showAccountMenu}
+            setShowMenu={setShowAccountMenu}
           />
           <div className={Style.menuDivider}></div>
         </div>
@@ -64,8 +76,11 @@ export const Sidebar: React.FC<IProps> = function (props: IProps) {
 
     return (
       <div className={Style.loginButtonContainer}>
-        <ConvexButton className={cn("w-100", Style.loginButton)}>
-          войти
+        <ConvexButton
+          className={cn("w-100", Style.loginButton)}
+          onClick={openModalLogin}
+        >
+          Войти
         </ConvexButton>
       </div>
     );

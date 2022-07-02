@@ -37,14 +37,23 @@ export const HatMobile: React.FC<IProps> = function (props) {
   function userPreview() {
     if (user) {
       return (
-        <img
-          src={avatar}
-          className={cn(Style.avatar, "user-select-none", "user-drag-none")}
-        />
+        <Link href={"/account/profile"}>
+          <a>
+            <img
+              src={avatar}
+              className={cn(Style.avatar, "user-select-none", "user-drag-none")}
+              alt={"Аватар"}
+            />
+          </a>
+        </Link>
       );
     }
 
-    return <IconUser className={Style.loginIcon} />;
+    return (
+      <span onClick={openModalLogin}>
+        <IconUser className={Style.loginIcon} />
+      </span>
+    );
   }
 
   return (
