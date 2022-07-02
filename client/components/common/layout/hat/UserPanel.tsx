@@ -5,6 +5,7 @@ import cn from "classnames";
 import ChevronDown from "@components/common/icons/chevron-down/ChevronDown";
 import balanceToString from "@utils/balanceToString";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 interface IProps {
   onToggle?: any;
@@ -15,8 +16,15 @@ export const UserPanel: React.FC<IProps> = function (props) {
   const { onToggle, className } = props;
   const user = useSelector((state) => state.user.user);
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   function toggle() {
+    //todo: dummy for menu drop down
+    if (!onToggle) {
+      router.push("/account/profile");
+      return;
+    }
+
     setOpen(!open);
 
     if (typeof onToggle === "function") {
@@ -51,11 +59,13 @@ export const UserPanel: React.FC<IProps> = function (props) {
         </span>
       </div>
 
-      <ChevronDown
-        className={cn("flex-shrink-0", Style.chevron, {
-          [Style.chevron_open]: open,
-        })}
-      />
+      {onToggle && (
+        <ChevronDown
+          className={cn("flex-shrink-0", Style.chevron, {
+            [Style.chevron_open]: open,
+          })}
+        />
+      )}
     </div>
   );
 };
