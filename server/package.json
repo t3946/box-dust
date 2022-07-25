@@ -21,7 +21,6 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^7.5.5",
     "@nestjs/platform-express": "^7.5.5",
     "@prisma/client": "^3.14.0",
