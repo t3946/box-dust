@@ -48,6 +48,7 @@ export class FHistoryController {
     const allBoxes = await prisma.box_boxes.findMany({
       include: {
         box_items: true,
+        box_types: true,
       },
     });
     const boxes = allBoxes.filter((box) => box.box_items.length > 0);

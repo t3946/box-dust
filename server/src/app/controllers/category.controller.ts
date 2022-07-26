@@ -15,7 +15,15 @@ export class CategoryController {
         order: 'asc',
       },
       include: {
-        boxes: true,
+        boxes: {
+          include: {
+            type: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        },
       },
     });
 

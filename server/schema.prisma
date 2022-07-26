@@ -20,15 +20,18 @@ model box_boxes {
   category_id    Int?            @db.UnsignedInt
   is_recommend   Boolean         @default(false)
   image          String?         @db.VarChar(255)
+  type_id        Int?            @default(1)
   big_image      box_images?     @relation("box_boxes_big_image_idTobox_images", fields: [big_image_id], references: [image_id], onUpdate: SetNull, map: "box_boxes_box_images_image_id_fk")
   box_categories box_categories? @relation(fields: [category_id], references: [category_id], onUpdate: SetNull, map: "box_boxes_box_categories_category_id_fk")
   small_image    box_images?     @relation("box_boxes_small_image_idTobox_images", fields: [small_image_id], references: [image_id], onUpdate: SetNull, map: "box_boxes_box_images_image_id_fk_2")
+  type           box_types?      @relation(fields: [type_id], references: [type_id], onDelete: Restrict, onUpdate: Restrict, map: "box_boxes_box_types_type_id_fk")
   box_f_history  box_f_history[]
   items          box_items[]
 
   @@index([big_image_id], map: "box_boxes_big_image_id_foreign")
   @@index([category_id], map: "box_boxes_category_id_foreign")
   @@index([small_image_id], map: "box_boxes_small_image_id_foreign")
+  @@index([type_id], map: "box_boxes_box_types_type_id_fk")
 }
 
 model box_categories {
@@ -56,7 +59,7 @@ model box_items {
   item_id         Int                @id @default(autoincrement()) @db.UnsignedInt
   name            String             @db.VarChar(255)
   description     String             @db.Text
-  list_price      Float
+  list_price      Int                @db.UnsignedInt
   stock           Boolean
   demo            Boolean
   created_at      DateTime?          @db.Timestamp(0)
@@ -64,11 +67,11 @@ model box_items {
   box_id          Int?               @db.UnsignedInt
   image_id        Int?               @db.UnsignedInt
   rare_status_id  Int?               @db.UnsignedInt
-  cost_to_us      Float
+  cost_to_us      Int                @db.UnsignedInt
   short_name      String             @db.VarChar(255)
   box             box_boxes?         @relation(fields: [box_id], references: [box_id], onDelete: Cascade, map: "box_items_box_boxes_box_id_fk")
   image           box_images?        @relation(fields: [image_id], references: [image_id], onUpdate: SetNull, map: "box_items_box_images_image_id_fk")
-  rare   box_rare_statuses? @relation(fields: [rare_status_id], references: [rare_status_id], onUpdate: SetNull, map: "box_items_box_rare_statuses_rare_status_id_fk")
+  rare            box_rare_statuses? @relation(fields: [rare_status_id], references: [rare_status_id], onUpdate: SetNull, map: "box_items_box_rare_statuses_rare_status_id_fk")
   box_f_history   box_f_history[]
   box_prizes      box_prizes[]
   box_stock_items box_stock_items[]
@@ -396,7 +399,7 @@ model box_f_users {
 
 model box_users {
   user_id         Int               @id @default(autoincrement()) @db.UnsignedInt
-  name            String?           @db.VarChar(255)
+  name            String?           @db.VarChar(31)
   email           String            @unique(map: "box_users_email_uindex") @db.VarChar(255)
   password        String            @db.VarChar(255)
   avatar          String?           @db.VarChar(255)
@@ -411,11 +414,17 @@ model box_stock_items {
   item_id       Int       @db.UnsignedInt
   user_id       Int       @db.UnsignedInt
   total         Int       @db.UnsignedInt
-  item     box_items @relation(fields: [item_id], references: [item_id], onDelete: Cascade, map: "box_stock_items_box_items_item_id_fk")
-  user     box_users @relation(fields: [user_id], references: [user_id], onDelete: Cascade, map: "box_stock_items_box_users_user_id_fk")
+  item          box_items @relation(fields: [item_id], references: [item_id], onDelete: Cascade, map: "box_stock_items_box_items_item_id_fk")
+  user          box_users @relation(fields: [user_id], references: [user_id], onDelete: Cascade, map: "box_stock_items_box_users_user_id_fk")
 
-  @@index([item_id], map: "box_stock_items_box_items_item_id_fk")
+  @@unique([item_id, user_id], map: "box_stock_items_item_id_user_id_uindex")
   @@index([user_id], map: "box_stock_items_box_users_user_id_fk")
+}
+
+model box_types {
+  type_id   Int         @id @default(autoincrement())
+  name      String      @db.VarChar(32)
+  box_boxes box_boxes[]
 }
 
 enum clients_gender {

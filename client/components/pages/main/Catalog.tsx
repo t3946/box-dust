@@ -14,7 +14,7 @@ export const Catalog: React.FC<IProps> = function (props) {
     const box = boxes[i];
 
     items.push(
-      <Box box={box} type={ETheme.basic} key={`catalog-box-item-${i}`} />
+      <Box box={box} type={box.type.name} key={`catalog-box-item-${i}`} />
     );
   }
 
