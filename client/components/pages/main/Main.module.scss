@@ -18,3 +18,15 @@
     margin: pxToRem(40) 0;
   }
 }
+
+.mainSlider {
+  width: 100%;
+
+  @include breakpoint(lg) {
+    width: pxToRem(1000);
+  }
+}
+
+.eventsPanel {
+  width: auto;
+}

@@ -33,15 +33,19 @@ export const Box: React.FC<IProps> = function (props) {
       </div>
 
       <div className={Styles.body}>
-        <div className={Styles.imageWrapper}>
+        <div className={cn(Styles.imageWrapper, "user-select-none", "user-drag-none")}>
           <img
-            className={Styles.image}
+            className={cn(Styles.image)}
             src={getImageUrl("box-default")}
             alt="box"
+            width={200}
+            height={200}
           />
         </div>
-        <div className={Styles.header}>{box.name}</div>
-        <div className={Styles.boxCardPrice}>
+
+        <div className={cn(Styles.header, "mt-10")}>{box.name}</div>
+
+        <div className={cn([Styles.boxCardPrice, ""])}>
           {!!box.old_price && (
             <span className={cn([Styles.oldPrice, "me-1"])}>
               {box.old_price}

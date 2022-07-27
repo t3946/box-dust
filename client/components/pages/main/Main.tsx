@@ -45,13 +45,13 @@ export const Main: React.FC = function () {
   return (
     <>
       <section className="events mt-4 row">
-        <div className="col-9 lg:text-right pl-0 d-none d-lg-block">
-          <SliderMain />
-        </div>
+        <div className="col-12 d-flex flex-row">
+          <div className={cn(Styles.mainSlider)}>
+            <SliderMain />
+          </div>
 
-        <div className="col col-lg-3 pr-0">
           {/*Коробка не указана в этой карточке*/}
-          <div className="events-panel">
+          <div className={cn(Styles.eventsPanel, "ms-3 d-none d-lg-block")}>
             {/*<LastTopPrize :lastTopPrizes="lastTopPrizes" />*/}
             <SliderLastTopPrize />
           </div>

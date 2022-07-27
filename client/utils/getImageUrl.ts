@@ -1,11 +1,14 @@
 export function getImageUrl(path: string) {
-  path = path.replaceAll("\\", "/");
-
   if (path === "box-default") {
-    return "http://box-dust/images/box-default.png";
+    return "/images/pages/main/box-default.png";
   }
 
-  return "http://box-dust/storage/" + path;
+  //todo: мне надо настроить отладку сафари
+
+
+  
+  //todo: need to fix static url
+  return "/storage/" + path;
 }
 
 export default getImageUrl;
