@@ -12,6 +12,7 @@ import Styles from "@components/pages/main/Main.module.scss";
 import Reviews from "@components/pages/main/reviews/Reviews";
 import ModalLogin from "@components/pages/main/modal-login/ModalLogin";
 import ModalRegister from "@components/pages/main/modal-register/ModalRegister";
+import Faq from "@components/pages/main/faq/Faq";
 
 const DynamicHistoryLineWithNoSSR = dynamic(
   () => import("@components/pages/main/history-line/HistoryLine"),
@@ -88,7 +89,7 @@ export const Main: React.FC = function () {
         </div>
 
         <div className="col-12 col-md-6 d-flex justify-content-center align-items-start">
-          {/*<FAQ />*/}
+          <Faq />
         </div>
       </section>
 

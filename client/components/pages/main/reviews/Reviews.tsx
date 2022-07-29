@@ -52,6 +52,7 @@ export const Reviews: React.FC<IProps> = function (props) {
           className={Styles.headerImage}
           src="/images/pages/main/reviews.png"
           alt=""
+          height={120}
         />
 
         <div>
