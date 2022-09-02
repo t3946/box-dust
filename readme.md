@@ -64,3 +64,6 @@ Server starts up
        2. `composer update`
        3. check laravel `php artisan`
     4. link to admin storage `ln -s /var/www/html/box-dust/admin/storage/app/public/ storage`
+
+# Registration/authorisation
+If you register through email and password then you must confirm your account before use it. Not confirmed accounts will be deleted after one day.

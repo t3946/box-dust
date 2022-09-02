@@ -405,6 +405,7 @@ model box_users {
   avatar          String?           @db.VarChar(255)
   balance         Int               @default(0) @db.UnsignedInt
   created         DateTime?         @default(now()) @db.DateTime(0)
+  confirmed       Boolean?          @default(false)
   box_prizes      box_prizes[]
   box_stock_items box_stock_items[]
 }
