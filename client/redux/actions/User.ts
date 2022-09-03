@@ -5,6 +5,16 @@ export const registration = (payload: ISagaPayload): any => ({
   payload,
 });
 
+export const sendConfirmEmail = (payload: ISagaPayload): any => ({
+  type: `user/register/send-confirm-email`,
+  payload,
+});
+
+export const confirmEmail = (payload: ISagaPayload): any => ({
+  type: `user/register/confirm-email`,
+  payload,
+});
+
 export const login = (payload: ISagaPayload): any => ({
   type: `user/login`,
   payload,

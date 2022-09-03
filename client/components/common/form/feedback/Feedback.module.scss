@@ -1,0 +1,13 @@
+@import "styles/utils/Utils.module.scss";
+
+.feedback {
+  &_type{
+    &_valid {
+      color: #198754;
+    }
+
+    &_invalid {
+      color: #dc3545;
+    }
+  }
+}

@@ -6,7 +6,6 @@ import { MailService } from '@src/app/services/mail.service';
 import { HashService } from '@src/user/service/hash.sevice';
 
 const passport = require('passport');
-const { body } = require('express-validator');
 
 @Module({
   imports: [AuthModule],
@@ -23,13 +22,10 @@ export class UserModule {
       )
       .exclude(
         '/api/user/register',
+        '/api/user/register/(.*)',
         '/api/user/register-confirm',
         '/api/user/send-confirm-email',
       )
       .forRoutes('/api/user/*');
-
-    consumer
-      .apply(body('name').matches(/^[A-z]{2,31}$/), body('email').isEmail())
-      .forRoutes('/api/user/update');
   }
 }

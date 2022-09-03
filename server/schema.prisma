@@ -398,16 +398,17 @@ model box_f_users {
 }
 
 model box_users {
-  user_id         Int               @id @default(autoincrement()) @db.UnsignedInt
-  name            String?           @db.VarChar(31)
-  email           String            @unique(map: "box_users_email_uindex") @db.VarChar(255)
-  password        String            @db.VarChar(255)
-  avatar          String?           @db.VarChar(255)
-  balance         Int               @default(0) @db.UnsignedInt
-  created         DateTime?         @default(now()) @db.DateTime(0)
-  confirmed       Boolean?          @default(false)
-  box_prizes      box_prizes[]
-  box_stock_items box_stock_items[]
+  user_id            Int                  @id @default(autoincrement()) @db.UnsignedInt
+  name               String?              @db.VarChar(31)
+  email              String               @unique(map: "box_users_email_uindex") @db.VarChar(255)
+  password           String               @db.VarChar(255)
+  avatar             String?              @db.VarChar(255)
+  balance            Int                  @default(0) @db.UnsignedInt
+  created            DateTime?            @default(now()) @db.DateTime(0)
+  confirmed          Boolean?             @default(false)
+  box_prizes         box_prizes[]
+  box_stock_items    box_stock_items[]
+  confirmation_codes confirmation_codes[]
 }
 
 model box_stock_items {
@@ -426,6 +427,17 @@ model box_types {
   type_id   Int         @id @default(autoincrement())
   name      String      @db.VarChar(32)
   box_boxes box_boxes[]
+}
+
+model confirmation_codes {
+  confirmation_code_id Int        @id @default(autoincrement()) @db.UnsignedInt
+  user_id              Int?       @db.UnsignedInt
+  action               String     @db.VarChar(32)
+  code                 String     @db.VarChar(6)
+  created              DateTime?  @default(now()) @db.DateTime(0)
+  box_users            box_users? @relation(fields: [user_id], references: [user_id], onDelete: Cascade, map: "confirmation_codes_box_users_user_id_fk")
+
+  @@unique([user_id, action], map: "confirmation_codes_user_id_action_uindex")
 }
 
 enum clients_gender {

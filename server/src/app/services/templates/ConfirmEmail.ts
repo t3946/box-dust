@@ -1,11 +1,11 @@
 interface IParams {
   supportEmail: string;
-  confirmationLink: string;
+  confirmationCode: string;
   logoUrl: string;
 }
 
 function ConfirmEmail(params: IParams) {
-  const { supportEmail, confirmationLink, logoUrl } = params;
+  const { supportEmail, confirmationCode, logoUrl } = params;
   return `
   <!DOCTYPE html>
 
@@ -136,8 +136,14 @@ function ConfirmEmail(params: IParams) {
                     <tr>
                       <td class="pad" style="padding-bottom:20px;">
                         <div style="color:#101112;font-size:16px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:19.2px;">
-                          <p style="margin: 0;">Для завершения регистрации подтвердите свой e-mail:</p>
+                          <p style="margin: 0;">Для завершения регистрации подтвердите свой e-mail</p>
                         </div>
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td>
+                        <p style="margin: 0; font-size: 22px; text-align: center">Код подтверждения: <b>${confirmationCode}</b></p>
                       </td>
                     </tr>
                   </table>
@@ -157,21 +163,6 @@ function ConfirmEmail(params: IParams) {
               <tbody>
               <tr>
                 <td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-                  <table border="0" cellpadding="0" cellspacing="0" class="button_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                    <tr>
-                      <td class="pad" style="text-align:center;">
-                        <div align="center" class="alignment">
-                          <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" style="height:42px;width:157px;v-text-anchor:middle;" arcsize="77%" stroke="false" fillcolor="#3f0d80"><w:anchorlock/><v:textbox inset="0px,0px,0px,0px"><center style="color:#ffffff; font-family:Arial, sans-serif; font-size:16px"><![endif]-->
-                          <div style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#3f0d80;border-radius:32px;width:auto;border-top:1px solid #3f0d80;font-weight:400;border-right:1px solid #3f0d80;border-bottom:1px solid #3f0d80;border-left:1px solid #3f0d80;padding-top:5px;padding-bottom:5px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;">
-                            <a style="color:#ffffff;text-decoration:none;padding-left:20px;padding-right:20px;font-size:16px;display:inline-block;letter-spacing:normal;" href="${confirmationLink}">
-                                <span dir="ltr" style="word-break: break-word; line-height: 32px;">ПОДТВЕРДИТЬ</span>
-                            </a>
-                          </div>
-                          <!--[if mso]></center></v:textbox></v:roundrect><![endif]-->
-                        </div>
-                      </td>
-                    </tr>
-                  </table>
                   <table border="0" cellpadding="30" cellspacing="0" class="divider_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
                     <tr>
                       <td class="pad">

@@ -67,3 +67,8 @@ Server starts up
 
 # Registration/authorisation
 If you register through email and password then you must confirm your account before use it. Not confirmed accounts will be deleted after one day.
+
+Dto validation objects good for development more and prevent database errors. Client get errors either before form send or after form send and data is valid but controller declined their by third-side cause (then I write explicitly req.send(errors: {email: "already registered"}) -- email is ok but after check db I got that it can't to use).
+
+# !
+Not confirmed account can't be logged in

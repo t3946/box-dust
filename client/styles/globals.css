@@ -80,3 +80,11 @@ ul {
 .user-drag-none {
   -webkit-user-drag: none;
 }
+
+.form-text {
+  color: #000000;
+}
+
+.text-transform-none {
+  text-transform: none !important;
+}

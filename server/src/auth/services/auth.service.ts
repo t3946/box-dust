@@ -28,6 +28,7 @@ export class AuthService {
         const user = await prisma.box_users.findFirst({
           where: {
             email: login,
+            confirmed: true,
           },
         });
 
@@ -91,9 +92,10 @@ export class AuthService {
           return done(null, false);
         }
 
-        const user = await prisma.box_users.findUnique({
+        const user = await prisma.box_users.findFirst({
           where: {
             user_id: jwt_payload.user.user_id,
+            confirmed: true,
           },
         });
 
