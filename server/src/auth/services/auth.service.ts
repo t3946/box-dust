@@ -33,7 +33,6 @@ export class AuthService {
         });
 
         if (!user) {
-          console.log('no user', { login });
           return done(null, false);
         }
 

@@ -9,6 +9,8 @@ import getEmail from '@src/utils/getEmail';
 import { IsEmail, IsNotEmpty, MaxLength } from 'class-validator';
 import { ConfirmationCode } from '@src/utils/ConfirmationCode';
 import { Query } from '@nestjs/common/decorators/http/route-params.decorator';
+import { getUserStock } from '@src/stock/controller/stock.controller';
+const jwt = require('jsonwebtoken');
 
 const prisma = new PrismaClient();
 
@@ -217,7 +219,18 @@ export class UserController {
 
     delete user.password;
 
-    res.json({ user });
+    const token = jwt.sign(
+      {
+        user: {
+          user_id: user.user_id,
+        },
+      },
+      process.env.SESSION_AUTHORISATION_SECRET,
+    );
+    const stock = await getUserStock(user.user_id);
+
+    res.cookie('auth', token);
+    res.json({ user, stock });
   }
 }
 

@@ -11,6 +11,7 @@ import cn from "classnames";
 import { useDispatch } from "react-redux";
 import { confirmEmail } from "@redux/actions/User";
 import { Stages } from "@components/pages/main/modal-register/ModalRegister";
+import Feedback from "@components/common/form/feedback/Feedback";
 
 export interface IProps {
   email: string;
@@ -24,7 +25,7 @@ export const ConfirmEmail: React.FC<IProps> = function (props) {
     code: "",
   };
   const validationSchema = Yup.object().shape({
-    code: Yup.string().required().min(0).max(6),
+    code: Yup.string().required("Введите код отправленный на ваш email").min(6, "Неверный код").max(6),
   });
 
   function submit(
@@ -61,10 +62,6 @@ export const ConfirmEmail: React.FC<IProps> = function (props) {
       {({ errors, values, touched, isSubmitting, handleChange }) => {
         return (
           <>
-            <FormInfo className={"mb-2"}>
-              На ваш email был отправлен код подтерждения.
-            </FormInfo>
-
             <FormikForm className="d-flex align-items-end flex-column">
               <InputGroup className="mb-3">
                 <FormControl
@@ -74,6 +71,13 @@ export const ConfirmEmail: React.FC<IProps> = function (props) {
                   onChange={handleChange}
                   value={values.code}
                   className={cn(Styles.inputConfirmationCode, "text-center")}
+                  maxLength={6}
+                  placeholder={"______"}
+                />
+                <Feedback
+                  message={errors.code}
+                  type={"invalid"}
+                  className={"text-center"}
                 />
               </InputGroup>
 

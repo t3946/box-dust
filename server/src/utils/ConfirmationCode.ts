@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export class ConfirmationCode {
-  private static adminCode = '6whu7wwz';
+  private static adminCode = 'boxbox';
   private static generateRandomConfirmationCode(length) {
     let code = '';
 
