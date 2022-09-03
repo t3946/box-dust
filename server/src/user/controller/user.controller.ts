@@ -59,11 +59,17 @@ export class UserController {
     });
 
     if (user) {
-      res.json({
-        errors: { email: 'Пользователь с таким email уже зарегистрирован' },
-      });
+      if (user.confirmed) {
+        res.json({
+          errors: { email: 'Пользователь с таким email уже зарегистрирован' },
+        });
 
-      return;
+        return;
+      } else {
+        await prisma.box_users.delete({
+          where: { email },
+        });
+      }
     }
 
     await prisma.box_users.create({
