@@ -32,8 +32,10 @@ export class AuthService {
           },
         });
 
-        if (!user) {
-          return done(null, false);
+        if (!user || !user.confirmed) {
+          return done(null, {
+            errors: { login: 'Пользователь с таким email не найден' },
+          });
         }
 
         const passwordService = new PasswordService();
@@ -43,7 +45,9 @@ export class AuthService {
         );
 
         if (!isPasswordsMatch) {
-          return done(null, false);
+          return done(null, {
+            errors: { password: 'Неверный пароль' },
+          });
         }
 
         const token = jwt.sign(

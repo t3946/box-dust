@@ -17,6 +17,7 @@ import * as Yup from "yup";
 import { FormikHelpers } from "formik/dist/types";
 import { Formik } from "formik";
 import { Form as FormikForm } from "formik";
+import Feedback from "@components/common/form/feedback/Feedback";
 
 export const ModalLogin: React.FC = function () {
   const dispatch = useDispatch();
@@ -26,8 +27,8 @@ export const ModalLogin: React.FC = function () {
     password: "admin1",
   };
   const validationSchema = Yup.object().shape({
-    login: Yup.string().min(3).max(64),
-    password: Yup.string().min(6).max(32),
+    login: Yup.string().required("Введите логин").max(64),
+    password: Yup.string().required("Введите пароль").max(32),
   });
 
   function submit(
@@ -40,13 +41,18 @@ export const ModalLogin: React.FC = function () {
       login({
         data: values,
 
-        callback() {
+        callback(res) {
           formikHelpers.setSubmitting(false);
-          dispatch(
-            modalClose({
-              modal: "login",
-            })
-          );
+
+          if (!res.errors) {
+            dispatch(
+              modalClose({
+                modal: "login",
+              })
+            );
+          } else {
+            formikHelpers.setErrors(res.errors);
+          }
         },
       })
     );
@@ -98,6 +104,9 @@ export const ModalLogin: React.FC = function () {
                       value={values.login}
                       onChange={handleChange}
                     />
+                    {touched.login && (
+                      <Feedback message={errors.login} type={"invalid"} />
+                    )}
                   </InputGroup>
 
                   <InputGroup className="mb-3">
@@ -114,6 +123,10 @@ export const ModalLogin: React.FC = function () {
                       type={"password"}
                       onChange={handleChange}
                     />
+
+                    {touched.password && (
+                      <Feedback message={errors.password} type={"invalid"} />
+                    )}
                   </InputGroup>
 
                   <div

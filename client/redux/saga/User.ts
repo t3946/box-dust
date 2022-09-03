@@ -40,17 +40,16 @@ function* confirmEmail(action: any): Generator {
 
 function* login(action: any): Generator {
   const { data, callback } = action.payload;
-  const { user, stock } = yield axios
-    .post("/api/auth/login", data)
-    .then((res): Record<any, any> => {
-      return res.data;
-    });
+  const res: any = yield axios.post("/api/auth/login", data);
+  const { user, stock, errors } = res.data;
 
-  yield put({ type: "user/setUser", payload: { user } });
-  yield put({ type: "stock/setState", payload: { stock } });
+  if (!errors) {
+    yield put({ type: "user/setUser", payload: { user } });
+    yield put({ type: "stock/setState", payload: { stock } });
+  }
 
   if (callback) {
-    yield callback();
+    yield callback(res.data);
   }
 }
 
