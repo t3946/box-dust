@@ -39,6 +39,7 @@ export const Box: React.FC<IProps> = function (props) {
       </div>
 
       <Game
+        box={box}
         items={box.items}
         handleModalPrizeShow={handleModalPrizeShow}
         setPrize={setPrize}

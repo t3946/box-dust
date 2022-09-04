@@ -1,16 +1,17 @@
 import React from "react";
 import { createApp } from "@submodules/roulette/src/app";
 import Style from "@components/pages/box/Game.module.scss";
-import cn from "classnames";
+import Interface from "@components/pages/box/Interface";
 
 interface IProps {
+  box: any;
   items: Record<any, any>[];
   handleModalPrizeShow: any;
   setPrize: any;
 }
 
 export const Game: React.FC<IProps> = function (props) {
-  const { items, handleModalPrizeShow, setPrize } = props;
+  const { items, handleModalPrizeShow, setPrize, box } = props;
   const [scene, setScene] = React.useState<any>(null);
   const rouletteItems = items.map((boxItem) => {
     return {
@@ -57,34 +58,35 @@ export const Game: React.FC<IProps> = function (props) {
           <canvas id="roulette-game" />
         </div>
 
-        <div className="row mt-5">
+        <div className="">
           <div className="col-12">
-            <div className={Style.buttonsGroup}>
-              <button
-                className={cn([
-                  "roulette-ui-button",
-                  Style.rouletteButton,
-                  Style.rouletteUiLeftButton,
-                ])}
-              ></button>
+            <Interface className={"mt-3"} startGameHandler={startGame} price={box.price} />
+            {/*<div className={Style.buttonsGroup}>*/}
+            {/*  <button*/}
+            {/*    className={cn([*/}
+            {/*      "roulette-ui-button",*/}
+            {/*      Style.rouletteButton,*/}
+            {/*      Style.rouletteUiLeftButton,*/}
+            {/*    ])}*/}
+            {/*  ></button>*/}
 
-              <button
-                className={cn([
-                  "roulette-ui-button",
-                  Style.rouletteButton,
-                  Style.rouletteUiCenterButton,
-                ])}
-                onClick={startGame}
-              ></button>
+            {/*  <button*/}
+            {/*    className={cn([*/}
+            {/*      "roulette-ui-button",*/}
+            {/*      Style.rouletteButton,*/}
+            {/*      Style.rouletteUiCenterButton,*/}
+            {/*    ])}*/}
+            {/*    onClick={startGame}*/}
+            {/*  ></button>*/}
 
-              <button
-                className={cn([
-                  "roulette-ui-button",
-                  Style.rouletteButton,
-                  Style.rouletteUiRightButton,
-                ])}
-              ></button>
-            </div>
+            {/*  <button*/}
+            {/*    className={cn([*/}
+            {/*      "roulette-ui-button",*/}
+            {/*      Style.rouletteButton,*/}
+            {/*      Style.rouletteUiRightButton,*/}
+            {/*    ])}*/}
+            {/*  ></button>*/}
+            {/*</div>*/}
           </div>
         </div>
       </div>
