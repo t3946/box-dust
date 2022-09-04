@@ -19,6 +19,12 @@ export const Interface: React.FC<IProps> = function (props) {
         className
       )}
     >
+      <img
+        src="/images/pages/roulette/arrow.png"
+        alt=""
+        width={90}
+        className={cn("mb-3", "user-drag-none", "user-select-none")}
+      />
       <span className={Styles.price}>{balanceToString(price * 100)}</span>
       <span className={Styles.buttonWrapper}>
         <button className={Styles.button} onClick={startGameHandler}>
