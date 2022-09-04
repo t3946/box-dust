@@ -11,6 +11,34 @@
   }
 }
 
+.balance {
+  font-size: pxToRem(14);
+
+  &_insufficientMoney {
+    color: #dc3e3e;
+  }
+}
+
+.balanceCaption {
+  font-family: 'MyriadPro-Regular', sans-serif;
+  text-transform: uppercase;
+}
+.balanceNumber {
+  font-family: sans-serif;
+}
+
+
+.buttonWrapper {
+  display: flex;
+  border: 2px solid #4c1d95;
+  padding: 2px;
+  border-radius: 8px;
+
+  &_disabled {
+    border: 2px solid rgba(76, 29, 149, 0.4);
+  }
+}
+
 .button {
   font-family: Fregat-Regular, MyriadPro-Regular, sans-serif;
   font-size: pxToRem(32);
@@ -20,25 +48,25 @@
   padding: pxToRem(16) pxToRem(32);
   text-transform: uppercase;
   letter-spacing: 2px;
-  border-radius: 8px;
+  border-radius: 4px;
   transition: all 0.15s ease;
   outline: none;
   border: none;
+  user-select: none;
 
-  &:hover {
+  &:disabled {
+    background: #341467;
+    color: #aeaeae;
+    opacity: 0.4;
+  }
+
+  &:hover:not(:disabled) {
     color: #dfdede;
     background: #40187f;
   }
 
-  &:active {
+  &:active:not(:disabled) {
     color: #cbcbcb;
     background: #341467;
   }
-}
-
-.buttonWrapper {
-  display: flex;
-  border: 2px solid #4c1d95;
-  padding: 2px;
-  border-radius: 8px;
 }

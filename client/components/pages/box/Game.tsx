@@ -60,33 +60,11 @@ export const Game: React.FC<IProps> = function (props) {
 
         <div className="">
           <div className="col-12">
-            <Interface className={"mt-3"} startGameHandler={startGame} price={box.price} />
-            {/*<div className={Style.buttonsGroup}>*/}
-            {/*  <button*/}
-            {/*    className={cn([*/}
-            {/*      "roulette-ui-button",*/}
-            {/*      Style.rouletteButton,*/}
-            {/*      Style.rouletteUiLeftButton,*/}
-            {/*    ])}*/}
-            {/*  ></button>*/}
-
-            {/*  <button*/}
-            {/*    className={cn([*/}
-            {/*      "roulette-ui-button",*/}
-            {/*      Style.rouletteButton,*/}
-            {/*      Style.rouletteUiCenterButton,*/}
-            {/*    ])}*/}
-            {/*    onClick={startGame}*/}
-            {/*  ></button>*/}
-
-            {/*  <button*/}
-            {/*    className={cn([*/}
-            {/*      "roulette-ui-button",*/}
-            {/*      Style.rouletteButton,*/}
-            {/*      Style.rouletteUiRightButton,*/}
-            {/*    ])}*/}
-            {/*  ></button>*/}
-            {/*</div>*/}
+            <Interface
+              className={"mt-3"}
+              startGameHandler={startGame}
+              price={box.price}
+            />
           </div>
         </div>
       </div>
