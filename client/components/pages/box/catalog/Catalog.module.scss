@@ -1,0 +1,13 @@
+@import "styles/utils/Utils.module.scss";
+
+.catalog {
+  padding: 100px 0;
+}
+
+.header {
+  font-size: pxToRem(40);
+}
+
+.cardColumn {
+  margin-bottom: pxToRem(32);
+}

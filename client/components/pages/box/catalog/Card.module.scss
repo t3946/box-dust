@@ -1,0 +1,70 @@
+@import "styles/utils/Utils.module.scss";
+
+.card {
+  position: relative;
+  background: #0b001f url('/images/pages/roulette/prizes/card/bg-1.png') no-repeat top left;
+  background-size: 100% auto;
+  height: pxToRem(470);
+  width: pxToRem(300);
+  border-radius: 10px;
+  border: 1px solid #30006d;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgb(4, 0, 13);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 15px 35px rgba(89, 0, 255, 0.20);
+    cursor: pointer;
+  }
+}
+
+.prizeWrapper {
+  height: pxToRem(250);
+  width: pxToRem(200);
+  position: absolute;
+  top: pxToRem(34);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.cardCaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #0b001f url('/images/pages/roulette/prizes/card/bg-2.png') no-repeat top left;
+  background-size: auto 100%;
+  height: pxToRem(100);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-family: 'Bebas', serif;
+}
+
+.prize {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.title {
+  font-size: pxToRem(28);
+  color: #ebdcff;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.price {
+  font-size: pxToRem(20);
+
+  &:after {
+    font-family: Rouble, sans-serif;
+    content: 'p';
+  }
+}

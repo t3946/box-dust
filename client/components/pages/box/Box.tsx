@@ -3,6 +3,7 @@ import MainHeader from "@components/common/layout/main-header/MainHeader";
 import NeonText from "@components/common/layout/neon-text/NeonText";
 import dynamic from "next/dynamic";
 import PrizeModal from "@components/pages/box/PrizeModal";
+import Catalog from "@components/pages/box/catalog/Catalog";
 
 const Game = dynamic(() => import("@components/pages/box/Game"), {
   ssr: false,
@@ -34,6 +35,8 @@ export const Box: React.FC<IProps> = function (props) {
         handleModalPrizeShow={handleModalPrizeShow}
         setPrize={setPrize}
       />
+
+      <Catalog items={box.items} />
 
       <PrizeModal
         show={modalPrizeShow}
