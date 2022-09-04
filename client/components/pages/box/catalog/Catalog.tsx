@@ -6,10 +6,12 @@ import Card from "@components/pages/box/catalog/Card";
 
 export interface IProps {
   items: Record<any, any>[];
+  handleModalItemShow: any;
+  setItemModal: any;
 }
 
 export const Catalog: React.FC<IProps> = function (props) {
-  const { items } = props;
+  const { items, handleModalItemShow, setItemModal } = props;
   const cards = [];
 
   for (let i = 0; i < items.length; i++) {
@@ -20,7 +22,13 @@ export const Catalog: React.FC<IProps> = function (props) {
           Styles.cardColumn
         )}
       >
-        <Card prize={items[i]} />
+        <Card
+          prize={items[i]}
+          onClick={() => {
+            setItemModal(i+1);
+            handleModalItemShow();
+          }}
+        />
       </div>
     );
   }

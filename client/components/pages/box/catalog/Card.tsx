@@ -5,13 +5,14 @@ import balanceToString from "@utils/balanceToString";
 
 export interface IProps {
   prize: Record<any, any>;
+  onClick: any;
 }
 
 export const Card: React.FC<IProps> = function (props) {
-  const { prize } = props;
+  const { prize, onClick } = props;
 
   return (
-    <div className={Styles.card}>
+    <div className={Styles.card} onClick={onClick}>
       <div className={Styles.prizeWrapper}>
         <img
           src={"/storage/" + prize.image.name}

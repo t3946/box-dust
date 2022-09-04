@@ -4,6 +4,7 @@ import NeonText from "@components/common/layout/neon-text/NeonText";
 import dynamic from "next/dynamic";
 import PrizeModal from "@components/pages/box/PrizeModal";
 import Catalog from "@components/pages/box/catalog/Catalog";
+import ModalItem from "@components/pages/box/catalog/ModalItem";
 
 const Game = dynamic(() => import("@components/pages/box/Game"), {
   ssr: false,
@@ -15,10 +16,17 @@ export interface IProps {
 
 export const Box: React.FC<IProps> = function (props) {
   const { box } = props;
+  //prize modal
   const [modalPrizeShow, setModalPrizeShow] = React.useState(false);
   const handleModalPrizeClose = () => setModalPrizeShow(false);
   const handleModalPrizeShow = () => setModalPrizeShow(true);
+  //item modal
+  const [modalItemShow, setModalItemShow] = React.useState(false);
+  const handleModalItemClose = () => setModalItemShow(false);
+  const handleModalItemShow = () => setModalItemShow(true);
   const [prize, setPrize] = React.useState(box.items[0]);
+
+  const [itemModal, setItemModal] = React.useState(0);
 
   return (
     <>
@@ -36,7 +44,18 @@ export const Box: React.FC<IProps> = function (props) {
         setPrize={setPrize}
       />
 
-      <Catalog items={box.items} />
+      <Catalog
+        items={box.items}
+        handleModalItemShow={handleModalItemShow}
+        setItemModal={setItemModal}
+      />
+
+      <ModalItem
+        show={modalItemShow}
+        items={box.items}
+        handleClose={handleModalItemClose}
+        startFrom={itemModal}
+      />
 
       <PrizeModal
         show={modalPrizeShow}
