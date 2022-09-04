@@ -39,7 +39,7 @@ Server starts up
    7. `cd box-dust`
    8. `git clone git@github.com:t3946/box-dust.git .`
 8. build project
-   1. problem with /server npm i (https://stackoverflow.com/questions/69259024/how-to-handle-conflicting-peer-dependencies)
+   1. `npm i`
    2. write all required env variables`sudo -H gedit /etc/environment` then reboot server
 9. expose project
    1. just open ports for nodes 
@@ -64,11 +64,13 @@ Server starts up
        2. `composer update`
        3. check laravel `php artisan`
     4. link to admin storage `ln -s /var/www/html/box-dust/admin/storage/app/public/ storage`
+12. domain and port settings
+    1. change in nginx config port 80 to 8000 (admin laravel must work on 8000 port)
+    2. redirect incoming http to client application:
+       `sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000`
+       `sudo iptables-save`
 
 # Registration/authorisation
 If you register through email and password then you must confirm your account before use it. Not confirmed accounts will be deleted after one day.
 
 Dto validation objects good for development more and prevent database errors. Client get errors either before form send or after form send and data is valid but controller declined their by third-side cause (then I write explicitly req.send(errors: {email: "already registered"}) -- email is ok but after check db I got that it can't to use).
-
-# !
-Not confirmed account can't be logged in
