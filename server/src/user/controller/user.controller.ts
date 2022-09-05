@@ -4,7 +4,6 @@ import { PasswordService } from '@src/user/service/password.service';
 import { MailService } from '@src/app/services/mail.service';
 import { HashService } from '@src/user/service/hash.sevice';
 import ConfirmEmail from '@src/app/services/templates/ConfirmEmail';
-import getBaseUrl from '@src/utils/baseUrl';
 import getEmail from '@src/utils/getEmail';
 import { IsEmail, IsNotEmpty, MaxLength } from 'class-validator';
 import { ConfirmationCode } from '@src/utils/ConfirmationCode';
@@ -33,6 +32,10 @@ class ConfirmEmailDto {
   code: string;
   @IsNotEmpty()
   email: string;
+}
+
+class PlayDto {
+  boxId: string;
 }
 
 @Controller('api/user')
@@ -237,6 +240,85 @@ export class UserController {
 
     res.cookie('auth', token);
     res.json({ user, stock });
+  }
+
+  @Get('play')
+  public async play(@Res() res, @Req() req, @Query() query: PlayDto) {
+    const boxId = parseInt(query.boxId);
+    const box = await prisma.box_boxes.findUnique({
+      where: { box_id: boxId },
+    });
+    const user = req.user;
+
+    if (!box) {
+      res.json({ errors: { boxId: 'box not found' } });
+      return;
+    }
+
+    if (user.balance < box.price) {
+      res.json({ errors: { boxId: 'Not enough money' } });
+      return;
+    }
+
+    const rarity = await prisma.box_rare_statuses.findFirst({
+      where: {
+        slug: 'frequently',
+      },
+    });
+
+    const items = await prisma.box_items.findMany({
+      where: {
+        box_id: boxId,
+        rare_status_id: rarity.rare_status_id,
+      },
+    });
+
+    const randomItemIndex =
+      Math.floor(Math.random() * items.length) % items.length;
+    const item = items[randomItemIndex];
+    const newUserBalance = user.balance - box.price;
+
+    //take money from user balance
+    await prisma.box_users.update({
+      where: {
+        user_id: user.user_id,
+      },
+      data: {
+        balance: newUserBalance,
+      },
+    });
+
+    //put prize to user stock
+    const stock_item = await prisma.box_stock_items.findFirst({
+      where: {
+        user_id: user.user_id,
+        item_id: item.item_id,
+      },
+    });
+
+    if (stock_item) {
+      await prisma.box_stock_items.update({
+        where: {
+          stock_item_id: stock_item.stock_item_id,
+        },
+        data: {
+          total: stock_item.total + 1,
+        },
+      });
+    } else {
+      await prisma.box_stock_items.create({
+        data: {
+          user_id: user.user_id,
+          item_id: item.item_id,
+          total: 1,
+        },
+      });
+    }
+
+    res.json({
+      prise: item,
+      newBalance: newUserBalance,
+    });
   }
 }
 
