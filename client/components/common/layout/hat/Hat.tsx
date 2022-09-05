@@ -11,6 +11,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import MenuDesktop from "@components/common/layout/hat/MenuDesktop";
 import HatMobile from "@components/common/layout/hat/mobile/HatMobile";
+import ModalLogin from "@components/pages/main/modal-login/ModalLogin";
+import ModalRegister from "@components/pages/main/modal-register/ModalRegister";
 
 export const Hat: React.FC = function () {
   const dispatch = useDispatch();
@@ -74,6 +76,9 @@ export const Hat: React.FC = function () {
           <Navigation />
         </div>
       )}
+
+      <ModalLogin />
+      <ModalRegister />
     </>
   );
 };

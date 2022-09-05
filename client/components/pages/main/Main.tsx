@@ -10,8 +10,6 @@ import cn from "classnames";
 import Delivery from "@components/pages/main/Delivery";
 import Styles from "@components/pages/main/Main.module.scss";
 import Reviews from "@components/pages/main/reviews/Reviews";
-import ModalLogin from "@components/pages/main/modal-login/ModalLogin";
-import ModalRegister from "@components/pages/main/modal-register/ModalRegister";
 import Faq from "@components/pages/main/faq/Faq";
 
 const DynamicHistoryLineWithNoSSR = dynamic(
@@ -92,9 +90,6 @@ export const Main: React.FC = function () {
           <Faq />
         </div>
       </section>
-
-      <ModalLogin />
-      <ModalRegister />
     </>
   );
 };
