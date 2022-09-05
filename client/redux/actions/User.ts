@@ -24,3 +24,8 @@ export const update = (payload: ISagaPayload): any => ({
   type: `user/update`,
   payload,
 });
+
+export const play = (payload: ISagaPayload): any => ({
+  type: `user/play`,
+  payload,
+});

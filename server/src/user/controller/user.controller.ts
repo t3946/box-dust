@@ -316,7 +316,7 @@ export class UserController {
     }
 
     res.json({
-      prise: item,
+      prize: item,
       newBalance: newUserBalance,
     });
   }

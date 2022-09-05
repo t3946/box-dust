@@ -6,17 +6,19 @@ import useSelector from "@hooks/useSelector";
 import AnimatedNumber from "animated-number-react";
 import { modalOpen } from "@redux/reducer/Popup";
 import { useDispatch } from "react-redux";
+import { play } from "@redux/actions/User";
 
 export interface IProps {
   className: any;
   startGameHandler: any;
-  price: number;
+  box: Record<any, any>;
+  gameIsActive: boolean;
 }
 
 export const Interface: React.FC<IProps> = function (props) {
-  const { className, startGameHandler, price } = props;
+  const { className, startGameHandler, box, gameIsActive } = props;
   const user = useSelector((state) => state.user.user);
-  const insufficientMoney = !user || user.balance < price;
+  const insufficientMoney = !user || user.balance < box.price;
   const dispatch = useDispatch();
 
   function openModalLogin() {
@@ -54,6 +56,18 @@ export const Interface: React.FC<IProps> = function (props) {
     );
   }
 
+  function playGameHandler() {
+    dispatch(
+      play({
+        data: { boxId: box.box_id },
+
+        callback(res) {
+          startGameHandler(res.data.prize.item_id);
+        },
+      })
+    );
+  }
+
   function buttonTemplate() {
     if (!user) {
       return (
@@ -65,16 +79,18 @@ export const Interface: React.FC<IProps> = function (props) {
       );
     }
 
+    const isDisabled = gameIsActive || insufficientMoney;
+
     return (
       <span
         className={cn(Styles.buttonWrapper, {
-          [Styles.buttonWrapper_disabled]: insufficientMoney,
+          [Styles.buttonWrapper_disabled]: isDisabled,
         })}
       >
         <button
           className={cn(Styles.button)}
-          onClick={startGameHandler}
-          disabled={insufficientMoney}
+          onClick={playGameHandler}
+          disabled={isDisabled}
         >
           играть
         </button>
@@ -96,7 +112,7 @@ export const Interface: React.FC<IProps> = function (props) {
         className={cn("mb-3", "user-drag-none", "user-select-none")}
       />
 
-      <span className={Styles.price}>{balanceToString(price)}</span>
+      <span className={Styles.price}>{balanceToString(box.price)}</span>
 
       {buttonTemplate()}
 

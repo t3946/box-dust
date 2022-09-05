@@ -23,6 +23,7 @@ export const Game: React.FC<IProps> = function (props) {
       },
     };
   });
+  const [gameIsActive, setGameIsActive] = React.useState(false);
 
   React.useEffect(() => {
     const app = createApp({
@@ -39,14 +40,23 @@ export const Game: React.FC<IProps> = function (props) {
     setScene(app.stage.children[0]);
   }, []);
 
-  function startGame() {
-    const nextPrizeIndex = Math.round(Math.random() * (items.length - 1));
+  function startGame(item_id: number) {
+    let nextPrizeIndex = 0;
+
+    setGameIsActive(true);
+
+    items.map((e, i) => {
+      if (e.item_id === item_id) {
+        nextPrizeIndex = i;
+      }
+    });
 
     scene.gameStart({
       nextWinIndex: nextPrizeIndex,
       onComplete: () => {
         setPrize(items[nextPrizeIndex]);
         handleModalPrizeShow();
+        setGameIsActive(false);
       },
     });
   }
@@ -63,7 +73,8 @@ export const Game: React.FC<IProps> = function (props) {
             <Interface
               className={"mt-3"}
               startGameHandler={startGame}
-              price={box.price}
+              box={box}
+              gameIsActive={gameIsActive}
             />
           </div>
         </div>

@@ -67,6 +67,20 @@ function* update(action: any): Generator {
   }
 }
 
+function* play(action: any): Generator {
+  const { data, callback } = action.payload;
+  const res: any = yield axios.get("/api/user/play", { params: data });
+
+  yield put({
+    type: "user/updateUser",
+    payload: { balance: res.data.newBalance },
+  });
+
+  if (callback) {
+    yield callback(res);
+  }
+}
+
 export default function* User(): SagaIterator {
   yield takeLatest("user/register", register);
   yield takeLatest("user/register/send-confirm-email", sendConfirmEmail);
@@ -74,4 +88,5 @@ export default function* User(): SagaIterator {
 
   yield takeLatest("user/login", login);
   yield takeLatest("user/updateName", update);
+  yield takeLatest("user/play", play);
 }

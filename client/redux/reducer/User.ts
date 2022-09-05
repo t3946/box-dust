@@ -15,9 +15,15 @@ const userSlice = createSlice({
     balanceAdd(state, action: any) {
       state.user.balance += action.payload.count;
     },
+
+    updateUser(state, action: any) {
+      for (const key in action.payload) {
+        state.user[key] = action.payload[key];
+      }
+    },
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, updateUser } = userSlice.actions;
 
 export default userSlice.reducer;
