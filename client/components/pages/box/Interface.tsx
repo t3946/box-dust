@@ -3,6 +3,7 @@ import Styles from "@components/pages/box/Interface.module.scss";
 import balanceToString from "@utils/balanceToString";
 import cn from "classnames";
 import useSelector from "@hooks/useSelector";
+import AnimatedNumber from "animated-number-react";
 
 export interface IProps {
   className: any;
@@ -61,7 +62,11 @@ export const Interface: React.FC<IProps> = function (props) {
       >
         <span className={cn("me-1", Styles.balanceCaption)}>баланс:</span>
         <span className={cn(Styles.balanceNumber)}>
-          {balanceToString(user.balance)}
+          <AnimatedNumber
+            value={user.balance}
+            formatValue={balanceToString}
+            duration={0}
+          />
         </span>
       </span>
     </div>

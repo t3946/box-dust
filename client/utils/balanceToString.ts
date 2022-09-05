@@ -1,4 +1,6 @@
 export function balanceToString(balance: number) {
+  balance = parseFloat(balance.toFixed(2));
+
   const int = Math.floor(balance / 100);
   let float: number | string = balance % 100;
 
