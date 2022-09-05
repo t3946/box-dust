@@ -21,11 +21,12 @@ export const Catalog: React.FC<IProps> = function (props) {
           "col-xxl-3 col-lg-4 col-md-6 justify-content-center d-flex",
           Styles.cardColumn
         )}
+        key={`catalog-item-${i}`}
       >
         <Card
           prize={items[i]}
           onClick={() => {
-            setItemModal(i+1);
+            setItemModal(i + 1);
             handleModalItemShow();
           }}
         />

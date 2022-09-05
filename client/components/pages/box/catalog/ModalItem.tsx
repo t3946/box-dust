@@ -24,7 +24,7 @@ export const ModalItem: React.FC<IProps> = function (props) {
 
   for (let i = 0; i < items.length; i++) {
     slides.push(
-      <SwiperSlide>
+      <SwiperSlide key={`slide-${i}`}>
         <div className={Styles.slide}>
           <div className={cn(Styles.slide__imageWrapper, Styles.imageWrapper)}>
             <img
