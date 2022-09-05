@@ -61,7 +61,7 @@ export const Interface: React.FC<IProps> = function (props) {
       >
         <span className={cn("me-1", Styles.balanceCaption)}>баланс:</span>
         <span className={cn(Styles.balanceNumber)}>
-          {balanceToString(user.balance * 100)}
+          {balanceToString(user.balance)}
         </span>
       </span>
     </div>
