@@ -43,7 +43,11 @@ export const Tiles: React.FC<IProps> = function (props) {
           className={"d-none"}
         />
 
-        <div key={`category-tile-${i}`}>{category.name}</div>
+        <div key={`category-tile-${i}`}>
+          <span className={cn(Styles.tileName, Styles.categoryTile__caption)}>
+            {category.name}
+          </span>
+        </div>
       </label>
     );
   }
