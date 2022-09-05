@@ -19,7 +19,7 @@ export const Interface: React.FC<IProps> = function (props) {
     return null;
   }
 
-  const insufficientMoney = user.balance < price * 100;
+  const insufficientMoney = user.balance < price;
 
   return (
     <div
@@ -35,7 +35,7 @@ export const Interface: React.FC<IProps> = function (props) {
         className={cn("mb-3", "user-drag-none", "user-select-none")}
       />
 
-      <span className={Styles.price}>{balanceToString(price * 100)}</span>
+      <span className={Styles.price}>{balanceToString(price)}</span>
 
       <span
         className={cn(Styles.buttonWrapper, {

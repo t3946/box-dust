@@ -48,10 +48,10 @@ export const Box: React.FC<IProps> = function (props) {
         <div className={cn([Styles.boxCardPrice, ""])}>
           {!!box.old_price && (
             <span className={cn([Styles.oldPrice, "me-1"])}>
-              {box.old_price}
+              {box.old_price / 100}
             </span>
           )}
-          <span className={Styles.price}>{box.price}</span>
+          <span className={Styles.price}>{box.price / 100}</span>
         </div>
       </div>
 
