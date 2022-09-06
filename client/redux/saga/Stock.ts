@@ -13,7 +13,7 @@ function* sell(action: any): Generator {
 
   yield put({
     type: "user/balanceAdd",
-    payload: { count: (stockItem.item.list_price * 100) / 2 },
+    payload: { count: stockItem.item.list_price * data.count },
   });
 
   yield put({ type: "stock/remove", payload: data });

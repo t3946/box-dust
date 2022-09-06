@@ -74,8 +74,7 @@ export class StockController {
         user_id: req.user.user_id,
       },
       data: {
-        balance:
-          req.user.balance + (stockItem.item.list_price / 2) * 100 * sellNumber,
+        balance: req.user.balance + stockItem.item.list_price * sellNumber,
       },
     });
 

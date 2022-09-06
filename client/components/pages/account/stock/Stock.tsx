@@ -44,10 +44,6 @@ export const Stock: React.FC<IProps> = function (props) {
     );
   }
 
-  // useEffect(() => {
-  //   openItemInModal(stock[0]);
-  // });
-
   return (
     <div>
       <h1>{header}</h1>

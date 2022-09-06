@@ -13,6 +13,7 @@ import Style from "@components/pages/account/stock/ModalStockItem.module.scss";
 import cn from "classnames";
 import { sell } from "@redux/actions/Stock";
 import { FormikHelpers } from "formik/dist/types";
+import balanceToString from "@utils/balanceToString";
 
 export const ModalStockItem: React.FC = function () {
   const { show, stock_item_id } = useSelector(
@@ -53,7 +54,7 @@ export const ModalStockItem: React.FC = function () {
       dispatch(
         sell({
           data: {
-            stock_item_id: stockItem.stock_item_id,
+            stock_item_id: stockItem?.stock_item_id,
             count: values.count,
           },
 
@@ -64,7 +65,7 @@ export const ModalStockItem: React.FC = function () {
       );
     }
 
-    if (values.count === stockItem.total) {
+    if (values.count === stockItem?.total) {
       close();
       setTimeout(sendForm, 300);
       return;
@@ -99,7 +100,7 @@ export const ModalStockItem: React.FC = function () {
                   >
                     <span>Стоимость: </span>
                     <span className="rouble">
-                      {(item.list_price * values.count).toLocaleString("ru")}
+                      {balanceToString(item.list_price * values.count)}
                     </span>
                   </div>
 
@@ -134,10 +135,7 @@ export const ModalStockItem: React.FC = function () {
                         <span className={Style.sellForText}>
                           (за{" "}
                           <span className="rouble">
-                            {(
-                              (item.list_price * values.count) /
-                              2
-                            ).toLocaleString("ru")}
+                            {balanceToString(item.list_price * values.count)}
                           </span>
                           )
                         </span>
