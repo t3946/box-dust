@@ -60,8 +60,6 @@ function* update(action: any): Generator {
     return res.data.user;
   });
 
-  // yield put({ type: "user/setUser", payload: { user } });
-
   if (callback) {
     yield callback();
   }
