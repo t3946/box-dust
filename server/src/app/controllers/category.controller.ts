@@ -16,6 +16,9 @@ export class CategoryController {
       },
       include: {
         boxes: {
+          where: {
+            is_active: true,
+          },
           include: {
             type: {
               select: {

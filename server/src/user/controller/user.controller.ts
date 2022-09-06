@@ -248,6 +248,14 @@ export class UserController {
     const box = await prisma.box_boxes.findUnique({
       where: { box_id: boxId },
     });
+
+    if (!box.is_active) {
+      res.json({
+        errors: { boxId: "Box is not active. You can't play this box." },
+      });
+      return;
+    }
+
     const user = req.user;
 
     if (!box) {

@@ -21,6 +21,7 @@ model box_boxes {
   is_recommend   Boolean         @default(false)
   image          String?         @db.VarChar(255)
   type_id        Int?            @default(1)
+  is_active      Boolean?        @default(false)
   big_image      box_images?     @relation("box_boxes_big_image_idTobox_images", fields: [big_image_id], references: [image_id], onUpdate: SetNull, map: "box_boxes_box_images_image_id_fk")
   box_categories box_categories? @relation(fields: [category_id], references: [category_id], onUpdate: SetNull, map: "box_boxes_box_categories_category_id_fk")
   small_image    box_images?     @relation("box_boxes_small_image_idTobox_images", fields: [small_image_id], references: [image_id], onUpdate: SetNull, map: "box_boxes_box_images_image_id_fk_2")
@@ -405,7 +406,7 @@ model box_users {
   avatar             String?              @db.VarChar(255)
   balance            Int                  @default(0) @db.UnsignedInt
   created            DateTime?            @default(now()) @db.DateTime(0)
-  confirmed          Boolean?             @default(false)
+  confirmed          Boolean              @default(false)
   box_prizes         box_prizes[]
   box_stock_items    box_stock_items[]
   confirmation_codes confirmation_codes[]
