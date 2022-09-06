@@ -76,6 +76,8 @@ function* play(action: any): Generator {
     payload: { balance: res.data.newBalance },
   });
 
+  yield put({ type: "stock/setState", payload: { stock: res.data.stock } });
+
   if (callback) {
     yield callback(res);
   }

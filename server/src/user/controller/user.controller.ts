@@ -323,9 +323,12 @@ export class UserController {
       });
     }
 
+    const stock = await getUserStock(parseInt(req.user.user_id));
+
     res.json({
       prize: item,
       newBalance: newUserBalance,
+      stock,
     });
   }
 }
