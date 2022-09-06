@@ -12,11 +12,17 @@ export interface IProps {
   type?: "button" | "submit";
   theme?: ETheme;
   className?: any;
+  onClick: any;
 }
 
 export const ButtonBlinkFlat: React.FC<React.PropsWithChildren<IProps>> =
   function (props) {
-    const { type = "button", theme = ETheme.primary, className } = props;
+    const {
+      type = "button",
+      theme = ETheme.primary,
+      className,
+      onClick,
+    } = props;
 
     return (
       <button
@@ -26,6 +32,7 @@ export const ButtonBlinkFlat: React.FC<React.PropsWithChildren<IProps>> =
           Style[`button_theme_${theme}`],
           className,
         ])}
+        onClick={onClick}
       >
         {props.children}
       </button>

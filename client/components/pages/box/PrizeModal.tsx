@@ -56,13 +56,14 @@ export const PrizeModal: React.FC<IProps> = function (props) {
                   <ButtonBlinkFlat
                     theme={ETheme.success}
                     className={["mb-3", "mb-lg-0"]}
+                    onClick={handleClose}
                   >
                     Сохранить
                   </ButtonBlinkFlat>
 
-                  <ButtonBlinkFlat theme={ETheme.danger}>
-                    Продать
-                  </ButtonBlinkFlat>
+                  {/*<ButtonBlinkFlat theme={ETheme.danger}>*/}
+                  {/*  Продать*/}
+                  {/*</ButtonBlinkFlat>*/}
                 </div>
               </Col>
             </Row>
