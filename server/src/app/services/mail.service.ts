@@ -3,9 +3,8 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class MailService {
-  async registrationCheckEmail(text, html = null) {
+  async registrationCheckEmail(to, text, html = null) {
     const nodemailer = require('nodemailer');
-    console.log('registrationCheckEmail');
 
     const smtpCredentials = {
       user: 'account@boxdust.ru',
@@ -26,7 +25,7 @@ export class MailService {
 
     const info = await transporter.sendMail({
       from: '"Box Dust Team" <account@boxdust.ru>', // sender address
-      to: 'svialence@yandex.ru', // list of receivers separated by comma
+      to, // list of receivers separated by comma
       subject: 'Регистрация boxdust.ru', // Subject line
       text, // plain text body
       html, // html body

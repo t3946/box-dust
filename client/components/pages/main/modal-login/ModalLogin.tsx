@@ -23,8 +23,8 @@ export const ModalLogin: React.FC = function () {
   const dispatch = useDispatch();
   const show = useSelector((state) => state.popup.modal.login.show);
   const initialValues = {
-    login: "svialence@yandex.ru",
-    password: "admin1",
+    login: "",
+    password: "",
   };
   const validationSchema = Yup.object().shape({
     login: Yup.string().required("Введите логин").max(64),

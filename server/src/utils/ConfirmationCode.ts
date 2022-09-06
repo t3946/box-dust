@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { LogLevel } from 'ts-loader/dist/logger';
 const prisma = new PrismaClient();
 
 export class ConfirmationCode {
@@ -47,7 +48,7 @@ export class ConfirmationCode {
     });
 
     if (!codeModel) {
-      return false;
+      return { error: 'Модель кода не найдена' };
     }
 
     if (
@@ -63,6 +64,6 @@ export class ConfirmationCode {
       return true;
     }
 
-    return false;
+    return { error: 'неверный код' };
   }
 }

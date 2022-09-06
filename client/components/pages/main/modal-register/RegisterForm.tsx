@@ -26,14 +26,22 @@ export const RegisterForm: React.FC<IProps> = function (props) {
   const { setStage, setEmail } = props;
   const dispatch = useDispatch();
   const initialValues = {
-    username: "vava",
-    email: "svailence@yandex.ru",
-    password: "admin1",
+    username: "",
+    email: "",
+    password: "",
+    applyAgreement: false,
   };
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required().min(3).max(64),
-    email: Yup.string().email("Email не корректен"),
-    password: Yup.string().min(6).max(32),
+    username: Yup.string().required("Введите имя пользователя").min(3).max(64),
+    email: Yup.string().required("Введите email").email("Email не корректен"),
+    password: Yup.string()
+      .required("Введите пароль")
+      .min(6, "Минимальная длина пароля 6 символов")
+      .max(32, "Максимальная длина пароля 32 символа"),
+    applyAgreement: Yup.bool().oneOf(
+      [true],
+      "Вы должны принять пользовательское соглашение"
+    ),
   });
 
   function openLoginModal() {
@@ -64,6 +72,7 @@ export const RegisterForm: React.FC<IProps> = function (props) {
           name: values.username,
           email: values.email,
           password: values.password,
+          applyAgreement: values.applyAgreement,
         },
         callback(res) {
           if (res.errors) {
@@ -85,7 +94,14 @@ export const RegisterForm: React.FC<IProps> = function (props) {
       validationSchema={validationSchema}
       onSubmit={submit}
     >
-      {({ errors, values, touched, isSubmitting, handleChange }) => {
+      {({
+        errors,
+        values,
+        touched,
+        isSubmitting,
+        setFieldValue,
+        handleChange,
+      }) => {
         return (
           <FormikForm className="d-flex align-items-end flex-column">
             <InputGroup className="mb-3">
@@ -101,6 +117,10 @@ export const RegisterForm: React.FC<IProps> = function (props) {
                 onChange={handleChange}
                 value={values.username}
               />
+
+              {touched.username && errors.username && (
+                <Feedback message={errors.username} type={"invalid"} />
+              )}
             </InputGroup>
 
             <InputGroup className="mb-3">
@@ -116,7 +136,10 @@ export const RegisterForm: React.FC<IProps> = function (props) {
                 onChange={handleChange}
                 value={values.email}
               />
-              <Feedback message={errors?.email} type={"invalid"} />
+
+              {touched.email && errors.email && (
+                <Feedback message={errors.email} type={"invalid"} />
+              )}
             </InputGroup>
 
             <InputGroup className="mb-3">
@@ -133,6 +156,10 @@ export const RegisterForm: React.FC<IProps> = function (props) {
                 onChange={handleChange}
                 value={values.password}
               />
+
+              {touched.password && errors.password && (
+                <Feedback message={errors.password} type={"invalid"} />
+              )}
             </InputGroup>
 
             <div
@@ -143,23 +170,37 @@ export const RegisterForm: React.FC<IProps> = function (props) {
                 "mb-3",
               ])}
             >
-              <RBForm.Check
-                type={"checkbox"}
-                id={"remember-me"}
-                label={
-                  <>
-                    Я Принимаю Условия{" "}
-                    <a
-                      href="/user-agreement"
-                      className={cn([StyleLink.link, "font-calibri"])}
-                      target={"_blank"}
-                    >
-                      Пользовательского Соглашения
-                    </a>
-                  </>
-                }
-                className={Style.check}
-              />
+              <div>
+                <RBForm.Check
+                  type={"checkbox"}
+                  id={"remember-me"}
+                  checked={values.applyAgreement}
+                  onChange={(e) => {
+                    setFieldValue("applyAgreement", e.target.checked);
+                  }}
+                  label={
+                    <>
+                      Я Принимаю Условия{" "}
+                      <a
+                        href="/user-agreement"
+                        className={cn([StyleLink.link, "font-calibri"])}
+                        target={"_blank"}
+                      >
+                        Пользовательского Соглашения
+                      </a>
+                    </>
+                  }
+                  className={Style.check}
+                />
+                <div className={"text-center"}>
+                  {touched.applyAgreement && errors.applyAgreement && (
+                    <Feedback
+                      message={errors.applyAgreement}
+                      type={"invalid"}
+                    />
+                  )}
+                </div>
+              </div>
             </div>
 
             <div
