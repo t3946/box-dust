@@ -150,8 +150,9 @@ export const RegisterForm: React.FC<IProps> = function (props) {
                   <>
                     Я Принимаю Условия{" "}
                     <a
-                      href="#"
+                      href="/user-agreement"
                       className={cn([StyleLink.link, "font-calibri"])}
+                      target={"_blank"}
                     >
                       Пользовательского Соглашения
                     </a>
