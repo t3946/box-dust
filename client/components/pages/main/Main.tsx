@@ -21,7 +21,7 @@ const DynamicHistoryLineWithNoSSR = dynamic(
 
 export const Main: React.FC = function () {
   const catalog = useSelector((state) => state.catalog);
-  const history = useSelector((state) => state.history);
+  const history = useSelector((state) => state.historyPrizes);
   const reviews = useSelector((state) => state.reviews.list);
   const selectedCategory = useSelector(
     (state) => state.categories.selectedCategory
@@ -51,7 +51,6 @@ export const Main: React.FC = function () {
 
           {/*Коробка не указана в этой карточке*/}
           <div className={cn(Styles.eventsPanel, "ms-3 d-none d-lg-block")}>
-            {/*<LastTopPrize :lastTopPrizes="lastTopPrizes" />*/}
             <SliderLastTopPrize />
           </div>
         </div>

@@ -36,7 +36,7 @@ App.getInitialProps = async (appContext) => {
   };
 
   const historyPrizes = await axios
-    .get(baseUrl + "/f-history/get")
+    .get(baseUrl + "/prizes-history/get?take=15")
     .then((res) => {
       return res.data.history;
     });
@@ -72,7 +72,7 @@ App.getInitialProps = async (appContext) => {
     categories: {
       selectedCategory: catalog.length && catalog[0],
     },
-    history: {
+    historyPrizes: {
       prizes: historyPrizes,
     },
     reviews: {

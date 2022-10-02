@@ -3,7 +3,7 @@ export default interface IStore {
   categories: {
     selectedCategory: Record<any, any>;
   };
-  history: Record<any, any>[];
+  historyPrizes: Record<any, any>[];
   reviews: {
     list: Record<any, any>[];
   };

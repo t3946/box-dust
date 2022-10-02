@@ -44,7 +44,7 @@ Server starts up
 9. expose project
    1. just open ports for nodes 
    2. client `sudo iptables -A INPUT -p tcp --dport 3000 -j ACCEPT`
-   3. api `sudo iptables -A INPUT -p tcp --dport 3080 -j ACCEPT`
+   3. api    `sudo iptables -A INPUT -p tcp --dport 3080 -j ACCEPT`
    4. check that's all right `sudo iptables -nvL`
 10. in client part you need install submodules
     1. `git submodule init`
@@ -68,6 +68,7 @@ Server starts up
     1. change in nginx config port 80 to 8000 (admin laravel must work on 8000 port)
     2. redirect incoming http to client application:
        `sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000`
+       `sudo iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 3000`
        `sudo iptables-save`
 
 # Registration/authorisation
