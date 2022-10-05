@@ -16,7 +16,7 @@ export const Partnership: React.FC = function () {
         этого вам потребуется немного свободного времени, наличие интернета и
         желание!
         <div className={"text-end"}>
-          <Link href={"#"}>
+          <Link href={"/account/partnership/about"}>
             <a>Подробнее</a>
           </Link>
         </div>

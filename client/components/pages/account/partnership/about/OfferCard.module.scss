@@ -1,0 +1,76 @@
+@use "sass:color";
+@import "styles/utils/Utils.module.scss";
+
+.hat {
+  padding: 0 pxToRem(10);
+}
+
+.description {
+  padding: 0 pxToRem(10);
+  font-family: Calibri, sans-serif;
+  font-size: pxToRem(16);
+}
+
+.bg {
+  &_theme_purple1 {
+    background: hsl(266, 100, 60);
+  }
+
+  &_theme_purple2 {
+    background: hsl(266, 100, 45);
+  }
+
+  &_theme_purple3 {
+    background: hsl(266, 100, 30);
+  }
+
+  &_theme_purple4 {
+    background: hsl(266, 100, 15);
+  }
+}
+
+.offerCard {
+  border-radius: 8px;
+  padding: pxToRem(20) 0;
+  text-align: center;
+  color: #ffffff;
+  font-family: 'Gilroy-SemiBold', sans-serif;
+
+}
+
+.header {
+  font-size: pxToRem(32);
+}
+
+.percent {
+  font-size: pxToRem(48);
+}
+
+.requirements {
+  padding: pxToRem(10) 0;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  position: relative;
+
+  &:before {
+    content: "Требования";
+    font-family: 'Calibri', sans-serif;
+    position: absolute;
+    top: -12px;
+    height: 24px;
+    transform: translate(-50%);
+    background: inherit;
+    padding: 0 5px;
+    font-weight: bold;
+  }
+}
+
+.requirementsList {
+  font-family: 'Calibri', sans-serif;
+  text-align: left;
+}
+
+.cost {
+  font-family: 'Calibri', sans-serif;
+  font-size: pxToRem(12);
+}
