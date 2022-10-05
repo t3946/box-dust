@@ -15,7 +15,7 @@ body {
   color: #ffffff;
 }
 
-a {
+.link-unstyled {
   color: inherit;
   text-decoration: none;
 }

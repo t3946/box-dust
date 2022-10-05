@@ -20,7 +20,7 @@ export const Menu: React.FC<IProps> = function (props) {
     navigationMenuItemsTemplates.push(
       <Link href={item.route} key={`item-${i}`}>
         <a
-          className={cn(Style.item, { [Style.item_first]: i === 0 }, "d-block")}
+          className={cn(Style.item, { [Style.item_first]: i === 0 }, "link-unstyled", "d-block")}
           onClick={onClick}
         >
           <ChevronDown className={cn(Style.icon, "me-2")} />

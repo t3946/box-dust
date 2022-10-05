@@ -2,10 +2,25 @@ import * as React from "react";
 import RBBadge from "react-bootstrap/Badge";
 import Style from "@components/common/badge/Badge.module.scss";
 import { PropsWithChildren } from "react";
+import cn from "classnames";
 
-export const Badge: React.FC<PropsWithChildren> = function (props) {
+export enum ETheme {
+  RED = "red",
+}
+
+export interface IProps extends PropsWithChildren {
+  theme?: ETheme;
+}
+
+export const Badge: React.FC<IProps> = function (props) {
+  const { theme = "" } = props;
+
   return (
-    <RBBadge className={Style.badge} pill bg={""}>
+    <RBBadge
+      className={cn(Style.badge, Style[`badge_theme_${theme}`])}
+      pill
+      bg={""}
+    >
       {props.children}
     </RBBadge>
   );

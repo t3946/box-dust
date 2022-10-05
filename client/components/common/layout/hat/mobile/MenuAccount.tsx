@@ -38,7 +38,8 @@ export const Menu: React.FC<IProps> = function (props) {
             StyleMenu.item,
             StyleMenu.item_micro,
             { [StyleMenu.item_first]: i === 0 },
-            "d-block"
+            "d-block",
+            "link-unstyled"
           )}
           onClick={onClick}
         >

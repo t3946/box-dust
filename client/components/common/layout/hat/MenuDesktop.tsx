@@ -1,5 +1,6 @@
 import * as React from "react";
 import Style from "@components/common/layout/hat/MenuDesktop.module.scss";
+import cn from "classnames";
 
 export const MenuDesktop: React.FC = function () {
   const menu = [
@@ -28,7 +29,7 @@ export const MenuDesktop: React.FC = function () {
 
     items.push(
       <li className={Style.navItem} key={`menu-item-${i}`}>
-        <a href={menuItem.link} className={Style.navLink}>
+        <a href={menuItem.link} className={cn(Style.navLink, "link-unstyled")}>
           {menuItem.label}
         </a>
       </li>

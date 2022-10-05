@@ -1,6 +1,3 @@
 [submodule "client/submodules/roulette"]
 	path = client/submodules/roulette
 	url = git@github.com:t3946/roulette.git
-[submodule "client/submodules/font-awesome"]
-	path = client/submodules/font-awesome
-	url = git@github.com:t3946/font-awesome.git

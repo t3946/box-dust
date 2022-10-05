@@ -15,7 +15,7 @@ export const Item: React.FC<IProps> = function (props) {
   return (
     <>
       <Link href={`/box/${item.box.box_id}/open`}>
-        <a>
+        <a className={"link-unstyled"}>
           <div
             className={cn([
               Styles.container,

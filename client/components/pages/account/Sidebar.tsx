@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import Cookie from "js-cookie";
 import { useDispatch } from "react-redux";
 import { setUser } from "@redux/reducer/User";
-import Badge from "@components/common/badge/Badge";
+import Badge, { ETheme } from "@components/common/badge/Badge";
 import useSelector from "@hooks/useSelector";
 import { setState } from "@redux/reducer/Stock";
 
@@ -27,15 +27,22 @@ export const Sidebar: React.FC = function () {
       label: "Баланс",
       route: "/account/payment",
     },
+    {
+      label: "Партнёрство",
+      route: "/account/partnership",
+      badge: "!",
+      badgeTheme: ETheme.RED,
+      className: ["mt-3"],
+    },
   ];
   const itemTemplates = [];
   const dispatch = useDispatch();
 
   for (let i = 0; i < items.length; i++) {
-    const { label, route, badge } = items[i];
+    const { label, route, badge, badgeTheme, className } = items[i];
 
     itemTemplates.push(
-      <li className={Style.sidebar_item} key={`sidebar-item-${i}`}>
+      <li className={cn(Style.sidebar_item)} key={`sidebar-item-${i}`}>
         <Link href={route}>
           <a
             className={cn(
@@ -45,11 +52,15 @@ export const Sidebar: React.FC = function () {
               },
               "position-relative",
               "d-flex",
-              "justify-content-between"
+              "justify-content-between",
+              "link-unstyled",
+              className
             )}
           >
-            <span>{label}</span>
-            {!!badge && <Badge>{badge}</Badge>}
+            <span className={cn("d-flex", "align-items-center")}>
+              <span>{label}</span>
+            </span>
+            {!!badge && <Badge theme={badgeTheme}>{badge}</Badge>}
           </a>
         </Link>
       </li>
