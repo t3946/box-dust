@@ -63,12 +63,22 @@ App.getInitialProps = async (appContext) => {
     .then((res) => {
       return res.data.user;
     })
-    .catch((err) => {
+    .catch(() => {
       return null;
+    });
+
+  const partnerships = await axios
+    .get(baseUrl + "/partnership/get", {
+      withCredentials: true,
+      headers,
+    })
+    .then((res) => {
+      return res.data.partnerships;
     });
 
   appProps.pageProps.storeInitialData = {
     catalog,
+    partnerships,
     categories: {
       selectedCategory: catalog.length && catalog[0],
     },

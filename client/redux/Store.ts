@@ -10,6 +10,7 @@ import Popup from "@redux/reducer/Popup";
 import User from "@redux/reducer/User";
 import Menu from "@redux/reducer/Menu";
 import Stock from "@redux/reducer/Stock";
+import Partnerships from "@redux/reducer/Partnerships";
 import { configureStore } from "@reduxjs/toolkit";
 
 const getStore = (function () {
@@ -30,6 +31,7 @@ const getStore = (function () {
           stock: Stock,
           menu: Menu,
           accountMenu: Menu,
+          partnerships: Partnerships,
         },
         preloadedState,
         enhancers: [applyMiddleware(sagaMiddleware)],

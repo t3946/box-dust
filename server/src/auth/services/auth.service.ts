@@ -30,6 +30,9 @@ export class AuthService {
             email: login,
             confirmed: true,
           },
+          include: {
+            partnership: true,
+          },
         });
 
         if (!user || !user.confirmed) {
@@ -99,6 +102,9 @@ export class AuthService {
           where: {
             user_id: jwt_payload.user.user_id,
             confirmed: true,
+          },
+          include: {
+            partnership: true,
           },
         });
 

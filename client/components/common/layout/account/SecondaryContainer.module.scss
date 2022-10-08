@@ -1,0 +1,29 @@
+@import "styles/utils/Utils.module.scss";
+
+.container {
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  padding: pxToRem(10) pxToRem(20);
+  font-family: 'Calibri', sans-serif;
+  font-size: pxToRem(14);
+
+  &_withHeader {
+    padding: pxToRem(20) pxToRem(20) pxToRem(10);
+  }
+
+  &__header {
+    position: absolute;
+    left: pxToRem(10);
+    top: -12px;
+  }
+}
+
+.header {
+  border-radius: 100px;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  height: 24px;
+  padding: 0 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+}

@@ -407,9 +407,17 @@ model box_users {
   balance            Int                  @default(0) @db.UnsignedInt
   created            DateTime?            @default(now()) @db.DateTime(0)
   confirmed          Boolean              @default(false)
+  partnership_id     Int?                 @db.UnsignedInt
+  refer              Int?                 @db.UnsignedInt
+  partnership        box_partnerships?    @relation(fields: [partnership_id], references: [partnership_id], map: "box_users_box_partnerships_partnership_id_fk")
+  box_users          box_users?           @relation("box_usersTobox_users_refer", fields: [refer], references: [user_id], onDelete: Restrict, onUpdate: Restrict, map: "box_users_box_users_user_id_fk")
   box_prizes         box_prizes[]
   box_stock_items    box_stock_items[]
+  other_box_users    box_users[]          @relation("box_usersTobox_users_refer")
   confirmation_codes confirmation_codes[]
+
+  @@index([partnership_id], map: "box_users_box_partnerships_partnership_id_fk")
+  @@index([refer], map: "box_users_box_users_user_id_fk")
 }
 
 model box_stock_items {
@@ -439,6 +447,16 @@ model confirmation_codes {
   box_users            box_users? @relation(fields: [user_id], references: [user_id], onDelete: Cascade, map: "confirmation_codes_box_users_user_id_fk")
 
   @@unique([user_id, action], map: "confirmation_codes_user_id_action_uindex")
+}
+
+model box_partnerships {
+  partnership_id  Int         @id @default(autoincrement()) @db.UnsignedInt
+  name            String      @unique(map: "box_partnerships_name_uindex") @db.VarChar(64)
+  revenue_percent Int?        @db.UnsignedInt
+  slug            String?     @unique(map: "box_partnerships_slug_uindex") @db.VarChar(32)
+  is_public       Boolean?    @default(true)
+  requirements    String?     @db.LongText
+  box_users       box_users[]
 }
 
 enum clients_gender {

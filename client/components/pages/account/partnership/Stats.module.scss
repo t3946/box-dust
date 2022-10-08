@@ -1,0 +1,21 @@
+@import "styles/utils/Utils.module.scss";
+
+.name {
+  &:first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.value {
+  &:first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.statRow {
+  padding: 0 pxToRem(4);
+  line-height: 2;
+  &:hover {
+    outline: 1px solid #cccccc;
+  }
+}

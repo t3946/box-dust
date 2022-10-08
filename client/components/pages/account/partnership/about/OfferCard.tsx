@@ -17,6 +17,7 @@ export interface IProps {
   className?: any;
   description: string;
   cost?: number;
+  afterCost?: string;
 }
 
 export const OfferCard: React.FC<IProps> = function (props) {
@@ -28,6 +29,7 @@ export const OfferCard: React.FC<IProps> = function (props) {
     requirements = [],
     description,
     cost,
+    afterCost,
   } = props;
   const requirementsItems = [];
 

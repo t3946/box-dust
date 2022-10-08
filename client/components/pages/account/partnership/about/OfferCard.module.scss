@@ -44,6 +44,11 @@
 
 .percent {
   font-size: pxToRem(48);
+  background: #ffffff21;
+  margin: 10px 0;
+  $offset: 1px;
+  $color: hsl(266, 100, 15);
+  text-shadow: -$offset 0 $color, 0 $offset $color, $offset 0 $color, 0 (-$offset) $color;
 }
 
 .requirements {

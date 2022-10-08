@@ -1,5 +1,6 @@
 export default interface IStore {
   catalog: Record<any, any>[];
+  partnerships: Record<any, any>[];
   categories: {
     selectedCategory: Record<any, any>;
   };

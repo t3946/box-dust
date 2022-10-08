@@ -53,6 +53,7 @@ export const PaymentIcons: React.FC = function () {
         src={`/images/payment/${slug}.svg`}
         title={name}
         alt={name}
+        key={`payment-icon-${slug}`}
       />
     );
   }
