@@ -30,7 +30,7 @@ export const Card: React.FC<IProps> = function (props) {
         <span className={cn(Styles.title, "mb-1")} title={prize.short_name}>{prize.short_name}</span>
 
         <span className={Styles.price}>
-          {balanceToString(prize.list_price * 100)}
+          {balanceToString(prize.list_price)}
         </span>
       </div>
     </div>

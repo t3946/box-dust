@@ -85,7 +85,7 @@ export const ModalItem: React.FC<IProps> = function (props) {
               <span className={Styles.title}>{items[activeSlide].name}</span>
 
               <span className={cn(Styles.price, "my-2")}>
-                {balanceToString(items[activeSlide].list_price * 100)}
+                {balanceToString(items[activeSlide].list_price)}
               </span>
 
               <span className={Styles.moreInfo}>подробнее</span>
