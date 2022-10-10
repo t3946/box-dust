@@ -33,7 +33,13 @@ export const Box: React.FC<IProps> = function (props) {
       </div>
 
       <div className={Styles.body}>
-        <div className={cn(Styles.imageWrapper, "user-select-none", "user-drag-none")}>
+        <div
+          className={cn(
+            Styles.imageWrapper,
+            "user-select-none",
+            "user-drag-none"
+          )}
+        >
           <img
             className={cn(Styles.image)}
             src={getImageUrl("box-default")}
@@ -55,11 +61,9 @@ export const Box: React.FC<IProps> = function (props) {
         </div>
       </div>
 
-      <div className={Styles.footer}>
+      <div className={cn(Styles.footer, "d-flex", "justify-content-center")}>
         <Link href={`/box/${box.box_id}/open`}>
-          <a>
-            <button className={Styles.button}>открыть</button>
-          </a>
+          <a className={cn(Styles.button, "link-unstyled")}>открыть</a>
         </Link>
       </div>
     </div>

@@ -14,6 +14,8 @@ import RBForm from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import cn from "classnames";
 import SecondaryContainer from "@components/common/layout/account/SecondaryContainer";
+import useSelector from "@hooks/useSelector";
+import _ from "lodash";
 
 export interface IProps {
   className: any;
@@ -24,35 +26,38 @@ export interface IProps {
 // [{groupName: "деньги", charts: [{}, {}]}, {groupName: "пользователи", charts: [{}, {}]}, {groupName: "спины", charts: [{}]}]
 export const Chart: React.FC<IProps> = function (props) {
   const { className } = props;
-  const data = React.useState([]);
+  let data = React.useState(_.range(0, 90, 0));
   const now = new Date().getTime();
   const [charts, setCharts] = React.useState([
-    {
-      slug: "revenue",
-      name: "Квартальная прибыль",
-      color: "#fcd554",
-      active: false,
-    },
-    {
-      slug: "registrations",
-      name: "регистрации",
-      color: "#aaaaaa",
-      active: true,
-    },
-    {
-      slug: "activeClients",
-      name: "активне клиенты",
-      color: "#05ac50",
-      active: true,
-    },
+    // {
+    //   slug: "revenue",
+    //   name: "Квартальная прибыль",
+    //   color: "#fcd554",
+    //   active: false,
+    // },
+    // {
+    //   slug: "registrations",
+    //   name: "регистрации",
+    //   color: "#aaaaaa",
+    //   active: true,
+    // },
+    // {
+    //   slug: "activeClients",
+    //   name: "активне клиенты",
+    //   color: "#05ac50",
+    //   active: true,
+    // },
     {
       slug: "spins",
       name: "спины",
       color: "#6d20cb",
-      active: false,
+      active: true,
     },
   ]);
   const initialValues: any = {};
+  const user = useSelector((state) => state.user.user);
+  const dayMs = 1000 * 60 * 60 * 24;
+  const dateNow = new Date();
 
   for (const chart of charts) {
     initialValues[chart.slug] = chart.active;
@@ -71,11 +76,38 @@ export const Chart: React.FC<IProps> = function (props) {
       }
 
       //todo: debug
-      dataItem[chart.name] = Math.round(Math.random() * 10);
+      // dataItem[chart.name] = Math.round(Math.random() * 10);
     }
 
     data.push(dataItem);
   }
+
+  for (let i = 0; i < 90; i++) {
+    const previousDay = new Date(dateNow - dayMs * i);
+    let games = 0;
+
+    for (const referral of user.referrals) {
+      for (const game of referral.games) {
+        const dateCreated = new Date(game.created);
+
+        //compere dates ignoring time
+        if (
+          previousDay.getDate() === dateCreated.getDate() &&
+          previousDay.getFullYear() === dateCreated.getFullYear() &&
+          previousDay.getMonth() === dateCreated.getMonth()
+        ) {
+          games++;
+        }
+      }
+    }
+
+    // data[i].push({ spins: games });
+    data[i]["спины"] = games;
+  }
+
+  data = data.reverse();
+
+  console.log({ data });
 
   const colorItems = [];
   const areaItems: ReactElement<Area>[] = [];

@@ -50,6 +50,7 @@
 }
 
 .button {
+  display: flex;
   width: 180px;
   height: 67px;
   background: url('/images/pages/main/cards/basic-button.png') no-repeat;
@@ -59,6 +60,11 @@
   color: #efcf07;
   font-family: Bebas, sans-serif;
   font-size: 18px;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    color: #efcf07;
+  }
 }
 
 .footer {
