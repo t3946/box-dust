@@ -74,6 +74,7 @@ model box_items {
   image           box_images?        @relation(fields: [image_id], references: [image_id], onUpdate: SetNull, map: "box_items_box_images_image_id_fk")
   rare            box_rare_statuses? @relation(fields: [rare_status_id], references: [rare_status_id], onUpdate: SetNull, map: "box_items_box_rare_statuses_rare_status_id_fk")
   box_f_history   box_f_history[]
+  box_games       box_games[]
   box_prizes      box_prizes[]
   box_stock_items box_stock_items[]
 
@@ -405,15 +406,17 @@ model box_users {
   password           String               @db.VarChar(255)
   avatar             String?              @db.VarChar(255)
   balance            Int                  @default(0) @db.UnsignedInt
-  created            DateTime?            @default(now()) @db.DateTime(0)
   confirmed          Boolean              @default(false)
   partnership_id     Int?                 @db.UnsignedInt
   refer              Int?                 @db.UnsignedInt
+  last_login         DateTime             @default(now()) @db.DateTime(0)
+  created            DateTime?            @default(now()) @db.DateTime(0)
   partnership        box_partnerships?    @relation(fields: [partnership_id], references: [partnership_id], map: "box_users_box_partnerships_partnership_id_fk")
   box_users          box_users?           @relation("box_usersTobox_users_refer", fields: [refer], references: [user_id], onDelete: Restrict, onUpdate: Restrict, map: "box_users_box_users_user_id_fk")
+  games              box_games[]
   box_prizes         box_prizes[]
   box_stock_items    box_stock_items[]
-  other_box_users    box_users[]          @relation("box_usersTobox_users_refer")
+  referrals          box_users[]          @relation("box_usersTobox_users_refer")
   confirmation_codes confirmation_codes[]
 
   @@index([partnership_id], map: "box_users_box_partnerships_partnership_id_fk")
@@ -457,6 +460,20 @@ model box_partnerships {
   is_public       Boolean?    @default(true)
   requirements    String?     @db.LongText
   box_users       box_users[]
+}
+
+model box_games {
+  game_id     Int        @id @default(autoincrement()) @db.UnsignedInt
+  user_id     Int        @db.UnsignedInt
+  item_id     Int?       @db.UnsignedInt
+  game_price  Int        @db.UnsignedInt
+  prize_price Int        @db.UnsignedInt
+  created     DateTime   @default(now()) @db.DateTime(0)
+  item        box_items? @relation(fields: [item_id], references: [item_id], onDelete: Cascade, map: "box_games_box_items_item_id_fk")
+  user        box_users  @relation(fields: [user_id], references: [user_id], onDelete: Cascade, map: "box_games_box_users_user_id_fk")
+
+  @@index([item_id], map: "box_games_box_items_item_id_fk")
+  @@index([user_id], map: "box_games_box_users_user_id_fk")
 }
 
 enum clients_gender {

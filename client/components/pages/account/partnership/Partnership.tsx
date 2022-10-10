@@ -6,7 +6,8 @@ import useSelector from "@hooks/useSelector";
 import Stats from "@components/pages/account/partnership/Stats";
 import dynamic from "next/dynamic";
 import StatusUpgrade from "@components/pages/account/partnership/dashboard/StatusUpgrade";
-import { ReferralsList } from "@components/pages/account/partnership/dashboard/ReferalsList";
+import ReferralsList from "@components/pages/account/partnership/dashboard/ReferalsList";
+import GamesList from "@components/pages/account/partnership/dashboard/GamesList";
 
 export interface IProps {
   className: any;
@@ -40,9 +41,15 @@ export const Partnership: React.FC<IProps> = function (props) {
         </div>
       </div>
 
-      <div className="row">
+      <div className="row mb-4">
         <div className="col-12">
           <ReferralsList />
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-12">
+          <GamesList />
         </div>
       </div>
     </Panel>
