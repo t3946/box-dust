@@ -36,6 +36,7 @@ export const HistoryLine: React.FC<IProps> = function (props) {
         success() {
           swiper?.slideTo(1, 0, false);
 
+          //todo: из-за этого таймера происходитошибка с redux
           //swiper.slideTo haven't callback
           setTimeout(() => {
             swiper?.slideTo(0, 1000, true);
@@ -45,7 +46,7 @@ export const HistoryLine: React.FC<IProps> = function (props) {
     );
   }
 
-  const UPDATE_FAKE_HISTORY_INTERVAL = 10_000;
+  const UPDATE_FAKE_HISTORY_INTERVAL = 10000;
   const autoUpdateHistoryInterval = setInterval(
     addNewPrize,
     UPDATE_FAKE_HISTORY_INTERVAL
