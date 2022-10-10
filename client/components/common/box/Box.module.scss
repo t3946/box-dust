@@ -1,3 +1,5 @@
+@import "styles/utils/Utils.module.scss";
+
 .boxCard {
   display: flex;
   flex-direction: column;
@@ -68,9 +70,9 @@
 }
 
 .footer {
-  flex: 0 1;
   text-align: center;
   padding: 0 0 15px;
+  height: pxToRem(82);
 }
 
 .header {
