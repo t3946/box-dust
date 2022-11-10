@@ -20,6 +20,10 @@ const initialState = {
       label: "Баланс",
       route: "/account/payment",
     },
+    {
+      label: "Партнёрство",
+      route: "/account/partnership",
+    },
   ],
 };
 

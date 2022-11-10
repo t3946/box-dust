@@ -107,8 +107,6 @@ export const Chart: React.FC<IProps> = function (props) {
 
   data = data.reverse();
 
-  console.log({ data });
-
   const colorItems = [];
   const areaItems: ReactElement<Area>[] = [];
 

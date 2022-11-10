@@ -36,7 +36,7 @@ export const StatusUpgrade: React.FC<IProps> = function (props) {
         : ` ${Style.progressBar_primary}`;
 
     requirementsItems.push(
-      <div className={"mb-1"}>
+      <div className={"mb-1"} key={`requirements-item-${key}`}>
         {title}
         <ProgressBar
           now={(have / requireValue) * 100}

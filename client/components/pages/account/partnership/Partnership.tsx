@@ -30,10 +30,10 @@ export const Partnership: React.FC<IProps> = function (props) {
       {/*invite to partnership*/}
       {user.partnership === null && <Invitation />}
 
-      <Chart className={"mb-4"} />
+      <Chart className={"mb-4 d-none d-lg-block"} />
 
       <div className="row mb-4">
-        <div className="col-12 col-md-6">
+        <div className="col-12 mb-4 col-md-6 mb-md-0">
           <Stats />
         </div>
         <div className={"col-12 col-md-6"}>

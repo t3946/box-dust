@@ -42,9 +42,11 @@ const columns: ColumnType<Record<any, any>>[] = [
 const ReferralsList: React.FC<IProps> = function (props) {
   const {} = props;
   const user = useSelector((state) => state.user.user);
-  const dataSource = user.referrals.map((value) => {
-    value.last_login = new Date(value.last_login).toLocaleDateString();
-    value.created = new Date(value.created).toLocaleDateString();
+
+  const dataSource = user.referrals.map((value: Record<any, any>) => {
+    value.last_login = new Date(value.last_login).toLocaleDateString("en-US");
+    value.created = new Date(value.created).toLocaleDateString("en-US");
+    value.key = `refer-table-row-${value.user_id}`;
 
     return value;
   });

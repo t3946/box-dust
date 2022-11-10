@@ -40,6 +40,7 @@ export class AuthService {
                 created: true,
                 games: {
                   select: {
+                    game_id: true,
                     game_price: true,
                     prize_price: true,
                     created: true,
@@ -134,6 +135,7 @@ export class AuthService {
                 created: true,
                 games: {
                   select: {
+                    game_id: true,
                     game_price: true,
                     prize_price: true,
                     created: true,

@@ -52,11 +52,16 @@ const GamesList: React.FC<IProps> = function (props) {
   for (const referral of user.referrals) {
     for (const game of referral.games) {
       dataSource.push({
+        key: `game-table-row-${game.game_id}`,
         userId: game.user.user_id,
         userName: game.user.name,
         gamePrice: game.game_price,
         prizePrice: game.prize_price / 2,
-        revenue: Math.floor((game.game_price - game.prize_price / 2) * user.partnership.revenue_percent / 100)
+        revenue: Math.floor(
+          ((game.game_price - game.prize_price / 2) *
+            user.partnership.revenue_percent) /
+            100
+        ),
       });
     }
   }
