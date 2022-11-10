@@ -101,11 +101,8 @@ export const Chart: React.FC<IProps> = function (props) {
       }
     }
 
-    // data[i].push({ spins: games });
     data[i]["спины"] = games;
   }
-
-  data = data.reverse();
 
   const colorItems = [];
   const areaItems: ReactElement<Area>[] = [];
@@ -157,14 +154,14 @@ export const Chart: React.FC<IProps> = function (props) {
           }}
           checked={chart.active}
         />
-        <RBForm.Label
-          htmlFor={chart.slug}
-          className={cn("text-capitalize", "ps-2", {
-            "mb-0": parseInt(i) === charts.length - 1,
-          })}
-        >
-          {chart.name}
-        </RBForm.Label>
+        {/*<RBForm.Label*/}
+        {/*  htmlFor={chart.slug}*/}
+        {/*  className={cn("text-capitalize", "ps-2", {*/}
+        {/*    "mb-0": parseInt(i) === charts.length - 1,*/}
+        {/*  })}*/}
+        {/*>*/}
+        {/*  {chart.name}*/}
+        {/*</RBForm.Label>*/}
       </InputGroup>
     );
   }
@@ -182,10 +179,6 @@ export const Chart: React.FC<IProps> = function (props) {
             <defs>{colorItems}</defs>
             <XAxis dataKey="name" />
             <YAxis />
-            <CartesianGrid strokeDasharray="3 3" />
-            <Tooltip />
-            <Brush dataKey="name" height={30} startIndex={data.length - 10} />
-            <Legend />
             {areaItems}
           </AreaChart>
         </div>
