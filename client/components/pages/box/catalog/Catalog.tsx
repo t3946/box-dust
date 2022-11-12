@@ -1,6 +1,5 @@
 import * as React from "react";
 import Styles from "@components/pages/box/catalog/Catalog.module.scss";
-import NeonText from "@components/common/layout/neon-text/NeonText";
 import cn from "classnames";
 import Card from "@components/pages/box/catalog/Card";
 
@@ -29,9 +28,7 @@ export const Catalog: React.FC<IProps> = function (props) {
 
   return (
     <div className={Styles.catalog}>
-      <h2 className={cn("text-center", "mb-5")}>
-        <NeonText text={"Призы"} className={Styles.header} />
-      </h2>
+      <h2 className={cn("text-center", "mb-5", Styles.header)}>Призы</h2>
 
       <div className={Styles.cardsContainer}>{cards}</div>
     </div>
