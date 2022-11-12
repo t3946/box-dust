@@ -43,21 +43,17 @@ export const Main: React.FC = function () {
 
   return (
     <>
-      <section className="events mt-4 row">
-        <div className="col-12 d-flex flex-row">
-          <div className={cn(Styles.mainSlider)}>
-            <SliderMain />
-          </div>
+      <section>
+        <div className={cn(Styles.events, Styles.main__events)}>
+          <SliderMain />
 
           {/*Коробка не указана в этой карточке*/}
-          <div className={cn(Styles.eventsPanel, "ms-3 d-none d-lg-block")}>
+          <div className={"d-none d-md-block"}>
             <SliderLastTopPrize />
           </div>
         </div>
 
-        <div className="col-12 mt-4 pl-0 pr-0">
-          <DynamicHistoryLineWithNoSSR history={history} />
-        </div>
+        <DynamicHistoryLineWithNoSSR history={history} />
       </section>
 
       <section className="row mt-4 categories">

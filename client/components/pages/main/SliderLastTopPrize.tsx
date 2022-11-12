@@ -5,7 +5,9 @@ import * as React from "react";
 
 export const SliderLastTopPrize: React.FC = function () {
   const slides = [];
+
   SwiperCore.use([Autoplay, EffectFade]);
+
   for (let i = 0; i < 5; i++) {
     slides.push(
       <SwiperSlide className={Styles.slide} key={`main-page-slide-${i}`}>
@@ -15,17 +17,20 @@ export const SliderLastTopPrize: React.FC = function () {
   }
 
   return (
-    <Swiper
-      spaceBetween={50}
-      slidesPerView={1}
-      loop={true}
-      autoplay={{ delay: 2000 }}
-      speed={300}
-      effect={"fade"}
-      allowTouchMove={false}
-    >
-      {slides}
-    </Swiper>
+    <div className="h-100">
+      <Swiper
+        spaceBetween={50}
+        slidesPerView={1}
+        loop={true}
+        autoplay={{ delay: 2000 }}
+        speed={300}
+        effect={"fade"}
+        allowTouchMove={false}
+        className={Styles.slider}
+      >
+        {slides}
+      </Swiper>
+    </div>
   );
 };
 

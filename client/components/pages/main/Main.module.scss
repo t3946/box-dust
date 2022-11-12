@@ -1,5 +1,11 @@
 @import "styles/utils/Utils.module.scss";
 
+.main {
+  &__events {
+    margin: pxToRem(20) 0 0;
+  }
+}
+
 .catalogHeader {
   font-size: pxToRem(24);
   margin: pxToRem(16) 0;
@@ -19,14 +25,20 @@
   }
 }
 
-.mainSlider {
-  width: 100%;
+.events {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: pxToRem(16);
 
-  @include breakpoint(lg) {
-    width: pxToRem(1000);
+  @include breakpoint(md) {
+    grid-template-columns: 1fr pxToRem(300);
+  }
+
+  @include breakpoint(xxl) {
+    grid-template-columns: 1fr pxToRem(400);
   }
 }
-
-.eventsPanel {
-  width: auto;
-}
+//
+//.slider {
+//  width: 100%;
+//}
