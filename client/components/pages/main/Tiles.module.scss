@@ -75,41 +75,39 @@
 .categoryTiles {
   display: grid;
   margin: auto;
-  grid-gap: pxToRem(10);
+  grid-gap: pxToRem(12);
   justify-items: center;
   justify-content: space-between;
   grid-template-areas: "t1 t2 t3 t3 t4" "t5 t6 t6 t7 t8";
   width: 100%;
-  height: pxToRem(1365);
-  grid-template-rows: repeat(5, 1fr);
-  grid-template-columns: repeat(2, 1fr);
 
   @include breakpoint(sm) {
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(5, pxToRem(254));
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas: "t1 t2" "t3 t3" "t4 t5" "t6 t6" "t7 t8";
-    //height: pxToRem(1305);
   }
 
   @include breakpoint(md) {
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(3, pxToRem(234));
     grid-template-columns: 2fr 1fr 1fr 2fr;
     grid-template-areas:
         "t1 t2 t2 t4"
         "t3 t3 t6 t6"
         "t5 t7 t7 t8";
-    height: pxToRem(696);
   }
 
   @include breakpoint(lg) {
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(2, pxToRem(180));
     grid-template-columns: repeat(5, 1fr);
     grid-template-areas: "t1 t2 t3 t3 t4" "t5 t6 t6 t7 t8";
-    height: pxToRem(450);
   }
 
   @include breakpoint(xl) {
-    height: pxToRem(552);
+    grid-template-rows: repeat(2, pxToRem(245));
+  }
+
+  @include breakpoint(xxl) {
+    grid-template-rows: repeat(2, pxToRem(350));
   }
 }
 
