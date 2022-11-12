@@ -30,12 +30,10 @@ export const Box: React.FC<IProps> = function (props) {
 
   return (
     <>
-      <div className="row">
-        <div className="col">
-          <MainHeader>
-            <NeonText text={box?.name} />
-          </MainHeader>
-        </div>
+      <div className="container">
+        <MainHeader>
+          <NeonText text={box?.name} />
+        </MainHeader>
       </div>
 
       <Game
@@ -45,24 +43,26 @@ export const Box: React.FC<IProps> = function (props) {
         setPrize={setPrize}
       />
 
-      <Catalog
-        items={box.items}
-        handleModalItemShow={handleModalItemShow}
-        setItemModal={setItemModal}
-      />
+      <div className="container">
+        <Catalog
+          items={box.items}
+          handleModalItemShow={handleModalItemShow}
+          setItemModal={setItemModal}
+        />
 
-      <ModalItem
-        show={modalItemShow}
-        items={box.items}
-        handleClose={handleModalItemClose}
-        startFrom={itemModal}
-      />
+        <ModalItem
+          show={modalItemShow}
+          items={box.items}
+          handleClose={handleModalItemClose}
+          startFrom={itemModal}
+        />
 
-      <PrizeModal
-        show={modalPrizeShow}
-        item={prize}
-        handleClose={handleModalPrizeClose}
-      />
+        <PrizeModal
+          show={modalPrizeShow}
+          item={prize}
+          handleClose={handleModalPrizeClose}
+        />
+      </div>
     </>
   );
 };

@@ -62,24 +62,22 @@ export const Game: React.FC<IProps> = function (props) {
   }
 
   return (
-    <div className="row">
-      <div className="col">
-        <div id="roulette-game-container" className={Style.container}>
-          <canvas id="roulette-game" />
-        </div>
+    <>
+      <div id="roulette-game-container" className={Style.container}>
+        <canvas id="roulette-game" />
+      </div>
 
-        <div className="">
-          <div className="col-12">
-            <Interface
-              className={"mt-3"}
-              startGameHandler={startGame}
-              box={box}
-              gameIsActive={gameIsActive}
-            />
-          </div>
+      <div className="">
+        <div className="col-12">
+          <Interface
+            className={"mt-3"}
+            startGameHandler={startGame}
+            box={box}
+            gameIsActive={gameIsActive}
+          />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -7,9 +7,7 @@ export const Page: React.FC = function (props: any) {
     <>
       <Hat />
 
-      <div className={"container"} id={"main-container"}>
-        {props.children}
-      </div>
+      <div id={"main-container"}>{props.children}</div>
 
       <Footer />
     </>

@@ -1,5 +1,27 @@
 @import "styles/utils/Utils.module.scss";
 
+.arrow {
+  background: url("/images/pages/roulette/arrow.png") no-repeat;
+  background-size: cover;
+  width: pxToRem(25);
+  height: pxToRem(80);
+
+  @include breakpoint(md) {
+    width: pxToRem(30);
+    height: pxToRem(96);
+  }
+
+  @include breakpoint(lg) {
+    width: pxToRem(35);
+    height: pxToRem(112);
+  }
+
+  @include breakpoint(xl) {
+    width: pxToRem(40);
+    height: pxToRem(128);
+  }
+}
+
 .price {
   font-size: pxToRem(22);
   font-family: 'Bebas', sans-serif;
@@ -23,10 +45,10 @@
   font-family: 'MyriadPro-Regular', sans-serif;
   text-transform: uppercase;
 }
+
 .balanceNumber {
   font-family: sans-serif;
 }
-
 
 .buttonWrapper {
   display: flex;

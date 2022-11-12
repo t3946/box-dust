@@ -105,12 +105,7 @@ export const Interface: React.FC<IProps> = function (props) {
         className
       )}
     >
-      <img
-        src="/images/pages/roulette/arrow.png"
-        alt=""
-        width={90}
-        className={cn("mb-3", "user-drag-none", "user-select-none")}
-      />
+      <div className={cn("mb-3", Styles.arrow)} />
 
       <span className={Styles.price}>{balanceToString(box.price)}</span>
 
