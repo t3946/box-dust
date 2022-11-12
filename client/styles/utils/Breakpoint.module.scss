@@ -1,9 +1,9 @@
 $breakpoints: (
         'sm': 576px,
-        'md': 768px,
+        'md': 834px,
         'lg': 992px,
-        'xl': 1200px,
-        'xxl': 1320px,
+        'xl': 1340px,
+        'xxl': 1840px,
 ) !default;
 
 @mixin breakpoint($breakpoint) {
