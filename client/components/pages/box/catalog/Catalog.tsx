@@ -16,21 +16,14 @@ export const Catalog: React.FC<IProps> = function (props) {
 
   for (let i = 0; i < items.length; i++) {
     cards.push(
-      <div
-        className={cn(
-          "col-xxl-3 col-lg-4 col-md-6 justify-content-center d-flex",
-          Styles.cardColumn
-        )}
+      <Card
+        prize={items[i]}
+        onClick={() => {
+          setItemModal(i + 1);
+          handleModalItemShow();
+        }}
         key={`catalog-item-${i}`}
-      >
-        <Card
-          prize={items[i]}
-          onClick={() => {
-            setItemModal(i + 1);
-            handleModalItemShow();
-          }}
-        />
-      </div>
+      />
     );
   }
 
@@ -40,7 +33,7 @@ export const Catalog: React.FC<IProps> = function (props) {
         <NeonText text={"Призы"} className={Styles.header} />
       </h2>
 
-      <div className={"row"}>{cards}</div>
+      <div className={Styles.cardsContainer}>{cards}</div>
     </div>
   );
 };

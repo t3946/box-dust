@@ -8,6 +8,24 @@
   font-size: pxToRem(40);
 }
 
-.cardColumn {
-  margin-bottom: pxToRem(32);
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: pxToRem(30);
+
+  @include breakpoint(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include breakpoint(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include breakpoint(xl) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include breakpoint(xxl) {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }

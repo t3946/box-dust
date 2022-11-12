@@ -5,7 +5,6 @@
   background: #0b001f url('/images/pages/roulette/prizes/card/bg-1.png') no-repeat top left;
   background-size: 100% auto;
   height: pxToRem(470);
-  width: pxToRem(300);
   border-radius: 10px;
   border: 1px solid #30006d;
   overflow: hidden;
@@ -35,7 +34,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background: #0b001f url('/images/pages/roulette/prizes/card/bg-2.png') no-repeat top left;
+  background: #0b001f url('/images/pages/roulette/prizes/card/bg-2.png') top left;
   background-size: auto 100%;
   height: pxToRem(100);
   display: flex;
