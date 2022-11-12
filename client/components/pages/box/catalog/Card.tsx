@@ -13,6 +13,8 @@ export const Card: React.FC<IProps> = function (props) {
 
   return (
     <div className={Styles.card} onClick={onClick}>
+      <div className={Styles.plate} />
+
       <div className={Styles.prizeWrapper}>
         <img
           src={"/storage/" + prize.image.name}

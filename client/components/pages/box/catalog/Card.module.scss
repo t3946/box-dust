@@ -17,6 +17,15 @@
   }
 }
 
+.plate {
+  position: absolute;
+  top: pxToRem(240);
+  width: 100%;
+  height: pxToRem(150);
+  background: url("/images/pages/roulette/prizes/card/bg-plate.png") no-repeat center center;
+  background-size: auto 100%;
+}
+
 .prizeWrapper {
   height: pxToRem(250);
   width: pxToRem(200);
