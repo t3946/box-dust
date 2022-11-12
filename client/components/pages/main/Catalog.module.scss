@@ -16,4 +16,8 @@
   @include breakpoint(xl) {
     grid-template-columns: repeat(4, pxToRem(284));
   }
+
+  @include breakpoint(xxl) {
+    grid-template-columns: repeat(5, pxToRem(284));
+  }
 }
