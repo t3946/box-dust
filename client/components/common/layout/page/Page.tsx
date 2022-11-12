@@ -5,9 +5,9 @@ import Footer from "@components/common/layout/footer/Footer";
 export const Page: React.FC = function (props: any) {
   return (
     <>
-      <div className={"container"} id={"main-container"}>
-        <Hat />
+      <Hat />
 
+      <div className={"container"} id={"main-container"}>
         {props.children}
       </div>
 

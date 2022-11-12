@@ -31,9 +31,9 @@ export const Hat: React.FC = function () {
     <>
       <HatMobile className={["d-lg-none"]} />
 
-      <header className={cn(Styles.hat, "d-none", "d-lg-block")}>
-        <div className="row m-lg-0">
-          <div className={cn("col-auto")}>
+      <header className={cn(Styles.hat, "d-none", "d-lg-grid")}>
+        <div className="container">
+          <div className={Styles.hatWrapper}>
             <Link href={"/main"}>
               <a>
                 <img
@@ -43,37 +43,32 @@ export const Hat: React.FC = function () {
                 />
               </a>
             </Link>
-          </div>
 
-          <div className="col d-none d-lg-flex align-items-center justify-content-center">
-            <MenuDesktop />
-          </div>
+            <div className="d-none d-lg-flex align-items-center justify-content-center">
+              <MenuDesktop />
+            </div>
 
-          <div className={cn([Styles.headerUiColumn, "col-auto"])}>
-            {!user && (
-              <ConvexButton
-                className={Styles.loginButton}
-                onClick={openModalLogin}
-              >
-                Войти
-              </ConvexButton>
-            )}
+            <div className={cn([Styles.headerUiColumn])}>
+              {!user && (
+                <ConvexButton
+                  className={Styles.loginButton}
+                  onClick={openModalLogin}
+                >
+                  Войти
+                </ConvexButton>
+              )}
 
-            {user && <UserPanel />}
+              {user && <UserPanel />}
+            </div>
           </div>
         </div>
       </header>
 
       {router.route !== "/account" && (
-        <div
-          className={cn([
-            Styles.headerMenuPanel,
-            "col-12",
-            "d-none",
-            "d-lg-block",
-          ])}
-        >
-          <Navigation />
+        <div className={cn([Styles.headerMenuPanel, "d-none", "d-lg-block"])}>
+          <div className="container">
+            <Navigation />
+          </div>
         </div>
       )}
 

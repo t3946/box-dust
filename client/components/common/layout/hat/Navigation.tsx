@@ -41,7 +41,7 @@ export const Navigation: React.FC = function () {
 
   return (
     <nav>
-      <ul className={cn([Styles.headerMenu, "list-unstyled", "px-3"])}>
+      <ul className={cn([Styles.headerMenu, "list-unstyled"])}>
         {items}
       </ul>
     </nav>

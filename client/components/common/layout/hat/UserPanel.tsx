@@ -49,7 +49,7 @@ export const UserPanel: React.FC<IProps> = function (props) {
         />
       </div>
 
-      <div className={cn("mx-3", "d-flex", "flex-column", "flex-grow-1")}>
+      <div className={cn("ms-3", "d-flex", "flex-column", "flex-grow-1")}>
         <span className={Style.userName}>{user.name}</span>
         <span className={Style.balance}>
           баланс:{" "}

@@ -4,6 +4,12 @@
   background: #30006d;
 }
 
+.hatWrapper {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-gap: pxToRem(20);
+}
+
 .headerMenuPanel {
   background: #1b003c;
   height: pxToRem(50);
