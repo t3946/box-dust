@@ -6,7 +6,7 @@
 
 .hatWrapper {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: pxToRem(280) 1fr pxToRem(280);
   grid-gap: pxToRem(20);
 }
 

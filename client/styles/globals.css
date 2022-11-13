@@ -6,6 +6,10 @@
 @import "public/fonts/fonts.css";
 @import 'antd/lib/table/style/index.css';
 
+html, body, #__next {
+  height: 100%;
+}
+
 html,
 body {
   padding: 0;

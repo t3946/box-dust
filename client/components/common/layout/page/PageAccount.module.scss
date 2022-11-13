@@ -9,3 +9,13 @@
 .logoutButton {
   margin-top: pxToRem(12);
 }
+
+.pageContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @include breakpoint(md) {
+    grid-template-columns: pxToRem(240) 1fr;
+    grid-gap: pxToRem(24);
+  }
+}

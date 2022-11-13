@@ -5,6 +5,10 @@ import cn from "classnames";
 export const MenuDesktop: React.FC = function () {
   const menu = [
     {
+      link: "#main",
+      label: "Главная",
+    },
+    {
       link: "#boxes",
       label: "Коробки",
     },
@@ -29,14 +33,23 @@ export const MenuDesktop: React.FC = function () {
 
     items.push(
       <li className={Style.navItem} key={`menu-item-${i}`}>
-        <a href={menuItem.link} className={cn(Style.navLink, "link-unstyled")}>
+        <a
+          href={menuItem.link}
+          className={cn(Style.navLink, "link-unstyled", {
+            [Style.navLink_theme_active]: i === "0",
+          })}
+        >
           {menuItem.label}
         </a>
       </li>
     );
   }
 
-  return <ul className={"list-unstyled m-0 d-none d-xl-block"}>{items}</ul>;
+  return (
+    <ul className={cn("list-unstyled", "m-0 d-none", "d-xl-grid", Style.menu)}>
+      {items}
+    </ul>
+  );
 };
 
 export default MenuDesktop;
