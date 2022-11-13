@@ -1,5 +1,11 @@
 @import "styles/utils/Utils.module.scss";
 
+.reviews {
+  &__interface {
+    margin: pxToRem(24) 0 0;
+  }
+}
+
 .header {
   font-size: pxToRem(64);
 }

@@ -4,6 +4,9 @@ import Style from "@components/pages/main/reviews/Reviews.module.scss";
 import ReviewItem from "@components/pages/main/reviews/ReviewItem";
 import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import AngleRight from "@components/common/icons/angle-right/AngleRight";
+import AngleLeft from "@components/common/icons/angle-left/AngleLeft";
+import Interface from "@components/pages/main/reviews/Interface";
 
 interface IProps {
   reviews: Record<any, any>[];
@@ -14,7 +17,7 @@ export const Reviews: React.FC<IProps> = function (props) {
   const slides = [];
 
   for (let i = 0; i < reviews.length; i++) {
-    reviews[i].rate = Math.floor((i+1) / 2);
+    reviews[i].rate = Math.floor((i + 1) / 2);
     slides.push(
       <SwiperSlide key={`main-page-slide-${i}`}>
         <ReviewItem review={reviews[i]} key={`review-item-${i}`} />
@@ -23,7 +26,7 @@ export const Reviews: React.FC<IProps> = function (props) {
   }
 
   return (
-    <div>
+    <div className={Style.reviews}>
       <div
         className={cn([
           Style.headerContainer,
@@ -51,6 +54,10 @@ export const Reviews: React.FC<IProps> = function (props) {
       >
         {slides}
       </Swiper>
+
+      <div className={Style.reviews__interface}>
+        <Interface />
+      </div>
     </div>
   );
 };

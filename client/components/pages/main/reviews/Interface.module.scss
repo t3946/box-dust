@@ -1,0 +1,60 @@
+@import "styles/utils/Utils.module.scss";
+
+.navItems {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-gap: pxToRem(16);
+}
+
+.navButton {
+  $size: 75;
+
+  width: pxToRem($size);
+  height: pxToRem($size);
+  border-radius: pxToRem(40);
+  background: #30006d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  cursor: pointer;
+  padding: pxToRem(20);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #3b0580;
+  }
+
+  &:active {
+    background: #2e0167;
+  }
+}
+
+.navIcon {
+  max-height: 100%;
+}
+
+.createReview {
+  $size: 75;
+
+  height: pxToRem($size);
+  color: #ffffff;
+  border-radius: 10px;
+  background: #30006d;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 pxToRem(40);
+  font-size: pxToRem(24);
+  font-family: Bebas, sans-serif;
+  user-select: none;
+
+  &:hover {
+    background: #3b0580;
+  }
+
+  &:active {
+    background: #2e0167;
+  }
+}
