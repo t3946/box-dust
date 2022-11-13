@@ -69,11 +69,20 @@ export const HistoryLine: React.FC<IProps> = function (props) {
       allowTouchMove={false}
       breakpoints={{
         576: {
+          spaceBetween: 16,
+        },
+        768: {
           slidesPerView: 3,
+        },
+        992: {
+          slidesPerView: 7,
           spaceBetween: 20,
         },
-        1200: {
-          slidesPerView: 6,
+        1340: {
+          spaceBetween: 24,
+        },
+        1840: {
+          slidesPerView: 9,
           spaceBetween: 24,
         },
       }}

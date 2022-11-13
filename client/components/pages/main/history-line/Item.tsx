@@ -1,5 +1,5 @@
 import * as React from "react";
-import Styles from "@components/pages/main/history-line/Item.module.css";
+import Styles from "@components/pages/main/history-line/Item.module.scss";
 import IconArrowRight from "@components/common/icons/pages/arrow-right/ArrowRight";
 import cn from "classnames";
 import getImageUrl from "@utils/getImageUrl";
@@ -50,8 +50,8 @@ export const Item: React.FC<IProps> = function (props) {
               </div>
             </div>
 
-            <div className={Styles.caption}>
-              <span className={Styles.winner}>{item.user.name}</span>
+            <div className={Styles.winner}>
+              {item.user.name}
             </div>
           </div>
         </a>

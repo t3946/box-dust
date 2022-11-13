@@ -4,6 +4,18 @@
   &__events {
     margin: pxToRem(20) 0 0;
   }
+
+  &__block {
+    margin: pxToRem(12) 0 0;
+
+    @include breakpoint(md) {
+      margin: pxToRem(16) 0 0;
+    }
+
+    @include breakpoint(xl) {
+      margin: pxToRem(24) 0 0;
+    }
+  }
 }
 
 .catalogHeader {

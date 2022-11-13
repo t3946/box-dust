@@ -53,10 +53,12 @@ export const Main: React.FC = function () {
           </div>
         </div>
 
-        <DynamicHistoryLineWithNoSSR history={history} />
+        <div className={Styles.main__block}>
+          <DynamicHistoryLineWithNoSSR history={history} />
+        </div>
       </section>
 
-      <section className="row mt-4 categories">
+      <section className={cn(Styles.main__block, "categories")}>
         <SelectCategory catalog={catalog} />
       </section>
 
