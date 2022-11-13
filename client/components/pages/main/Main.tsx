@@ -42,7 +42,7 @@ export const Main: React.FC = function () {
   }
 
   return (
-    <>
+    <div className={"container"}>
       <section>
         <div className={cn(Styles.events, Styles.main__events)}>
           <SliderMain />
@@ -85,7 +85,7 @@ export const Main: React.FC = function () {
           <Faq />
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

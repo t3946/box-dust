@@ -1,15 +1,90 @@
 @import "styles/utils/Utils.module.scss";
 
 .slide {
-  background: white;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #000000;
   width: 100% !important;
+  height: pxToRem(150);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+
+  @include breakpoint(md) {
+    height: pxToRem(200);
+  }
+
+  @include breakpoint(lg) {
+    height: pxToRem(250);
+  }
+
+  @include breakpoint(xl) {
+    height: pxToRem(300);
+  }
+
+  @include breakpoint(xxl) {
+    height: pxToRem(400);
+  }
+
+  &__caption {
+    position: absolute;
+    top: pxToRem(10);
+    left: 0;
+    right: 0;
+
+    @include breakpoint(md) {
+      top: pxToRem(15);
+    }
+
+    @include breakpoint(lg) {
+      top: pxToRem(20);
+    }
+
+    @include breakpoint(xl) {
+      top: pxToRem(25);
+    }
+
+    @include breakpoint(xxl) {
+      top: pxToRem(30);
+    }
+  }
 }
 
 .slideImage {
   width: 100%;
   height: auto;
+}
+
+.slideText {
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  padding: pxToRem(10);
+  font-family: "Bebas", sans-serif;
+  text-shadow: 0 2px 0 #1e1e1e;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  color: #ffffff;
+  font-size: pxToRem(16);
+  letter-spacing: 1px;
+
+  @include breakpoint(md) {
+    padding: pxToRem(16);
+    font-size: pxToRem(20);
+  }
+
+  @include breakpoint(lg) {
+    padding: pxToRem(20);
+    font-size: pxToRem(24);
+  }
+
+  @include breakpoint(xl) {
+    padding: pxToRem(24);
+    font-size: pxToRem(36);
+  }
+
+  @include breakpoint(xxl) {
+    font-size: pxToRem(40);
+    padding: pxToRem(10) pxToRem(20);
+  }
 }

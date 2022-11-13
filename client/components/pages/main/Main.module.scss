@@ -31,6 +31,14 @@
   grid-gap: pxToRem(16);
 
   @include breakpoint(md) {
+    grid-template-columns: 1fr pxToRem(200);
+  }
+
+  @include breakpoint(lg) {
+    grid-template-columns: 1fr pxToRem(250);
+  }
+
+  @include breakpoint(xl) {
     grid-template-columns: 1fr pxToRem(300);
   }
 
@@ -38,7 +46,3 @@
     grid-template-columns: 1fr pxToRem(400);
   }
 }
-//
-//.slider {
-//  width: 100%;
-//}
