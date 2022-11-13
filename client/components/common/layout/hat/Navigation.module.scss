@@ -28,6 +28,11 @@
   text-decoration: none;
   color: #ffffff;
 
+  &:focus-visible {
+    outline: none;
+    text-decoration: underline;
+  }
+
   &:hover, &_active {
     color: #faee0f;
     background: #120027;
