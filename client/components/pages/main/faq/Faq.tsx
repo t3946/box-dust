@@ -1,7 +1,6 @@
 import * as React from "react";
 import Style from "@components/pages/main/Faq.module.scss";
 import cn from "classnames";
-import StyleForm from "@components/pages/main/reviews/Form.module.scss";
 import Accordion from "react-bootstrap/Accordion";
 import IconHeart from "@components/common/icons/heart/Heart";
 import IconYoutube from "@components/common/icons/youtube/Youtube";
@@ -32,7 +31,7 @@ export const Faq: React.FC = function () {
           className={Style.icon}
         />
 
-        <h2 className={cn([StyleForm.header, "mb-0", "ms-3"])}>О проекте</h2>
+        <h2 className={cn(["mb-0", "ms-3"])}>О проекте</h2>
       </div>
 
       <Accordion>

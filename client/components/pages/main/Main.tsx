@@ -72,16 +72,16 @@ export const Main: React.FC = function () {
         </div>
       </section>
 
-      <section className="row mt-2 mt-xl-5">
-        <div className="col-12">
-          <Delivery />
-        </div>
+      <section className="mt-2 mt-xl-5">
+        <Delivery />
+      </section>
+
+      <section className="mt-2 mt-xl-5">
+        <Reviews reviews={reviews} />
       </section>
 
       <section className="row mt-3 mt-xl-5">
-        <div className="col-12 col-md-6">
-          <Reviews reviews={reviews} />
-        </div>
+        <div className="col-12 col-md-6"></div>
 
         <div className="col-12 col-md-6 d-flex justify-content-center align-items-start">
           <Faq />

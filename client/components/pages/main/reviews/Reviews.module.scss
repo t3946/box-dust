@@ -1,20 +1,5 @@
-.icon {
-    width: 130px;
-}
+@import "styles/utils/Utils.module.scss";
 
-.title {
-    font-size: 40px;
-}
-
-.reviewsList {
-    height: 500px;
-    overflow-y: scroll;
-}
-
-._item {
-    margin: 0 0 16px 0;
-}
-
-._item:last-child {
-    margin: 0;
+.header {
+  font-size: pxToRem(64);
 }
