@@ -16,6 +16,7 @@ export class ReviewsController {
       skip: pageSize * (parseInt(params.page) - 1),
       select: {
         text: true,
+        rate: true,
         user: {
           select: {
             f_user_id: true,

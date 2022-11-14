@@ -17,7 +17,6 @@ export const Reviews: React.FC<IProps> = function (props) {
   const slides = [];
 
   for (let i = 0; i < reviews.length; i++) {
-    reviews[i].rate = Math.floor((i + 1) / 2);
     slides.push(
       <SwiperSlide key={`main-page-slide-${i}`}>
         <ReviewItem review={reviews[i]} key={`review-item-${i}`} />

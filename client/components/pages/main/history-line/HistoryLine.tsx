@@ -25,7 +25,7 @@ export const HistoryLine: React.FC<IProps> = function (props) {
 
     slides.push(
       <SwiperSlide className={Styles.slide} key={`main-page-slide-${i}`}>
-        <Item item={prize} index={i} />
+        <Item item={prize} />
       </SwiperSlide>
     );
   }
@@ -36,8 +36,6 @@ export const HistoryLine: React.FC<IProps> = function (props) {
         success() {
           swiper?.slideTo(1, 0, false);
 
-          //todo: из-за этого таймера происходитошибка с redux
-          //swiper.slideTo haven't callback
           setTimeout(() => {
             swiper?.slideTo(0, 1000, true);
           }, 10);
