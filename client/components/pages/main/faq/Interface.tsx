@@ -23,8 +23,6 @@ export const Interface: React.FC<IProps> = function (props) {
     selectHandler,
   } = props;
 
-  console.log("readIndex", {selectedQuestionIndex});
-
   return (
     <div>
       <div className="d-flex justify-content-between">
