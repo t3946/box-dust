@@ -1,7 +1,7 @@
 import * as React from "react";
 import IconPrev from "@components/common/icons/chevron-left/Solid";
 import IconNext from "@components/common/icons/chevron-right/Solid";
-import Style from "@components/pages/main/reviews/Interface.module.scss";
+import Style from "@components/pages/main/faq/Interface.module.scss";
 import StyleFlatButton from "@components/common/ui/flat-button/FlatButton.module.scss";
 import cn from "classnames";
 
@@ -34,7 +34,7 @@ export const Interface: React.FC<IProps> = function (props) {
 
         <div className={"d-flex"}>
           <div className={cn(Style.createReview, StyleFlatButton.flatButton)}>
-            оставить отзыв
+            Задать свой вопрос
           </div>
         </div>
       </div>

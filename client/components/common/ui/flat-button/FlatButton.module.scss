@@ -1,0 +1,20 @@
+@import "styles/utils/Utils.module.scss";
+
+.flatButton {
+  color: #ffffff;
+  background: #30006d;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: pxToRem(75);
+
+  &:hover {
+    background: #3b0580;
+  }
+
+  &:active {
+    background: #2e0167;
+  }
+}

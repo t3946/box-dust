@@ -2,10 +2,7 @@ import * as React from "react";
 import cn from "classnames";
 import Style from "@components/pages/main/reviews/Reviews.module.scss";
 import ReviewItem from "@components/pages/main/reviews/ReviewItem";
-import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import AngleRight from "@components/common/icons/angle-right/AngleRight";
-import AngleLeft from "@components/common/icons/angle-left/AngleLeft";
 import Interface from "@components/pages/main/reviews/Interface";
 import { Swiper as SwiperClass } from "swiper/types";
 

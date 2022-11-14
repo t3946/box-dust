@@ -1,0 +1,11 @@
+@import "styles/utils/Utils.module.scss";
+
+.faq {
+  &__interface {
+    margin: pxToRem(24) 0 0;
+  }
+}
+
+.header {
+  font-size: pxToRem(64); text-align: center;
+}
