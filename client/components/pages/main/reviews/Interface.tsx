@@ -1,25 +1,25 @@
 import * as React from "react";
 import IconPrev from "@components/common/icons/chevron-left/Solid";
 import IconNext from "@components/common/icons/chevron-right/Solid";
-// import IconPrev from "@components/common/icons/angle-left/AngleLeft";
-// import IconNext from "@components/common/icons/angle-right/AngleRight";
 import Style from "@components/pages/main/reviews/Interface.module.scss";
-import cn from "classnames";
 
-export interface IProps {}
+export interface IProps {
+  nextHandler: any;
+  prevHandler: any;
+}
 
 export const Interface: React.FC<IProps> = function (props) {
-  const {} = props;
+  const { nextHandler, prevHandler } = props;
 
   return (
     <div>
       <div className="d-flex justify-content-between">
         <div className={Style.navItems}>
-          <div className={Style.navButton}>
+          <div className={Style.navButton} onClick={nextHandler}>
             <IconPrev className={Style.navIcon} />
           </div>
 
-          <div className={Style.navButton}>
+          <div className={Style.navButton} onClick={prevHandler}>
             <IconNext className={Style.navIcon} />
           </div>
         </div>

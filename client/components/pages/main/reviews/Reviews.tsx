@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import AngleRight from "@components/common/icons/angle-right/AngleRight";
 import AngleLeft from "@components/common/icons/angle-left/AngleLeft";
 import Interface from "@components/pages/main/reviews/Interface";
+import { Swiper as SwiperClass } from "swiper/types";
 
 interface IProps {
   reviews: Record<any, any>[];
@@ -15,6 +16,7 @@ interface IProps {
 export const Reviews: React.FC<IProps> = function (props) {
   const { reviews } = props;
   const slides = [];
+  const [swiper, setSwiper] = React.useState<SwiperClass>();
 
   for (let i = 0; i < reviews.length; i++) {
     slides.push(
@@ -50,12 +52,22 @@ export const Reviews: React.FC<IProps> = function (props) {
             },
           },
         }}
+        onAfterInit={(swiper) => {
+          setSwiper(swiper);
+        }}
       >
         {slides}
       </Swiper>
 
       <div className={Style.reviews__interface}>
-        <Interface />
+        <Interface
+          nextHandler={() => {
+            swiper?.slideNext();
+          }}
+          prevHandler={() => {
+            swiper?.slidePrev();
+          }}
+        />
       </div>
     </div>
   );
