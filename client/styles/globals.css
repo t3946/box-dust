@@ -5,6 +5,7 @@
 @import "swiper/css/effect-fade";
 @import "public/fonts/fonts.css";
 @import 'antd/lib/table/style/index.css';
+@import "components/components.css";
 
 html, body, #__next {
   height: 100%;

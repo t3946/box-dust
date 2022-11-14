@@ -11,10 +11,19 @@ export interface IProps {
   prevHandler: any;
   questions: any;
   selectedQuestionIndex: number;
+  selectHandler: any;
 }
 
 export const Interface: React.FC<IProps> = function (props) {
-  const { nextHandler, prevHandler, questions, selectedQuestionIndex } = props;
+  const {
+    nextHandler,
+    prevHandler,
+    questions,
+    selectedQuestionIndex,
+    selectHandler,
+  } = props;
+
+  console.log("readIndex", {selectedQuestionIndex});
 
   return (
     <div>
@@ -37,6 +46,7 @@ export const Interface: React.FC<IProps> = function (props) {
           <SelectQuestion
             questions={questions}
             selectedQuestionIndex={selectedQuestionIndex}
+            selectHandler={selectHandler}
           />
         </div>
 

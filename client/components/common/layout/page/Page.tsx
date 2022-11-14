@@ -13,7 +13,9 @@ export const Page: React.FC = function (props: any) {
         {props.children}
       </div>
 
-      <Footer />
+      <div className={Style.wrapper__footer}>
+        <Footer />
+      </div>
     </div>
   );
 };

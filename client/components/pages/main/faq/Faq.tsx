@@ -9,11 +9,6 @@ export const Faq: React.FC = function () {
   const [swiper, setSwiper] = React.useState<SwiperClass>();
   const questions = [
     {
-      title: "test",
-      content:
-        "Чтобы играть и выигрывать, тебе понадобиться авторизоваться. Зарегистироваться(ссылка) или войти(ссылка). Чтобы играть и выигрывать, тебе понадобиться авторизоваться. Зарегистироваться(ссылка) или войти(ссылка). Чтобы играть и выигрывать, тебе понадобиться авторизоваться. Зарегистироваться(ссылка) или войти(ссылка). Чтобы играть и выигрывать, тебе понадобиться авторизоваться. Зарегистироваться(ссылка) или войти(ссылка). Чтобы играть и выигрывать, тебе понадобиться авторизоваться. Зарегистироваться(ссылка) или войти(ссылка). Чтобы играть и выигрывать, тебе понадобиться авторизоваться. Зарегистироваться(ссылка) или войти(ссылка). Чтобы играть и выигрывать, тебе понадобиться авторизоваться. Зарегистироваться(ссылка) или войти(ссылка). Чтобы играть и выигрывать, тебе понадобиться авторизоваться. Зарегистироваться(ссылка) или войти(ссылка). Чтобы играть и выигрывать, тебе понадобиться авторизоваться. Зарегистироваться(ссылка) или войти(ссылка). ",
-    },
-    {
       title: "Авторизуйся чтобы играть",
       content:
         "Чтобы играть и выигрывать, тебе понадобиться авторизоваться. Зарегистироваться(ссылка) или войти(ссылка).",
@@ -58,6 +53,8 @@ export const Faq: React.FC = function () {
     );
   }
 
+  const [swiperIndex, setSwiperIndex] = React.useState(0);
+
   return (
     <div>
       <h2 className={Style.header}>FAQ</h2>
@@ -72,6 +69,9 @@ export const Faq: React.FC = function () {
         onAfterInit={(swiper) => {
           setSwiper(swiper);
         }}
+        onSlideChange={(swiper) => {
+          setSwiperIndex(swiper.realIndex);
+        }}
       >
         {slides}
       </Swiper>
@@ -85,8 +85,11 @@ export const Faq: React.FC = function () {
             prevHandler={() => {
               swiper?.slidePrev();
             }}
+            selectHandler={(index: number) => {
+              swiper?.slideTo(index + 1, 1000);
+            }}
             questions={questions}
-            selectedQuestionIndex={swiper.realIndex}
+            selectedQuestionIndex={swiperIndex}
           />
         </div>
       )}

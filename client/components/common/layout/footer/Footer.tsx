@@ -5,7 +5,7 @@ import PaymentIcons from "@components/common/layout/footer/PaymentIcons";
 
 export const Footer: React.FC = function () {
   return (
-    <div className={cn(Styles.footer, "mt-5")}>
+    <div className={cn(Styles.footer)}>
       <div
         className={cn(
           "d-flex",

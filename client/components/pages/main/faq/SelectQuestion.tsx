@@ -1,17 +1,15 @@
 import * as React from "react";
-import Select from "@components/common/ui/select/Select";
-import { setSelected } from "@redux/actions/Categories";
-import { useDispatch } from "react-redux";
 import Style from "@components/pages/main/faq/SelectQuestion.module.scss";
-import StyleFlatButton from "@components/common/ui/flat-button/FlatButton.module.scss";
+import ReactSelect from "react-select";
 
 interface IProps {
   questions: Record<any, any>[];
   selectedQuestionIndex: number;
+  selectHandler: any;
 }
 
 export const SelectQuestion: React.FC<IProps> = function (props) {
-  const { questions, selectedQuestionIndex } = props;
+  const { questions, selectedQuestionIndex, selectHandler } = props;
   const selectOptions = questions.map((category, i) => {
     return {
       label: category.title,
@@ -19,41 +17,29 @@ export const SelectQuestion: React.FC<IProps> = function (props) {
     };
   });
 
-  const dispatch = useDispatch();
-
-  function selectCategory(category: Record<any, any>) {
-    dispatch(setSelected(category));
-  }
-
   const value = {
     label: questions[selectedQuestionIndex].title,
     value: selectedQuestionIndex,
   };
-  console.log({ selectOptions, value });
 
   return (
-    <Select
+    <ReactSelect
       options={selectOptions}
       name={"foo"}
       value={value}
       onChange={(e) => {
-        selectCategory(e.target.value.value);
+        e && selectHandler(e.value);
       }}
       instanceId={"select-question"}
-      clearable={false}
       classes={{
         valueContainer: Style.valueContainer,
-        control: [Style.control, StyleFlatButton.flatButton],
         list: Style.list,
       }}
+      classNamePrefix={"flatButtonSelect"}
       styles={{
         control: (base, state) => {
           const styles = {
             ...base,
-            overflow: "hidden",
-            border: "none",
-            outline: "none",
-            boxShadow: "none",
             borderRadius: 10,
           };
 
@@ -70,7 +56,6 @@ export const SelectQuestion: React.FC<IProps> = function (props) {
         },
 
         indicatorsContainer(base) {
-          console.log("INDICATORCONTAINER", {base});
           return { ...base, color: "#ffffff", height: "75px" };
         },
 
@@ -87,20 +72,30 @@ export const SelectQuestion: React.FC<IProps> = function (props) {
         }),
 
         menu: (base) => {
-          console.log("MENU", { base });
           return {
             ...base,
-            backgroundColor: "#30006d",
             border: "none",
             boxShadow: "none",
             margin: "0",
+            background: "transparent",
+          };
+        },
+
+        menuList: (base) => {
+          return {
+            ...base,
+            padding: 0,
+            borderTopLeftRadius: 0,
+            borderTopRightRadius: 0,
+            borderBottomLeftRadius: 10,
+            borderBottomRightRadius: 10,
           };
         },
 
         option: (base, state) => {
           return {
             ...base,
-            backgroundColor: state.isSelected ? "#130131" : "#30006d",
+            backgroundColor: state.isSelected ? "#22004b" : "#2a015d",
             padding: "10px 20px",
             fontSize: "18px",
           };
