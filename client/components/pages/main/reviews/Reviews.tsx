@@ -40,7 +40,7 @@ export const Reviews: React.FC<IProps> = function (props) {
       </div>
 
       <Swiper
-        spaceBetween={40}
+        spaceBetween={24}
         slidesPerView={5}
         loop={true}
         autoplay={{ delay: 2000 }}
