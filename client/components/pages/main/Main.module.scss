@@ -5,35 +5,46 @@
     margin: pxToRem(20) 0 0;
   }
 
-  &__block {
-    margin: pxToRem(12) 0 0;
+  &__history {
+    margin: pxToRem(12) 0;
 
     @include breakpoint(md) {
-      margin: pxToRem(16) 0 0;
+      margin: pxToRem(16) 0;
     }
 
     @include breakpoint(xl) {
-      margin: pxToRem(24) 0 0;
+      margin: pxToRem(24) 0;
+    }
+  }
+
+  &__section {
+    margin: pxToRem(16) 0 0;
+
+    @include breakpoint(sm) {
+      margin: pxToRem(32) 0 0;
+    }
+    @include breakpoint(md) {
+      margin: pxToRem(48) 0 0;
+    }
+
+    @include breakpoint(lg) {
+      margin: pxToRem(60) 0 0;
     }
   }
 }
 
 .catalogHeader {
   font-size: pxToRem(24);
-  margin: pxToRem(16) 0;
 
   @include breakpoint(sm) {
     font-size: pxToRem(32);
-    margin: pxToRem(32) 0;
   }
   @include breakpoint(md) {
     font-size: pxToRem(56);
-    margin: pxToRem(48) 0;
   }
 
   @include breakpoint(lg) {
     font-size: pxToRem(48);
-    margin: pxToRem(40) 0;
   }
 }
 
