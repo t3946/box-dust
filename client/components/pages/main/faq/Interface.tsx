@@ -4,14 +4,17 @@ import IconNext from "@components/common/icons/chevron-right/Solid";
 import Style from "@components/pages/main/faq/Interface.module.scss";
 import StyleFlatButton from "@components/common/ui/flat-button/FlatButton.module.scss";
 import cn from "classnames";
+import SelectQuestion from "@components/pages/main/faq/SelectQuestion";
 
 export interface IProps {
   nextHandler: any;
   prevHandler: any;
+  questions: any;
+  selectedQuestionIndex: number;
 }
 
 export const Interface: React.FC<IProps> = function (props) {
-  const { nextHandler, prevHandler } = props;
+  const { nextHandler, prevHandler, questions, selectedQuestionIndex } = props;
 
   return (
     <div>
@@ -30,6 +33,11 @@ export const Interface: React.FC<IProps> = function (props) {
           >
             <IconNext className={Style.navIcon} />
           </div>
+
+          <SelectQuestion
+            questions={questions}
+            selectedQuestionIndex={selectedQuestionIndex}
+          />
         </div>
 
         <div className={"d-flex"}>

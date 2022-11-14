@@ -36,6 +36,7 @@ interface IProps {
     option?: any;
     valueContainer?: any;
   };
+  styles?: Record<any, any>;
 }
 
 const Select = function (props: IProps) {
@@ -53,6 +54,7 @@ const Select = function (props: IProps) {
     defaultIsOpen = false,
     isSearchable = true,
     instanceId,
+    styles = {},
   } = props;
 
   classes.control = cn(classes.control, Style.control);
@@ -79,6 +81,7 @@ const Select = function (props: IProps) {
       isDisabled={disabled}
       placeholder={placeholder}
       instanceId={instanceId}
+      styles={styles}
       components={{
         Option,
         Menu,

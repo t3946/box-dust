@@ -66,7 +66,7 @@ export const Faq: React.FC = function () {
         spaceBetween={24}
         slidesPerView={1}
         loop={true}
-        autoplay={{ delay: 2000 }}
+        // autoplay={{ delay: 2000 }}
         speed={1000}
         autoHeight={true}
         onAfterInit={(swiper) => {
@@ -76,16 +76,20 @@ export const Faq: React.FC = function () {
         {slides}
       </Swiper>
 
-      <div className={Style.faq__interface}>
-        <Interface
-          nextHandler={() => {
-            swiper?.slideNext();
-          }}
-          prevHandler={() => {
-            swiper?.slidePrev();
-          }}
-        />
-      </div>
+      {swiper && (
+        <div className={Style.faq__interface}>
+          <Interface
+            nextHandler={() => {
+              swiper?.slideNext();
+            }}
+            prevHandler={() => {
+              swiper?.slidePrev();
+            }}
+            questions={questions}
+            selectedQuestionIndex={swiper.realIndex}
+          />
+        </div>
+      )}
     </div>
   );
 };
