@@ -88,3 +88,37 @@
     padding: pxToRem(10) pxToRem(20);
   }
 }
+
+.bullet {
+  display: block;
+  $size: 20px;
+  width: pxToRem($size);
+  height: pxToRem($size);
+  background: #d30155;
+  border-radius: pxToRem($size / 2);
+  cursor: pointer;
+
+  &_active {
+    background: #ffffff;
+    outline: 2px solid #ffffffa1;
+    cursor: default;
+  }
+}
+
+.slider {
+  position: relative;
+}
+
+.bulletsContainer {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: pxToRem(20);
+  z-index: 1;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &__bullet:not(:last-child) {
+    margin: 0 pxToRem(20) 0 0;
+  }
+}
