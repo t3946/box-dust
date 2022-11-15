@@ -50,3 +50,9 @@
 .menuIcon {
   width: 1em;
 }
+
+.icon {
+  width: pxToRem(18);
+  display: block;
+  margin: 0 pxToRem(10) 0 0;
+}

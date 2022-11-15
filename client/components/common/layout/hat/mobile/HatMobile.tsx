@@ -8,7 +8,7 @@ import Link from "next/link";
 import MenuButton from "@components/common/layout/hat/mobile/MenuButton";
 import Style from "@components/common/layout/hat/mobile/HatMobile.module.scss";
 import Sidebar from "@components/common/layout/hat/mobile/Sidebar";
-import IconUser from "@components/common/icons/user/User";
+import IconUser from "@components/common/icons/user/Solid";
 
 export interface IProps {
   className?: any;

@@ -5,7 +5,7 @@ export interface IProps {
   className?: any;
 }
 
-export const User: React.FC<IProps> = function (props) {
+export const Solid: React.FC<IProps> = function (props) {
   const { className } = props;
 
   return (
@@ -20,4 +20,4 @@ export const User: React.FC<IProps> = function (props) {
   );
 };
 
-export default User;
+export default Solid;

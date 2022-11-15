@@ -2,7 +2,7 @@ import * as React from "react";
 import { Formik } from "formik";
 import { Form as FormikForm } from "formik";
 import { Form as RBForm, FormControl, InputGroup } from "react-bootstrap";
-import IconUser from "@components/common/icons/user/User";
+import IconUser from "@components/common/icons/user/Solid";
 import Style from "@components/pages/main/modal-login/ModalLogin.module.scss";
 import IconEmail from "@components/common/icons/email/Email";
 import Feedback from "@components/common/form/feedback/Feedback";

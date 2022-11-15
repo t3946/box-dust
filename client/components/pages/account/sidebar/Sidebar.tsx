@@ -17,10 +17,10 @@ export const Sidebar: React.FC<IProps> = function (props) {
   const itemTemplates = [];
 
   for (let i = 0; i < items.length; i++) {
-    const { label, route, badge, badgeTheme, className, type } = items[i];
+    const { label, route, badge, badgeTheme, className, icon } = items[i];
     let content;
 
-    switch (type) {
+    switch (items[i].type) {
       case "buttonLogout":
         content = <ButtonLogout />;
         break;
@@ -45,9 +45,12 @@ export const Sidebar: React.FC<IProps> = function (props) {
                 className
               )}
             >
-              <span className={cn("d-flex", "align-items-center")}>
-                <span>{label}</span>
-              </span>
+              <div className={"d-flex"}>
+                {icon ? <span className={Style.icon}>{icon}</span> : null}
+                <span className={cn("d-flex", "align-items-center")}>
+                  <span>{label}</span>
+                </span>
+              </div>
               {!!badge && <Badge theme={badgeTheme}>{badge}</Badge>}
             </a>
           </Link>
