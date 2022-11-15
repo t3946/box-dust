@@ -3,8 +3,30 @@ import Style from "@components/pages/account/partnership/Invitation.module.scss"
 import cn from "classnames";
 import FormButton from "@components/common/form/button/Button";
 import About from "@components/pages/account/partnership/about/About";
+import { Formik, Form } from "formik";
+import { FormikHelpers } from "formik/dist/types";
+import { useDispatch } from "react-redux";
+import { acceptPartnership } from "@redux/actions/User";
 
 export const Invitation: React.FC = function () {
+  const initialValues = {};
+  const dispatch = useDispatch();
+
+  function submit(
+    values: typeof initialValues,
+    formikHelpers: FormikHelpers<typeof values>
+  ) {
+    formikHelpers.setSubmitting(true);
+
+    dispatch(
+      acceptPartnership({
+        callback() {
+          formikHelpers.setSubmitting(false);
+        },
+      })
+    );
+  }
+
   return (
     <div>
       <h1>Партнёрская программа</h1>
@@ -24,7 +46,22 @@ export const Invitation: React.FC = function () {
           Вы не участвуете в программе партнёрства. Нажмите «Начать» и
           зарабатывайте вместе с нами.
         </p>
-        <FormButton className={cn("mt-2", "w-auto")}>начать</FormButton>
+
+        <Formik initialValues={initialValues} onSubmit={submit}>
+          {({ isSubmitting }) => {
+            return (
+              <Form>
+                <FormButton
+                  className={cn("mt-2", "w-auto")}
+                  disabled={isSubmitting}
+                  type={"submit"}
+                >
+                  начать
+                </FormButton>
+              </Form>
+            );
+          }}
+        </Formik>
       </div>
     </div>
   );

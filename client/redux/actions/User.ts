@@ -29,3 +29,8 @@ export const play = (payload: ISagaPayload): any => ({
   type: `user/play`,
   payload,
 });
+
+export const acceptPartnership = (payload: ISagaPayload): any => ({
+  type: `user/accept-partnership`,
+  payload,
+});

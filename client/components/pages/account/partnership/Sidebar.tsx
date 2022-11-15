@@ -4,7 +4,6 @@ import useSelector from "@hooks/useSelector";
 
 export const SidebarAccount: React.FC = function () {
   const user = useSelector((state) => state.user.user);
-
   const items: any = [
     {
       type: "buttonBack",

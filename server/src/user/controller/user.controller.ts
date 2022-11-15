@@ -9,6 +9,7 @@ import { IsEmail, IsNotEmpty, MaxLength } from 'class-validator';
 import { ConfirmationCode } from '@src/utils/ConfirmationCode';
 import { Query } from '@nestjs/common/decorators/http/route-params.decorator';
 import { getUserStock } from '@src/stock/controller/stock.controller';
+
 const jwt = require('jsonwebtoken');
 
 const prisma = new PrismaClient();
@@ -342,6 +343,31 @@ export class UserController {
       prize: item,
       newBalance: newUserBalance,
       stock,
+    });
+  }
+
+  @Get('accept-partnership')
+  public async acceptPartnership(@Res() res, @Req() req) {
+    const user = req.user;
+    const partnership = await prisma.box_partnerships.findFirst({
+      where: {
+        slug: 'basic_partner_1',
+      },
+    });
+    const { partnership_id } = partnership;
+
+    await prisma.box_users.update({
+      where: {
+        user_id: user.user_id,
+      },
+      data: {
+        partnership_id,
+      },
+    });
+
+    res.json({
+      partnership_id,
+      partnership,
     });
   }
 }
