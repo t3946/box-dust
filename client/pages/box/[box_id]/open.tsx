@@ -3,6 +3,7 @@ import React from "react";
 import axios from "axios";
 import { NextPageContext } from "next";
 import Box from "@components/pages/box/Box";
+import Page from "@components/common/layout/page/Page";
 
 export async function getServerSideProps(context: NextPageContext) {
   const { box_id } = context.query;
@@ -13,16 +14,16 @@ export async function getServerSideProps(context: NextPageContext) {
   return { props: { box } };
 }
 
-export default function Page(props: any) {
+export default function PageBoxOpen(props: any) {
   const { box } = props;
 
   return (
-    <>
+    <Page>
       <Head>
         <title>Box Dust</title>
       </Head>
 
       <Box box={box} />
-    </>
+    </Page>
   );
 }

@@ -5,15 +5,12 @@ import React from "react";
 import { SSRProvider } from "react-bootstrap";
 import axios from "axios";
 import NextApp from "next/app";
-import Page from "@components/common/layout/page/Page";
 
 function App({ Component, pageProps }) {
   return (
     <Provider store={getStore(pageProps.storeInitialData)}>
       <SSRProvider>
-        <Page>
-          <Component {...pageProps} />
-        </Page>
+        <Component {...pageProps} />
       </SSRProvider>
     </Provider>
   );

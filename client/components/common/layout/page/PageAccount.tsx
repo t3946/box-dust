@@ -9,6 +9,7 @@ import { setUser } from "@redux/reducer/User";
 import { setState } from "@redux/reducer/Stock";
 import { useDispatch } from "react-redux";
 import Cookie from "js-cookie";
+import Page from "@components/common/layout/page/Page";
 
 export const PageAccount: React.FC<PropsWithChildren<any>> = function (props) {
   const dispatch = useDispatch();
@@ -19,23 +20,25 @@ export const PageAccount: React.FC<PropsWithChildren<any>> = function (props) {
     Cookie.remove("auth");
   }
   return (
-    <div className={cn("container", Style.pageContainer, "mt-3")}>
-      <div className="pe-1 d-none d-lg-block">
-        <Sidebar />
-      </div>
+    <Page isAccount={true}>
+      <div className={cn("container", Style.pageContainer)}>
+        <div className="pe-1 d-none d-lg-block">
+          <Sidebar />
+        </div>
 
-      <div>
-        <SelectPage className={[Style.page__mobilMenu, "d-lg-none"]} />
-        {props.children}
+        <div>
+          <SelectPage className={[Style.page__mobilMenu, "d-lg-none"]} />
+          {props.children}
 
-        <FormButton
-          className={cn(Style.logoutButton, "d-lg-none")}
-          onClick={logout}
-        >
-          выход
-        </FormButton>
+          <FormButton
+            className={cn(Style.logoutButton, "d-lg-none")}
+            onClick={logout}
+          >
+            выход
+          </FormButton>
+        </div>
       </div>
-    </div>
+    </Page>
   );
 };
 

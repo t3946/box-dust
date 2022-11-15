@@ -13,6 +13,7 @@
 .pageContainer {
   display: grid;
   grid-template-columns: 1fr;
+  margin-top: pxToRem(24);
 
   @include breakpoint(lg) {
     grid-template-columns: pxToRem(240) 1fr;
