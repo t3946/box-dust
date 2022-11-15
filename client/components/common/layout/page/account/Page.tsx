@@ -23,7 +23,7 @@ export const PageAccount: React.FC<PropsWithChildren<any>> = function (props) {
   return (
     <Page isAccount={true}>
       <div className={cn("container", Style.pageContainer, Style.page__block)}>
-        <div className="pe-1 d-none d-lg-block">
+        <div className="d-none d-lg-block">
           <Sidebar />
         </div>
 
