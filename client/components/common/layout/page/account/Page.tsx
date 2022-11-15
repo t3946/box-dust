@@ -1,5 +1,4 @@
 import * as React from "react";
-import Sidebar from "@components/pages/account/Sidebar";
 import { PropsWithChildren } from "react";
 import SelectPage from "@components/common/layout/page/SelectPage";
 import Style from "@components/common/layout/page/account/Page.module.scss";
@@ -10,8 +9,15 @@ import { setState } from "@redux/reducer/Stock";
 import { useDispatch } from "react-redux";
 import Cookie from "js-cookie";
 import Page from "@components/common/layout/page/Page";
+import SidebarAccount from "@components/pages/account/SidebarAccount";
+import SidebarPartnership from "@components/pages/account/partnership/Sidebar";
+
+export interface IProps {
+  isPartnership: boolean;
+}
 
 export const PageAccount: React.FC<PropsWithChildren<any>> = function (props) {
+  const { isPartnership } = props;
   const dispatch = useDispatch();
 
   function logout() {
@@ -24,7 +30,7 @@ export const PageAccount: React.FC<PropsWithChildren<any>> = function (props) {
     <Page isAccount={true}>
       <div className={cn("container", Style.pageContainer, Style.page__block)}>
         <div className="d-none d-lg-block">
-          <Sidebar />
+          {isPartnership ? <SidebarPartnership /> : <SidebarAccount />}
         </div>
 
         <div>
