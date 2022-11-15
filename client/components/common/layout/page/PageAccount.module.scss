@@ -14,7 +14,7 @@
   display: grid;
   grid-template-columns: 1fr;
 
-  @include breakpoint(md) {
+  @include breakpoint(lg) {
     grid-template-columns: pxToRem(240) 1fr;
     grid-gap: pxToRem(24);
   }

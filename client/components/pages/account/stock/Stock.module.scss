@@ -1,0 +1,23 @@
+@import "styles/utils/Utils.module.scss";
+
+.catalog {
+  display: grid;
+  grid-gap: pxToRem(16);
+  grid-template-columns: repeat(1, 1fr);
+
+  @include breakpoint(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include breakpoint(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include breakpoint(xl) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include breakpoint(xxl) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

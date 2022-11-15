@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import useSelector from "@hooks/useSelector";
 import PanelNoItems from "@components/common/layout/account/PanelNoItems";
 import cn from "classnames";
+import Style from "@components/pages/account/stock/Stock.module.scss";
 
 export interface IProps {
   header: string;
@@ -38,7 +39,6 @@ export const Stock: React.FC<IProps> = function (props) {
       <StockItem
         stockItem={stockItem}
         key={`stock-item-${stockItem.stock_item_id}`}
-        className={cn("col-12", "col-md-6", "col-lg-3", "mb-3")}
         onClick={() => openItemInModal(stockItem.stock_item_id)}
       />
     );
@@ -48,7 +48,7 @@ export const Stock: React.FC<IProps> = function (props) {
     <div>
       <h1>{header}</h1>
 
-      <div className="row">{stockItems}</div>
+      <div className={Style.catalog}>{stockItems}</div>
 
       {stock.length > 0 ? (
         <ModalStockItem />
