@@ -1,1 +1,7 @@
 @import "styles/utils/Utils.module.scss";
+
+.page {
+  &__block {
+    margin: pxToRem(32) 0 0;
+  }
+}
