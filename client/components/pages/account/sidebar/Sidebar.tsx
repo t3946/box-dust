@@ -26,7 +26,7 @@ export const Sidebar: React.FC<IProps> = function (props) {
         break;
 
       case "buttonBack":
-        content = <ButtonBack />;
+        content = <ButtonBack referer={items[i].referer} />;
         break;
 
       default:

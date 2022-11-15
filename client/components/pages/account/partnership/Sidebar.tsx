@@ -2,11 +2,17 @@ import * as React from "react";
 import Sidebar from "@components/pages/account/sidebar/Sidebar";
 import useSelector from "@hooks/useSelector";
 
-export const SidebarAccount: React.FC = function () {
+export interface IProps {
+  referer: string;
+}
+
+export const SidebarAccount: React.FC<IProps> = function (props) {
+  const { referer } = props;
   const user = useSelector((state) => state.user.user);
   const items: any = [
     {
       type: "buttonBack",
+      referer,
     },
   ];
 

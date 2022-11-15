@@ -7,9 +7,16 @@ import Partnership from "@components/pages/account/partnership/Partnership";
 import Invitation from "@components/pages/account/partnership/Invitation";
 import Panel from "@components/common/layout/account/Panel";
 
-export default function PartnershipPage() {
+export async function getServerSideProps(ctx: any) {
+  return {
+    props: { referer: ctx.req.headers.referer || "" }, // will be passed to the page component as props
+  };
+}
+
+export default function PartnershipPage(props) {
   const user = useSelector((state) => state.user.user);
   const router = useRouter();
+  const referer = props.referer;
 
   useEffect(() => {
     if (!user && router) {
@@ -23,7 +30,7 @@ export default function PartnershipPage() {
         <title>Партнёрство</title>
       </Head>
 
-      <PageAccount isPartnership={true}>
+      <PageAccount isPartnership={true} referer={referer}>
         <Panel>{user.partnership_id ? <Partnership /> : <Invitation />}</Panel>
       </PageAccount>
     </>

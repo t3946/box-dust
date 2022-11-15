@@ -14,10 +14,11 @@ import SidebarPartnership from "@components/pages/account/partnership/Sidebar";
 
 export interface IProps extends React.PropsWithChildren {
   isPartnership?: boolean;
+  referer: string;
 }
 
 export const PageAccount: React.FC<IProps> = function (props) {
-  const { isPartnership } = props;
+  const { isPartnership, referer } = props;
   const dispatch = useDispatch();
 
   function logout() {
@@ -30,7 +31,7 @@ export const PageAccount: React.FC<IProps> = function (props) {
     <Page isAccount={true}>
       <div className={cn("container", Style.pageContainer, Style.page__block)}>
         <div className="d-none d-lg-block">
-          {isPartnership ? <SidebarPartnership /> : <SidebarAccount />}
+          {isPartnership ? <SidebarPartnership referer={referer} /> : <SidebarAccount />}
         </div>
 
         <div>
