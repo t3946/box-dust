@@ -10,6 +10,8 @@
   background: #6d28d9;
   font-size: pxToRem(24);
   font-family: "Lato Regular", serif;
+  padding: pxToRem(6) pxToRem(12);
+  transition: all 0.15s ease-out;
 
   &:active, &:hover, &:focus {
     background: #5b21b6;
