@@ -1,12 +1,11 @@
 import * as React from "react";
-import StockItem from "@components/pages/account/stock/StockItem";
 import ModalStockItem from "@components/pages/account/stock/ModalStockItem";
 import { setData } from "@redux/reducer/Popup";
 import { useDispatch } from "react-redux";
 import useSelector from "@hooks/useSelector";
 import PanelNoItems from "@components/common/layout/account/PanelNoItems";
-import cn from "classnames";
 import Style from "@components/pages/account/stock/Stock.module.scss";
+import Card from "@components/pages/box/catalog/Card";
 
 export interface IProps {
   header: string;
@@ -35,9 +34,11 @@ export const Stock: React.FC<IProps> = function (props) {
   }
 
   for (const stockItem of stock) {
+    console.log({stockItem})
     stockItems.push(
-      <StockItem
-        stockItem={stockItem}
+      <Card
+        counter={stockItem.total}
+        prize={stockItem.item}
         key={`stock-item-${stockItem.stock_item_id}`}
         onClick={() => openItemInModal(stockItem.stock_item_id)}
       />

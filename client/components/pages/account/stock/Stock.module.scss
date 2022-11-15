@@ -6,6 +6,7 @@
   grid-template-columns: repeat(1, 1fr);
 
   @include breakpoint(md) {
+    grid-gap: pxToRem(20);
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -14,10 +15,11 @@
   }
 
   @include breakpoint(xl) {
+    grid-gap: pxToRem(24);
     grid-template-columns: repeat(4, 1fr);
   }
 
-  @include breakpoint(xxl) {
-    grid-template-columns: repeat(5, 1fr);
-  }
+  //@include breakpoint(xxl) {
+  //  grid-template-columns: repeat(5, 1fr);
+  //}
 }
