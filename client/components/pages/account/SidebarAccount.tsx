@@ -5,6 +5,7 @@ import Style from "@components/pages/account/SidebarAccount.module.scss";
 
 export const SidebarAccount: React.FC = function () {
   const { stock } = useSelector((state) => state.stock);
+  const user = useSelector((state) => state.user.user);
   const items = [
     {
       label: "Профиль",
@@ -20,7 +21,7 @@ export const SidebarAccount: React.FC = function () {
       route: "/account/payment",
     },
     {
-      label: "Заработать",
+      label: user.partnership ? "Партнёрство" : "Заработать",
       route: "/account/partnership",
       className: ["mt-3 fw-bold", Style.partnership],
     },
