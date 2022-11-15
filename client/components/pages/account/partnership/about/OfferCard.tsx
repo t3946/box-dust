@@ -17,7 +17,6 @@ export interface IProps {
   className?: any;
   description: string;
   cost?: number;
-  afterCost?: string;
 }
 
 export const OfferCard: React.FC<IProps> = function (props) {
@@ -29,12 +28,12 @@ export const OfferCard: React.FC<IProps> = function (props) {
     requirements = [],
     description,
     cost,
-    afterCost,
   } = props;
   const requirementsItems = [];
 
-  for (const requirement of requirements) {
-    requirementsItems.push(<li>{requirement}</li>);
+  for (let i = 0; i < requirements.length; i++) {
+    const requirement = requirements[i];
+    requirementsItems.push(<li key={`requirement-${i}`}>{requirement}</li>);
   }
 
   function costTemplate() {

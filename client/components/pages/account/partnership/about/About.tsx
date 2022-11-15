@@ -7,6 +7,7 @@ import Style from "@components/pages/account/partnership/about/About.module.scss
 export const About: React.FC = function () {
   const offers = [
     {
+      partnership_id: 1,
       name: "Местный",
       percent: 50,
       theme: ETheme.PURPLE1,
@@ -14,6 +15,7 @@ export const About: React.FC = function () {
       cost: "бесплатно",
     },
     {
+      partnership_id: 2,
       name: "Известный",
       percent: 60,
       theme: ETheme.PURPLE2,
@@ -23,6 +25,7 @@ export const About: React.FC = function () {
       cost: 1200,
     },
     {
+      partnership_id: 3,
       name: "Звезда",
       percent: 70,
       theme: ETheme.PURPLE3,
@@ -32,6 +35,7 @@ export const About: React.FC = function () {
       cost: 2000,
     },
     {
+      partnership_id: 4,
       name: "Легенда",
       percent: 80,
       theme: ETheme.PURPLE4,
@@ -45,8 +49,12 @@ export const About: React.FC = function () {
 
   for (const offer of offers) {
     const { name, percent, theme, requirements, description, cost } = offer;
+
     offerItems.push(
-      <div className="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4 mb-xl-0">
+      <div
+        className="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4 mb-xl-0"
+        key={`partnership-${offer.partnership_id}`}
+      >
         <OfferCard
           name={name}
           percent={percent}
