@@ -64,7 +64,8 @@ export const About: React.FC = function () {
     <>
       <div className={Style.page__block}>
         <h2>О партнёрской программе</h2>
-        <p style={{ color: "red" }}>
+
+        <p className={Style.paragraph} style={{ color: "red" }}>
           Партнёрская программа позволяет поднять бабла на рефералак – привёл
           реферала, уговорил его сыграть в игру, получил свой процент с его
           слива.
@@ -73,7 +74,8 @@ export const About: React.FC = function () {
 
       <div className={Style.page__block}>
         <h2>Повышение статуса</h2>
-        <p>
+
+        <p className={Style.paragraph}>
           Для получения нового, улучшенного статуса нужно либо выполнить ряд
           требований, которые представлены в описании статуса, либо можно сразу
           купить статус желаемый статус. Для повышения статуса требуется
@@ -84,7 +86,8 @@ export const About: React.FC = function () {
 
       <div className={Style.page__block}>
         <h2>Выплаты</h2>
-        <p>
+
+        <p className={Style.paragraph}>
           Выплаты партнёру проводятся через систему вывода срадеств во вкладке
           баланс.
         </p>
@@ -92,7 +95,8 @@ export const About: React.FC = function () {
 
       <div className={Style.page__block}>
         <h2>Доход партнёра</h2>
-        <p>
+
+        <p className={Style.paragraph}>
           Мультипликатор статуса(указан в процетнах у каждого статуса)
           применяется в момент начисления прибыли на счёт рефовода.
         </p>

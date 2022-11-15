@@ -34,7 +34,6 @@ export const Stock: React.FC<IProps> = function (props) {
   }
 
   for (const stockItem of stock) {
-    console.log({stockItem})
     stockItems.push(
       <Card
         counter={stockItem.total}
