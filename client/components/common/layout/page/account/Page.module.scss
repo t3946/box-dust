@@ -1,8 +1,14 @@
 @import "styles/utils/Utils.module.scss";
 
+$blocksGap: pxToRem(16);
+
 .page {
   &__mobilMenu {
     margin-bottom: calc(var(--bs-gutter-x) * 0.5);
+  }
+
+  &__block {
+    margin-top: $blocksGap;
   }
 }
 
@@ -13,10 +19,9 @@
 .pageContainer {
   display: grid;
   grid-template-columns: 1fr;
-  margin-top: pxToRem(24);
 
   @include breakpoint(lg) {
     grid-template-columns: pxToRem(240) 1fr;
-    grid-gap: pxToRem(24);
+    grid-gap: $blocksGap;
   }
 }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import Style from "@components/pages/account/partnership/Partnership.module.scss";
+import Style from "@components/pages/account/partnership/Invitation.module.scss";
 import Link from "next/link";
 import cn from "classnames";
 import FormButton from "@components/common/form/button/Button";

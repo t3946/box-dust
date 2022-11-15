@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import Account from "@components/pages/account/Account";
 import useSelector from "@hooks/useSelector";
 import { useRouter } from "next/router";
-import PageAccount from "@components/common/layout/page/PageAccount";
+import PageAccount from "@components/common/layout/page/account/Page";
 import Payment from "@components/pages/account/payment/Payment";
 
 export default function Page() {

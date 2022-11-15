@@ -1,6 +1,5 @@
 import * as React from "react";
 import Panel from "@components/common/layout/account/Panel";
-import Style from "@components/pages/account/partnership/Partnership.module.scss";
 import Invitation from "@components/pages/account/partnership/Invitation";
 import useSelector from "@hooks/useSelector";
 import Stats from "@components/pages/account/partnership/Stats";

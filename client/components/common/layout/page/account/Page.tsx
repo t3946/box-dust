@@ -2,7 +2,7 @@ import * as React from "react";
 import Sidebar from "@components/pages/account/Sidebar";
 import { PropsWithChildren } from "react";
 import SelectPage from "@components/common/layout/page/SelectPage";
-import Style from "@components/common/layout/page/PageAccount.module.scss";
+import Style from "@components/common/layout/page/account/Page.module.scss";
 import FormButton from "@components/common/form/button/Button";
 import cn from "classnames";
 import { setUser } from "@redux/reducer/User";
@@ -19,9 +19,10 @@ export const PageAccount: React.FC<PropsWithChildren<any>> = function (props) {
     dispatch(setState({ stock: [] }));
     Cookie.remove("auth");
   }
+
   return (
     <Page isAccount={true}>
-      <div className={cn("container", Style.pageContainer)}>
+      <div className={cn("container", Style.pageContainer, Style.page__block)}>
         <div className="pe-1 d-none d-lg-block">
           <Sidebar />
         </div>

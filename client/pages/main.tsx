@@ -8,7 +8,7 @@ export default function PageMain() {
     <Page>
       <Head>
         <title>Box Dust</title>
-        <meta name="payok" content="payok_verification"/>
+        <meta name="payok" content="payok_verification" />
       </Head>
 
       <Main />

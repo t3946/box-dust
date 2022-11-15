@@ -5,7 +5,7 @@ import Style from "@components/common/link/Link.module.scss";
 import cn from "classnames";
 
 export interface IProps extends PropsWithChildren<any> {
-  className: any;
+  className?: any;
   href: string;
 }
 
