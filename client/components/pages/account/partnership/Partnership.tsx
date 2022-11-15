@@ -1,5 +1,4 @@
 import * as React from "react";
-import Panel from "@components/common/layout/account/Panel";
 import Invitation from "@components/pages/account/partnership/Invitation";
 import useSelector from "@hooks/useSelector";
 import Stats from "@components/pages/account/partnership/Stats";
@@ -9,7 +8,7 @@ import ReferralsList from "@components/pages/account/partnership/dashboard/Refer
 import GamesList from "@components/pages/account/partnership/dashboard/GamesList";
 
 export interface IProps {
-  className: any;
+  className?: any;
 }
 
 const Chart = dynamic(
@@ -23,7 +22,7 @@ export const Partnership: React.FC<IProps> = function (props) {
   const user = useSelector((state) => state.user.user);
 
   return (
-    <Panel>
+    <>
       <h1>Партнёрство – Панель управления</h1>
 
       {/*invite to partnership*/}
@@ -51,7 +50,7 @@ export const Partnership: React.FC<IProps> = function (props) {
           <GamesList />
         </div>
       </div>
-    </Panel>
+    </>
   );
 };
 

@@ -3,9 +3,11 @@ import React, { useEffect } from "react";
 import useSelector from "@hooks/useSelector";
 import { useRouter } from "next/router";
 import PageAccount from "@components/common/layout/page/account/Page";
-import Payment from "@components/pages/account/payment/Payment";
+import Partnership from "@components/pages/account/partnership/Partnership";
+import Invitation from "@components/pages/account/partnership/Invitation";
+import Panel from "@components/common/layout/account/Panel";
 
-export default function Page() {
+export default function PartnershipPage() {
   const user = useSelector((state) => state.user.user);
   const router = useRouter();
 
@@ -18,11 +20,11 @@ export default function Page() {
   return (
     <>
       <Head>
-        <title>Оплата</title>
+        <title>Партнёрство</title>
       </Head>
 
-      <PageAccount>
-        <Payment />
+      <PageAccount isPartnership={true}>
+        <Panel>{user.partnership_id ? <Partnership /> : <Invitation />}</Panel>
       </PageAccount>
     </>
   );

@@ -4,8 +4,8 @@ import cn from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Badge from "@components/common/badge/Badge";
-import LogoutButton from "@components/pages/account/sidebar/LogoutButton";
-import BackButton from "@components/pages/account/sidebar/BackButton";
+import ButtonLogout from "@components/pages/account/sidebar/LogoutButton";
+import ButtonBack from "@components/pages/account/sidebar/BackButton";
 
 export interface IProps {
   items: Record<any, any>[];
@@ -21,11 +21,12 @@ export const Sidebar: React.FC<IProps> = function (props) {
     let content;
 
     switch (type) {
-      case "logout":
-        content = <LogoutButton />;
+      case "buttonLogout":
+        content = <ButtonLogout />;
         break;
-      case "back":
-        content = <BackButton />;
+
+      case "buttonBack":
+        content = <ButtonBack />;
         break;
 
       default:

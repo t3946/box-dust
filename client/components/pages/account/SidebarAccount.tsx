@@ -2,6 +2,7 @@ import * as React from "react";
 import { ETheme } from "@components/common/badge/Badge";
 import useSelector from "@hooks/useSelector";
 import Sidebar from "@components/pages/account/sidebar/Sidebar";
+import Style from "@components/pages/account/SidebarAccount.module.scss";
 
 export const SidebarAccount: React.FC = function () {
   const { stock } = useSelector((state) => state.stock);
@@ -24,10 +25,10 @@ export const SidebarAccount: React.FC = function () {
       route: "/account/partnership",
       badge: "!",
       badgeTheme: ETheme.RED,
-      className: ["mt-3"],
+      className: ["mt-3 fw-bold", Style.partnership],
     },
     {
-      type: "logout",
+      type: "buttonLogout",
     },
   ];
 

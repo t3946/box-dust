@@ -12,11 +12,11 @@ import Page from "@components/common/layout/page/Page";
 import SidebarAccount from "@components/pages/account/SidebarAccount";
 import SidebarPartnership from "@components/pages/account/partnership/Sidebar";
 
-export interface IProps {
-  isPartnership: boolean;
+export interface IProps extends React.PropsWithChildren {
+  isPartnership?: boolean;
 }
 
-export const PageAccount: React.FC<PropsWithChildren<any>> = function (props) {
+export const PageAccount: React.FC<IProps> = function (props) {
   const { isPartnership } = props;
   const dispatch = useDispatch();
 
