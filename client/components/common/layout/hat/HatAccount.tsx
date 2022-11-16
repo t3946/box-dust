@@ -34,7 +34,7 @@ export const Hat: React.FC = function () {
       <header className={cn(Styles.hat, "d-none", "d-lg-grid")}>
         <div className="container">
           <div className={Styles.hatWrapper}>
-            <Link href={"/main"}>
+            <Link href={"/"}>
               <a>
                 <img
                   src={"/images/pages/main/logo.png"}

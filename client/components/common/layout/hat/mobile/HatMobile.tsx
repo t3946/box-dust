@@ -68,7 +68,7 @@ export const HatMobile: React.FC<IProps> = function (props) {
           </div>
 
           <div className="col d-flex justify-content-center align-items-center">
-            <Link href={"/main"}>
+            <Link href={"/"}>
               <a>
                 <img
                   src={"/images/pages/main/logo.png"}

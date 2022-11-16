@@ -11,7 +11,7 @@ export default function Page() {
 
   useEffect(() => {
     if (!user && router) {
-      router.push("/main");
+      router.push("/");
     }
   });
 

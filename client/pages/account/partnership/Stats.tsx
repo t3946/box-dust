@@ -11,7 +11,7 @@ export default function AboutPage() {
 
   useEffect(() => {
     if (!user && router) {
-      router.push("/main");
+      router.push("/");
     }
   });
 

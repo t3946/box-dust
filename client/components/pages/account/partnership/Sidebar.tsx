@@ -3,7 +3,7 @@ import Sidebar from "@components/pages/account/sidebar/Sidebar";
 import useSelector from "@hooks/useSelector";
 
 export interface IProps {
-  referer: string;
+  referer?: string;
 }
 
 export const SidebarAccount: React.FC<IProps> = function (props) {

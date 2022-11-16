@@ -1,5 +1,4 @@
 import * as React from "react";
-import { PropsWithChildren } from "react";
 import SelectPage from "@components/common/layout/page/SelectPage";
 import Style from "@components/common/layout/page/account/Page.module.scss";
 import FormButton from "@components/common/form/button/Button";
@@ -14,7 +13,7 @@ import SidebarPartnership from "@components/pages/account/partnership/Sidebar";
 
 export interface IProps extends React.PropsWithChildren {
   isPartnership?: boolean;
-  referer: string;
+  referer?: string;
 }
 
 export const PageAccount: React.FC<IProps> = function (props) {
@@ -31,7 +30,11 @@ export const PageAccount: React.FC<IProps> = function (props) {
     <Page isAccount={true}>
       <div className={cn("container", Style.pageContainer, Style.page__block)}>
         <div className="d-none d-lg-block">
-          {isPartnership ? <SidebarPartnership referer={referer} /> : <SidebarAccount />}
+          {isPartnership ? (
+            <SidebarPartnership referer={referer} />
+          ) : (
+            <SidebarAccount />
+          )}
         </div>
 
         <div>
