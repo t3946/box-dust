@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import useSelector from "@hooks/useSelector";
 import { useRouter } from "next/router";
 import PageAccount from "@components/common/layout/page/account/Page";
-import About from "@components/pages/account/partnership/about/About";
+import Stats from "@components/pages/account/partnership/stats/Stats";
 
 export default function AboutPage() {
   const user = useSelector((state) => state.user.user);
@@ -22,7 +22,7 @@ export default function AboutPage() {
       </Head>
 
       <PageAccount isPartnership={true}>
-        <About />
+        <Stats />
       </PageAccount>
     </>
   );

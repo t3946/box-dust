@@ -8,14 +8,17 @@ import StyleSidebar from "@components/pages/account/Sidebar.module.scss";
 export const LogoutButton: React.FC<any> = function (props) {
   const { className } = props;
   const router = useRouter();
+
   const goBack = () => {
     const backUrlWhiteList = ["/account/payment", "/account/stock"];
     const defaultUrl = "/account/profile";
 
-    for (const url of backUrlWhiteList) {
-      if (props.referer.endsWith(url)) {
-        router.push(url);
-        return;
+    if (props.referer) {
+      for (const url of backUrlWhiteList) {
+        if (props.referer.endsWith(url)) {
+          router.push(url);
+          return;
+        }
       }
     }
 

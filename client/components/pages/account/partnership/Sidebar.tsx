@@ -29,7 +29,7 @@ export const SidebarAccount: React.FC<IProps> = function (props) {
     items.push(
       {
         label: "Статистика",
-        route: "/account/profile",
+        route: "/account/partnership/stats",
         icon: <IconGauge />,
       },
       {

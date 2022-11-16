@@ -1,0 +1,61 @@
+@import "styles/utils/Utils.module.scss";
+
+.name {
+  &:first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.value {
+  &:first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.statRow {
+  padding: 0 pxToRem(4);
+  line-height: 2;
+
+  &:hover {
+    outline: 1px solid #cccccc;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-gap: pxToRem(16);
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: auto 200px 350px;
+  grid-template-areas:
+          "ga1 ga1 ga1 ga1 ga1 ga1 ga1 ga1"
+          "ga2 ga2 ga3 ga3 ga4 ga4 ga5 ga5"
+          "ga6 ga6 ga6 ga6 ga6 ga7 ga7 ga7";
+}
+
+.areaHeader {
+  grid-area: ga1;
+}
+
+.areaUsers {
+  grid-area: ga2;
+}
+
+.areaGames {
+  grid-area: ga3;
+}
+
+.areaRevenue {
+  grid-area: ga4;
+}
+
+.areaProfit {
+  grid-area: ga5;
+}
+
+.areaProfitChart {
+  grid-area: ga6;
+}
+
+.areaTransactions {
+  grid-area: ga7;
+}

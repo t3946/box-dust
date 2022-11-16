@@ -1,7 +1,6 @@
 import * as React from "react";
 import Invitation from "@components/pages/account/partnership/Invitation";
 import useSelector from "@hooks/useSelector";
-import Stats from "@components/pages/account/partnership/Stats";
 import dynamic from "next/dynamic";
 import StatusUpgrade from "@components/pages/account/partnership/dashboard/StatusUpgrade";
 import ReferralsList from "@components/pages/account/partnership/dashboard/ReferalsList";
@@ -32,7 +31,7 @@ export const Partnership: React.FC<IProps> = function (props) {
 
       <div className="row mb-4">
         <div className="col-12 mb-4 col-md-6 mb-md-0">
-          <Stats />
+          nothing
         </div>
         <div className={"col-12 col-md-6"}>
           <StatusUpgrade />

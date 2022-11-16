@@ -1,8 +1,9 @@
 import * as React from "react";
 import useSelector from "@hooks/useSelector";
-import Style from "@components/pages/account/partnership/Stats.module.scss";
+import Style from "@components/pages/account/partnership/stats/Stats.module.scss";
 import SecondaryContainer from "@components/common/layout/account/SecondaryContainer";
 import cn from "classnames";
+import Panel from "@components/common/layout/account/Panel";
 
 export const Stats: React.FC = function () {
   const user = useSelector((state) => state.user.user);
@@ -43,9 +44,31 @@ export const Stats: React.FC = function () {
   }
 
   return (
-    <SecondaryContainer header={"Статистика"} className={cn("px-3", "h-100")}>
-      {items}
-    </SecondaryContainer>
+    <div className={Style.grid}>
+      <Panel className={[Style.areaHeader, "py-2"]}>
+        <h1 className={"m-0"}>Статистика</h1>
+      </Panel>
+
+      <Panel className={Style.areaUsers}>
+        <h5>Пользователи</h5>
+      </Panel>
+      <Panel className={Style.areaGames}>
+        <h5>Игры</h5>
+      </Panel>
+      <Panel className={Style.areaRevenue}>
+        <h5>Доход</h5>
+      </Panel>
+      <Panel className={Style.areaProfit}>
+        <h5>Прибыль</h5>
+      </Panel>
+
+      <Panel className={Style.areaProfitChart}>
+        <h4>Прибыль по дням</h4>
+      </Panel>
+      <Panel className={Style.areaTransactions}>
+        <h4>Транзакции</h4>
+      </Panel>
+    </div>
   );
 };
 
