@@ -1,0 +1,30 @@
+@import "styles/utils/Utils.module.scss";
+
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+
+  &__interface {
+    margin: pxToRem(4) 0 pxToRem(16);
+  }
+}
+
+.interface {
+  &__pill:not(:last-child) {
+    margin: 0 pxToRem(10) 0 0;
+  }
+}
+
+.pill {
+  font-size: pxToRem(16);
+  border-radius: 100px;
+  user-select: none;
+  font-family: Calibri, sans-serif;
+  cursor: pointer;
+
+  &_active {
+    font-weight: 600;
+    cursor: default;
+  }
+}

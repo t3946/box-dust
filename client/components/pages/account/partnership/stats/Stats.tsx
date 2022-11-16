@@ -8,7 +8,7 @@ import IconDice from "@components/common/icons/dice/Duotone";
 import IconCoins from "@components/common/icons/coins/Duotone";
 import CountersList from "@components/pages/account/partnership/stats/CountersList";
 import balanceToString from "@utils/balanceToString";
-import ProfitChart from "@components/pages/account/partnership/stats/ProfitChart";
+import ProfitChartGroup from "@components/pages/account/partnership/stats/ProfitChartGroup";
 
 export const Stats: React.FC = function () {
   const user = useSelector((state) => state.user.user);
@@ -126,6 +126,9 @@ export const Stats: React.FC = function () {
     );
   }
 
+  const [profitChartHeader, setProfitChartHeader] =
+    React.useState("Прибыль за 7 дней");
+
   return (
     <div className={Style.grid}>
       <Panel className={[Style.areaHeader, "py-2"]}>
@@ -168,10 +171,14 @@ export const Stats: React.FC = function () {
       </Panel>
 
       <Panel className={cn(Style.areaProfitChart, "d-flex", "flex-column")}>
-        <h4>Прибыль по дням</h4>
+        <h4>{profitChartHeader}</h4>
 
         <div className={"flex-grow-1"}>
-          <ProfitChart />
+          <ProfitChartGroup
+            onChangeInterval={(interval: any) => {
+              setProfitChartHeader(`Прибыль за ${interval.title}`);
+            }}
+          />
         </div>
       </Panel>
 
