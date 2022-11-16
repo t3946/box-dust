@@ -25,7 +25,7 @@
   display: grid;
   grid-gap: pxToRem(16);
   grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: auto 200px 350px;
+  grid-template-rows: auto auto 350px;
   grid-template-areas:
           "ga1 ga1 ga1 ga1 ga1 ga1 ga1 ga1"
           "ga2 ga2 ga3 ga3 ga4 ga4 ga5 ga5"
@@ -52,10 +52,23 @@
   grid-area: ga5;
 }
 
+.areaUsers,.areaGames, .areaRevenue, .areaProfit {
+  padding-bottom: pxToRem(30);
+}
+
 .areaProfitChart {
   grid-area: ga6;
 }
 
 .areaTransactions {
   grid-area: ga7;
+}
+
+.pill {
+  font-size: pxToRem(16);
+  border-radius: 5px;
+  padding: pxToRem(4) pxToRem(8);
+  background: #4c1d95;
+  color: #ffffff;
+  user-select: none;
 }

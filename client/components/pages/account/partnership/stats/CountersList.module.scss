@@ -1,0 +1,32 @@
+@import "styles/utils/Utils.module.scss";
+
+.tileGrid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: pxToRem(16);
+  grid-template-columns: 80px 1fr;
+}
+
+.icon {
+  color: #20004a;
+}
+
+.icon, .listItems {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.value {
+  font-weight: 600;
+  &_theme {
+    &_success {
+      color: #05ac50;
+      font-weight: 700;
+    }
+  }
+}
+
+.counterItem:not(:last-child) {
+  margin: 0 0 pxToRem(4);
+}
