@@ -31,28 +31,27 @@ export const Sidebar: React.FC<IProps> = function (props) {
 
       default:
         content = (
-          <Link href={route}>
-            <a
-              className={cn(
-                Style.item,
-                {
-                  [Style.item__active]: router.route === route,
-                },
-                "position-relative",
-                "d-flex",
-                "justify-content-between",
-                "link-unstyled",
-                className
-              )}
-            >
-              <div className={"d-flex"}>
-                {icon ? <span className={Style.icon}>{icon}</span> : null}
-                <span className={cn("d-flex", "align-items-center")}>
-                  <span>{label}</span>
-                </span>
-              </div>
-              {!!badge && <Badge theme={badgeTheme}>{badge}</Badge>}
-            </a>
+          <Link
+            href={route}
+            className={cn(
+              Style.item,
+              {
+                [Style.item__active]: router.route === route,
+              },
+              "position-relative",
+              "d-flex",
+              "justify-content-between",
+              "link-unstyled",
+              className
+            )}
+          >
+            <div className={"d-flex"}>
+              {icon ? <span className={Style.icon}>{icon}</span> : null}
+              <span className={cn("d-flex", "align-items-center")}>
+                <span>{label}</span>
+              </span>
+            </div>
+            {!!badge && <Badge theme={badgeTheme}>{badge}</Badge>}
           </Link>
         );
     }

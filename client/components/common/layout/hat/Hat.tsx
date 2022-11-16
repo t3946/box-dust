@@ -35,13 +35,11 @@ export const Hat: React.FC = function () {
         <div className="container">
           <div className={Styles.hatWrapper}>
             <Link href={"/"}>
-              <a>
-                <img
-                  src={"/images/pages/main/logo.png"}
-                  alt={"site log"}
-                  className={Styles.logo}
-                />
-              </a>
+              <img
+                src={"/images/pages/main/logo.png"}
+                alt={"site log"}
+                className={Styles.logo}
+              />
             </Link>
 
             <div className="d-none d-lg-flex align-items-center justify-content-center">

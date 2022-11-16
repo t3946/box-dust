@@ -38,13 +38,11 @@ export const HatMobile: React.FC<IProps> = function (props) {
     if (user) {
       return (
         <Link href={"/account/profile"}>
-          <a>
-            <img
-              src={avatar}
-              className={cn(Style.avatar, "user-select-none", "user-drag-none")}
-              alt={"Аватар"}
-            />
-          </a>
+          <img
+            src={avatar}
+            className={cn(Style.avatar, "user-select-none", "user-drag-none")}
+            alt={"Аватар"}
+          />
         </Link>
       );
     }
@@ -69,20 +67,18 @@ export const HatMobile: React.FC<IProps> = function (props) {
 
           <div className="col d-flex justify-content-center align-items-center">
             <Link href={"/"}>
-              <a>
-                <img
-                  src={"/images/pages/main/logo.png"}
-                  alt={"box dust"}
-                  className={cn(
-                    HatStyle.logo,
-                    "mw-100",
-                    "h-auto",
-                    Style.logo,
-                    "user-select-none",
-                    "user-drag-none"
-                  )}
-                />
-              </a>
+              <img
+                src={"/images/pages/main/logo.png"}
+                alt={"box dust"}
+                className={cn(
+                  HatStyle.logo,
+                  "mw-100",
+                  "h-auto",
+                  Style.logo,
+                  "user-select-none",
+                  "user-drag-none"
+                )}
+              />
             </Link>
           </div>
           <div className={cn(["col-auto", "align-items-center", "d-flex"])}>

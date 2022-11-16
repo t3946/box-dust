@@ -32,20 +32,20 @@ export const Menu: React.FC<IProps> = function (props) {
     const item = accountMenu[i];
 
     accountMenuItemsTemplates.push(
-      <Link href={item.route} key={`item-${i}`}>
-        <a
-          className={cn(
-            StyleMenu.item,
-            StyleMenu.item_micro,
-            { [StyleMenu.item_first]: i === 0 },
-            "d-block",
-            "link-unstyled"
-          )}
-          onClick={onClick}
-        >
-          <ChevronDown className={cn(StyleMenu.icon, "me-2")} />
-          {item.label}
-        </a>
+      <Link
+        href={item.route}
+        key={`item-${i}`}
+        className={cn(
+          StyleMenu.item,
+          StyleMenu.item_micro,
+          { [StyleMenu.item_first]: i === 0 },
+          "d-block",
+          "link-unstyled"
+        )}
+        onClick={onClick}
+      >
+        <ChevronDown className={cn(StyleMenu.icon, "me-2")} />
+        {item.label}
       </Link>
     );
   }

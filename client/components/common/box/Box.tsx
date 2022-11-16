@@ -62,8 +62,11 @@ export const Box: React.FC<IProps> = function (props) {
       </div>
 
       <div className={cn(Styles.footer, "d-flex", "justify-content-center")}>
-        <Link href={`/box/${box.box_id}/open`}>
-          <a className={cn(Styles.button, "link-unstyled")}>открыть</a>
+        <Link
+          href={`/box/${box.box_id}/open`}
+          className={cn(Styles.button, "link-unstyled")}
+        >
+          открыть
         </Link>
       </div>
     </div>
