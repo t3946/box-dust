@@ -9,6 +9,7 @@ import IconCoins from "@components/common/icons/coins/Duotone";
 import CountersList from "@components/pages/account/partnership/stats/CountersList";
 import balanceToString from "@utils/balanceToString";
 import ProfitChartGroup from "@components/pages/account/partnership/stats/ProfitChartGroup";
+import Transactions from "@components/pages/account/partnership/stats/Transactions";
 
 export const Stats: React.FC = function () {
   const user = useSelector((state) => state.user.user);
@@ -182,8 +183,17 @@ export const Stats: React.FC = function () {
         </div>
       </Panel>
 
-      <Panel className={Style.areaTransactions}>
-        <h4>Транзакции</h4>
+      <Panel className={cn(Style.areaTransactions, "d-flex", "flex-column")}>
+        <h4>Транзакции (вывод)</h4>
+
+        <div
+          className={cn(
+            Style.transactionsListWrapper,
+            "custom-scrollbar-light"
+          )}
+        >
+          <Transactions />
+        </div>
       </Panel>
     </div>
   );

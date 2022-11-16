@@ -1,0 +1,6 @@
+@import "styles/utils/Utils.module.scss";
+
+.transactionsList {
+  display: grid;
+  grid-gap: pxToRem(16);
+}

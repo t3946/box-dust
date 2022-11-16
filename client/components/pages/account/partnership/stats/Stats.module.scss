@@ -72,3 +72,9 @@
   color: #ffffff;
   user-select: none;
 }
+
+.transactionsListWrapper {
+  overflow-y: scroll;
+  flex-grow: 1;
+  padding: pxToRem(4) pxToRem(16) pxToRem(4) pxToRem(4);
+}
