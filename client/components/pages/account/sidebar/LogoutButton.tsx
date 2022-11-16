@@ -8,7 +8,8 @@ import { useDispatch } from "react-redux";
 import IconLogout from "@components/common/icons/right-from-bracket/Solid";
 import StyleSidebar from "@components/pages/account/Sidebar.module.scss";
 
-export const LogoutButton: React.FC = function () {
+export const LogoutButton: React.FC<any> = function (props) {
+  const { className } = props;
   const dispatch = useDispatch();
   function logout() {
     dispatch(setUser({ user: null }));
@@ -17,7 +18,7 @@ export const LogoutButton: React.FC = function () {
   }
 
   return (
-    <div onClick={logout} className={cn(Style.sidebar_item, "mt-3")}>
+    <div onClick={logout} className={cn(Style.sidebar_item, className)}>
       <span className={cn(Style.item, Style.item__logout)}>
         <span className={StyleSidebar.icon}>
           <IconLogout />

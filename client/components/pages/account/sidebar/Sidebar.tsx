@@ -22,11 +22,11 @@ export const Sidebar: React.FC<IProps> = function (props) {
 
     switch (items[i].type) {
       case "buttonLogout":
-        content = <ButtonLogout />;
+        content = <ButtonLogout className={className} />;
         break;
 
       case "buttonBack":
-        content = <ButtonBack referer={items[i].referer} />;
+        content = <ButtonBack className={className} referer={items[i].referer} />;
         break;
 
       default:

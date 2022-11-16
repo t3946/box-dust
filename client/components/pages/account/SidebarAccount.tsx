@@ -35,6 +35,7 @@ export const SidebarAccount: React.FC = function () {
     },
     {
       type: "buttonLogout",
+      className: "mt-3",
     },
   ];
 

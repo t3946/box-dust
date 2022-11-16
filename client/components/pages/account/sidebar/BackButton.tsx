@@ -2,8 +2,11 @@ import * as React from "react";
 import cn from "classnames";
 import Style from "@components/pages/account/Sidebar.module.scss";
 import { useRouter } from "next/router";
+import IconLeft from "@components/common/icons/left/Solid";
+import StyleSidebar from "@components/pages/account/Sidebar.module.scss";
 
 export const LogoutButton: React.FC<any> = function (props) {
+  const { className } = props;
   const router = useRouter();
   const goBack = () => {
     const backUrlWhiteList = ["/account/payment", "/account/stock"];
@@ -20,8 +23,14 @@ export const LogoutButton: React.FC<any> = function (props) {
   };
 
   return (
-    <div onClick={goBack} className={cn(Style.sidebar_item, "mb-3")}>
-      <span className={cn(Style.item, Style.item__logout)}>Назад</span>
+    <div onClick={goBack} className={cn(Style.sidebar_item, className)}>
+      <span className={cn(Style.item, Style.item__logout)}>
+        <span className={StyleSidebar.icon}>
+          <IconLeft />
+        </span>
+
+        <span>Назад</span>
+      </span>
     </div>
   );
 };
