@@ -4,7 +4,7 @@ import Style from "@components/common/layout/hat/mobile/MenuButton.module.scss";
 import CrossLarge from "@components/common/icons/cross-large/CrossLarge";
 import cn from "classnames";
 
-export const MenuButton: React.FC = function (props) {
+export const MenuButton: React.FC<any> = function (props) {
   const { show } = props;
 
   return (
