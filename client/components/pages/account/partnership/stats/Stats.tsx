@@ -8,6 +8,7 @@ import IconDice from "@components/common/icons/dice/Duotone";
 import IconCoins from "@components/common/icons/coins/Duotone";
 import CountersList from "@components/pages/account/partnership/stats/CountersList";
 import balanceToString from "@utils/balanceToString";
+import ProfitChart from "@components/pages/account/partnership/stats/ProfitChart";
 
 export const Stats: React.FC = function () {
   const user = useSelector((state) => state.user.user);
@@ -88,20 +89,26 @@ export const Stats: React.FC = function () {
       {
         title: "За 7 дней",
         value: (
-          <span className={"rouble"}>+{balanceToString(250000 * revenuePercent / 100)}</span>
+          <span className={"rouble"}>
+            +{balanceToString((250000 * revenuePercent) / 100)}
+          </span>
         ),
         valueThemeSuccess: true,
       },
       {
         title: "За 30 дней",
         value: (
-          <span className={"rouble"}>{balanceToString(700000 * revenuePercent / 100)}</span>
+          <span className={"rouble"}>
+            {balanceToString((700000 * revenuePercent) / 100)}
+          </span>
         ),
       },
       {
         title: "За всё время",
         value: (
-          <span className={"rouble"}>{balanceToString(2000000 * revenuePercent / 100)}</span>
+          <span className={"rouble"}>
+            {balanceToString((2000000 * revenuePercent) / 100)}
+          </span>
         ),
       },
     ],
@@ -160,8 +167,12 @@ export const Stats: React.FC = function () {
         />
       </Panel>
 
-      <Panel className={Style.areaProfitChart}>
+      <Panel className={cn(Style.areaProfitChart, "d-flex", "flex-column")}>
         <h4>Прибыль по дням</h4>
+
+        <div className={"flex-grow-1"}>
+          <ProfitChart />
+        </div>
       </Panel>
 
       <Panel className={Style.areaTransactions}>
