@@ -2,7 +2,6 @@ import { Controller, Post, Get, Res, Req, Body, Param } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 import { PasswordService } from '@src/user/service/password.service';
 import { MailService } from '@src/app/services/mail.service';
-import { HashService } from '@src/user/service/hash.sevice';
 import ConfirmEmail from '@src/app/services/templates/ConfirmEmail';
 import getEmail from '@src/utils/getEmail';
 import { IsEmail, IsNotEmpty, MaxLength } from 'class-validator';
@@ -45,7 +44,6 @@ export class UserController {
   constructor(
     private readonly passwordService: PasswordService,
     private readonly mailService: MailService,
-    private readonly hashService: HashService,
   ) {}
 
   @Post('register')

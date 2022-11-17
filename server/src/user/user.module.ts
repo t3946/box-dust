@@ -4,14 +4,13 @@ import { PasswordService } from '@src/user/service/password.service';
 import { AuthModule } from '@src/auth/auth.module';
 import { PartnershipModule } from '@src/partnership/partnership.module';
 import { MailService } from '@src/app/services/mail.service';
-import { HashService } from '@src/user/service/hash.sevice';
 
 const passport = require('passport');
 
 @Module({
   imports: [AuthModule, PartnershipModule],
   controllers: [UserController],
-  providers: [PasswordService, MailService, HashService],
+  providers: [PasswordService, MailService],
 })
 export class UserModule {
   configure(consumer: MiddlewareConsumer) {
