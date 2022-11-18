@@ -26,13 +26,11 @@ export class UserController {
   public async register(
     @Body() createUserDto: CreateUserDto,
   ): Promise<Record<any, any>> {
-    const { user, errors } = await this.userService.create(createUserDto);
-
-    if (errors) {
-      throw new HttpException(errors, HttpStatus.FORBIDDEN);
+    try {
+      return { user: await this.userService.create(createUserDto) };
+    } catch (e) {
+      throw new HttpException(e, HttpStatus.FORBIDDEN);
     }
-
-    return user;
   }
 
   @Post()
@@ -41,28 +39,25 @@ export class UserController {
     @User() user: Record<any, any>,
     @Body() updateUserDto: UpdateUserDto,
   ): Promise<Record<any, any>> {
-    const { user: userUpdated, errors } = await this.userService.update(
-      updateUserDto,
-      user.user_id,
-    );
-
-    if (errors) {
-      throw new HttpException(errors, HttpStatus.BAD_REQUEST);
+    try {
+      return {
+        user: await this.userService.update(updateUserDto, user.user_id),
+      };
+    } catch (e) {
+      throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
-
-    return userUpdated;
   }
 
   @Get('register/send-confirm-email')
   @HttpCode(HttpStatus.OK)
   public async sendConfirmEmail(@Query('email') email: string): Promise<void> {
-    const { code, errors } = await this.userService.getConfirmEmailCode(email);
+    try {
+      const code = await this.userService.getConfirmEmailCode(email);
 
-    if (errors) {
-      throw new HttpException({ errors }, HttpStatus.BAD_REQUEST);
+      await this.mailService.sendRegisterConfirm(email, code);
+    } catch (e) {
+      throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
-
-    await this.mailService.sendRegisterConfirm(email, code);
   }
 
   @Get('register/confirm-email')
@@ -71,13 +66,11 @@ export class UserController {
     @Query('email') email: string,
     @Query('code') code: string,
   ): Promise<Record<any, any>> {
-    const { user, errors } = await this.userService.confirmUser(email, code);
-
-    if (errors) {
-      throw new HttpException({ errors }, HttpStatus.BAD_REQUEST);
+    try {
+      return { user: await this.userService.confirmUser(email, code) };
+    } catch (e) {
+      throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
-
-    return { user };
   }
 
   @Get('play')
@@ -86,16 +79,13 @@ export class UserController {
     @User() user: Record<any, any>,
     @Query('boxId') boxId: string,
   ): Promise<Record<any, any>> {
-    const { errors, prize } = await this.userService.play(
-      user.user_id,
-      parseInt(boxId),
-    );
-
-    if (errors) {
-      throw new HttpException({ errors }, HttpStatus.BAD_REQUEST);
+    try {
+      return {
+        prize: await this.userService.play(user.user_id, parseInt(boxId)),
+      };
+    } catch (e) {
+      throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
-
-    return { prize };
   }
 
   @Get('change-partnership')
@@ -104,13 +94,10 @@ export class UserController {
     @User() user: Record<any, any>,
     @Query('partnerShipSlug') partnerShipSlug: string,
   ): Promise<void> {
-    const { error } = await this.userService.updatePartnership(
-      user.user_id,
-      partnerShipSlug,
-    );
-
-    if (error) {
-      throw new HttpException({ error }, HttpStatus.BAD_REQUEST);
+    try {
+      await this.userService.updatePartnership(user.user_id, partnerShipSlug);
+    } catch (e) {
+      throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
   }
 }

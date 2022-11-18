@@ -5,11 +5,14 @@ import CreateUserDto from '@src/user/dto/create-user.dto';
 import ResponseUserDto from '@src/user/dto/response-user.dto';
 import UpdateUserDto from '@src/user/dto/update-user.dto';
 import { ConfirmationCode } from '@src/utils/ConfirmationCode';
+import { StockService } from '@src/stock/stock.service';
 
 const prisma = new PrismaClient();
 
 @Injectable()
 export class UserService {
+  constructor(private readonly stockService: StockService) {}
+
   private async encryptPassword(password: string): Promise<string> {
     const saltRounds = 10;
     let hashed;
@@ -49,8 +52,8 @@ export class UserService {
 
     if (user) {
       if (user.confirmed) {
-        return {
-          errors: { email: 'Пользователь с таким email уже зарегистрирован' },
+        throw {
+          error: { email: 'Пользователь с таким email уже зарегистрирован' },
         };
       } else {
         await prisma.box_users.delete({
@@ -92,8 +95,8 @@ export class UserService {
       });
 
       if (user) {
-        return {
-          errors: { email: 'Пользователь с таким e-mail уже существует' },
+        throw {
+          error: { email: 'Пользователь с таким email уже зарегистрирован' },
         };
       }
     }
@@ -131,15 +134,19 @@ export class UserService {
     return isPasswordMatch;
   }
 
-  public async getConfirmEmailCode(email: string): Promise<Record<any, any>> {
+  public async getConfirmEmailCode(email: string): Promise<string> {
     const user = await prisma.box_users.findFirst({
       where: { email },
     });
 
     if (!user) {
-      return { errors: { email: 'Пользователь с таким email не найден' } };
+      throw {
+        error: { email: 'Пользователь с таким email не найден' },
+      };
     } else if (user.confirmed) {
-      return { errors: { email: 'User already confirmed', user } };
+      throw {
+        error: { email: 'User already confirmed' },
+      };
     }
 
     const { code } = await ConfirmationCode.createOrSelectCode(
@@ -147,7 +154,7 @@ export class UserService {
       'create_user',
     );
 
-    return { code };
+    return code;
   }
 
   public async confirmUser(
@@ -161,10 +168,12 @@ export class UserService {
     });
 
     if (!user) {
-      return { errors: { email: 'Пользователь с таким email не найден' } };
+      throw {
+        error: { email: 'Пользователь с таким email не найден' },
+      };
     } else if (user.confirmed === true) {
-      return {
-        errors: { email: 'Пользователь с таким email уже зарегистрирован' },
+      throw {
+        error: { email: 'Пользователь с таким email уже зарегистрирован' },
       };
     }
 
@@ -175,14 +184,14 @@ export class UserService {
     );
 
     if (checkCodeError) {
-      return {
+      throw {
         errors: { code: checkCodeError },
       };
     }
 
     await this.update({ confirmed: true }, user.user_id);
 
-    return { user: await this.getResponseUser(user.user_id) };
+    return await this.getResponseUser(user.user_id);
   }
 
   public async play(
@@ -193,23 +202,27 @@ export class UserService {
       where: { box_id },
     });
 
-    /* check on user can play this box */
+    // check on user can play this box
 
     if (!box) {
-      return { errors: { box_id: 'box not found' } };
+      throw {
+        error: { box_id: 'box not found' },
+      };
     } else if (!box.is_active) {
-      return {
-        errors: { box_id: "Box is not active. You can't play this box." },
+      throw {
+        error: { box_id: "Box is not active. You can't play this box." },
       };
     }
 
     const user = await this.getUserById(user_id);
 
     if (user.balance < box.price) {
-      return { errors: { box_id: 'Not enough money' } };
+      throw {
+        error: { box_id: 'not enough money' },
+      };
     }
 
-    /* get random cheap prize */
+    // get random cheap prize
 
     const rarity = await prisma.box_rare_statuses.findFirst({
       where: {
@@ -229,49 +242,23 @@ export class UserService {
         Math.floor(Math.random() * cheapBoxItems.length) % cheapBoxItems.length
       ];
 
-    /* update user and stock */
+    // update user balance and stock
 
     await this.update({ balance: user.balance - box.price }, user.user_id);
 
-    const stock_item = await prisma.box_stock_items.findFirst({
-      where: {
-        user_id: user.user_id,
-        item_id: prize.item_id,
-      },
-    });
+    await this.stockService.addItem(user_id, prize.item_id, 1);
 
-    //todo: crete method in stock service and use it instead next condition await stock.add(user_id, item_id, count?);
-
-    if (stock_item) {
-      await prisma.box_stock_items.update({
-        where: {
-          stock_item_id: stock_item.stock_item_id,
-        },
-        data: {
-          total: stock_item.total + 1,
-        },
-      });
-    } else {
-      await prisma.box_stock_items.create({
-        data: {
-          user_id: user.user_id,
-          item_id: prize.item_id,
-          total: 1,
-        },
-      });
-    }
-
-    return { prize };
+    return prize;
   }
 
   public async updatePartnership(
     user_id: number,
     partnerShipSlug: string,
-  ): Promise<Record<any, any>> {
+  ): Promise<void> {
     const user = await this.getUserById(user_id);
 
     if (!user.confirmed) {
-      return { error: 'user not confirmed' };
+      throw { error: 'user not confirmed' };
     }
 
     const { partnership_id } = await prisma.box_partnerships.findFirst({
@@ -293,49 +280,47 @@ export class UserService {
     switch (partnerShipSlug) {
       case 'basic_partner_1':
         if (currentStatus) {
-          return { error: "you can't get this status" };
+          throw { error: "you can't get this status" };
         }
         break;
 
       case 'basic_partner_2':
         if (currentStatus.slug !== 'basic_partner_1') {
-          return { error: "you can't get this status" };
+          throw { error: "you can't get this status" };
         }
 
         if (referrals.length < 3) {
-          return { error: 'Недостаточно активных рефералов' };
+          throw { error: 'Недостаточно активных рефералов' };
         }
 
         break;
 
       case 'basic_partner_3':
         if (currentStatus.slug !== 'basic_partner_2') {
-          return { error: "you can't get this status" };
+          throw { error: "you can't get this status" };
         }
 
         if (referrals.length < 5) {
-          return { error: 'Недостаточно активных рефералов' };
+          throw { error: 'Недостаточно активных рефералов' };
         }
 
         break;
 
       case 'basic_partner_4':
         if (currentStatus.slug !== 'basic_partner_3') {
-          return { error: "you can't get this status" };
+          throw { error: "you can't get this status" };
         }
 
         if (referrals.length < 10) {
-          return { error: 'Недостаточно активных рефералов' };
+          throw { error: 'Недостаточно активных рефералов' };
         }
 
         break;
 
       default:
-        return { error: "you can't get this status" };
+        throw { error: "you can't get this status" };
     }
 
     await this.update({ partnership_id }, user_id);
-
-    return {};
   }
 }

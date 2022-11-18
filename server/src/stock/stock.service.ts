@@ -85,4 +85,36 @@ export class StockService {
       user_id,
     );
   }
+
+  public async addItem(
+    user_id: number,
+    item_id: number,
+    count: number,
+  ): Promise<void> {
+    const stockItem = await prisma.box_stock_items.findFirst({
+      where: {
+        user_id,
+        item_id,
+      },
+    });
+
+    if (stockItem) {
+      await prisma.box_stock_items.update({
+        where: {
+          stock_item_id: stockItem.stock_item_id,
+        },
+        data: {
+          total: stockItem.total + count,
+        },
+      });
+    } else {
+      await prisma.box_stock_items.create({
+        data: {
+          user_id,
+          item_id,
+          total: count,
+        },
+      });
+    }
+  }
 }
