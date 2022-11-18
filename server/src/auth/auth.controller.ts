@@ -1,7 +1,7 @@
 import { AuthService } from '@src/auth/auth.service';
 import { Controller, Get, Post, Res, Req } from '@nestjs/common';
 import { UserService } from '@src/user/user.service';
-import { getUserStock } from '@src/stock/controller/stock.controller';
+import { getUserStock } from '@src/stock/stock.controller';
 import { User } from '@src/auth/decorators/user.decorator';
 
 @Controller('api/auth')
