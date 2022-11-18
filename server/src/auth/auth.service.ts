@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
-import { PasswordService } from '@src/user/service/password.service';
+import { UserService } from '@src/user/user.service';
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -63,7 +63,7 @@ export class AuthService {
           });
         }
 
-        const passwordService = new PasswordService();
+        const passwordService = new UserService();
         const isPasswordsMatch = await passwordService.comparePassword(
           password,
           user.password,

@@ -39,11 +39,15 @@ export class ConfirmationCode {
     return ConfirmationCode.createCode(userId, action);
   }
 
-  public static async checkCode(userId, action, code) {
+  public static async checkCode(
+    user_id: number,
+    action: string,
+    code: string,
+  ): Promise<Record<any, any>> {
     const codeModel = await prisma.confirmation_codes.findFirst({
       where: {
-        user_id: userId,
-        action: action,
+        user_id,
+        action,
       },
     });
 
@@ -61,9 +65,9 @@ export class ConfirmationCode {
         },
       });
 
-      return true;
+      return {};
+    } else {
+      return { error: 'неверный код' };
     }
-
-    return { error: 'неверный код' };
   }
 }

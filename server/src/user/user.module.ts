@@ -1,16 +1,15 @@
 import { Module, MiddlewareConsumer } from '@nestjs/common';
-import { UserController } from '@src/user/controller/user.controller';
-import { PasswordService } from '@src/user/service/password.service';
+import { UserController } from '@src/user/user.controller';
+import { UserService } from '@src/user/user.service';
 import { AuthModule } from '@src/auth/auth.module';
 import { PartnershipModule } from '@src/partnership/partnership.module';
 import { MailService } from '@src/app/services/mail.service';
-
-const passport = require('passport');
+import passport = require('passport');
 
 @Module({
   imports: [AuthModule, PartnershipModule],
   controllers: [UserController],
-  providers: [PasswordService, MailService],
+  providers: [UserService, MailService],
 })
 export class UserModule {
   configure(consumer: MiddlewareConsumer) {

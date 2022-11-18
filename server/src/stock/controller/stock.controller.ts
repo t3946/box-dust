@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Res, Req } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
-import { PasswordService } from '@src/user/service/password.service';
+import { UserService } from '@src/user/user.service';
 
 const prisma = new PrismaClient();
 
@@ -32,7 +32,7 @@ export async function getUserStock(user_id) {
 
 @Controller('api/stock')
 export class StockController {
-  constructor(private readonly passwordService: PasswordService) {}
+  constructor(private readonly passwordService: UserService) {}
 
   @Post('sell')
   public async sell(@Res() res, @Req() req) {
