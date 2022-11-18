@@ -271,7 +271,7 @@ export class UserService {
     const user = await this.getUserById(user_id);
 
     if (!user.confirmed) {
-      return { errors: { user: 'not confirmed' } };
+      return { error: 'user not confirmed' };
     }
 
     const { partnership_id } = await prisma.box_partnerships.findFirst({
@@ -280,18 +280,61 @@ export class UserService {
       },
     });
 
+    const currentStatus = await prisma.box_partnerships.findUnique({
+      where: {
+        partnership_id,
+      },
+    });
+
+    const referrals = await prisma.box_users.findMany({
+      where: { refer: user_id },
+    });
+
     switch (partnerShipSlug) {
       case 'basic_partner_1':
-        if (user.partnership_id) {
-          return { errors: { partnerShipSlug: "you can't get this status" } };
+        if (currentStatus) {
+          return { error: "you can't get this status" };
+        }
+        break;
+
+      case 'basic_partner_2':
+        if (currentStatus.slug !== 'basic_partner_1') {
+          return { error: "you can't get this status" };
         }
 
-        await this.update({ partnership_id }, user_id);
+        if (referrals.length < 3) {
+          return { error: 'Недостаточно активных рефералов' };
+        }
+
+        break;
+
+      case 'basic_partner_3':
+        if (currentStatus.slug !== 'basic_partner_2') {
+          return { error: "you can't get this status" };
+        }
+
+        if (referrals.length < 5) {
+          return { error: 'Недостаточно активных рефералов' };
+        }
+
+        break;
+
+      case 'basic_partner_4':
+        if (currentStatus.slug !== 'basic_partner_3') {
+          return { error: "you can't get this status" };
+        }
+
+        if (referrals.length < 10) {
+          return { error: 'Недостаточно активных рефералов' };
+        }
+
         break;
 
       default:
-        return { errors: { partnerShipSlug: "you can't get this status" } };
+        return { error: "you can't get this status" };
     }
+
+    await this.update({ partnership_id }, user_id);
 
     return {};
   }

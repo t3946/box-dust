@@ -1,12 +1,11 @@
 import { Module, MiddlewareConsumer } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
-import { PartnershipController } from '@src/partnership/controller/partnership.controller';
-
-const passport = require('passport');
-const prisma = new PrismaClient();
+import { PartnershipController } from '@src/partnership/partnership.controller';
+import { PartnershipService } from './partnership.service';
+import passport = require('passport');
 
 @Module({
   controllers: [PartnershipController],
+  providers: [PartnershipService],
 })
 export class PartnershipModule {
   constructor() {}

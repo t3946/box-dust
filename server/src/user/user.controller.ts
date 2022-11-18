@@ -104,13 +104,13 @@ export class UserController {
     @User() user: Record<any, any>,
     @Query('partnerShipSlug') partnerShipSlug: string,
   ): Promise<void> {
-    const { errors } = await this.userService.updatePartnership(
+    const { error } = await this.userService.updatePartnership(
       user.user_id,
       partnerShipSlug,
     );
 
-    if (errors) {
-      throw new HttpException({ errors }, HttpStatus.BAD_REQUEST);
+    if (error) {
+      throw new HttpException({ error }, HttpStatus.BAD_REQUEST);
     }
   }
 }
