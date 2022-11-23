@@ -114,6 +114,7 @@ export const Stats: React.FC = function () {
       },
     ],
   };
+  const transactions = [{}, {}, {}];
 
   for (const i in shortStats) {
     const stat = shortStats[i];
@@ -189,7 +190,11 @@ export const Stats: React.FC = function () {
         <div
           className={cn(
             Style.transactionsListWrapper,
-            "custom-scrollbar-light"
+            "custom-scrollbar-light",
+            {
+              [Style.transactionsListWrapper_withScroll]:
+                transactions.length > 4,
+            }
           )}
         >
           <Transactions />

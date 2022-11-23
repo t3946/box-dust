@@ -76,5 +76,9 @@
 .transactionsListWrapper {
   overflow-y: scroll;
   flex-grow: 1;
-  padding: pxToRem(4) pxToRem(16) pxToRem(4) pxToRem(4);
+  padding: pxToRem(4);
+
+  &_withScroll {
+    padding: pxToRem(4) pxToRem(16) pxToRem(4) pxToRem(4);
+  }
 }
