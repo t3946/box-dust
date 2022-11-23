@@ -9,10 +9,10 @@ import {
   HttpCode,
 } from '@nestjs/common';
 import { UserService } from '@src/user/user.service';
-import { MailService } from '@src/app/services/mail.service';
 import CreateUserDto from '@src/user/dto/create-user.dto';
 import UpdateUserDto from '@src/user/dto/update-user.dto';
 import { User } from '@src/auth/decorators/user.decorator';
+import { MailService } from '@src/mail/mail.service';
 
 @Controller('api/user')
 export class UserController {
@@ -68,21 +68,6 @@ export class UserController {
   ): Promise<Record<any, any>> {
     try {
       return { user: await this.userService.confirmUser(email, code) };
-    } catch (e) {
-      throw new HttpException(e, HttpStatus.BAD_REQUEST);
-    }
-  }
-
-  @Get('play')
-  @HttpCode(HttpStatus.OK)
-  public async play(
-    @User() user: Record<any, any>,
-    @Query('boxId') boxId: string,
-  ): Promise<Record<any, any>> {
-    try {
-      return {
-        prize: await this.userService.play(user.user_id, parseInt(boxId)),
-      };
     } catch (e) {
       throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }

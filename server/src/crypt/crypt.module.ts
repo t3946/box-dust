@@ -1,15 +1,12 @@
 import { Module, MiddlewareConsumer } from '@nestjs/common';
-import { AuthController } from '@src/auth/auth.controller';
-import { AuthService } from '@src/auth/auth.service';
 import passport = require('passport');
-import { CryptModule } from '@src/crypt/crypt.module';
+import { CryptService } from '@src/crypt/crypt.service';
 
 @Module({
-  imports: [CryptModule],
-  controllers: [AuthController],
-  providers: [AuthService],
+  providers: [CryptService],
+  exports: [CryptService],
 })
-export class AuthModule {
+export class CryptModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(

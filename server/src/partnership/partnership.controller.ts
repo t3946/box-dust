@@ -8,7 +8,9 @@ export class PartnershipController {
   @Get('get-all')
   @HttpCode(HttpStatus.OK)
   public async getAll(): Promise<Record<any, any>> {
-    return { partnerships: await this.partnershipService.getAllPublic() };
+    const { partnerships } = await this.partnershipService.getAllPublic();
+
+    return { partnerships };
   }
 }
 

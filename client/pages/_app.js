@@ -65,7 +65,7 @@ App.getInitialProps = async (appContext) => {
     });
 
   const partnerships = await axios
-    .get(baseUrl + "/partnership/get", {
+    .get(baseUrl + "/partnership/get-all", {
       withCredentials: true,
       headers,
     })

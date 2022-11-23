@@ -67,7 +67,7 @@ function* update(action: any): Generator {
 
 function* play(action: any): Generator {
   const { data, callback } = action.payload;
-  const res: any = yield axios.get("/api/user/play", { params: data });
+  const res: any = yield axios.get("/api/game/play", { params: data });
 
   yield put({
     type: "user/updateUser",

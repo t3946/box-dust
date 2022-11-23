@@ -8,8 +8,6 @@ import passport = require('passport');
   providers: [PartnershipService],
 })
 export class PartnershipModule {
-  constructor() {}
-
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(
@@ -17,7 +15,7 @@ export class PartnershipModule {
           session: false,
         }),
       )
-      .exclude('/api/partnership/get')
+      .exclude('/api/partnership/get-all')
       .forRoutes('/api/partnership/*');
   }
 }

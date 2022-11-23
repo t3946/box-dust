@@ -1,16 +1,9 @@
-import { AuthService } from '@src/auth/auth.service';
 import { Controller, Get, Post, Res, Req } from '@nestjs/common';
-import { UserService } from '@src/user/user.service';
 import { getUserStock } from '@src/stock/stock.controller';
 import { User } from '@src/auth/decorators/user.decorator';
 
 @Controller('api/auth')
 export class AuthController {
-  constructor(
-    private readonly authService: AuthService,
-    private readonly passwordService: UserService,
-  ) {}
-
   @Get('info')
   public getUserInfo(@User() user: Record<any, any>): Record<any, any> {
     return {

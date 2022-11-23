@@ -1,17 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
-import { UserService } from '@src/user/user.service';
+import passport = require('passport');
+import LocalStrategy = require('passport-local');
+import jwt = require('jsonwebtoken');
+import passportJwt = require('passport-jwt');
+import { CryptService } from '@src/crypt/crypt.service';
 
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
-const jwt = require('jsonwebtoken');
-const JwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
 const prisma = new PrismaClient();
 
 @Injectable()
 export class AuthService {
-  private localStrategy() {
+  constructor(private readonly cryptService: CryptService) {
+    this.localStrategy();
+
+    this.jwtStrategy();
+  }
+
+  private localStrategy(): void {
     const strategyOptions = {
       usernameField: 'login',
       passwordField: 'password',
@@ -19,12 +24,7 @@ export class AuthService {
     };
 
     passport.use(
-      new LocalStrategy(strategyOptions, async function (
-        req,
-        login,
-        password,
-        done,
-      ) {
+      new LocalStrategy(strategyOptions, async (req, login, password, done) => {
         const user = await prisma.box_users.findFirst({
           where: {
             email: login,
@@ -63,8 +63,7 @@ export class AuthService {
           });
         }
 
-        const passwordService = new UserService();
-        const isPasswordsMatch = await passwordService.comparePassword(
+        const isPasswordsMatch = await this.cryptService.checkEquality(
           password,
           user.password,
         );
@@ -91,8 +90,8 @@ export class AuthService {
     );
   }
 
-  private jwtStrategy() {
-    const cookieExtractor = function (req) {
+  private jwtStrategy(): void {
+    const cookieExtractor = (req): string => {
       let token = null;
 
       if (req && req.cookies) {
@@ -103,13 +102,13 @@ export class AuthService {
     };
 
     const opts = {
-      jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
+      jwtFromRequest: passportJwt.ExtractJwt.fromExtractors([cookieExtractor]),
       secretOrKey: process.env.SESSION_AUTHORISATION_SECRET,
       algorithms: ['HS256'],
     };
 
     passport.use(
-      new JwtStrategy(opts, async function (jwt_payload, done) {
+      new passportJwt.Strategy(opts, async function (jwt_payload, done) {
         const expiredAt = new Date(
           (jwt_payload.iat + parseInt(process.env.SESSION_EXP_TIME_S)) * 1000,
         );
@@ -162,11 +161,5 @@ export class AuthService {
         done(null, user);
       }),
     );
-  }
-
-  constructor() {
-    this.localStrategy();
-
-    this.jwtStrategy();
   }
 }

@@ -1,15 +1,14 @@
 import { Module, MiddlewareConsumer } from '@nestjs/common';
 import { StockController } from '@src/stock/stock.controller';
-import { UserService } from '@src/user/user.service';
-import { AuthModule } from '@src/auth/auth.module';
-import { StockService } from './stock.service';
-
-const passport = require('passport');
+import { UserModule } from '@src/user/user.module';
+import { StockService } from '@src/stock/stock.service';
+import passport = require('passport');
 
 @Module({
-  imports: [AuthModule],
+  imports: [UserModule],
   controllers: [StockController],
-  providers: [UserService, StockService],
+  providers: [StockService],
+  exports: [UserModule, StockService],
 })
 export class StockModule {
   configure(consumer: MiddlewareConsumer) {

@@ -1,32 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
-import bcrypt = require('bcrypt');
 import CreateUserDto from '@src/user/dto/create-user.dto';
 import ResponseUserDto from '@src/user/dto/response-user.dto';
 import UpdateUserDto from '@src/user/dto/update-user.dto';
 import { ConfirmationCode } from '@src/utils/ConfirmationCode';
-import { StockService } from '@src/stock/stock.service';
+import { CryptService } from '@src/crypt/crypt.service';
 
 const prisma = new PrismaClient();
 
 @Injectable()
 export class UserService {
-  constructor(private readonly stockService: StockService) {}
-
-  private async encryptPassword(password: string): Promise<string> {
-    const saltRounds = 10;
-    let hashed;
-
-    password += process.env.PASSWORD_SALT;
-
-    await bcrypt.genSalt(saltRounds).then(async function (salt) {
-      await bcrypt.hash(password, salt).then((hash) => {
-        hashed = hash;
-      });
-    });
-
-    return hashed;
-  }
+  constructor(private readonly cryptService: CryptService) {}
 
   public async getUserById(user_id: number): Promise<Record<any, any>> {
     return await prisma.box_users.findUnique({
@@ -62,7 +46,7 @@ export class UserService {
       }
     }
 
-    const passwordHashed = await this.encryptPassword(password);
+    const passwordHashed = await this.cryptService.encrypt(password);
 
     await prisma.box_users.create({
       data: {
@@ -104,7 +88,7 @@ export class UserService {
     if (updateFields.password) {
       updateFields = {
         ...updateFields,
-        password: await this.encryptPassword(updateFields.password),
+        password: await this.cryptService.encrypt(updateFields.password),
       };
     }
 
@@ -117,21 +101,6 @@ export class UserService {
     });
 
     return await this.getResponseUser(user_id);
-  }
-
-  public async comparePassword(
-    password: string,
-    hash: string,
-  ): Promise<boolean> {
-    password += process.env.PASSWORD_SALT;
-
-    let isPasswordMatch = false;
-
-    await bcrypt
-      .compare(password, hash)
-      .then((result) => (isPasswordMatch = result));
-
-    return isPasswordMatch;
   }
 
   public async getConfirmEmailCode(email: string): Promise<string> {
@@ -192,63 +161,6 @@ export class UserService {
     await this.update({ confirmed: true }, user.user_id);
 
     return await this.getResponseUser(user.user_id);
-  }
-
-  public async play(
-    user_id: number,
-    box_id: number,
-  ): Promise<Record<any, any>> {
-    const box = await prisma.box_boxes.findUnique({
-      where: { box_id },
-    });
-
-    // check on user can play this box
-
-    if (!box) {
-      throw {
-        error: { box_id: 'box not found' },
-      };
-    } else if (!box.is_active) {
-      throw {
-        error: { box_id: "Box is not active. You can't play this box." },
-      };
-    }
-
-    const user = await this.getUserById(user_id);
-
-    if (user.balance < box.price) {
-      throw {
-        error: { box_id: 'not enough money' },
-      };
-    }
-
-    // get random cheap prize
-
-    const rarity = await prisma.box_rare_statuses.findFirst({
-      where: {
-        slug: 'frequently',
-      },
-    });
-
-    const cheapBoxItems = await prisma.box_items.findMany({
-      where: {
-        box_id,
-        rare_status_id: rarity.rare_status_id,
-      },
-    });
-
-    const prize =
-      cheapBoxItems[
-        Math.floor(Math.random() * cheapBoxItems.length) % cheapBoxItems.length
-      ];
-
-    // update user balance and stock
-
-    await this.update({ balance: user.balance - box.price }, user.user_id);
-
-    await this.stockService.addItem(user_id, prize.item_id, 1);
-
-    return prize;
   }
 
   public async updatePartnership(
