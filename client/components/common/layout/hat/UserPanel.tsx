@@ -6,6 +6,8 @@ import ChevronDown from "@components/common/icons/chevron-down/ChevronDown";
 import balanceToString from "@utils/balanceToString";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import { getAvatar } from "@components/pages/account/edit/Avatars";
 
 interface IProps {
   onToggle?: any;
@@ -17,6 +19,9 @@ export const UserPanel: React.FC<IProps> = function (props) {
   const user = useSelector((state) => state.user.user);
   const [open, setOpen] = useState(false);
   const router = useRouter();
+
+  console.log("COMPONENT: UserPanel");
+  console.log(`Fields: name="${user.name}" avatar="${user.avatar}"`);
 
   function toggle() {
     //todo: dummy for menu drop down
@@ -42,10 +47,13 @@ export const UserPanel: React.FC<IProps> = function (props) {
       onClick={toggle}
     >
       <div className={cn(Style.avatarImageContainer, "flex-shrink-0")}>
-        <img
-          src={"/images/default-avatar.png"}
-          className={Style.avatarImage}
-          alt={"Аватар"}
+        <Image
+          src={getAvatar(user.avatar)}
+          alt="Аватар"
+          width={48}
+          height={48}
+          className={cn(Style.avatar, "user-select-none", "user-drag-none")}
+          suppressHydrationWarning={true}
         />
       </div>
 

@@ -1,5 +1,4 @@
 import * as React from "react";
-import Navigation from "@components/common/layout/hat/Navigation";
 import Styles from "@components/common/layout/hat/Hat.module.scss";
 import cn from "classnames";
 import ConvexButton from "@components/common/ui/convex-button/ConvexButton";
@@ -8,7 +7,6 @@ import { useDispatch } from "react-redux";
 import useSelector from "@hooks/useSelector";
 import UserPanel from "@components/common/layout/hat/UserPanel";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import MenuDesktop from "@components/common/layout/hat/MenuDesktop";
 import HatMobile from "@components/common/layout/hat/mobile/HatMobile";
 import ModalLogin from "@components/pages/main/modal-login/ModalLogin";
@@ -17,7 +15,6 @@ import ModalRegister from "@components/pages/main/modal-register/ModalRegister";
 export const Hat: React.FC = function () {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
-  const router = useRouter();
 
   function openModalLogin() {
     dispatch(

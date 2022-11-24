@@ -113,6 +113,8 @@ export const Edit: React.FC = function () {
                       height={250}
                       priority={true}
                       onClick={() => setIsSelectAvatar(!isSelectAvatar)}
+                      suppressHydrationWarning={true}
+
                     />
 
                     <div

@@ -7,6 +7,8 @@ import balanceToString from "@utils/balanceToString";
 import Panel from "@components/common/layout/account/Panel";
 import Link from "next/link";
 import IconEmail from "@components/common/icons/email/Email";
+import Image from "next/image";
+import { getAvatar } from "@components/pages/account/edit/Avatars";
 
 export const Account: React.FC = function () {
   const user = useSelector((state) => state.user.user);
@@ -26,10 +28,13 @@ export const Account: React.FC = function () {
               "justify-content-lg-start"
             )}
           >
-            <img
-              src={"/images/default-avatar.png"}
+            <Image
+              src={getAvatar(user.avatar)}
               alt="Аватар"
-              className={Style.avatarImage}
+              width={200}
+              height={200}
+              className={cn(Style.avatar, "user-select-none", "user-drag-none")}
+              suppressHydrationWarning={true}
             />
           </div>
 

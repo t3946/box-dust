@@ -45,6 +45,7 @@ export const HatMobile: React.FC<IProps> = function (props) {
             width={60}
             height={60}
             className={cn(Style.avatar, "user-select-none", "user-drag-none")}
+            suppressHydrationWarning={true}
           />
         </Link>
       );

@@ -58,6 +58,16 @@ App.getInitialProps = async (appContext) => {
       headers,
     })
     .then((res) => {
+      // log
+      if (typeof window === "undefined") {
+        console.log("SERVER");
+      } else {
+        console.log("CLIENT");
+      }
+      console.log(
+        `Fields: name="${res.data.user.name}" avatar="${res.data.user.avatar}"`
+      );
+
       return res.data.user;
     })
     .catch(() => {
