@@ -1,0 +1,48 @@
+@import "styles/utils/Utils.module.scss";
+
+.avatarWrapper {
+  position: relative;
+  cursor: pointer;
+
+  &_button {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &:hover {
+    .selectAvatarButton {
+      color: #d5d5d5;
+    }
+  }
+}
+
+.selectAvatarWrapper {
+  overflow-y: scroll;
+  padding: pxToRem(8) pxToRem(16) pxToRem(8) pxToRem(8);
+}
+
+.selectAvatarButton {
+  color: #ffffff;
+  font-family: Calibri, sans-serif;
+  font-size: pxToRem(16);
+  background: rgba(0,0,0,.3);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: pxToRem(40);
+  transition: color 0.15s ease-out;
+}
+
+.selectAvatarIcon {
+  width: pxToRem(16);
+}
+
+.changeAvatarGroup {
+  display: grid;
+  grid-template-columns: pxToRem(250) 1fr;
+  grid-template-rows: pxToRem(250);
+  grid-gap: pxToRem(24);
+}

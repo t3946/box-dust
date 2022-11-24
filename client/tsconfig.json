@@ -36,6 +36,9 @@
       ],
       "@submodules/*": [
         "submodules/*"
+      ],
+      "@resources/*": [
+        "resources/*"
       ]
     }
   },

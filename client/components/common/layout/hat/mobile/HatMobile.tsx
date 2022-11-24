@@ -9,6 +9,8 @@ import MenuButton from "@components/common/layout/hat/mobile/MenuButton";
 import Style from "@components/common/layout/hat/mobile/HatMobile.module.scss";
 import Sidebar from "@components/common/layout/hat/mobile/Sidebar";
 import IconUser from "@components/common/icons/user/Solid";
+import { getAvatar } from "@components/pages/account/edit/Avatars";
+import Image from "next/image";
 
 export interface IProps {
   className?: any;
@@ -18,7 +20,6 @@ export const HatMobile: React.FC<IProps> = function (props) {
   const { className } = props;
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
-  const avatar = user?.avatar || "/images/default-avatar.png";
 
   function openModalLogin() {
     dispatch(
@@ -38,10 +39,12 @@ export const HatMobile: React.FC<IProps> = function (props) {
     if (user) {
       return (
         <Link href={"/account/profile"}>
-          <img
-            src={avatar}
+          <Image
+            src={getAvatar(user.avatar)}
+            alt="Аватар"
+            width={60}
+            height={60}
             className={cn(Style.avatar, "user-select-none", "user-drag-none")}
-            alt={"Аватар"}
           />
         </Link>
       );

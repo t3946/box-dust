@@ -6,6 +6,12 @@ import * as Yup from "yup";
 import { Form as FormikForm, Formik } from "formik";
 import useSelector from "@hooks/useSelector";
 import { FormikHelpers } from "formik/dist/types";
+import Image from "next/image";
+import SelectAvatar from "@components/pages/account/edit/SelectAvatar";
+import { getAvatar } from "@components/pages/account/edit/Avatars";
+import Style from "@components/pages/account/edit/Edit.module.scss";
+import cn from "classnames";
+import IconEdit from "@components/common/icons/edit/Edit";
 
 export const Edit: React.FC = function () {
   const user = useSelector((state) => state.user.user);
@@ -19,6 +25,7 @@ export const Edit: React.FC = function () {
     email: user.email,
     password: "",
   };
+  const [isSelectAvatar, setIsSelectAvatar] = React.useState(false);
 
   function submit(
     values: typeof initialValues,
@@ -38,10 +45,9 @@ export const Edit: React.FC = function () {
         onSubmit={submit}
       >
         {({ values, isSubmitting, handleChange, setValues, errors }) => {
-          console.log({ errors });
           return (
             <FormikForm>
-              <RBForm.Group className="mb-3" controlId="formBasicEmail">
+              <RBForm.Group className="mb-3" controlId="controlName">
                 <RBForm.Label>Имя</RBForm.Label>
                 <RBForm.Control
                   name={"name"}
@@ -55,7 +61,7 @@ export const Edit: React.FC = function () {
                 </RBForm.Text>
               </RBForm.Group>
 
-              <RBForm.Group className="mb-3" controlId="formBasicEmail">
+              <RBForm.Group className="mb-3" controlId="controlEmail">
                 <RBForm.Label>E-mail адрес</RBForm.Label>
                 <RBForm.Control
                   name={"email"}
@@ -69,17 +75,44 @@ export const Edit: React.FC = function () {
                 </RBForm.Text>
               </RBForm.Group>
 
-              <RBForm.Group className="mb-3" controlId="formBasicEmail">
+              <RBForm.Group className="mb-3" controlId="controlAvatar">
                 <RBForm.Label>Аватар</RBForm.Label>
-                <div></div>
-                <RBForm.Text className="text-muted">
-                  Допустимые форматы: *.PNG, *.JPG, *.JPEG
-                  <br />
-                  Размер изображения: 400x400
-                  <br />
-                  Размер файла: до 2mb
-                  <br />
-                </RBForm.Text>
+
+                <div className={Style.changeAvatarGroup}>
+                  <div className={Style.avatarWrapper}>
+                    <Image
+                      src={getAvatar(user.avatar)}
+                      alt="Аватар"
+                      width={250}
+                      height={250}
+                      priority={true}
+                      onClick={() => setIsSelectAvatar(!isSelectAvatar)}
+                    />
+
+                    <div
+                      className={cn(
+                        Style.selectAvatarButton,
+                        Style.avatarWrapper_button
+                      )}
+                    >
+                      <span>Выбрать аватар</span>
+                      <IconEdit
+                        className={cn(Style.selectAvatarIcon, "ms-2")}
+                      />
+                    </div>
+                  </div>
+
+                  <div className={"d-flex"}>
+                    <div
+                      className={cn(
+                        Style.selectAvatarWrapper,
+                        "custom-scrollbar-light"
+                      )}
+                    >
+                      {isSelectAvatar && <SelectAvatar />}
+                    </div>
+                  </div>
+                </div>
               </RBForm.Group>
 
               <h3>Безопасность</h3>
