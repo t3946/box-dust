@@ -2,13 +2,26 @@ import * as React from "react";
 import Image from "next/image";
 import { avatars } from "@components/pages/account/edit/Avatars";
 import Style from "@components/pages/account/edit/SelectAvatar.module.scss";
+import cn from "classnames";
 
-export const SelectAvatar: React.FC = function () {
+interface IProps {
+  avatarType: string;
+  onSelect: (avatar: string) => void;
+}
+
+export const SelectAvatar: React.FC<IProps> = function (props) {
+  const { avatarType, onSelect } = props;
   const items = [];
 
   for (let i = 0; i < avatars.length; i++) {
     items.push(
-      <div className={Style.imageWrapper} key={`select-avatar-item-${i}`}>
+      <div
+        className={cn(Style.imageWrapper, {
+          [Style.imageWrapper_active]: avatars[i].type === avatarType,
+        })}
+        key={`select-avatar-item-${i}`}
+        onClick={() => onSelect(avatars[i].type)}
+      >
         <Image
           src={avatars[i].avatar}
           alt="Аватар"

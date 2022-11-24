@@ -75,6 +75,9 @@ export class UserService {
       const user = await prisma.box_users.findFirst({
         where: {
           email: updateFields.email,
+          user_id: {
+            not: user_id,
+          },
         },
       });
 

@@ -33,7 +33,7 @@ export class UserController {
     }
   }
 
-  @Post()
+  @Post('update')
   @HttpCode(HttpStatus.ACCEPTED)
   public async update(
     @User() user: Record<any, any>,

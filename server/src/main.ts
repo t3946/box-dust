@@ -13,6 +13,7 @@ async function bootstrap() {
     new ValidationPipe({
       disableErrorMessages: false,
       transform: true,
+      skipMissingProperties: true,
     }),
   );
   app.use(cookieParser());

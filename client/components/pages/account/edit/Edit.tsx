@@ -12,6 +12,8 @@ import { getAvatar } from "@components/pages/account/edit/Avatars";
 import Style from "@components/pages/account/edit/Edit.module.scss";
 import cn from "classnames";
 import IconEdit from "@components/common/icons/edit/Edit";
+import { useDispatch } from "react-redux";
+import { update } from "@redux/actions/User";
 
 export const Edit: React.FC = function () {
   const user = useSelector((state) => state.user.user);
@@ -19,20 +21,37 @@ export const Edit: React.FC = function () {
     name: Yup.string().required().min(3).max(32),
     email: Yup.string().email().required(),
     password: Yup.string(),
+    avatar: Yup.string(),
   });
   const initialValues = {
     name: user.name,
     email: user.email,
     password: "",
+    avatar: user.avatar,
   };
   const [isSelectAvatar, setIsSelectAvatar] = React.useState(false);
+  const dispatch = useDispatch();
 
   function submit(
     values: typeof initialValues,
     formikHelpers: FormikHelpers<typeof values>
   ) {
+    const data: Record<any, any> = { ...values };
+
+    if (data.password === "") {
+      delete data.password;
+    }
+
     formikHelpers.setSubmitting(true);
-    console.log("submit");
+
+    dispatch(
+      update({
+        data,
+        callback() {
+          formikHelpers.setSubmitting(false);
+        },
+      })
+    );
   }
 
   return (
@@ -44,7 +63,14 @@ export const Edit: React.FC = function () {
         validationSchema={validationSchema}
         onSubmit={submit}
       >
-        {({ values, isSubmitting, handleChange, setValues, errors }) => {
+        {({
+          values,
+          isSubmitting,
+          handleChange,
+          setValues,
+          errors,
+          setFieldValue,
+        }) => {
           return (
             <FormikForm>
               <RBForm.Group className="mb-3" controlId="controlName">
@@ -81,7 +107,7 @@ export const Edit: React.FC = function () {
                 <div className={Style.changeAvatarGroup}>
                   <div className={Style.avatarWrapper}>
                     <Image
-                      src={getAvatar(user.avatar)}
+                      src={getAvatar(values.avatar)}
                       alt="Аватар"
                       width={250}
                       height={250}
@@ -109,7 +135,14 @@ export const Edit: React.FC = function () {
                         "custom-scrollbar-light"
                       )}
                     >
-                      {isSelectAvatar && <SelectAvatar />}
+                      {isSelectAvatar && (
+                        <SelectAvatar
+                          avatarType={values.avatar}
+                          onSelect={(avatar: string) => {
+                            setFieldValue("avatar", avatar);
+                          }}
+                        />
+                      )}
                     </div>
                   </div>
                 </div>
