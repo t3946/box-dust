@@ -8,8 +8,8 @@ import IconDice from "@components/common/icons/dice/Duotone";
 import IconCoins from "@components/common/icons/coins/Duotone";
 import CountersList from "@components/pages/account/partnership/stats/CountersList";
 import balanceToString from "@utils/balanceToString";
-import ProfitChartGroup from "@components/pages/account/partnership/stats/ProfitChartGroup";
 import Transactions from "@components/pages/account/partnership/stats/Transactions";
+import ChartGroup from "@components/pages/account/partnership/charts/chart/ChartGroup";
 
 export const Stats: React.FC = function () {
   const user = useSelector((state) => state.user.user);
@@ -173,15 +173,7 @@ export const Stats: React.FC = function () {
       </Panel>
 
       <Panel className={cn(Style.areaProfitChart, "d-flex", "flex-column")}>
-        <h4>{profitChartHeader}</h4>
-
-        <div className={"flex-grow-1"}>
-          <ProfitChartGroup
-            onChangeInterval={(interval: any) => {
-              setProfitChartHeader(`Прибыль за ${interval.title}`);
-            }}
-          />
-        </div>
+        <ChartGroup title={"Прибыль"} classes={{chart: Style.chart}} />
       </Panel>
 
       <Panel className={cn(Style.areaTransactions, "d-flex", "flex-column")}>

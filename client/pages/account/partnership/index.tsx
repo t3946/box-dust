@@ -13,7 +13,7 @@ export async function getServerSideProps(ctx: any) {
   };
 }
 
-export default function PartnershipPage(props) {
+export default function PartnershipPage(props: any) {
   const user = useSelector((state) => state.user.user);
   const router = useRouter();
   const referer = props.referer;

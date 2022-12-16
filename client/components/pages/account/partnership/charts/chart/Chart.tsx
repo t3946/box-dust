@@ -9,30 +9,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function getData(size: number) {
-  const dayTime = 24 * 60 * 60 * 1000;
-  const now = new Date().getTime();
-  const data = [];
-
-  for (let i = 0; i < size; i++) {
-    const date = new Date(now - dayTime * i);
-
-    data.unshift({
-      date: date.toLocaleDateString(),
-      value: 500 * Math.round(Math.random() * 6),
-    });
-  }
-
-  return data;
-}
-
 interface IProps {
-  size: number;
+  data: Record<any, any>[];
 }
 
 export const ProfitChart: React.FC<IProps> = function (props) {
-  const { size } = props;
-  const data = getData(size);
+  const { data } = props;
 
   const styleAxis = {
     fontSize: "12px",
@@ -55,7 +37,7 @@ export const ProfitChart: React.FC<IProps> = function (props) {
       >
         <CartesianGrid strokeDasharray="3 3" />
 
-        <XAxis dataKey="date" style={styleAxis} key={"foo"}/>
+        <XAxis dataKey="date" style={styleAxis} />
 
         <YAxis tickCount={3} width={20} style={styleAxis} />
 

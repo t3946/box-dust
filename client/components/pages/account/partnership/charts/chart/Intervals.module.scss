@@ -1,0 +1,20 @@
+@import "styles/utils/Utils.module.scss";
+
+.pill {
+  font-size: pxToRem(16);
+  border-radius: 100px;
+  user-select: none;
+  font-family: Calibri, sans-serif;
+  cursor: pointer;
+
+  &_active {
+    font-weight: 600;
+    cursor: default;
+  }
+}
+
+.intervals {
+  &__item:not(:first-child) {
+    margin: 0 0 0 pxToRem(8);
+  }
+}

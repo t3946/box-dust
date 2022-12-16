@@ -1,0 +1,33 @@
+@import "styles/utils/Utils.module.scss";
+
+.container {
+  display: grid;
+  grid-gap: pxToRem(16);
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "ga1 ga1" "ga2 ga3" "ga4 ga5";
+}
+
+.areaHeader {
+  grid-area: ga1;
+}
+
+.areaChart1 {
+  grid-area: ga2;
+}
+
+.areaChart2 {
+  grid-area: ga3;
+}
+
+.areaChart3 {
+  grid-area: ga4;
+}
+
+.areaChart4 {
+  grid-area: ga5;
+}
+
+.chart {
+  height: pxToRem(200);
+}

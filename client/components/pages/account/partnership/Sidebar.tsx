@@ -34,17 +34,17 @@ export const SidebarAccount: React.FC<IProps> = function (props) {
       },
       {
         label: "Чарты",
-        route: "/account/profile",
+        route: "/account/partnership/charts",
         icon: <IconChartLine />,
       },
       {
         label: "Лиды",
-        route: "/account/profile",
+        route: "/account/partnership/lids",
         icon: <IconUsers />,
       },
       {
         label: "Спины",
-        route: "/account/profile",
+        route: "/account/partnership/spins",
         icon: <IconDice />,
       },
       {
