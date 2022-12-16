@@ -20,9 +20,6 @@ export const UserPanel: React.FC<IProps> = function (props) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
-  console.log("COMPONENT: UserPanel");
-  console.log(`Fields: name="${user.name}" avatar="${user.avatar}"`);
-
   function toggle() {
     //todo: dummy for menu drop down
     if (!onToggle) {

@@ -18,19 +18,19 @@ export const Menu: React.FC<IProps> = function (props) {
     const item = navigationMenu[i];
 
     navigationMenuItemsTemplates.push(
-      <Link
-        href={item.route}
-        key={`item-${i}`}
-        className={cn(
-          Style.item,
-          { [Style.item_first]: i === 0 },
-          "link-unstyled",
-          "d-block"
-        )}
-        onClick={onClick}
-      >
-        <ChevronDown className={cn(Style.icon, "me-2")} />
-        {item.label}
+      <Link href={item.route} key={`item-${i}`}>
+        <a
+          onClick={onClick}
+          className={cn(
+            Style.item,
+            { [Style.item_first]: i === 0 },
+            "link-unstyled",
+            "d-block"
+          )}
+        >
+          <ChevronDown className={cn(Style.icon, "me-2")} />
+          {item.label}
+        </a>
       </Link>
     );
   }

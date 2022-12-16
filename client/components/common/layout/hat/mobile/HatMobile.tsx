@@ -16,7 +16,7 @@ export interface IProps {
   className?: any;
 }
 
-export const HatMobile: React.FC<IProps> = function (props) {
+export const HatMobile: React.FC<IProps> = function(props) {
   const { className } = props;
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
@@ -25,7 +25,7 @@ export const HatMobile: React.FC<IProps> = function (props) {
     dispatch(
       modalOpen({
         modal: "login",
-      })
+      }),
     );
   }
 
@@ -39,14 +39,16 @@ export const HatMobile: React.FC<IProps> = function (props) {
     if (user) {
       return (
         <Link href={"/account/profile"}>
-          <Image
-            src={getAvatar(user.avatar)}
-            alt="Аватар"
-            width={60}
-            height={60}
-            className={cn(Style.avatar, "user-select-none", "user-drag-none")}
-            suppressHydrationWarning={true}
-          />
+          <a>
+            <Image
+              src={getAvatar(user.avatar)}
+              alt="Аватар"
+              width={60}
+              height={60}
+              className={cn(Style.avatar, "user-select-none", "user-drag-none")}
+              suppressHydrationWarning={true}
+            />
+          </a>
         </Link>
       );
     }
@@ -71,18 +73,20 @@ export const HatMobile: React.FC<IProps> = function (props) {
 
           <div className="col d-flex justify-content-center align-items-center">
             <Link href={"/"}>
-              <img
-                src={"/images/pages/main/logo.png"}
-                alt={"box dust"}
-                className={cn(
-                  HatStyle.logo,
-                  "mw-100",
-                  "h-auto",
-                  Style.logo,
-                  "user-select-none",
-                  "user-drag-none"
-                )}
-              />
+              <a>
+                <img
+                  src={"/images/pages/main/logo.png"}
+                  alt={"box dust"}
+                  className={cn(
+                    HatStyle.logo,
+                    "mw-100",
+                    "h-auto",
+                    Style.logo,
+                    "user-select-none",
+                    "user-drag-none",
+                  )}
+                />
+              </a>
             </Link>
           </div>
           <div className={cn(["col-auto", "align-items-center", "d-flex"])}>

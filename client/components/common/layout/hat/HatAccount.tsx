@@ -12,7 +12,7 @@ import HatMobile from "@components/common/layout/hat/mobile/HatMobile";
 import ModalLogin from "@components/pages/main/modal-login/ModalLogin";
 import ModalRegister from "@components/pages/main/modal-register/ModalRegister";
 
-export const Hat: React.FC = function () {
+export const Hat: React.FC = function() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
 
@@ -20,7 +20,7 @@ export const Hat: React.FC = function () {
     dispatch(
       modalOpen({
         modal: "login",
-      })
+      }),
     );
   }
 
@@ -32,11 +32,13 @@ export const Hat: React.FC = function () {
         <div className="container">
           <div className={Styles.hatWrapper}>
             <Link href={"/"}>
-              <img
-                src={"/images/pages/main/logo.png"}
-                alt={"site log"}
-                className={Styles.logo}
-              />
+              <a>
+                <img
+                  src={"/images/pages/main/logo.png"}
+                  alt={"site log"}
+                  className={Styles.logo}
+                />
+              </a>
             </Link>
 
             <div className="d-none d-lg-flex align-items-center justify-content-center">

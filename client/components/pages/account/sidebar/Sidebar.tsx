@@ -26,32 +26,35 @@ export const Sidebar: React.FC<IProps> = function (props) {
         break;
 
       case "buttonBack":
-        content = <ButtonBack className={className} referer={items[i].referer} />;
+        content = (
+          <ButtonBack className={className} referer={items[i].referer} />
+        );
         break;
 
       default:
         content = (
-          <Link
-            href={route}
-            className={cn(
-              Style.item,
-              {
-                [Style.item__active]: router.route === route,
-              },
-              "position-relative",
-              "d-flex",
-              "justify-content-between",
-              "link-unstyled",
-              className
-            )}
-          >
-            <div className={"d-flex"}>
-              {icon ? <span className={Style.icon}>{icon}</span> : null}
-              <span className={cn("d-flex", "align-items-center")}>
-                <span>{label}</span>
-              </span>
-            </div>
-            {!!badge && <Badge theme={badgeTheme}>{badge}</Badge>}
+          <Link href={route}>
+            <a
+              className={cn(
+                Style.item,
+                {
+                  [Style.item__active]: router.route === route,
+                },
+                "position-relative",
+                "d-flex",
+                "justify-content-between",
+                "link-unstyled",
+                className
+              )}
+            >
+              <div className={"d-flex"}>
+                {icon ? <span className={Style.icon}>{icon}</span> : null}
+                <span className={cn("d-flex", "align-items-center")}>
+                  <span>{label}</span>
+                </span>
+              </div>
+              {!!badge && <Badge theme={badgeTheme}>{badge}</Badge>}
+            </a>
           </Link>
         );
     }
