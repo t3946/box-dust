@@ -1,6 +1,4 @@
 import * as React from "react";
-import SecondaryContainer from "@components/common/layout/account/SecondaryContainer";
-import Style from "@components/pages/account/partnership/dashboard/ReferalsList.module.scss";
 import Table from "antd/lib/table";
 import useSelector from "@hooks/useSelector";
 import { ColumnType } from "antd/lib/table/interface";
@@ -67,14 +65,12 @@ const GamesList: React.FC<IProps> = function (props) {
   }
 
   return (
-    <SecondaryContainer header={"Спины"} className={"h-100 d-flex flex-column"}>
-      <Table
-        dataSource={dataSource}
-        columns={columns}
-        pagination={false}
-        showSorterTooltip={false}
-      />
-    </SecondaryContainer>
+    <Table
+      dataSource={dataSource}
+      columns={columns}
+      pagination={false}
+      showSorterTooltip={false}
+    />
   );
 };
 

@@ -1,17 +1,17 @@
 import Head from "next/head";
 import React from "react";
 import PageAccount from "@components/common/layout/page/account/Page";
-import Lids from "@components/pages/account/partnership/lids/Lids";
+import Spins from "@components/pages/account/partnership/spins/Spins";
 
-export default function LidsPage() {
+export default function SpinsPage() {
   return (
     <>
       <Head>
-        <title>Лиды</title>
+        <title>Спины</title>
       </Head>
 
       <PageAccount isPartnership={true}>
-        <Lids />
+        <Spins />
       </PageAccount>
     </>
   );
