@@ -6,7 +6,6 @@ import FormButton from "@components/common/form/button/Button";
 import balanceToString from "@utils/balanceToString";
 import Panel from "@components/common/layout/account/Panel";
 import Link from "next/link";
-import IconEmail from "@components/common/icons/email/Email";
 import Image from "next/image";
 import { getAvatar } from "@components/pages/account/edit/Avatars";
 
@@ -20,78 +19,48 @@ export const Account: React.FC = function () {
   return (
     <>
       <Panel>
-        <div className="d-flex flex-column flex-lg-row">
-          <div
-            className={cn(
-              "d-flex",
-              "justify-content-center",
-              "justify-content-lg-start"
-            )}
-          >
+        <div className={Style.content}>
+          <div>
             <Image
               src={getAvatar(user.avatar)}
               alt="Аватар"
-              width={200}
-              height={200}
+              width={240}
+              height={240}
               className={cn(Style.avatar, "user-select-none", "user-drag-none")}
-              suppressHydrationWarning={true}
             />
           </div>
 
-          <div className={"ms-lg-5"}>
-            <ul className={cn(Style.stat, "list-unstyled")}>
-              <li
-                className={cn(
-                  "mb-1",
-                  "mt-3",
-                  "mt-lg-0",
-                  "text-center",
-                  "text-lg-start"
-                )}
-              >
-                <span className={cn(Style.userName, "mb-3")}>
-                  <span className={Style.userNameString}>{user.name}</span>
-                </span>
-              </li>
+          <div>
+            <div
+              className={cn("mt-3", "mt-lg-0", "text-center", "text-lg-start")}
+            >
+              <span className={cn(Style.userName, "mb-3")}>
+                <span className={Style.userNameString}>{user.name}</span>
+              </span>
+            </div>
 
-              <li className={cn("mb-1", "text-center", "text-lg-start")}>
-                {/*short info about authorisation service partner*/}
-                {/*auth through email*/}
-                <span className={cn("d-none", "d-md-inline")}>Почта:</span>
-                <IconEmail
-                  className={cn("d-md-none", Style.authServiceIcon)}
-                />{" "}
-                {user.email}
-              </li>
+            <div
+              className={cn(
+                Style.balance,
+                Style.stat,
+                "fw-bold",
+                "text-center",
+                "text-lg-start"
+              )}
+            >
+              Баланс:{" "}
+              <span className={Style.balanceNumber}>
+                {balanceToString(user.balance)}
+              </span>
+            </div>
 
-              <li className={cn("mb-2", "text-center", "text-lg-start")}>
-                <Link href={"/account/profile/edit"}>
-                  <a>
-                    <FormButton className={"mt-2"}>редактировать</FormButton>
-                  </a>
-                </Link>
-              </li>
-            </ul>
-
-            <ul className={cn(Style.stat, "list-unstyled mt-3")}>
-              <li className={cn("text-center", "text-lg-start")}>
-                Призов на складе: 0
-              </li>
-              <li
-                className={cn(
-                  Style.balance,
-                  "mt-2",
-                  "fw-bold",
-                  "text-center",
-                  "text-lg-start"
-                )}
-              >
-                Баланс:{" "}
-                <span className={Style.balanceNumber}>
-                  {balanceToString(user.balance)}
-                </span>
-              </li>
-            </ul>
+            <div className={cn("mt-3", "text-center", "text-lg-start")}>
+              <Link href={"/account/profile/edit"}>
+                <a>
+                  <FormButton className={"w-auto"}>редактировать</FormButton>
+                </a>
+              </Link>
+            </div>
           </div>
         </div>
       </Panel>

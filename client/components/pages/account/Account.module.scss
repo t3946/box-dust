@@ -1,5 +1,11 @@
 @import "styles/utils/Utils.module.scss";
 
+.content {
+  display: grid;
+  grid-template-columns: pxToRem(240) 1fr;
+  grid-gap: pxToRem(32);
+}
+
 .avatarImage {
   $size: pxToRem(200);
   width: $size;
@@ -10,7 +16,6 @@
 .userName {
   font-size: pxToRem(48);
   text-transform: uppercase;
-  line-height: 1;
 }
 
 .userNameString {
