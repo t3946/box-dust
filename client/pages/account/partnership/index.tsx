@@ -3,9 +3,9 @@ import React, { useEffect } from "react";
 import useSelector from "@hooks/useSelector";
 import { useRouter } from "next/router";
 import PageAccount from "@components/common/layout/page/account/Page";
-import Partnership from "@components/pages/account/partnership/Partnership";
 import Invitation from "@components/pages/account/partnership/Invitation";
 import Panel from "@components/common/layout/account/Panel";
+import Stats from "@components/pages/account/partnership/stats/Stats";
 
 export async function getServerSideProps(ctx: any) {
   return {
@@ -24,6 +24,20 @@ export default function PartnershipPage(props) {
     }
   });
 
+  if (user.partnership_id) {
+    return (
+      <>
+        <Head>
+          <title>Статистика</title>
+        </Head>
+
+        <PageAccount isPartnership={true}>
+          <Stats />
+        </PageAccount>
+      </>
+    );
+  }
+
   return (
     <>
       <Head>
@@ -31,7 +45,9 @@ export default function PartnershipPage(props) {
       </Head>
 
       <PageAccount isPartnership={true} referer={referer}>
-        <Panel>{user.partnership_id ? <Partnership /> : <Invitation />}</Panel>
+        <Panel>
+          <Invitation />
+        </Panel>
       </PageAccount>
     </>
   );
