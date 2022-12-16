@@ -13,14 +13,12 @@ export const ProfitChartGroup: React.FC<IProps> = function (props) {
   const intervals = [
     {
       title: "7 дней",
+      value: 7,
     },
 
     {
       title: "30 дней",
-    },
-
-    {
-      title: "всё вермя",
+      value: 30,
     },
   ];
 
@@ -36,6 +34,7 @@ export const ProfitChartGroup: React.FC<IProps> = function (props) {
           setChartInterval(i);
           onChangeInterval(intervals[i]);
         }}
+        key={`interval-${i}`}
       >
         {intervals[i].title}
       </span>
@@ -48,7 +47,7 @@ export const ProfitChartGroup: React.FC<IProps> = function (props) {
         {intervalsItems}
       </div>
 
-      <ProfitChart />
+      <ProfitChart size={intervals[chartInterval].value} />
     </div>
   );
 };

@@ -9,52 +9,31 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+function getData(size: number) {
+  const dayTime = 24 * 60 * 60 * 1000;
+  const now = new Date().getTime();
+  const data = [];
 
-export const ProfitChart: React.FC = function () {
+  for (let i = 0; i < size; i++) {
+    const date = new Date(now - dayTime * i);
+
+    data.unshift({
+      date: date.toLocaleDateString(),
+      value: 500 * Math.round(Math.random() * 6),
+    });
+  }
+
+  return data;
+}
+
+interface IProps {
+  size: number;
+}
+
+export const ProfitChart: React.FC<IProps> = function (props) {
+  const { size } = props;
+  const data = getData(size);
+
   const styleAxis = {
     fontSize: "12px",
     fontWeight: 600,
@@ -76,19 +55,20 @@ export const ProfitChart: React.FC = function () {
       >
         <CartesianGrid strokeDasharray="3 3" />
 
-        <XAxis
-          dataKey="name"
-          ticks={["Page A", "Page C", "Page E", "Page G"]}
-          style={styleAxis}
-        />
+        <XAxis dataKey="date" style={styleAxis} key={"foo"}/>
 
         <YAxis tickCount={3} width={20} style={styleAxis} />
 
-        <Tooltip />
+        <Tooltip
+          formatter={(...args: any) => {
+            args[1] = "Прибыль";
+            return args;
+          }}
+        />
 
         <Line
           type="monotone"
-          dataKey="pv"
+          dataKey="value"
           stroke="#4c1d95"
           strokeWidth={3}
           activeDot={{ r: 8 }}
