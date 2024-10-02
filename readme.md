@@ -51,7 +51,7 @@ Server starts up
     2. `git submodule update --init`
     3. if not working then go in submodule and use git manually
     4. `npm run start`
-    5. create link to storage for roulette `ln -s /var/www/html/box-dust/admin/storage/app/public/ storage`
+    5. create link to storage for roulette `ln -s /var/www/html/box-dust/admin/storage/app/public/ storage` (`mklink /D storage "C:\Users\Air\OpenServer\domains\localhost\box-dust\admin\storage\app\public"`)
 11. setup admin part. You can read this instruction https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-laravel-with-nginx-on-ubuntu-20-04". Don't forget to install php-fpm for current php version and check nginx config for right fpm version.
     1. `sudo apt install php-mbstring php-xml php-bcmath`
     2. install composer
@@ -75,3 +75,14 @@ Server starts up
 If you register through email and password then you must confirm your account before use it. Not confirmed accounts will be deleted after one day.
 
 Dto validation objects good for development more and prevent database errors. Client get errors either before form send or after form send and data is valid but controller declined their by third-side cause (then I write explicitly req.send(errors: {email: "already registered"}) -- email is ok but after check db I got that it can't to use).
+
+# DB Database -- Recovering
+At first You need to apply migrations that in admin part. After You can to generate other date from prisma schema in server part.
+`cd admin`
+`php artisan migrate`
+`php artisan voyager:install --with-dummy`
+`cd sever`
+`npx prisma db push`
+Then you should generate admin user
+`php artisan voyager:admin admin --create`
+And now you can go to admin
