@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module } from "@nestjs/common";
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import passport = require('passport');
 import { GameService } from './game.service';
 import { StockModule } from '@src/stock/stock.module';
