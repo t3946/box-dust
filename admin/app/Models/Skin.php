@@ -18,6 +18,7 @@ class Skin extends Model
         'category',
         'rarity',
         'popularity',
+        'image',
     ];
 
     public $timestamps = false;

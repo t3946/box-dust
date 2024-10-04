@@ -20,7 +20,8 @@
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "^1.0",
         "tcg/voyager": "^1.4",
-        "tightenco/ziggy": "^1.0"
+        "tightenco/ziggy": "^1.0",
+        "ext-gd": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
