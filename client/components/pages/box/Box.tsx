@@ -4,6 +4,7 @@ import NeonText from "@components/common/layout/neon-text/NeonText";
 import dynamic from "next/dynamic";
 import PrizeModal from "@components/pages/box/PrizeModal";
 import Catalog from "@components/pages/box/catalog/Catalog";
+import Catalog2 from "@components/pages/box/catalog/Catalog2";
 import ModalItem from "@components/pages/box/catalog/ModalItem";
 
 const Game = dynamic(() => import("@components/pages/box/Game"), {
@@ -36,18 +37,22 @@ export const Box: React.FC<IProps> = function (props) {
         </MainHeader>
       </div>
 
-      <Game
-        box={box}
-        items={box.items}
-        handleModalPrizeShow={handleModalPrizeShow}
-        setPrize={setPrize}
-      />
+      {/*<Game*/}
+      {/*  box={box}*/}
+      {/*  items={box.cs_items}*/}
+      {/*  handleModalPrizeShow={handleModalPrizeShow}*/}
+      {/*  setPrize={setPrize}*/}
+      {/*/>*/}
 
       <div className="container">
         <Catalog
-          items={box.items}
+          items={box.cs_items}
           handleModalItemShow={handleModalItemShow}
           setItemModal={setItemModal}
+        />
+
+        <Catalog2
+          items={box.cs_items}
         />
 
         {/*<ModalItem*/}

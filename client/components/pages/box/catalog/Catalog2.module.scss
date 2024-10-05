@@ -1,0 +1,18 @@
+@import "styles/utils/Utils.module.scss";
+
+.catalog {
+  padding: 40px 20px;
+  border-radius: 10px;
+  background: #1e1f2c;
+}
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(6, 240px);
+  grid-gap: pxToRem(10);
+}
+
+.cardsWrapper {
+  display: flex;
+  justify-content: center;
+}

@@ -30,7 +30,7 @@ export const Card: React.FC<IProps> = function (props) {
 
       <div className={Styles.prizeWrapper}>
         <img
-          src={"/storage/" + prize.image.name}
+          src={'https://storage.yandexcloud.net/boxdust/' + prize.image}
           alt={prize.name}
           className={cn(
             Styles.prize,
@@ -47,7 +47,7 @@ export const Card: React.FC<IProps> = function (props) {
         </span>
 
         <span className={Styles.price}>
-          {balanceToString(prize.list_price)}
+          {balanceToString(prize.price)}
         </span>
       </div>
     </div>

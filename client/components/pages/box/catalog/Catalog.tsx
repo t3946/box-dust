@@ -16,7 +16,7 @@ export const Catalog: React.FC<IProps> = function (props) {
   for (let i = 0; i < items.length; i++) {
     cards.push(
       <Card
-        prize={items[i]}
+        prize={items[i].item}
         onClick={() => {
           setItemModal(i + 1);
           handleModalItemShow();
