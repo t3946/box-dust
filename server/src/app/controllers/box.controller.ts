@@ -6,15 +6,21 @@ const prisma = new PrismaClient();
 
 @Controller('api/box')
 export class BoxController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) {
+  }
 
   @Get('/:box_id')
   async getBox(@Res() res, @Param() params) {
-    const box = await prisma.box_boxes.findUnique({
+    const box: any = await prisma.box_boxes.findUnique({
       where: {
         box_id: parseInt(params.box_id),
       },
       include: {
+        cs_items: {
+          include: {
+            item: true,
+          },
+        },
         items: {
           include: {
             image: true,

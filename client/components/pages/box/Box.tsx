@@ -50,18 +50,18 @@ export const Box: React.FC<IProps> = function (props) {
           setItemModal={setItemModal}
         />
 
-        <ModalItem
-          show={modalItemShow}
-          items={box.items}
-          handleClose={handleModalItemClose}
-          startFrom={itemModal}
-        />
+        {/*<ModalItem*/}
+        {/*  show={modalItemShow}*/}
+        {/*  items={box.items}*/}
+        {/*  handleClose={handleModalItemClose}*/}
+        {/*  startFrom={itemModal}*/}
+        {/*/>*/}
 
-        <PrizeModal
-          show={modalPrizeShow}
-          item={prize}
-          handleClose={handleModalPrizeClose}
-        />
+        {/*<PrizeModal*/}
+        {/*  show={modalPrizeShow}*/}
+        {/*  item={prize}*/}
+        {/*  handleClose={handleModalPrizeClose}*/}
+        {/*/>*/}
       </div>
     </>
   );

@@ -26,6 +26,7 @@ model box_boxes {
   box_categories box_categories? @relation(fields: [category_id], references: [category_id], onUpdate: SetNull, map: "box_boxes_box_categories_category_id_fk")
   small_image    box_images?     @relation("box_boxes_small_image_idTobox_images", fields: [small_image_id], references: [image_id], onUpdate: SetNull, map: "box_boxes_box_images_image_id_fk_2")
   type           box_types?      @relation(fields: [type_id], references: [type_id], onDelete: Restrict, onUpdate: Restrict, map: "box_boxes_box_types_type_id_fk")
+  cs_items       boxes_items[]
   box_f_history  box_f_history[]
   items          box_items[]
 
@@ -366,11 +367,11 @@ model users {
   avatar            String?      @default("users/default.png") @db.VarChar(255)
   email_verified_at DateTime?    @db.Timestamp(0)
   password          String?      @db.VarChar(255)
+  google_id         String?      @unique(map: "users_google_id_uindex") @db.VarChar(256)
   remember_token    String?      @db.VarChar(100)
   settings          String?      @db.Text
   created_at        DateTime?    @db.Timestamp(0)
   updated_at        DateTime?    @db.Timestamp(0)
-  google_id         String?      @unique(map: "users_google_id_uindex") @db.VarChar(256)
   roles             roles?       @relation(fields: [role_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "users_role_id_foreign")
   user_roles        user_roles[]
 
@@ -475,6 +476,34 @@ model box_games {
 
   @@index([item_id], map: "box_games_box_items_item_id_fk")
   @@index([user_id], map: "box_games_box_users_user_id_fk")
+}
+
+model boxes_items {
+  id         Int        @id @default(autoincrement())
+  box_id     Int?       @db.UnsignedInt
+  cs_item_id Int?
+  box        box_boxes? @relation(fields: [box_id], references: [box_id], onDelete: Cascade, map: "boxes_items_box_boxes_box_id_fk")
+  item       cs_items?  @relation(fields: [cs_item_id], references: [id], onDelete: Cascade, map: "boxes_items_cs_items_id_fk")
+
+  @@unique([box_id, cs_item_id], map: "box_item")
+  @@index([cs_item_id], map: "boxes_items_cs_items_id_fk")
+}
+
+model cs_items {
+  id         Int           @id @default(autoincrement())
+  type       String?       @db.VarChar(255)
+  name       String?       @db.VarChar(255)
+  name_ru    String?       @db.VarChar(255)
+  quality    String?       @db.VarChar(255)
+  rarity     String?       @db.VarChar(255)
+  image      String?       @db.VarChar(255)
+  popularity Int?
+  price      Float?        @db.Float
+  stattrak   Boolean?
+  category   String?       @db.VarChar(255)
+  boxes      boxes_items[]
+
+  @@unique([type, name, quality, stattrak], map: "type_name_quality_stattrak")
 }
 
 enum clients_gender {
