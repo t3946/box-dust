@@ -1,20 +1,20 @@
 @import "styles/utils/Utils.module.scss";
 
-$gradient-rarity-consumer: radial-gradient(178.01% 126.67% at 50% 100%, hsla(0, 0%, 65%, 0.5) 0%, rgba(24, 24, 36, .5) 100%);
-$gradient-rarity-industrial: radial-gradient(178.01% 126.67% at 50% 100%, rgba(94, 152, 217, .5) 0%, rgba(24, 24, 36, .5) 100%);
-$gradient-rarity-milspec: radial-gradient(178.01% 126.67% at 50% 100%, rgba(73, 135, 255, .5) 0%, rgba(24, 24, 36, .5) 100%);
-$gradient-rarity-restricted: radial-gradient(178.01% 126.67% at 50% 100%, rgba(151, 93, 248, .5) 0%, rgba(24, 24, 36, .5) 100%);
-$gradient-rarity-classified: radial-gradient(178.01% 126.67% at 50% 100%, rgba(235, 120, 254, .5) 0%, rgba(24, 24, 36, .5) 100%);
-$gradient-rarity-covert: radial-gradient(178.01% 126.67% at 50% 100%, rgba(255, 106, 115, .5) 0%, rgba(24, 24, 36, .5) 100%);
-$gradient-rarity-knife-gloves: radial-gradient(178.01% 126.67% at 50% 100%, rgba(255, 177, 105, .5) 0%, rgba(24, 24, 36, .5) 100%);
-$gradient-rarity-contraband: radial-gradient(178.01% 126.67% at 50% 100%, rgba(255, 177, 105, .5) 0%, rgba(24, 24, 36, .5) 100%);
+$gradient-rarity-consumer: radial-gradient(178.01% 126.67% at 50% 100%, hsla(0, 0%, 65%, 0.89) 0%, rgba(24, 24, 36, .5) 100%);
+$gradient-rarity-industrial: radial-gradient(178.01% 126.67% at 50% 100%, rgb(84 161 246 / 79%) 0%, rgba(24, 24, 36, .5) 100%);
+$gradient-rarity-milspec: radial-gradient(178.01% 126.67% at 50% 100%, rgb(46 116 252 / 70%) 0%, rgba(24, 24, 36, .5) 100%);
+$gradient-rarity-restricted: radial-gradient(178.01% 126.67% at 50% 100%, hsl(262deg 88% 54% / 80%) 0%, rgba(24, 24, 36, .5) 100%);
+$gradient-rarity-classified: radial-gradient(178.01% 126.67% at 50% 100%, rgb(226 49 255 / 75%) 0%, rgba(24, 24, 36, .5) 100%);
+$gradient-rarity-covert: radial-gradient(178.01% 126.67% at 50% 100%, hsl(0deg 88% 53.68% / 83%) 0%, rgba(24, 24, 36, .5) 100%);
+$gradient-rarity-knife-gloves: radial-gradient(178.01% 126.67% at 50% 100%, hsl(29deg 100% 58% / 92%) 0%, rgba(24, 24, 36, .5) 100%);
+$gradient-rarity-contraband: radial-gradient(178.01% 126.67% at 50% 100%, hsl(29deg 100% 58% / 92%) 0%, rgba(24, 24, 36, .5) 100%);
 
-$color-rarity-consumer: #a2a2a2;
-$color-rarity-industrial: #5e98d9;
+$color-rarity-consumer: #d4d4d4;
+$color-rarity-industrial: #7bade6;
 $color-rarity-milspec: #4987ff;
 $color-rarity-restricted: #975df8;
 $color-rarity-classified: #eb78fe;
-$color-rarity-covert: #ff6a73;
+$color-rarity-covert: #fa3440;
 $color-rarity-knife-gloves: #ffb169;
 $color-rarity-contraband: #ffb169;
 
