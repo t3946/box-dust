@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Skin extends Model
 {
-    protected $table = 'skins';
+    protected $table = 'cs_items';
 
     protected $fillable = [
         'type',
