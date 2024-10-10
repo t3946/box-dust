@@ -3,12 +3,7 @@ export function getImageUrl(path: string) {
     return "/images/pages/main/box-default.png";
   }
 
-  //todo: мне надо настроить отладку сафари
-
-
-  
-  //todo: need to fix static url
-  return "/storage/" + path;
+  return "/images/pages/main/boxes/" + path;
 }
 
 export default getImageUrl;

@@ -42,23 +42,12 @@ export const Box: React.FC<IProps> = function (props) {
         >
           <img
             className={cn(Styles.image)}
-            src={getImageUrl("box-default")}
+            src={getImageUrl(box.image)}
             alt="box"
-            width={200}
-            height={200}
           />
         </div>
 
-        <div className={cn(Styles.header, "mt-10")}>{box.name}</div>
-
-        <div className={cn([Styles.boxCardPrice, ""])}>
-          {!!box.old_price && (
-            <span className={cn([Styles.oldPrice, "me-1"])}>
-              {box.old_price / 100}
-            </span>
-          )}
-          <span className={Styles.price}>{box.price / 100}</span>
-        </div>
+        <div className={cn(Styles.boxTitle)}>{box.name}</div>
       </div>
 
       <div className={cn(Styles.footer, "d-flex", "justify-content-center")}>
