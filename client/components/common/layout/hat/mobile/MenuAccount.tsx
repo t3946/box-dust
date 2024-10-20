@@ -33,7 +33,7 @@ export const Menu: React.FC<IProps> = function (props) {
 
     accountMenuItemsTemplates.push(
       <Link href={item.route} key={`item-${i}`}>
-        <a
+        <span
           onClick={onClick}
           className={cn(
             StyleMenu.item,
@@ -45,7 +45,7 @@ export const Menu: React.FC<IProps> = function (props) {
         >
           <ChevronDown className={cn(StyleMenu.icon, "me-2")} />
           {item.label}
-        </a>
+        </span>
       </Link>
     );
   }

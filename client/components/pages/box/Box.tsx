@@ -37,12 +37,12 @@ export const Box: React.FC<IProps> = function (props) {
         </MainHeader>
       </div>
 
-      {/*<Game*/}
-      {/*  box={box}*/}
-      {/*  items={box.cs_items}*/}
-      {/*  handleModalPrizeShow={handleModalPrizeShow}*/}
-      {/*  setPrize={setPrize}*/}
-      {/*/>*/}
+      <Game
+        box={box}
+        items={box.cs_items}
+        handleModalPrizeShow={handleModalPrizeShow}
+        setPrize={setPrize}
+      />
 
       <div className="container">
         <Catalog

@@ -34,7 +34,7 @@ export const Sidebar: React.FC<IProps> = function (props) {
       default:
         content = (
           <Link href={route}>
-            <a
+            <span
               className={cn(
                 Style.item,
                 {
@@ -54,7 +54,7 @@ export const Sidebar: React.FC<IProps> = function (props) {
                 </span>
               </div>
               {!!badge && <Badge theme={badgeTheme}>{badge}</Badge>}
-            </a>
+            </span>
           </Link>
         );
     }

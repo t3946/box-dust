@@ -19,7 +19,7 @@ export const Menu: React.FC<IProps> = function (props) {
 
     navigationMenuItemsTemplates.push(
       <Link href={item.route} key={`item-${i}`}>
-        <a
+        <span
           onClick={onClick}
           className={cn(
             Style.item,
@@ -30,7 +30,7 @@ export const Menu: React.FC<IProps> = function (props) {
         >
           <ChevronDown className={cn(Style.icon, "me-2")} />
           {item.label}
-        </a>
+        </span>
       </Link>
     );
   }

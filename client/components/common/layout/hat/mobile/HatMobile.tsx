@@ -39,7 +39,7 @@ export const HatMobile: React.FC<IProps> = function(props) {
     if (user) {
       return (
         <Link href={"/account/profile"}>
-          <a>
+          <span>
             <Image
               src={getAvatar(user.avatar)}
               alt="Аватар"
@@ -48,7 +48,7 @@ export const HatMobile: React.FC<IProps> = function(props) {
               className={cn(Style.avatar, "user-select-none", "user-drag-none")}
               suppressHydrationWarning={true}
             />
-          </a>
+          </span>
         </Link>
       );
     }
@@ -73,7 +73,7 @@ export const HatMobile: React.FC<IProps> = function(props) {
 
           <div className="col d-flex justify-content-center align-items-center">
             <Link href={"/"}>
-              <a>
+              <span>
                 <img
                   src={"/images/pages/main/logo.png"}
                   alt={"box dust"}
@@ -86,7 +86,7 @@ export const HatMobile: React.FC<IProps> = function(props) {
                     "user-drag-none",
                   )}
                 />
-              </a>
+              </span>
             </Link>
           </div>
           <div className={cn(["col-auto", "align-items-center", "d-flex"])}>

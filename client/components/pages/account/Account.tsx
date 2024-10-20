@@ -56,9 +56,9 @@ export const Account: React.FC = function () {
 
             <div className={cn("mt-3", "text-center", "text-lg-start")}>
               <Link href={"/account/profile/edit"}>
-                <a>
+                <span>
                   <FormButton className={"w-auto"}>редактировать</FormButton>
-                </a>
+                </span>
               </Link>
             </div>
           </div>

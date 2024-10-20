@@ -32,13 +32,13 @@ export const Hat: React.FC = function() {
         <div className="container">
           <div className={Styles.hatWrapper}>
             <Link href={"/"}>
-              <a>
+              <span>
                 <img
                   src={"/images/pages/main/logo.png"}
                   alt={"site log"}
                   className={Styles.logo}
                 />
-              </a>
+              </span>
             </Link>
 
             <div className="d-none d-lg-flex align-items-center justify-content-center">

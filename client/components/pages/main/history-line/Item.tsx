@@ -15,7 +15,7 @@ export const Item: React.FC<IProps> = function (props) {
   return (
     <>
       <Link href={`/box/${item.box.box_id}/open`}>
-        <a className={"link-unstyled"}>
+        <span className={"link-unstyled"}>
           <div
             className={cn([
               Styles.container,
@@ -43,7 +43,7 @@ export const Item: React.FC<IProps> = function (props) {
               <div className="col-4 d-flex align-items-center justify-content-center p-0">
                 <img
                   className={Styles.image}
-                  src={getImageUrl(item.item.image.name)}
+                  // src={getImageUrl(item.item.image.name)}
                   alt={item.item.name}
                   title={item.item.name}
                 />
@@ -52,7 +52,7 @@ export const Item: React.FC<IProps> = function (props) {
 
             <div className={Styles.winner}>{item.user.name}</div>
           </div>
-        </a>
+        </span>
       </Link>
     </>
   );
