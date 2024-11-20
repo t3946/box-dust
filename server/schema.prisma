@@ -20,12 +20,13 @@ model box_boxes {
   category_id    Int?            @db.UnsignedInt
   is_recommend   Boolean         @default(false)
   image          String?         @db.VarChar(255)
-  type_id        Int?            @default(1)
+  background     String?         @db.VarChar(255)
+  header_color   String?         @db.VarChar(255)
+  type           String?         @db.VarChar(63)
   is_active      Boolean?        @default(false)
   big_image      box_images?     @relation("box_boxes_big_image_idTobox_images", fields: [big_image_id], references: [image_id], onUpdate: SetNull, map: "box_boxes_box_images_image_id_fk")
   box_categories box_categories? @relation(fields: [category_id], references: [category_id], onUpdate: SetNull, map: "box_boxes_box_categories_category_id_fk")
   small_image    box_images?     @relation("box_boxes_small_image_idTobox_images", fields: [small_image_id], references: [image_id], onUpdate: SetNull, map: "box_boxes_box_images_image_id_fk_2")
-  type           box_types?      @relation(fields: [type_id], references: [type_id], onDelete: Restrict, onUpdate: Restrict, map: "box_boxes_box_types_type_id_fk")
   cs_items       boxes_items[]
   box_f_history  box_f_history[]
   items          box_items[]
@@ -33,7 +34,6 @@ model box_boxes {
   @@index([big_image_id], map: "box_boxes_big_image_id_foreign")
   @@index([category_id], map: "box_boxes_category_id_foreign")
   @@index([small_image_id], map: "box_boxes_small_image_id_foreign")
-  @@index([type_id], map: "box_boxes_box_types_type_id_fk")
 }
 
 model box_categories {
@@ -435,12 +435,6 @@ model box_stock_items {
 
   @@unique([item_id, user_id], map: "box_stock_items_item_id_user_id_uindex")
   @@index([user_id], map: "box_stock_items_box_users_user_id_fk")
-}
-
-model box_types {
-  type_id   Int         @id @default(autoincrement())
-  name      String      @db.VarChar(32)
-  box_boxes box_boxes[]
 }
 
 model confirmation_codes {

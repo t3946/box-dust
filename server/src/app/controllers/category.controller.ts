@@ -20,9 +20,14 @@ export class CategoryController {
             is_active: true,
           },
           include: {
-            type: {
-              select: {
-                name: true,
+            cs_items: {
+              include: {
+                item: true,
+              },
+            },
+            items: {
+              include: {
+                image: true,
               },
             },
           },

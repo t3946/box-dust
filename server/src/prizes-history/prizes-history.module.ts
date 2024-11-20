@@ -42,13 +42,13 @@ export class PrizesHistoryModule {
         await prisma.$queryRaw`SELECT * FROM box_items ORDER BY RAND() LIMIT 1`
       )[0];
 
-      await prisma.box_f_history.create({
-        data: {
-          f_user_id: randomFakeUser?.f_user_id,
-          box_id: randomPrize?.box_id,
-          item_id: randomPrize?.item_id,
-        },
-      });
+      // await prisma.box_f_history.create({
+      //   data: {
+      //     f_user_id: randomFakeUser?.f_user_id,
+      //     box_id: randomPrize?.box_id,
+      //     item_id: randomPrize?.item_id,
+      //   },
+      // });
     }, UPDATE_FAKE_HISTORY_INTERVAL);
   }
 }
