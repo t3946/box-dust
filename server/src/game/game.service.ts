@@ -61,4 +61,35 @@ export class GameService {
 
     return prize;
   }
+
+  public async sellItem(userId, itemId) {
+    const stockItem = await prisma.box_stock_items.findFirst({
+      where: {
+        user_id: userId,
+        item_id: itemId,
+      },
+    });
+    const user = await this.userService.getUserById(userId);
+    const item = await prisma.cs_items.findUnique({ where: { id: itemId } });
+
+    if (stockItem.total === 1) {
+      await prisma.box_stock_items.delete({ where: { stock_item_id: stockItem.stock_item_id } });
+    } else {
+      await prisma.box_stock_items.updateMany({
+        where: { stock_item_id: stockItem.stock_item_id },
+        data: { total: stockItem.total - 1 },
+      });
+    }
+
+    const newBalance = user.balance + Math.round(item.price * 10);
+
+    await prisma.box_users.update({
+      where: {
+        user_id: userId,
+      },
+      data: {
+        balance: newBalance,
+      },
+    });
+  }
 }

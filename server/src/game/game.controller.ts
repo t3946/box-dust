@@ -18,6 +18,7 @@ export class GameController {
     private readonly userService: UserService,
     private readonly stockService: StockService,
   ) {}
+
   @Get('play')
   @HttpCode(HttpStatus.OK)
   public async play(
@@ -37,5 +38,24 @@ export class GameController {
     } catch (e) {
       throw new HttpException(e, HttpStatus.BAD_REQUEST);
     }
+  }
+
+  @Get('sell-item')
+  @HttpCode(HttpStatus.OK)
+  public async sellItem(
+    @User() user: Record<any, any>,
+    @Query('id') itemId: number,
+  ) {
+    await this.gameService.sellItem(user.user_id, itemId);
+
+    const { balance: newBalance } = await this.userService.getUserById(
+      user.user_id,
+    );
+
+    return {
+      user: {
+        balance: newBalance,
+      },
+    };
   }
 }

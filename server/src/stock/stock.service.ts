@@ -95,11 +95,6 @@ export class StockService {
         },
       });
     } else {
-      console.log('create', {
-        user_id,
-        item_id,
-        total: count,
-      });
       await prisma.box_stock_items.create({
         data: {
           user_id,
