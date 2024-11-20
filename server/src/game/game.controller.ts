@@ -26,7 +26,6 @@ export class GameController {
   ): Promise<Record<any, any>> {
     try {
       const prize = await this.gameService.play(user.user_id, parseInt(boxId));
-      const stock = await this.stockService.getUserStock(user.user_id);
       const { balance: newBalance } = await this.userService.getUserById(
         user.user_id,
       );
@@ -34,7 +33,6 @@ export class GameController {
       return {
         prize,
         newBalance,
-        stock,
       };
     } catch (e) {
       throw new HttpException(e, HttpStatus.BAD_REQUEST);

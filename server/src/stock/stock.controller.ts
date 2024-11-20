@@ -21,20 +21,7 @@ export async function getUserStock(user_id) {
     },
     select: {
       stock_item_id: true,
-      item: {
-        include: {
-          image: {
-            select: {
-              name: true,
-            },
-          },
-          rare: {
-            select: {
-              slug: true,
-            },
-          },
-        },
-      },
+      item: true,
       total: true,
     },
   });

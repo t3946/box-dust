@@ -15,20 +15,7 @@ export class StockService {
       },
       select: {
         stock_item_id: true,
-        item: {
-          include: {
-            image: {
-              select: {
-                name: true,
-              },
-            },
-            rare: {
-              select: {
-                slug: true,
-              },
-            },
-          },
-        },
+        item: true,
         total: true,
       },
     });
@@ -78,7 +65,7 @@ export class StockService {
     // update user balance
 
     const { balance: oldBalance } = await this.userService.getUserById(user_id);
-    const sellRevenue = stockItem.item.list_price * count;
+    const sellRevenue = stockItem.item.price * count;
 
     await this.userService.update(
       { balance: oldBalance + sellRevenue },
@@ -108,6 +95,11 @@ export class StockService {
         },
       });
     } else {
+      console.log('create', {
+        user_id,
+        item_id,
+        total: count,
+      });
       await prisma.box_stock_items.create({
         data: {
           user_id,

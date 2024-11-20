@@ -10,7 +10,8 @@ export class GameService {
   constructor(
     private readonly userService: UserService,
     private readonly stockService: StockService,
-  ) {}
+  ) {
+  }
 
   public async play(
     user_id: number,
@@ -18,6 +19,13 @@ export class GameService {
   ): Promise<Record<any, any>> {
     const box = await prisma.box_boxes.findUnique({
       where: { box_id },
+      include: {
+        cs_items: {
+          include: {
+            item: true,
+          },
+        },
+      },
     });
 
     // check on user can play this box
@@ -28,7 +36,7 @@ export class GameService {
       };
     } else if (!box.is_active) {
       throw {
-        error: { box_id: "Box is not active. You can't play this box." },
+        error: { box_id: 'Box is not active. You can\'t play this box.' },
       };
     }
 
@@ -40,31 +48,16 @@ export class GameService {
       };
     }
 
-    // get random cheap prize
-
-    const rarity = await prisma.box_rare_statuses.findFirst({
-      where: {
-        slug: 'frequently',
-      },
-    });
-
-    const cheapBoxItems = await prisma.box_items.findMany({
-      where: {
-        box_id,
-        rare_status_id: rarity.rare_status_id,
-      },
-    });
-
-    const prize =
-      cheapBoxItems[
-        Math.floor(Math.random() * cheapBoxItems.length) % cheapBoxItems.length
-      ];
+    //[START] determine prize
+    const randomIndex = Math.floor(Math.random() * box.cs_items.length) % box.cs_items.length;
+    const prize = box.cs_items[randomIndex].item;
+    //[END]
 
     // update user balance and stock
 
     await this.userService.update({ balance: user.balance - box.price }, user.user_id);
 
-    await this.stockService.addItem(user_id, prize.item_id, 1);
+    await this.stockService.addItem(user_id, prize.id, 1);
 
     return prize;
   }
