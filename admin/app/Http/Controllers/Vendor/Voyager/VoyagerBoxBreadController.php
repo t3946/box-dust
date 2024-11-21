@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Vendor\Voyager;
 
+use App\Models\BoxModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 
 class VoyagerBoxBreadController extends VoyagerBaseController
@@ -41,7 +43,7 @@ class VoyagerBoxBreadController extends VoyagerBaseController
             ->all();
 
         usort($box_items, static function ($a, $b) {
-            $rare_order = [ 'frequently', 'normal', 'rare' ];
+            $rare_order = ['frequently', 'normal', 'rare'];
 
             $a_slug = $a[0]->rare_slug;
             $b_slug = $b[0]->rare_slug;
@@ -64,5 +66,15 @@ class VoyagerBoxBreadController extends VoyagerBaseController
         $view->with('box_items', $box_items);
 
         return $view;
+    }
+
+    public function editItems(Request $request, $boxId)
+    {
+        $view = 'voyager::bread.edit-items';
+        return Voyager::view('vendor.voyager.box-boxes.edit-items', [
+            'box' => BoxModel::find($boxId),
+        ]);
+//        $view = parent::edit($request, $boxId);
+//        return $view;
     }
 }

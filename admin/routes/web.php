@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Vendor\Voyager\VoyagerBoxBreadController;
 use App\Services\CatalogService;
 use App\Services\PrizesService;
 use App\Services\FakeHistory as FakeHistoryService;
@@ -67,5 +68,8 @@ require __DIR__ . '/auth.php';
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+
+    Route::get('box/edit-items/{boxId}', [VoyagerBoxBreadController::class, 'editItems'])
+        ->name('admin.box.edit-items');
 });
 
