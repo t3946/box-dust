@@ -29,7 +29,7 @@ export class Range {
     }
 
     setValue(newValue) {
-        this.value = Math.max(Math.min(newValue, 100), 1);
+        this.value = Math.max(Math.min(newValue, 100), 0);
         this.update();
     }
 
