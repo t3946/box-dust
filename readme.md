@@ -1,5 +1,23 @@
-Server starts up
+надобы в рулетке все цены в доллары перевести, а то пересчёт будет накладно делать в этих рублях ебаных из-за инфляции
+может быть выводить игру в iframe?
+# start up
+## dev
+`cd server`
+`npm run start:dev`
 
+`cd client`
+`npm run dev`
+in dev mode caching is not working
+
+## prod
+`cd server`
+`npm run start:start`
+
+`cd client`
+`npm run build`
+`npm run start`
+
+# installing
 1. create simple ubuntu 22.04 server
    1. if it was Beget then username is root and ssh auth instead password
    2. `sudo apt update`

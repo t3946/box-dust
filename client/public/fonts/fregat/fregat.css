@@ -1,9 +1,0 @@
-@font-face {
-    font-family: 'Fregat-Regular';
-    src: local('Fregat'),
-    url('/fonts/fregat/fonts/fregat.woff2') format('woff2'),
-    url('/fonts/fregat/fonts/fregat.woff') format('woff'),
-    url('/fonts/fregat/fonts/fregat.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
