@@ -9,8 +9,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class CaseItem extends Model
 {
     protected $table = 'case_items';
+    public $timestamps = false;
 
-    public function csItem() {
+    public function csItem()
+    {
         return $this->belongsTo(CSItem::class, 'cs_item_id', 'id');
     }
 }

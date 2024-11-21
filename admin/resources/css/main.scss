@@ -1,3 +1,93 @@
 @tailwind utilities;
 //@tailwind base;
 @tailwind components;
+
+.flex {
+    border: none;
+}
+
+.caseItemsPage {
+    color: #000000;
+    font-size: 16px;
+    font-family: sans-serif;
+
+    .controlSum {
+        &_error {
+            .value {
+                color: red;
+            }
+        }
+    }
+
+    .itemsTable {
+        display: grid;
+        grid-template-columns: repeat(8, 200px);
+        gap: 8px;
+
+        .item {
+            border-bottom: 3px solid;
+
+            &_rarity {
+                &_classified {
+                    border-color: #f0a6ff;
+                }
+                &_covert {
+                    border-color: #ff686f;
+                }
+                &_mil-spec-grade {
+                    border-color: #70a2fc;
+                }
+                &_restricted {
+                    border-color: #b46dff;
+                }
+                &_industrial-grade {
+                    border-color: #bad2ff;
+                }
+                &_consumer-grade {
+                    border-color: #ffbb7c;
+                }
+                &_contraband {
+                    border-color: #ffbb7c;
+                }
+            }
+
+            .image {
+                width: 100%;
+            }
+
+            .title {
+                font-weight: bold;
+                font-size: 18px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+
+            .probability {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+
+                input {
+                    width: 50px;
+                }
+            }
+
+            .range {
+                align-items: center;
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                gap: 4px;
+
+                .button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    cursor: pointer;
+                    user-select: none;
+                }
+            }
+        }
+    }
+}

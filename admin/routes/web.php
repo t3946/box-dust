@@ -71,5 +71,13 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('box/edit-items/{caseId}', [VoyagerBoxBreadController::class, 'editItems'])
         ->name('admin.box.edit-items');
+
+    Route::middleware('role:admin')->post('test', function () {
+        \App\Models\Cases\CaseItem::query()
+            ->where('id', request()->post('itemId'))
+            ->update([
+                'probability' => request()->post('probability'),
+            ]);
+    });
 });
 

@@ -11,6 +11,7 @@ class User extends \TCG\Voyager\Models\User
 {
     use HasFactory, Notifiable;
 
+    const ROLE__ADMIN = 'admin';
     /**
      * The attributes that are mass assignable.
      *
