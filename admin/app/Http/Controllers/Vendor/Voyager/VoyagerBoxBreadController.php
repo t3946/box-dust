@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Vendor\Voyager;
 
-use App\Models\Cases;
+use App\Models\Cases\Cases;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
@@ -32,7 +31,7 @@ class VoyagerBoxBreadController extends VoyagerBaseController
     {
         $view = 'voyager::bread.edit-items';
         return Voyager::view('vendor.voyager.cases.edit-items', [
-            'box' => Cases::find($caseId),
+            'case' => Cases::find($caseId),
         ]);
 //        $view = parent::edit($request, $caseId);
 //        return $view;

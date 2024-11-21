@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Models\BoxFakeUserModel;
-use App\Models\BoxItemModel;
-use App\Models\Cases;
+use App\Models\Cases\Cases;
+use App\Models\CSItem;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -38,7 +38,7 @@ class PrizesService
         $today = Carbon::today();
         $second = self::getMonthSecond($today);
         $fake_users = BoxFakeUserModel::all();
-        $items = BoxItemModel::all();
+        $items = CSItem::all();
         /**
          * binary power that need to present max index of fake_users or items array item
          */
@@ -96,7 +96,7 @@ class PrizesService
 
         for ($i = 1; $i <= 5; $i++) {
             $seed = date('H') * date('j') + $i;
-            $item = BoxItemModel::all()->where('demo', 1)->shuffle($seed)->first();
+            $item = CSItem::all()->where('demo', 1)->shuffle($seed)->first();
             $box = Cases::all()->where('id', $item->box_id)->first();
             $user = BoxFakeUserModel::all()->shuffle($seed)->first();
 

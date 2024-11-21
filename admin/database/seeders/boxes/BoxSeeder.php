@@ -2,7 +2,7 @@
 
 namespace Database\Seeders\boxes;
 
-use App\Models\Cases;
+use App\Models\Cases\Cases;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 

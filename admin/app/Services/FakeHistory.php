@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Storage;
 use App\Models\BoxFakeUserModel;
-use App\Models\Cases;
-use App\Models\BoxItemModel;
+use App\Models\Cases\Cases;
+use App\Models\CSItem;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * different catalog related functionality
@@ -57,7 +57,7 @@ class FakeHistory
         for ($i = 0; $i < $total_boxes; $i++) {
             $box = $all_boxes[$i];
             $box_id = $box->box_id;
-            $box_items = BoxItemModel::where('box_id', $box_id)->get();
+            $box_items = CSItem::where('box_id', $box_id)->get();
 
             // отсеять пустые коробки
             if (count($box_items) > 0) {
@@ -97,7 +97,7 @@ class FakeHistory
             //save item
             $box_items = $items[$box->box_id];
             $total_box_items = count($box_items);
-            $dummy_item = new BoxItemModel(['name' => 'dummy']);
+            $dummy_item = new CSItem(['name' => 'dummy']);
             $item = $total_box_items > 0 ? $box_items[mt_rand(0, $total_box_items - 1)] : $dummy_item;
             $item_id = $item->item_id ?? 0;
             $history['map']['items'][] = $item_id;

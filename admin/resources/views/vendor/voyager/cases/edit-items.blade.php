@@ -26,7 +26,15 @@
                         {{ csrf_field() }}
 
                         <div class="panel-body">
-                            {{ $box->id }}
+                            <div>{{ json_encode($case->probabilities) }}</div>
+
+                            @foreach($case->items as $item)
+                                <div>
+                                    <div>{{ $item->csItem->name }}</div>
+                                    <input value="{{ $item->probability }}" />
+                                </div>
+                            @endforeach
+                            {{ json_encode($case->items) }}
                         </div>
 
                         <div class="panel-footer">
