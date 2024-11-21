@@ -11,7 +11,7 @@ export class BoxController {
 
   @Get('/:box_id')
   async getBox(@Res() res, @Param() params) {
-    const box: any = await prisma.box_boxes.findUnique({
+    const box: any = await prisma.boxes.findUnique({
       where: {
         box_id: parseInt(params.box_id),
       },

@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Storage;
 use App\Models\BoxFakeUserModel;
-use App\Models\BoxModel;
+use App\Models\Cases;
 use App\Models\BoxItemModel;
 
 /**
@@ -47,7 +47,7 @@ class FakeHistory
         }
 
         //сгенерировать данные о коробках и продуктах
-        $all_boxes = BoxModel::all();
+        $all_boxes = Cases::all();
         $total_boxes = count($all_boxes);
         $boxes = [];
         $prev_box = null;
@@ -85,10 +85,10 @@ class FakeHistory
             }
 
             // save box
-            $history['map']['boxes'][] = $box->box_id;
+            $history['map']['cases'][] = $box->box_id;
 
-            if (!isset($history['library']['boxes'][$box->box_id])) {
-                $history['library']['boxes'][$box->box_id] = [
+            if (!isset($history['library']['cases'][$box->box_id])) {
+                $history['library']['cases'][$box->box_id] = [
                     'name' => $box['name'],
                     'image' => '/images/box-default.png',//$box->small_image_id,
                 ];

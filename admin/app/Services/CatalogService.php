@@ -22,12 +22,12 @@ class CatalogService
             $category = (array)$category;
 
             if ($category['name'] === 'Все') {
-                $boxes = DB::table('box_boxes')->get()->all();
+                $boxes = DB::table('cases')->get()->all();
             } else {
-                $boxes = DB::table('box_boxes')->get()->where('category_id', '=', $category['category_id'])->all();
+                $boxes = DB::table('cases')->get()->where('category_id', '=', $category['category_id'])->all();
             }
 
-            $category['boxes'] = $boxes;
+            $category['cases'] = $boxes;
             $catalog[] = $category;
         }
 

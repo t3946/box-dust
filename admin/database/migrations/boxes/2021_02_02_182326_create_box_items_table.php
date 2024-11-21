@@ -25,7 +25,7 @@ class CreateBoxItemsTable extends Migration
             $table
                 ->foreignId( 'box_id' )
                 ->nullable()
-                ->constrained( 'box_boxes', 'box_id' )
+                ->constrained( 'cases', 'box_id' )
                 ->cascadeOnDelete();
 
             $table

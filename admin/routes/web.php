@@ -50,7 +50,7 @@ Route::get('/roulette', function (Request $request) {
         redirect('Main');
     }
 
-    $box = (array)DB::table('box_boxes')->where('box_id', $box_id)->first();
+    $box = (array)DB::table('cases')->where('id', $box_id)->first();
     $items = DB::table('box_items')->where('box_id', $box_id)->get();
     $box['items'] = $items;
 
@@ -69,7 +69,7 @@ require __DIR__ . '/auth.php';
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 
-    Route::get('box/edit-items/{boxId}', [VoyagerBoxBreadController::class, 'editItems'])
+    Route::get('box/edit-items/{caseId}', [VoyagerBoxBreadController::class, 'editItems'])
         ->name('admin.box.edit-items');
 });
 

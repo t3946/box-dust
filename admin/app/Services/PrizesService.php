@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\BoxFakeUserModel;
 use App\Models\BoxItemModel;
-use App\Models\BoxModel;
+use App\Models\Cases;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -97,7 +97,7 @@ class PrizesService
         for ($i = 1; $i <= 5; $i++) {
             $seed = date('H') * date('j') + $i;
             $item = BoxItemModel::all()->where('demo', 1)->shuffle($seed)->first();
-            $box = BoxModel::all()->where('box_id', $item->box_id)->first();
+            $box = Cases::all()->where('id', $item->box_id)->first();
             $user = BoxFakeUserModel::all()->shuffle($seed)->first();
 
             $prizes_list[] = [

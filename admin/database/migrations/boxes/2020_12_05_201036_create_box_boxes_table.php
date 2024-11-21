@@ -15,8 +15,8 @@ class CreateBoxBoxesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create( 'box_boxes', function ( Blueprint $table ) {
-            $table->id( 'box_id' );
+        Schema::create( 'cases', function ( Blueprint $table ) {
+            $table->id( 'id' );
             $table->string( 'name' )->unique();
             $table->unsignedFloat( 'old_price' )->nullable();
             $table->unsignedFloat( 'price' );
@@ -51,7 +51,7 @@ class CreateBoxBoxesTable extends Migration
      */
     public function down(): void
     {
-        Schema::table( 'box_boxes', function ( Blueprint $table ) {
+        Schema::table( 'cases', function ( Blueprint $table ) {
             $table->dropForeign( 'box_boxes_small_image_id_foreign' );
             $table->dropForeign( 'box_boxes_big_image_id_foreign' );
             $table->dropForeign( 'box_boxes_category_id_foreign' );

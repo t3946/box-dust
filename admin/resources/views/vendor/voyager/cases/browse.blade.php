@@ -280,8 +280,8 @@
                                                 @endif
                                             @endforeach
 
-                                            <a href="{{ route('admin.box.edit-items', $data->box_id) }}">
-                                                <button>Edit items</button>
+                                            <a href="{{ route('admin.box.edit-items', $data->id) }}">
+                                                <button>Items</button>
                                             </a>
                                         </td>
                                     </tr>

@@ -16,7 +16,7 @@ class BoxItemsSeeder extends Seeder
     public function run()
     {
         $image_id = DB::table( 'box_images' )->where( 'name', 'item-default' )->first()->image_id;
-        $box_id = DB::table( 'box_boxes' )->where( 'name', 'Apple' )->first()->box_id;
+        $box_id = DB::table( 'cases' )->where( 'name', 'Apple' )->first()->box_id;
 
         if ( $image_id && $box_id ) {
             ( new BoxItemModel( [

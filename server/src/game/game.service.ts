@@ -17,7 +17,7 @@ export class GameService {
     user_id: number,
     box_id: number,
   ): Promise<Record<any, any>> {
-    const box = await prisma.box_boxes.findUnique({
+    const box = await prisma.boxes.findUnique({
       where: { box_id },
       include: {
         cs_items: {
