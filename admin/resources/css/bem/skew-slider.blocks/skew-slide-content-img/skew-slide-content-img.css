@@ -1,8 +1,0 @@
-.skew-slide-content-img {
-    position: relative;
-    opacity: 0;
-    transition: 0.5s opacity linear;
-    user-select: none;
-    -webkit-user-drag: none;
-    height: 260px;
-}

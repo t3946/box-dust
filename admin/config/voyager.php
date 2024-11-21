@@ -189,11 +189,11 @@ return [
 
     // Here you can specify additional assets you would like to be included in the master.blade
     'additional_css' => [
-        '/admin/css/main.css',
+        '/dist/app.css?hash=' . file_get_contents(public_path() . '/dist/hash'),
     ],
 
     'additional_js' => [
-        //'js/custom.js',
+        '/dist/app.js?hash=' . file_get_contents(public_path() . '/dist/hash'),
     ],
 
     'googlemaps' => [

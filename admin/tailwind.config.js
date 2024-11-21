@@ -1,47 +1,28 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
-
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-    purge: [
-        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
-        './resources/js/**/*.vue',
-    ],
-
-    theme: {
-        extend: {
-            fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
-            },
-
-            colors: {
-                white: '#ffffff',
-                black: '#000000',
-                yellow: '#faee0f',
-                vk: '#44678d',
-                vkDark: '#365270',
-
-                text: {
-                    white: '#ffffff',
-                    black: '#000000',
-                },
-            },
-        },
+  content: [
+    "./src/**/*.js",
+    "./public/index.php",
+    "./resources/**/*.blade.php",
+  ],
+  theme: {
+    colors: {
+      "white": '#f2f2f2',
+      "graphite": '#4d4d4d',
+      "black": '#1a1a1a',
+      "blue": '#00b2ff',
     },
-
-    variants: {
-        extend: {
-            opacity: ['disabled'],
-            backgroundColor: ['hover', 'active'],
-        },
+    extend: {
+      screens: {
+        'xs': '475px',
+        'sm': '576px',
+        'md': '834px',
+        'lg': '992px',
+        'xl': '1340px',
+        'xxl': '1840px',
+      }
     },
-
-    plugins: [require('@tailwindcss/forms')],
-
-    corePlugins: {
-        extend: [
-            'borderOpacity',
-            'textColor',
-        ],
-    }
-};
+  },
+  plugins: [],
+  important: true,
+}

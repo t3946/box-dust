@@ -1,7 +1,0 @@
-.box-card-plate__hot {
-    background-image: url("/images/cards/hot-bg-plate.png");
-}
-
-.box-card-plate__hot:after {
-    content: 'в тренде';
-}

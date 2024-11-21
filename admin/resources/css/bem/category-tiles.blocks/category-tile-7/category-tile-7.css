@@ -1,9 +1,0 @@
-.category-tile-7 {
-    grid-area: t7;
-    background: #0a0a0a url(/images/apple-category-bg.png);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    align-items: center;
-    background-position: center center;
-    box-shadow: inset 0 1px rgb(76, 76, 76, 0.30);
-}

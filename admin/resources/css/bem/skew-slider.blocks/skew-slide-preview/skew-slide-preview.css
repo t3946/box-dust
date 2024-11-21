@@ -1,8 +1,0 @@
-.skew-slide-preview {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 1;
-    transition: 0.5s opacity linear;
-    transform: skewX(15deg);
-}

@@ -1,7 +1,0 @@
-.box-card-plate__event {
-    background-image: url("/images/cards/event-bg-plate.png");
-}
-
-.box-card-plate__event:after {
-    content: 'EVENT';
-}

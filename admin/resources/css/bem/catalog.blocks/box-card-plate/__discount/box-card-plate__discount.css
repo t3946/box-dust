@@ -1,7 +1,0 @@
-.box-card-plate__discount {
-    background-image: url("/images/cards/discount-bg-plate.png");
-}
-
-.box-card-plate__discount:after {
-    content: 'скидка';
-}

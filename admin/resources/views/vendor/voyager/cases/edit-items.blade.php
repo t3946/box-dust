@@ -26,14 +26,25 @@
                         {{ csrf_field() }}
 
                         <div class="panel-body">
-                            <div>{{ json_encode($case->probabilities) }}</div>
+                            <div class="itemsTable">
+                                @foreach($case->items as $item)
+                                    @php
+                                        $csItem = $item->csItem;
+                                    @endphp
 
-                            @foreach($case->items as $item)
-                                <div>
-                                    <div>{{ $item->csItem->name }}</div>
-                                    <input value="{{ $item->probability }}" />
-                                </div>
-                            @endforeach
+                                    <div class="item">
+                                        <div class="title">{{ $csItem->name }}</div>
+
+                                        <div>
+                                            <img src="{{ Storage::disk('s3')->url($csItem->image) }}" alt=""
+                                                 width="200">
+                                        </div>
+
+                                        <input value="{{ $item->probability }}" />
+                                    </div>
+                                @endforeach
+                            </div>
+
                             {{ json_encode($case->items) }}
                         </div>
 
