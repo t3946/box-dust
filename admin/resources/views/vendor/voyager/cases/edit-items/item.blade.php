@@ -4,6 +4,7 @@
     data-item-id="{{ $item->id }}"
     data-price="{{ $csItem->price_usd }}"
 >
+    <i class="icon voyager-x removeItem"></i>
     <div class="title" title="{{ $csItem->type . ' ' . $csItem->name }}">
         <div>{{ $csItem->name }}</div>
         <div class="flex gap-2 items-center">{{ $csItem->type }}

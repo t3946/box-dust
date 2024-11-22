@@ -62,12 +62,26 @@ export class Item {
                 sendRequest && this.saveProbability();
             },
         });
+
+        this.$elem.find('.removeItem').on('click', () => this.remove());
     }
 
     saveProbability() {
         Axios.post('/admin/case/update-probability', {
             itemId: this.itemId,
             probability: this.probability,
+        });
+    }
+
+    remove() {
+        if (!confirm('Remove ' + this.$elem.find('.title').nodes[0].title)) {
+            return;
+        }
+
+        Axios.post('/admin/case/remove-item', {
+            itemId: this.itemId,
+        }).then(() => {
+            document.location.reload();
         });
     }
 }

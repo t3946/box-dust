@@ -26,7 +26,7 @@ Route
                 ->select('id')
                 ->where('price_usd', '>=', request()->post('minPrice'))
                 ->where('price_usd', '<=', request()->post('maxPrice'))
-                ->where('rarity', request()->post('rarity'))
+                ->whereIn('rarity', request()->post('rarity'))
                 ->whereNotIn('id', $ids)
                 ->get()
                 ->map(fn($e) => $e->id)
@@ -40,5 +40,11 @@ Route
             $caseItem->cs_item_id = $randomId;
             $caseItem->probability = 0;
             $caseItem->save();
+        });
+
+        Route::post('remove-item', function () {
+            CaseItem::query()
+                ->where('id', request()->post('itemId'))
+                ->delete();
         });
     });

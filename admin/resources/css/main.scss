@@ -41,6 +41,30 @@
 
         .item {
             border-bottom: 3px solid;
+            position: relative;
+
+            .removeItem {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 24px;
+                height: 24px;
+                align-items: center;
+                justify-content: center;
+                border-radius: 100px;
+                font-size: 18px;
+                color: white;
+                background: black;
+                z-index: 1;
+                display: none;
+                cursor: pointer;
+            }
+
+            &:hover {
+                .removeItem {
+                    display: flex;
+                }
+            }
 
             &_rarity {
                 &_contraband {
