@@ -36,6 +36,6 @@
             </select>
         </div>
 
-        <button>Add</button>
+        <button>Add Random</button>
     </form>
 </div>

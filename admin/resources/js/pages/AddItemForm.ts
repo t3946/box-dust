@@ -22,7 +22,7 @@ export class AddItemForm {
         this.$elem
             .find('.presets button')
             .on('click', (e) => {
-                const {min, max, rarity} = e.target.dataset;
+                const { min, max, rarity } = e.target.dataset;
                 const rarities = rarity.split(',');
 
                 this.$form.nodes[0].min.value = min;
@@ -31,23 +31,17 @@ export class AddItemForm {
                 for (let option of this.$form.nodes[0].rarity.options) {
                     option.selected = rarities.includes(option.value);
                 }
+
+                this.loadVariants();
             });
+
+        this.$form.find('input, select').on('change', () => {
+            this.loadVariants();
+        });
 
         this.$form.on('submit', (e) => {
             e.preventDefault();
-            const data = {
-                minPrice: this.$form.nodes[0].min.value,
-                maxPrice: this.$form.nodes[0].max.value,
-                rarity: [],
-                caseId: this.caseId,
-            }
-
-            for (let option of this.$form.nodes[0].rarity.options) {
-                if (option.selected) {
-                    data.rarity.push(option.value);
-                }
-            }
-
+            const data = this.getFormData();
 
             Axios.post('/admin/case/add-random-item', data).then(({ data }) => {
                 if (data.error) {
@@ -69,7 +63,7 @@ export class AddItemForm {
                 }
                 document.location.reload();
             });
-        })
+        });
 
         this.update();
     }
@@ -81,5 +75,32 @@ export class AddItemForm {
     open() {
         this.isOpen = true;
         this.update();
+    }
+
+    getFormData() {
+        const data = {
+            minPrice: parseFloat(this.$form.nodes[0].min.value),
+            maxPrice: parseFloat(this.$form.nodes[0].max.value),
+            rarity: [],
+            caseId: this.caseId,
+        };
+
+        for (let option of this.$form.nodes[0].rarity.options) {
+            if (option.selected) {
+                data.rarity.push(option.value);
+            }
+        }
+
+        return data;
+    }
+
+    loadVariants() {
+        const data = this.getFormData();
+
+        Axios
+            .post('/admin/case/search-items', data)
+            .then(({ data }) => {
+                console.log({data});
+            });
     }
 }
