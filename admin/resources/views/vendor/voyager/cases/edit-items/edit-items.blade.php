@@ -20,16 +20,22 @@
                     @php
                         $stats = [
                             [
-                                'title' => 'Control probability sum is',
+                                'title' => 'Control probability sum',
                                 'class' => 'controlSum',
                                 'postfix' => '%',
                                 'value' => 0,
                             ],
                             [
-                                'title' => 'Optimal price is',
+                                'title' => 'Optimal price',
                                 'class' => 'optimalPrice',
                                 'postfix' => '$',
                                 'value' => 0,
+                            ],
+                            [
+                                'title' => 'Price',
+                                'class' => '',
+                                'postfix' => '$',
+                                'value' => $case->price / 10,
                             ],
                             [
                                 'title' => 'Margin',
