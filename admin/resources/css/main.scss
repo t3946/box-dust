@@ -24,6 +24,21 @@
         grid-template-columns: repeat(8, 200px);
         gap: 8px;
 
+        .addItem {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid;
+            border-radius: 3px;
+            font-size: 48px;
+            cursor: pointer;
+            color: gray;
+
+            &:hover {
+                color: black;
+            }
+        }
+
         .item {
             border-bottom: 3px solid;
 
