@@ -100,7 +100,30 @@ export class AddItemForm {
         Axios
             .post('/admin/case/search-items', data)
             .then(({ data }) => {
-                console.log({data});
+                const $foundVariants = $('.foundVariants');
+                const $itemExample = $foundVariants.find('.example .item');
+                const $items = $foundVariants.find('.items');
+
+                $items.html('');
+
+                for (const item of data.items) {
+                    const $item: any = $itemExample.clone();
+
+                    $item.find('.name').text(item.name);
+                    $item.find('.price .number').text(item.price_usd);
+                    $item.find('img').attr('src', 'https://boxdust.storage.yandexcloud.net/' + item.image);
+                    $item.addClass('item_rarity_' + item.rarity);
+                    $items.append($item);
+
+                    $item.on('click', () => {
+                        Axios.post('/admin/case/add-item', {
+                            caseId: this.caseId,
+                            csItemId: item.id,
+                        }).then(({ data }) => {
+                            document.location.reload();
+                        });
+                    })
+                }
             });
     }
 }

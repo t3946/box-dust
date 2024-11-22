@@ -15,7 +15,7 @@
     <div class="page-content caseItemsPage edit-add container-fluid" data-case-id="{{ $case->id }}">
         <div class="panel panel-bordered">
             <div class="panel-body">
-
+                <h1>{{ $case->name }}</h1>
                 <div class="mb-3 text-[20px]">
                     @php
                         $stats = [
@@ -35,7 +35,7 @@
                                 'title' => 'Margin',
                                 'class' => '',
                                 'postfix' => '%',
-                                'value' => 15,
+                                'value' => 10,
                             ],
                         ]
                     @endphp
@@ -65,11 +65,21 @@
 
                         @include('vendor.voyager.cases.edit-items.item')
                     @endforeach
-
-                    @include('vendor.voyager.cases.edit-items.AddItem')
                 </div>
 
                 @include('vendor.voyager.cases.edit-items.AddItemForm')
+
+                <div class="foundVariants">
+                    <div class="hidden example">
+                        <div class="item">
+                            <div class="name font-bold"></div>
+                            <img src="" />
+                            <div class="price font-bold">Price: <span class="number"></span>$</div>
+                        </div>
+                    </div>
+
+                    <div class="items"></div>
+                </div>
             </div>
 
             <div class="panel-footer">

@@ -65,6 +65,15 @@ class Cases extends Controller
             ->delete();
     }
 
+    public function addItem()
+    {
+        $item = new CaseItem();
+        $item->case_id = request()->post('caseId');
+        $item->cs_item_id = request()->post('csItemId');
+        $item->probability = 0;
+        $item->save();
+    }
+
     public function searchItems()
     {
         return ['items' => $this->getItems(100)->get()];

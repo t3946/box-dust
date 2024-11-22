@@ -14,4 +14,6 @@ Route
         Route::post('search-items', [\App\Http\Controllers\Cases::class, 'searchItems']);
 
         Route::post('remove-item', [\App\Http\Controllers\Cases::class, 'removeItem']);
+
+        Route::post('add-item', [\App\Http\Controllers\Cases::class, 'addItem']);
     });

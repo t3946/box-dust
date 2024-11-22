@@ -62,7 +62,7 @@ export class CaseItemsPage {
 
         const optimalPrice = (this.getOptimalBoxPrice({
             items,
-            margin: 0.15,
+            margin: 0.10,
         })).toFixed(2);
 
         this.$elem.find('.optimalPrice .number').text(optimalPrice);
