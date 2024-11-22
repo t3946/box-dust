@@ -58,10 +58,10 @@ export class CaseItemsPage {
             });
         }
 
-        const optimalPrice = parseFloat((this.getOptimalBoxPrice({
+        const optimalPrice = (this.getOptimalBoxPrice({
             items,
             margin: 0.15,
-        })).toFixed(2));
+        })).toFixed(2);
 
         this.$elem.find('.optimalPrice .number').text(optimalPrice);
     }
