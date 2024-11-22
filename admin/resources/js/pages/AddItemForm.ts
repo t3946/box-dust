@@ -1,5 +1,6 @@
 import $ from 'umbrellajs';
 import Axios from '@scripts/utils/Axios';
+import Toastify from 'toastify-js';
 
 export class AddItemForm {
     private readonly $elem;
@@ -48,7 +49,24 @@ export class AddItemForm {
             }
 
 
-            Axios.post('/admin/case/add-random-item', data).then(() => {
+            Axios.post('/admin/case/add-random-item', data).then(({ data }) => {
+                if (data.error) {
+                    Toastify({
+                        text: data.error,
+                        duration: 2000,
+                        newWindow: true,
+                        gravity: 'top', // `top` or `bottom`
+                        position: 'right', // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: 'black',
+                        },
+                        onClick: function() {
+                        }, // Callback after click
+                    }).showToast();
+
+                    return;
+                }
                 document.location.reload();
             });
         })

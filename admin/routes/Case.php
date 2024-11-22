@@ -22,18 +22,32 @@ Route
                 ->map(fn($e) => $e->cs_item_id)
                 ->toArray();
 
-            $items = \App\Models\CSItem::query()
+            $query = \App\Models\CSItem::query()
                 ->select('id')
-                ->where('price_usd', '>=', request()->post('minPrice'))
-                ->where('price_usd', '<=', request()->post('maxPrice'))
-                ->whereIn('rarity', request()->post('rarity'))
-                ->whereNotIn('id', $ids)
+                ->whereNotIn('id', $ids);
+
+            if ($minPrice = request()->post('minPrice')) {
+                $query->where('price_usd', '>=', $minPrice);
+            }
+
+            if ($maxPrice = request()->post('maxPrice')) {
+                $query->where('price_usd', '<=', $maxPrice);
+            }
+
+            if ($rarity = request()->post('rarity')) {
+                $query->whereIn('rarity', $rarity);
+            }
+
+            $items = $query
                 ->get()
                 ->map(fn($e) => $e->id)
                 ->toArray();
 
+            if (!$items) {
+                return ['error' => 'No items found'];
+            }
 
-            $randomId = $items[mt_rand(0, 103)];
+            $randomId = $items[mt_rand(0, count($items) - 1)];
 
             $caseItem = new CaseItem();
             $caseItem->case_id = request()->post('caseId');
