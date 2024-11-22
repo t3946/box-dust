@@ -13,58 +13,66 @@
 
 @section('content')
     <div class="page-content caseItemsPage edit-add container-fluid" data-case-id="{{ $case->id }}">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="panel panel-bordered">
+            <div class="panel-body">
 
-                <div class="panel panel-bordered">
-                    <!-- form start -->
-                    <form role="form"
-                          class="form-edit-add"
-                          method="POST"
-                          enctype="multipart/form-data"
-                    >
-                        {{ csrf_field() }}
+                <div class="mb-3 text-[20px]">
+                    @php
+                        $stats = [
+                            [
+                                'title' => 'Control probability sum is',
+                                'class' => 'controlSum',
+                                'postfix' => '%',
+                                'value' => 0,
+                            ],
+                            [
+                                'title' => 'Optimal price is',
+                                'class' => 'optimalPrice',
+                                'postfix' => '$',
+                                'value' => 0,
+                            ],
+                            [
+                                'title' => 'Margin',
+                                'class' => '',
+                                'postfix' => '%',
+                                'value' => 15,
+                            ],
+                        ]
+                    @endphp
 
-                        <div class="panel-body">
-                            <div class="text-[20px] controlSum">Control probability sum is: <span
-                                    class="font-bold value"><span class="number">100</span>%</span></div>
-                            <div class="mb-3 text-[20px] optimalPrice">Optimal price is: <span
-                                    class="font-bold value"><span class="number">0</span>$</span></div>
-
-                            <div class="itemsTable">
-                                @php
-                                    $sortMap = [
-                                        'knife' => 1,
-                                        'contraband' => 2,
-                                        'covert' => 3,
-                                        'classified' => 4,
-                                        'restricted' => 5,
-                                        'mil-spec-grade' => 6,
-                                        'industrial-grade' => 7,
-                                        'consumer-grade' => 8,
-                                    ];
-
-                                    $items = $case->items->sortBy(function ($item) use ($sortMap) {
-                                        return $item->csItem->price;
-                                    })->reverse();
-                                @endphp
-
-                                @foreach($items as $item)
-                                    @php
-                                        $csItem = $item->csItem;
-                                    @endphp
-
-                                    @include('vendor.voyager.cases.edit-items.item')
-                                @endforeach
-
-                                @include('vendor.voyager.cases.edit-items.AddItem')
-                            </div>
+                    @foreach($stats as $stat)
+                        <div class="{{ $stat['class'] }}">
+                            {{ $stat['title'] }}:
+                            <span class="font-bold value">
+                            <span class="number">{{ $stat['value'] }}</span>
+                            {{ $stat['postfix'] }}
+                        </span>
                         </div>
-
-                        <div class="panel-footer">
-                        </div>
-                    </form>
+                    @endforeach
                 </div>
+
+                <div class="itemsTable">
+                    @php
+                        $items = $case->items->sortBy(function ($item) {
+                            return $item->csItem->price_usd;
+                        })->reverse();
+                    @endphp
+
+                    @foreach($items as $item)
+                        @php
+                            $csItem = $item->csItem;
+                        @endphp
+
+                        @include('vendor.voyager.cases.edit-items.item')
+                    @endforeach
+
+                    @include('vendor.voyager.cases.edit-items.AddItem')
+                </div>
+
+                @include('vendor.voyager.cases.edit-items.AddItemForm')
+            </div>
+
+            <div class="panel-footer">
             </div>
         </div>
     </div>

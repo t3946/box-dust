@@ -40,16 +40,17 @@ export class Item {
                 copy(title);
 
                 Toastify({
-                    text: "Copied",
+                    text: 'Copied',
                     duration: 2000,
                     newWindow: true,
-                    gravity: "top", // `top` or `bottom`
-                    position: "right", // `left`, `center` or `right`
+                    gravity: 'top', // `top` or `bottom`
+                    position: 'right', // `left`, `center` or `right`
                     stopOnFocus: true, // Prevents dismissing of toast on hover
                     style: {
-                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        background: 'linear-gradient(to right, #00b09b, #96c93d)',
                     },
-                    onClick: function(){} // Callback after click
+                    onClick: function() {
+                    }, // Callback after click
                 }).showToast();
             });
 
@@ -64,11 +65,9 @@ export class Item {
     }
 
     saveProbability() {
-        const data = {
+        Axios.post('/admin/case/update-probability', {
             itemId: this.itemId,
             probability: this.probability,
-        };
-
-        Axios.post('/admin/test', data);
+        });
     }
 }

@@ -10,6 +10,7 @@ class CaseItem extends Model
 {
     protected $table = 'case_items';
     public $timestamps = false;
+    protected $fillable = ['*'];
 
     public function csItem()
     {

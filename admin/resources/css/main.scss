@@ -43,26 +43,26 @@
             border-bottom: 3px solid;
 
             &_rarity {
-                &_classified {
-                    border-color: #f0a6ff;
+                &_contraband {
+                    border-color: #ffbb7c;
                 }
                 &_covert {
                     border-color: #ff686f;
                 }
-                &_mil-spec-grade {
-                    border-color: #70a2fc;
+                &_classified {
+                    border-color: #f0a6ff;
                 }
                 &_restricted {
                     border-color: #b46dff;
+                }
+                &_mil-spec-grade {
+                    border-color: #70a2fc;
                 }
                 &_industrial-grade {
                     border-color: #bad2ff;
                 }
                 &_consumer-grade {
-                    border-color: #ffbb7c;
-                }
-                &_contraband {
-                    border-color: #ffbb7c;
+                    border-color: #dadada;
                 }
             }
 

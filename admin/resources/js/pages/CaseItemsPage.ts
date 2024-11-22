@@ -1,5 +1,6 @@
 import $ from 'umbrellajs';
 import { Item } from '@scripts/pages/Item';
+import { AddItemForm } from '@scripts/pages/AddItemForm';
 
 export class CaseItemsPage {
     private readonly $elem;
@@ -7,6 +8,7 @@ export class CaseItemsPage {
     private readonly items: Item[] = [];
     private readonly $controlSum;
     private controlSum;
+    private addItemForm: AddItemForm;
 
     constructor(elem) {
         this.$elem = $(elem);
@@ -64,5 +66,11 @@ export class CaseItemsPage {
         })).toFixed(2);
 
         this.$elem.find('.optimalPrice .number').text(optimalPrice);
+
+        this.addItemForm = new AddItemForm(this.$elem.find('.addItemForm'));
+
+        this.$elem.find('.addItem').on('click', () => {
+            this.addItemForm.open();
+        });
     }
 }
