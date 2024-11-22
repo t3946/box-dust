@@ -1,6 +1,8 @@
 import $ from 'umbrellajs';
 import { Range } from '@scripts/pages/Range';
 import Axios from '@scripts/utils/Axios';
+import copy from 'copy-to-clipboard';
+import Toastify from 'toastify-js';
 
 export class Item {
     private readonly $elem;
@@ -29,6 +31,27 @@ export class Item {
             this.onChange();
             this.saveProbability();
         });
+
+        this.$elem
+            .find('.title')
+            .on('click', (e) => {
+                const title = this.$elem.find('.title').nodes[0].title;
+
+                copy(title);
+
+                Toastify({
+                    text: "Copied",
+                    duration: 2000,
+                    newWindow: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    },
+                    onClick: function(){} // Callback after click
+                }).showToast();
+            });
 
         this.range = new Range(this.$elem.find('.range'), {
             onChange: (newValue, sendRequest = true) => {

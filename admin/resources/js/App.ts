@@ -1,5 +1,6 @@
 import $ from 'umbrellajs';
 import { CaseItemsPage } from '@scripts/pages/CaseItemsPage';
+import "toastify-js/src/toastify.css"
 
 function initIfExists<T>(e, constructor: any): T {
     if (!$(e).length) {

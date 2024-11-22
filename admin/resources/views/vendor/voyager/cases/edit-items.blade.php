@@ -58,7 +58,10 @@
                                         data-item-id="{{ $item->id }}"
                                         data-price="{{ $csItem->price_usd }}"
                                     >
-                                        <div class="title" title="{{ $csItem->name }}">{{ $csItem->name }}</div>
+                                        <div class="title" title="{{ $csItem->type . ' ' . $csItem->name }}">
+                                            <div>{{ $csItem->name }}</div>
+                                            <div class="flex gap-2 items-center">{{ $csItem->type }} <i class="icon flex voyager-edit"></i></div>
+                                        </div>
 
                                         <div>
                                             <img src="{{ Storage::disk('s3')->url($csItem->image) }}" alt=""
