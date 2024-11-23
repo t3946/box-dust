@@ -69,11 +69,11 @@
                             $csItem = $item->csItem;
                         @endphp
 
-                        @include('vendor.voyager.cases.edit-items.item')
+                        @include('vendor.voyager.boxes.edit-items.item')
                     @endforeach
                 </div>
 
-                @include('vendor.voyager.cases.edit-items.AddItemForm')
+                @include('vendor.voyager.boxes.edit-items.AddItemForm')
 
                 <div class="foundVariants">
                     <div class="hidden example">

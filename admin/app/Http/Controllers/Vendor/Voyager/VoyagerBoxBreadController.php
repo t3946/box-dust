@@ -29,7 +29,7 @@ class VoyagerBoxBreadController extends VoyagerBaseController
 
     public function editItems(Request $request, $caseId)
     {
-        return Voyager::view('vendor.voyager.cases.edit-items.edit-items', [
+        return Voyager::view('vendor.voyager.boxes.edit-items.edit-items', [
             'case' => Cases::find($caseId),
         ]);
     }
