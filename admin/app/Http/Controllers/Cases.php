@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cases\CaseItem;
+use App\Models\Cases\BoxItem;
 
 class Cases extends Controller
 {
     private function getItems($limit = null)
     {
-        $ids = CaseItem::query()
+        $ids = BoxItem::query()
             ->where('case_id', request()->post('caseId'))
             ->get()
             ->map(fn($e) => $e->cs_item_id)
@@ -51,7 +51,7 @@ class Cases extends Controller
 
         $randomId = $items[mt_rand(0, count($items) - 1)];
 
-        $caseItem = new CaseItem();
+        $caseItem = new BoxItem();
         $caseItem->case_id = request()->post('caseId');
         $caseItem->cs_item_id = $randomId;
         $caseItem->probability = 0;
@@ -60,14 +60,14 @@ class Cases extends Controller
 
     public function removeItem()
     {
-        CaseItem::query()
+        BoxItem::query()
             ->where('id', request()->post('itemId'))
             ->delete();
     }
 
     public function addItem()
     {
-        $item = new CaseItem();
+        $item = new BoxItem();
         $item->case_id = request()->post('caseId');
         $item->cs_item_id = request()->post('csItemId');
         $item->probability = 0;
@@ -81,7 +81,7 @@ class Cases extends Controller
 
     public function updateProbability()
     {
-        CaseItem::query()
+        BoxItem::query()
             ->where('id', request()->post('itemId'))
             ->update([
                 'probability' => request()->post('probability'),

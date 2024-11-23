@@ -5,12 +5,13 @@
     data-price="{{ $csItem->price_usd }}"
 >
     <i class="icon voyager-x removeItem"></i>
-    <div class="title" title="{{ $csItem->type . ' ' . $csItem->name }}">
+
+    <a href="/" target="_blank" class="title" title="{{ $csItem->type . ' ' . $csItem->name }}">
         <div>{{ $csItem->name }}</div>
-        <div class="flex gap-2 items-center">{{ $csItem->type }}
+        <div class="flex gap-2 items-center copyButton">{{ $csItem->type }}
             <i class="icon flex voyager-edit"></i>
         </div>
-    </div>
+    </a>
 
     <div>
         <img src="{{ Storage::disk('s3')->url($csItem->image) }}" alt=""

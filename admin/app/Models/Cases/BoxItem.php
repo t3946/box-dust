@@ -4,11 +4,10 @@ namespace App\Models\Cases;
 
 use App\Models\CSItem;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class CaseItem extends Model
+class BoxItem extends Model
 {
-    protected $table = 'case_items';
+    protected $table = 'box_items';
     public $timestamps = false;
     protected $fillable = ['*'];
 

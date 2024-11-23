@@ -33,8 +33,10 @@ export class Item {
         });
 
         this.$elem
-            .find('.title')
+            .find('.title .copyButton')
             .on('click', (e) => {
+                e.preventDefault();
+
                 const title = this.$elem.find('.title').nodes[0].title;
 
                 copy(title);

@@ -14,6 +14,6 @@ class Cases extends Model
 
     public function items(): HasMany
     {
-        return $this->hasMany(CaseItem::class, 'case_id');
+        return $this->hasMany(BoxItem::class, 'case_id');
     }
 }
