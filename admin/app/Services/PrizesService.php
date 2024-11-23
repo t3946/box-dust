@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\BoxFakeUserModel;
-use App\Models\Cases\Cases;
+use App\Models\Box\Box;
 use App\Models\CSItem;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -97,7 +97,7 @@ class PrizesService
         for ($i = 1; $i <= 5; $i++) {
             $seed = date('H') * date('j') + $i;
             $item = CSItem::all()->where('demo', 1)->shuffle($seed)->first();
-            $box = Cases::all()->where('id', $item->box_id)->first();
+            $box = Box::all()->where('id', $item->box_id)->first();
             $user = BoxFakeUserModel::all()->shuffle($seed)->first();
 
             $prizes_list[] = [

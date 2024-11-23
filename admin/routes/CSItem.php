@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Cases\BoxItem;
+use App\Models\Box\BoxItem;
 use Illuminate\Support\Facades\Route;
 
 Route

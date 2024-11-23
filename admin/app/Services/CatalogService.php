@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Cases\Cases;
+use App\Models\Box\Box;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -23,9 +23,9 @@ class CatalogService
             $category = (array)$category;
 
             if ($category['name'] === 'Все') {
-                $boxes = Cases::query()->all();
+                $boxes = Box::query()->all();
             } else {
-                $boxes = Cases::query()->where('category_id', '=', $category['category_id'])->all();
+                $boxes = Box::query()->where('category_id', '=', $category['category_id'])->all();
             }
 
             $category['cases'] = $boxes;

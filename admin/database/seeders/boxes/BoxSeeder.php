@@ -2,7 +2,7 @@
 
 namespace Database\Seeders\boxes;
 
-use App\Models\Cases\Cases;
+use App\Models\Box\Box;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -19,7 +19,7 @@ class BoxSeeder extends Seeder
         $category_id = DB::table( 'box_categories' )->where( 'name', 'Телефоны' )->first()->category_id;
 
         if ( $image_id && $category_id ) {
-            ( new Cases( [
+            ( new Box( [
                 'name' => 'Apple',
                 'price' => 500,
                 'big_image_id' => $image_id,

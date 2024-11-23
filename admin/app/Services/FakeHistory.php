@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\BoxFakeUserModel;
-use App\Models\Cases\Cases;
+use App\Models\Box\Box;
 use App\Models\CSItem;
 use Illuminate\Support\Facades\Storage;
 
@@ -47,7 +47,7 @@ class FakeHistory
         }
 
         //сгенерировать данные о коробках и продуктах
-        $all_boxes = Cases::all();
+        $all_boxes = Box::all();
         $total_boxes = count($all_boxes);
         $boxes = [];
         $prev_box = null;

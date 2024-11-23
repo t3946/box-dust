@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cases\BoxItem;
+use App\Models\Box\BoxItem;
 use App\Models\CSItem as CSItemModel;
 use Illuminate\Support\Facades\Storage;
 

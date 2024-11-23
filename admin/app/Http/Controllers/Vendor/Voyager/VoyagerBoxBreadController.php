@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Vendor\Voyager;
 
-use App\Models\Cases\Cases;
+use App\Models\Box\Box;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use TCG\Voyager\Facades\Voyager;
@@ -30,7 +30,7 @@ class VoyagerBoxBreadController extends VoyagerBaseController
     public function editItems(Request $request, $caseId)
     {
         return Voyager::view('vendor.voyager.boxes.edit-items.edit-items', [
-            'case' => Cases::find($caseId),
+            'case' => Box::find($caseId),
         ]);
     }
 }

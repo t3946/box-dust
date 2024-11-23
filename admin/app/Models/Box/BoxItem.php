@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Cases;
+namespace App\Models\Box;
 
 use App\Models\CSItem;
 use Illuminate\Database\Eloquent\Model;
