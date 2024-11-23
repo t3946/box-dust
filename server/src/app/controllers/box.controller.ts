@@ -16,7 +16,7 @@ export class BoxController {
         id: parseInt(params.box_id),
       },
       include: {
-        case_items: {
+        box_items: {
           include: {
             cs_items: true,
           },

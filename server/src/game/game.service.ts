@@ -17,12 +17,10 @@ export class GameService {
     user_id: number,
     box_id: number,
   ): Promise<Record<any, any>> {
-
-    console.log(box_id);
     const box = await prisma.boxes.findUnique({
       where: { id: box_id },
       include: {
-        case_items: {
+        box_items: {
           include: {
             cs_items: true,
           },
@@ -54,15 +52,13 @@ export class GameService {
     let topBorder = 0;
     let prize;
 
-    for (let i = 0; i < box.case_items.length; i++) {
-      const item = box.case_items[i];
-      console.log({ item });
+    for (let i = 0; i < box.box_items.length; i++) {
+      const item = box.box_items[i];
 
       topBorder += item.probability;
 
       if (r <= topBorder) {
         prize = item.cs_items;
-        console.log({ prize });
         break;
       }
     }

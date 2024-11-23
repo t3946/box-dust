@@ -371,22 +371,10 @@ model cs_items {
   price_usd       Float?            @db.Float
   stattrak        Boolean?
   category        String?           @db.VarChar(255)
+  box_items       box_items[]
   box_stock_items box_stock_items[]
-  case_items      case_items[]
 
   @@unique([type, name, quality, stattrak], map: "type_name_quality_stattrak")
-}
-
-model case_items {
-  id          Int      @id @default(autoincrement())
-  case_id     Int
-  cs_item_id  Int
-  probability Float    @db.Float
-  cases       boxes    @relation(fields: [case_id], references: [id], onDelete: Cascade, map: "cases_cs_items_cases_id_fk")
-  cs_items    cs_items @relation(fields: [cs_item_id], references: [id], onDelete: Cascade, map: "cases_cs_items_cs_items_id_fk")
-
-  @@unique([case_id, cs_item_id], map: "uk__case_id__cs_item_id")
-  @@index([cs_item_id], map: "cases_cs_items_cs_items_id_fk")
 }
 
 model boxes {
@@ -406,15 +394,28 @@ model boxes {
   is_recommend                                Boolean         @default(false)
   created_at                                  DateTime?       @db.Timestamp(0)
   updated_at                                  DateTime?       @db.Timestamp(0)
+  box_items                                   box_items[]
   box_categories                              box_categories? @relation(fields: [category_id], references: [category_id], onUpdate: SetNull, map: "box_boxes_box_categories_category_id_fk")
   box_images_boxes_big_image_idTobox_images   box_images?     @relation("boxes_big_image_idTobox_images", fields: [big_image_id], references: [image_id], onUpdate: SetNull, map: "box_boxes_box_images_image_id_fk")
   box_images_boxes_small_image_idTobox_images box_images?     @relation("boxes_small_image_idTobox_images", fields: [small_image_id], references: [image_id], onUpdate: SetNull, map: "box_boxes_box_images_image_id_fk_2")
-  case_items                                  case_items[]
 
   @@index([big_image_id], map: "box_boxes_big_image_id_foreign")
   @@index([type], map: "box_boxes_box_types_type_id_fk")
   @@index([category_id], map: "box_boxes_category_id_foreign")
   @@index([small_image_id], map: "box_boxes_small_image_id_foreign")
+}
+
+model box_items {
+  id                  Int      @id @default(autoincrement())
+  case_id             Int
+  cs_item_id          Int
+  probability         Float    @db.Float
+  is_box_item_preview Boolean? @default(false)
+  boxes               boxes    @relation(fields: [case_id], references: [id], onDelete: Cascade, map: "cases_cs_items_cases_id_fk")
+  cs_items            cs_items @relation(fields: [cs_item_id], references: [id], onDelete: Cascade, map: "cases_cs_items_cs_items_id_fk")
+
+  @@unique([case_id, cs_item_id], map: "uk__case_id__cs_item_id")
+  @@index([cs_item_id], map: "cases_cs_items_cs_items_id_fk")
 }
 
 enum clients_gender {

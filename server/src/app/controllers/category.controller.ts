@@ -20,7 +20,7 @@ export class CategoryController {
             is_active: true,
           },
           include: {
-            case_items: {
+            box_items: {
               include: {
                 cs_items: true,
               }
