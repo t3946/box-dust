@@ -74,5 +74,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 
     include $_SERVER['DOCUMENT_ROOT'] . '/../routes/Case.php';
+
+    include $_SERVER['DOCUMENT_ROOT'] . '/../routes/CsItem.php';
 });
 
