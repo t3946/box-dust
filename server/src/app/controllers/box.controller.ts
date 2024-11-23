@@ -13,17 +13,12 @@ export class BoxController {
   async getBox(@Res() res, @Param() params) {
     const box: any = await prisma.boxes.findUnique({
       where: {
-        box_id: parseInt(params.box_id),
+        id: parseInt(params.box_id),
       },
       include: {
-        cs_items: {
+        case_items: {
           include: {
-            item: true,
-          },
-        },
-        items: {
-          include: {
-            image: true,
+            cs_items: true,
           },
         },
       },

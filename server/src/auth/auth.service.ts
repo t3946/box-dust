@@ -38,20 +38,20 @@ export class AuthService {
                 name: true,
                 last_login: true,
                 created: true,
-                games: {
-                  select: {
-                    game_id: true,
-                    game_price: true,
-                    prize_price: true,
-                    created: true,
-                    item: {
-                      select: { name: true },
-                    },
-                    user: {
-                      select: { user_id: true, name: true },
-                    },
-                  },
-                },
+                // games: {
+                //   select: {
+                //     game_id: true,
+                //     game_price: true,
+                //     prize_price: true,
+                //     created: true,
+                //     item: {
+                //       select: { name: true },
+                //     },
+                //     user: {
+                //       select: { user_id: true, name: true },
+                //     },
+                //   },
+                // },
               },
             },
           },
@@ -132,20 +132,20 @@ export class AuthService {
                 name: true,
                 last_login: true,
                 created: true,
-                games: {
-                  select: {
-                    game_id: true,
-                    game_price: true,
-                    prize_price: true,
-                    created: true,
-                    item: {
-                      select: { name: true },
-                    },
-                    user: {
-                      select: { user_id: true, name: true },
-                    },
-                  },
-                },
+                // games: {
+                //   select: {
+                //     game_id: true,
+                //     game_price: true,
+                //     prize_price: true,
+                //     created: true,
+                //     item: {
+                //       select: { name: true },
+                //     },
+                //     user: {
+                //       select: { user_id: true, name: true },
+                //     },
+                //   },
+                // },
               },
             },
           },

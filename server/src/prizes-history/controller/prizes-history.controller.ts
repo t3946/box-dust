@@ -34,31 +34,31 @@ const findHistorySelectFields = {
 export class PrizesHistoryController {
   @Get('get')
   public async get(@Res() res, @Req() req) {
-    const take = parseInt(req.query.take);
-    const history = await prisma.box_f_history.findMany({
-      take,
-      select: findHistorySelectFields,
-      orderBy: {
-        f_history_id: 'desc',
-      },
-    });
-
-    res.json({ history });
+    // const take = parseInt(req.query.take);
+    // const history = await prisma.box_f_history.findMany({
+    //   take,
+    //   select: findHistorySelectFields,
+    //   orderBy: {
+    //     f_history_id: 'desc',
+    //   },
+    // });
+    //
+    // res.json({ history });
   }
 
   @Get('get-last')
   public async getLast(@Res() res) {
-    const lastPrize = (
-      await prisma.box_f_history.findMany({
-        select: findHistorySelectFields,
-        orderBy: {
-          f_history_id: 'desc',
-        },
-        take: 1,
-      })
-    )[0];
-
-    res.status(200).json({ lastPrize });
+    // const lastPrize = (
+    //   await prisma.box_f_history.findMany({
+    //     select: findHistorySelectFields,
+    //     orderBy: {
+    //       f_history_id: 'desc',
+    //     },
+    //     take: 1,
+    //   })
+    // )[0];
+    //
+    // res.status(200).json({ lastPrize });
   }
 }
 

@@ -13,34 +13,35 @@ export class PrizesHistoryModule {
 
     setInterval(async () => {
       const MAX_FAKE_HISTORY_RECORDS = 15;
-      const historyRecordsCount = await prisma.box_f_history.count();
+      // const historyRecordsCount = await prisma.box_f_history.count();
 
-      if (historyRecordsCount >= MAX_FAKE_HISTORY_RECORDS) {
-        const lastRecord: Record<any, any> = (
-          await prisma.box_f_history.findMany({
-            orderBy: {
-              f_history_id: 'desc',
-            },
-            take: 1,
-            skip: MAX_FAKE_HISTORY_RECORDS - 1,
-          })
-        )[0];
+      // if (historyRecordsCount >= MAX_FAKE_HISTORY_RECORDS) {
+        // const lastRecord: Record<any, any> = (
+        //   await prisma.box_f_history.findMany({
+        //     orderBy: {
+        //       f_history_id: 'desc',
+        //     },
+        //     take: 1,
+        //     skip: MAX_FAKE_HISTORY_RECORDS - 1,
+        //   })
+        // )[0];
+        //
+        // await prisma.box_f_history.deleteMany({
+        //   where: {
+        //     f_history_id: {
+        //       lte: lastRecord.f_history_id,
+        //     },
+        //   },
+        // });
+      // }
 
-        await prisma.box_f_history.deleteMany({
-          where: {
-            f_history_id: {
-              lte: lastRecord.f_history_id,
-            },
-          },
-        });
-      }
-
-      const randomFakeUser: Record<any, any> = (
-        await prisma.$queryRaw`SELECT * FROM box_dust.box_f_users ORDER BY RAND() LIMIT 1`
-      )[0];
-      const randomPrize: Record<any, any> = (
-        await prisma.$queryRaw`SELECT * FROM box_items ORDER BY RAND() LIMIT 1`
-      )[0];
+      // const randomFakeUser: Record<any, any> = (
+      //   await prisma.$queryRaw`SELECT * FROM box_dust.box_f_users ORDER BY RAND() LIMIT 1`
+      // )[0];
+      //
+      // const randomPrize: Record<any, any> = (
+      //   await prisma.$queryRaw`SELECT * FROM box_items ORDER BY RAND() LIMIT 1`
+      // )[0];
 
       // await prisma.box_f_history.create({
       //   data: {

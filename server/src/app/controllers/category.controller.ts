@@ -20,15 +20,10 @@ export class CategoryController {
             is_active: true,
           },
           include: {
-            cs_items: {
+            case_items: {
               include: {
-                item: true,
-              },
-            },
-            items: {
-              include: {
-                image: true,
-              },
+                cs_items: true,
+              }
             },
           },
         },

@@ -17,12 +17,14 @@ export class GameService {
     user_id: number,
     box_id: number,
   ): Promise<Record<any, any>> {
+
+    console.log(box_id);
     const box = await prisma.boxes.findUnique({
-      where: { box_id },
+      where: { id: box_id },
       include: {
-        cs_items: {
+        case_items: {
           include: {
-            item: true,
+            cs_items: true,
           },
         },
       },
@@ -39,7 +41,6 @@ export class GameService {
         error: { box_id: 'Box is not active. You can\'t play this box.' },
       };
     }
-
     const user = await this.userService.getUserById(user_id);
 
     if (user.balance < box.price) {
@@ -49,8 +50,22 @@ export class GameService {
     }
 
     //[START] determine prize
-    const randomIndex = Math.floor(Math.random() * box.cs_items.length) % box.cs_items.length;
-    const prize = box.cs_items[randomIndex].item;
+    const r = Math.random();
+    let topBorder = 0;
+    let prize;
+
+    for (let i = 0; i < box.case_items.length; i++) {
+      const item = box.case_items[i];
+      console.log({ item });
+
+      topBorder += item.probability;
+
+      if (r <= topBorder) {
+        prize = item.cs_items;
+        console.log({ prize });
+        break;
+      }
+    }
     //[END]
 
     // update user balance and stock
@@ -81,7 +96,7 @@ export class GameService {
       });
     }
 
-    const newBalance = user.balance + Math.round(item.price * 10);
+    const newBalance = user.balance + Math.round(item.price_usd * 10);
 
     await prisma.box_users.update({
       where: {

@@ -10,7 +10,7 @@ class Cases extends Model
 {
     use HasFactory;
 
-    protected $table = 'cases';
+    protected $table = 'boxes';
 
     public function items(): HasMany
     {

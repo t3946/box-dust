@@ -41,7 +41,7 @@
                                 'title' => 'Margin',
                                 'class' => '',
                                 'postfix' => '%',
-                                'value' => 10,
+                                'value' => 15,
                             ],
                         ]
                     @endphp

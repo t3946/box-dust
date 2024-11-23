@@ -10,37 +10,37 @@ export class UserController {
 
   @Get('login')
   async getHistory(@Res() res) {
-    const history = await prisma.box_f_history.findMany({
-      take: 100,
-      select: {
-        user: {
-          select: {
-            f_user_id: true,
-            name: true,
-          },
-        },
-        box: {
-          select: {
-            box_id: true,
-            name: true,
-            small_image: {
-              select: {
-                name: true,
-              },
-            },
-          },
-        },
-        item: {
-          select: {
-            item_id: true,
-            name: true,
-            image: true,
-          },
-        },
-      },
-    });
-
-    res.json({ history });
+    // const history = await prisma.box_f_history.findMany({
+    //   take: 100,
+    //   select: {
+    //     user: {
+    //       select: {
+    //         f_user_id: true,
+    //         name: true,
+    //       },
+    //     },
+    //     box: {
+    //       select: {
+    //         box_id: true,
+    //         name: true,
+    //         small_image: {
+    //           select: {
+    //             name: true,
+    //           },
+    //         },
+    //       },
+    //     },
+    //     item: {
+    //       select: {
+    //         item_id: true,
+    //         name: true,
+    //         image: true,
+    //       },
+    //     },
+    //   },
+    // });
+    //
+    // res.json({ history });
   }
 }
 

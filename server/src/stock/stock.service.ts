@@ -65,7 +65,7 @@ export class StockService {
     // update user balance
 
     const { balance: oldBalance } = await this.userService.getUserById(user_id);
-    const sellRevenue = stockItem.item.price * count;
+    const sellRevenue = stockItem.item.price_usd * count;
 
     await this.userService.update(
       { balance: oldBalance + sellRevenue },
