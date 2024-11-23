@@ -6,16 +6,20 @@
 >
     <i class="icon voyager-x removeItem"></i>
 
-    <a href="/" target="_blank" class="title" title="{{ $csItem->type . ' ' . $csItem->name }}">
-        <div>{{ $csItem->name }}</div>
-        <div class="flex gap-2 items-center copyButton">{{ $csItem->type }}
-            <i class="icon flex voyager-edit"></i>
-        </div>
-    </a>
+    <div class="title">
+        <a href="{{route('voyager.cs-items.edit', ['id' => $csItem->id])}}" target="_blank" class="decoration-0 flex flex-col"
+           title="{{ $csItem->type . ' ' . $csItem->name }}">
+            <div>{{ $csItem->name }}</div>
+
+            {{ $csItem->type }}
+        </a>
+    </div>
 
     <div>
-        <img src="{{ Storage::disk('s3')->url($csItem->image) }}" alt=""
-             class="image" />
+        <a href="{{route('voyager.cs-items.edit', ['id' => $csItem->id])}}" target="_blank" class="decoration-0">
+            <img src="{{ Storage::disk('s3')->url($csItem->image) }}" alt=""
+                 class="image" />
+        </a>
     </div>
 
     <div class="probability">
