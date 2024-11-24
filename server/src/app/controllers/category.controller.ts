@@ -20,6 +20,7 @@ export class CategoryController {
             is_active: true,
           },
           include: {
+            box_designs: true,
             box_items: {
               include: {
                 cs_items: true,

@@ -17,14 +17,12 @@ model box_categories {
 }
 
 model box_images {
-  image_id                               Int       @id @default(autoincrement()) @db.UnsignedInt
-  name                                   String    @unique(map: "box_images_name_unique") @db.VarChar(255)
-  width                                  Int       @db.UnsignedSmallInt
-  height                                 Int       @db.UnsignedSmallInt
-  created_at                             DateTime? @db.Timestamp(0)
-  updated_at                             DateTime? @db.Timestamp(0)
-  boxes_boxes_big_image_idTobox_images   boxes[]   @relation("boxes_big_image_idTobox_images")
-  boxes_boxes_small_image_idTobox_images boxes[]   @relation("boxes_small_image_idTobox_images")
+  image_id   Int       @id @default(autoincrement()) @db.UnsignedInt
+  name       String    @unique(map: "box_images_name_unique") @db.VarChar(255)
+  width      Int       @db.UnsignedSmallInt
+  height     Int       @db.UnsignedSmallInt
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
 }
 
 model box_rare_statuses {
@@ -378,31 +376,25 @@ model cs_items {
 }
 
 model boxes {
-  id                                          Int             @id @default(autoincrement())
-  small_image_id                              Int?            @db.UnsignedInt
-  big_image_id                                Int?            @db.UnsignedInt
-  category_id                                 Int?            @db.UnsignedInt
-  type                                        boxes_type?     @default(basic)
-  name                                        String          @unique(map: "box_boxes_name_unique") @db.VarChar(255)
-  price                                       Float
-  old_price                                   Float?
-  open_count                                  Int             @default(0) @db.UnsignedInt
-  image                                       String?         @db.VarChar(255)
-  background                                  String?         @db.VarChar(255)
-  header_color                                String?         @db.VarChar(255)
-  is_active                                   Boolean?        @default(false)
-  is_recommend                                Boolean         @default(false)
-  created_at                                  DateTime?       @db.Timestamp(0)
-  updated_at                                  DateTime?       @db.Timestamp(0)
-  box_items                                   box_items[]
-  box_categories                              box_categories? @relation(fields: [category_id], references: [category_id], onUpdate: SetNull, map: "box_boxes_box_categories_category_id_fk")
-  box_images_boxes_big_image_idTobox_images   box_images?     @relation("boxes_big_image_idTobox_images", fields: [big_image_id], references: [image_id], onUpdate: SetNull, map: "box_boxes_box_images_image_id_fk")
-  box_images_boxes_small_image_idTobox_images box_images?     @relation("boxes_small_image_idTobox_images", fields: [small_image_id], references: [image_id], onUpdate: SetNull, map: "box_boxes_box_images_image_id_fk_2")
+  id             Int             @id @default(autoincrement())
+  category_id    Int?            @db.UnsignedInt
+  design_id      Int?
+  type           boxes_type?     @default(basic)
+  name           String          @unique(map: "box_boxes_name_unique") @db.VarChar(255)
+  price          Float
+  old_price      Float?
+  open_count     Int             @default(0) @db.UnsignedInt
+  is_active      Boolean?        @default(false)
+  is_recommend   Boolean         @default(false)
+  created_at     DateTime?       @db.Timestamp(0)
+  updated_at     DateTime?       @db.Timestamp(0)
+  box_items      box_items[]
+  box_categories box_categories? @relation(fields: [category_id], references: [category_id], onUpdate: SetNull, map: "box_boxes_box_categories_category_id_fk")
+  box_designs    box_designs?    @relation(fields: [design_id], references: [id], map: "boxes_box_designs_id_fk")
 
-  @@index([big_image_id], map: "box_boxes_big_image_id_foreign")
   @@index([type], map: "box_boxes_box_types_type_id_fk")
   @@index([category_id], map: "box_boxes_category_id_foreign")
-  @@index([small_image_id], map: "box_boxes_small_image_id_foreign")
+  @@index([design_id], map: "boxes_box_designs_id_fk")
 }
 
 model box_items {
@@ -416,6 +408,15 @@ model box_items {
 
   @@unique([case_id, cs_item_id], map: "uk__case_id__cs_item_id")
   @@index([cs_item_id], map: "cases_cs_items_cs_items_id_fk")
+}
+
+model box_designs {
+  id               Int     @id @default(autoincrement())
+  name             String  @unique(map: "name") @db.VarChar(255)
+  image_box        String  @db.VarChar(255)
+  image_background String  @db.VarChar(255)
+  header_color     String? @db.VarChar(255)
+  boxes            boxes[]
 }
 
 enum clients_gender {

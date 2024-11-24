@@ -72,8 +72,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('box/edit-items/{caseId}', [VoyagerBoxBreadController::class, 'editItems'])
         ->name('admin.box.edit-items');
 
+    include public_path() . '/../routes/Case.php';
 
-    include $_SERVER['DOCUMENT_ROOT'] . '/../routes/Case.php';
-
-    include $_SERVER['DOCUMENT_ROOT'] . '/../routes/CsItem.php';
+    include public_path() . '/../routes/CsItem.php';
 });

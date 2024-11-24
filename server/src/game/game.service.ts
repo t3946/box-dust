@@ -20,6 +20,7 @@ export class GameService {
     const box = await prisma.boxes.findUnique({
       where: { id: box_id },
       include: {
+        box_designs: true,
         box_items: {
           include: {
             cs_items: true,
