@@ -17,8 +17,17 @@ class Cases extends Controller
         $query = \App\Models\CSItem::query()
             ->whereNotIn('id', $ids);
 
+        if ($text = request()->post('text')) {
+            $filters = array_map(fn ($field) => "$field like \"%$text%\"", ['name', 'name_ru']);
+            $query->whereRaw('(' . implode(' || ', $filters) . ')');
+        }
+
         if ($minPrice = request()->post('minPrice')) {
             $query->where('price_usd', '>=', $minPrice);
+        }
+
+        if ($quality = request()->post('quality')) {
+            $query->where('quality', $quality);
         }
 
         if ($maxPrice = request()->post('maxPrice')) {

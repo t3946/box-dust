@@ -12,6 +12,12 @@
     <form>
         <div>
             <div>
+                <label for="inputMinPrice" class="m-0">Text Search</label>
+                <br>
+                <input type="text" name="text" id="inputText" />
+            </div>
+
+            <div>
                 <label for="inputMinPrice" class="m-0">Min price ($)</label>
                 <br>
                 <input type="text" name="min" id="inputMinPrice" />
@@ -20,6 +26,33 @@
             <div>
                 <label for="inputMaxPrice" class="m-0">Max price ($)</label> <br>
                 <input type="text" name="max" id="inputMaxPrice" />
+            </div>
+
+
+            <div>
+                <label for="quality" class="m-0">Quality</label>
+                @php
+                    $options = [
+                        ['title' => 'Factory New', 'value' => 'FN', 'default' => 1],
+                        ['title' => 'Minimal Wear', 'value' => 'MW', 'default' => 0],
+                        ['title' => 'Field-Tested', 'value' => 'FT', 'default' => 0],
+                        ['title' => 'Well-Worn', 'value' => 'WW', 'default' => 0],
+                        ['title' => 'Battle-Scarred', 'value' => 'BS', 'default' => 0],
+                    ];
+                @endphp
+
+                <select name="quality" id="quality">
+                    @foreach($options as $option)
+                        <option
+                            value="{{ $option['value'] }}"
+                            @if($option['default'])
+                                selected
+                            @endif
+                        >
+                            {{ $option['title'] }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
         </div>
 

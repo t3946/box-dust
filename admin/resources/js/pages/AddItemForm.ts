@@ -81,6 +81,8 @@ export class AddItemForm {
         const data = {
             minPrice: parseFloat(this.$form.nodes[0].min.value),
             maxPrice: parseFloat(this.$form.nodes[0].max.value),
+            text:  this.$form.nodes[0].text.value.trim(),
+            quality:  this.$form.nodes[0].quality.value.trim(),
             rarity: [],
             caseId: this.caseId,
         };
@@ -110,6 +112,7 @@ export class AddItemForm {
                     const $item: any = $itemExample.clone();
 
                     $item.find('.name').text(item.name);
+                    $item.find('.type').text(item.type);
                     $item.find('.price .number').text(item.price_usd);
                     $item.find('img').attr('src', 'https://boxdust.storage.yandexcloud.net/' + item.image);
                     $item.addClass('item_rarity_' + item.rarity);

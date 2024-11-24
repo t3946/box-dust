@@ -78,6 +78,7 @@
                 <div class="foundVariants">
                     <div class="hidden example">
                         <div class="item">
+                            <div class="type font-bold"></div>
                             <div class="name font-bold"></div>
                             <img src="" />
                             <div class="price font-bold">Price: <span class="number"></span>$</div>
