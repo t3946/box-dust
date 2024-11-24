@@ -19,6 +19,6 @@ class Box extends Model
 
     public function design()
     {
-        return $this->belongsTo(Design::class, 'box_id');
+        return $this->belongsTo(Design::class, 'design_id');
     }
 }
