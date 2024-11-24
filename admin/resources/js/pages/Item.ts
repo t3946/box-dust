@@ -40,6 +40,8 @@ export class Item {
         });
 
         this.$elem.find('.removeItem').on('click', () => this.remove());
+
+        this.$elem.find('.setOnPreview').on('click', () => this.setOnPreview())
     }
 
     saveProbability() {
@@ -55,6 +57,14 @@ export class Item {
         }
 
         Axios.post('/admin/case/remove-item', {
+            itemId: this.itemId,
+        }).then(() => {
+            document.location.reload();
+        });
+    }
+
+    setOnPreview() {
+        Axios.post('/admin/case/set-on-preview', {
             itemId: this.itemId,
         }).then(() => {
             document.location.reload();

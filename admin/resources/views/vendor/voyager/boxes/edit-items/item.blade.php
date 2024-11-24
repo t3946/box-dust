@@ -7,7 +7,8 @@
     <i class="icon voyager-x removeItem"></i>
 
     <div class="title">
-        <a href="{{route('voyager.cs-items.edit', ['id' => $csItem->id])}}" target="_blank" class="decoration-0 flex flex-col"
+        <a href="{{route('voyager.cs-items.edit', ['id' => $csItem->id])}}" target="_blank"
+           class="decoration-0 flex flex-col"
            title="{{ $csItem->type . ' ' . $csItem->name }}">
             <div>{{ $csItem->name }}</div>
 
@@ -39,4 +40,10 @@
     <div class="flex gap-2">
         <div class="font-bold">Price USD:</div> {{ $csItem->price_usd }}$
     </div>
+
+    @if($item->is_box_item_preview === 0)
+        <div>
+            <button class="setOnPreview">set on preview</button>
+        </div>
+    @endif
 </div>

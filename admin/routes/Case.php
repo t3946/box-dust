@@ -15,5 +15,7 @@ Route
 
         Route::post('remove-item', [\App\Http\Controllers\Cases::class, 'removeItem']);
 
+        Route::post('set-on-preview', [\App\Http\Controllers\Cases::class, 'setOnPreview']);
+
         Route::post('add-item', [\App\Http\Controllers\Cases::class, 'addItem']);
     });

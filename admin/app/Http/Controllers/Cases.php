@@ -74,6 +74,18 @@ class Cases extends Controller
             ->delete();
     }
 
+    public function setOnPreview()
+    {
+        $item = BoxItem::find( request()->post('itemId'));
+
+        BoxItem::query()
+            ->where('case_id', $item->case_id)
+            ->update(['is_box_item_preview' => 0]);
+
+        $item->is_box_item_preview = 1;
+        $item->save();
+    }
+
     public function addItem()
     {
         $item = new BoxItem();
