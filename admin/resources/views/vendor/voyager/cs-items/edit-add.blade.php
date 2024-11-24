@@ -31,6 +31,7 @@
                             <input type="file" name="image" accept=".png" required />
                             <input type="number" class="hidden" value="{{ $csItem->id }}" name="csItemId" />
                             <button class="mt-2">save</button>
+                            <button type="button" class="mt-2 loadFromSteam">Load From Steam</button>
                         </form>
                     </div>
 

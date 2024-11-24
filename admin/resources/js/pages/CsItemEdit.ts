@@ -9,9 +9,20 @@ export class CsItemEdit {
 
         const $saveImageForm = this.$elem.find('.saveImageForm');
 
+        this.$elem
+            .find('.loadFromSteam')
+            .on('click', () => {
+                Axios
+                    .post('admin/cs-item/load-image-from-steam', {
+                        'csItemId': $saveImageForm.nodes[0].csItemId.value,
+                    })
+                    .then(() => {
+                        document.location.reload();
+                    });
+            });
+
         $saveImageForm.on('submit', (e) => {
             e.preventDefault();
-            console.log('submit');
 
             const image = $saveImageForm.nodes[0].image.files[0];
 

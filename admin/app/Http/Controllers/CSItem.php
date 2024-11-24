@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Box\BoxItem;
 use App\Models\CSItem as CSItemModel;
+use App\Services\FixCsItemImage;
 use Illuminate\Support\Facades\Storage;
 
 class CSItem extends Controller
 {
-
     public function saveImage()
     {
         $image = request()->files->get('image');
@@ -27,5 +27,11 @@ class CSItem extends Controller
         return [
             'newImageUrl' => Storage::disk('s3')->url($item->image),
         ];
+    }
+
+    public function loadImageFromSteam()
+    {
+        $item = CSItemModel::find(request()->post('csItemId'));
+        FixCsItemImage::uploadFromSteam($item);
     }
 }

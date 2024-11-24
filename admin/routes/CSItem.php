@@ -8,4 +8,6 @@ Route
     ->prefix('cs-item')
     ->group(function () {
         Route::post('save-image', [\App\Http\Controllers\CSItem::class, 'saveImage']);
+
+        Route::post('load-image-from-steam', [\App\Http\Controllers\CSItem::class, 'loadImageFromSteam']);
     });
