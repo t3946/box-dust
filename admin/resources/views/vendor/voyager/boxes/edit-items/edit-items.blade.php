@@ -15,7 +15,9 @@
     <div class="page-content caseItemsPage edit-add container-fluid" data-case-id="{{ $case->id }}">
         <div class="panel panel-bordered">
             <div class="panel-body">
-                <h1>{{ $case->name }}</h1>
+                <h1>
+                    <a href="{{route('voyager.boxes.edit', $case->id)}}" target="_blank">{{ $case->name }}</a>
+                </h1>
                 <div class="flex gap-3 items-center mb-4">
                     <img src="http://boxdust.ru/storage/{{ $case->design->image_box }}" width="200" />
                     <div class="mb-3 text-[20px]">
@@ -36,11 +38,11 @@
                                 [
                                     'title' => 'Price',
                                     'class' => '',
-                                    'postfix' => '$',
+                                    'postfix' => '(gold)',
                                     'value' => $case->price / 10,
                                 ],
                                 [
-                                    'title' => 'Margin (15% много похоже, на datdrop там 7-8%. В некоторых кейсах топ предметы выпадают с шансом 0.001%)',
+                                    'title' => 'Margin',
                                     'class' => '',
                                     'postfix' => '%',
                                     'value' => 15,

@@ -51,9 +51,8 @@ export class CaseItemsPage {
             this.controlSum += parseFloat(item.probability);
         }
 
-        this.controlSum = parseFloat(this.controlSum.toFixed(2));
-
-        this.$controlSum.find('.number').text((Math.round(this.controlSum * 100)));
+        this.controlSum = parseFloat(this.controlSum.toFixed(5));
+        this.$controlSum.find('.number').text((this.controlSum * 100).toFixed(3).trimEnd('0'));
         this.$controlSum.nodes[0].classList.toggle('controlSum_error', this.controlSum !== 1);
 
         const items = [];

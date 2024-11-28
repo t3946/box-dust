@@ -24,7 +24,7 @@ export class Item {
         this.price = parseInt(this.$elem.data('price'));
 
         this.$input.on('change', () => {
-            const newValue = Math.max(Math.min(parseInt(this.$input.nodes[0].value), 100), 0);
+            const newValue = Math.max(Math.min(parseFloat(this.$input.nodes[0].value), 100), 0);
             this.$input.nodes[0].value = newValue;
             this.probability = newValue / 100;
             this.range.setValue(newValue);

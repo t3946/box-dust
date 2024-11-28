@@ -117,7 +117,8 @@
                 gap: 8px;
 
                 input {
-                    width: 50px;
+                    //width: 50px;
+                    flex-grow: 1;
                 }
             }
 

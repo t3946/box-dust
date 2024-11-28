@@ -24,7 +24,7 @@ export class AddItemForm {
             .find('.presets button')
             .on('click', (e) => {
                 const { min, max, rarity } = e.target.dataset;
-                const rarities = rarity.split(',');
+                const rarities = rarity ? rarity.split(',') : '';
 
                 this.$form.nodes[0].min.value = min;
                 this.$form.nodes[0].max.value = max;

@@ -31,9 +31,13 @@
     </div>
 
     <div class="probability">
-        <div class="font-bold">Win Chance:</div>
-        <input value="{{ $item->probability * 100 }}" type="number" step="1" min="0"
-               max="100" />
+        <div class="font-bold">Chance:</div>
+        <input
+            value="{{ $item->probability * 100 }}"
+            type="number"
+            min="0"
+            max="100"
+        />
         <span class="font-bold">%</span>
     </div>
 

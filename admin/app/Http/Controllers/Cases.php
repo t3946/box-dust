@@ -103,7 +103,7 @@ class Cases extends Controller
 
     public function searchItems()
     {
-        return ['items' => $this->getItems(100)->get()];
+        return ['items' => $this->getItems(200)->get()];
     }
 
     public function updateProbability()

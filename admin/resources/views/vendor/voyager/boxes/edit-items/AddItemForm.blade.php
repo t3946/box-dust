@@ -5,7 +5,11 @@
     <h4>Presets</h4>
 
     <div class="presets">
-        <button class="randomItem" data-min="5" data-max="10" data-rarity="consumer-grade">Junk for 5-10$</button>
+        <button class="randomItem" data-min="1" data-max="2">Any for 1-2$</button>
+
+        <button class="randomItem" data-min="5" data-max="10" data-rarity="consumer-grade">Cons for 5-10$</button>
+
+        <button class="randomItem" data-min="15" data-max="25" data-rarity="mil-spec-grade">Military for 15-25$</button>
     </div>
 
     <h4>Detailed</h4>
