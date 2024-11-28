@@ -1,3 +1,7 @@
+@php
+  $csItem = $item->csItem;
+@endphp
+
 <div
     @class(['item', 'item_rarity_' . $csItem->rarity ])
     data-probability="{{$item->probability}}"

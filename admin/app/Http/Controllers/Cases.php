@@ -93,6 +93,12 @@ class Cases extends Controller
         $item->cs_item_id = request()->post('csItemId');
         $item->probability = 0;
         $item->save();
+
+        return [
+            'template' => view('vendor.voyager.boxes.edit-items.item', [
+                'item' => $item,
+            ])->render(),
+        ];
     }
 
     public function searchItems()

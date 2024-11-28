@@ -4,9 +4,10 @@ import { AddItemForm } from '@scripts/pages/AddItemForm';
 
 export class CaseItemsPage {
     private readonly $elem;
+    private readonly $itemsTable;
     private readonly caseId;
-    private readonly items: Item[] = [];
     private readonly $controlSum;
+    private items: Item[] = [];
     private controlSum;
     private addItemForm: AddItemForm;
 
@@ -14,15 +15,19 @@ export class CaseItemsPage {
         this.$elem = $(elem);
         this.caseId = parseInt(this.$elem.data('case-id'));
         this.$controlSum = this.$elem.find('.controlSum');
-
-        this.$elem
-            .find('.itemsTable .item')
+        this.$itemsTable = this.$elem.find('.itemsTable');
+        this.$itemsTable
+            .find('.item')
             .each((e) => {
-                this.items.push(new Item(e, {
+                const item = new Item(e, {
                     onChange: () => {
                         this.update();
                     },
-                }));
+                    onRemove: () => {
+                        this.removeItem(item);
+                    },
+                });
+                this.items.push(item);
             });
 
         this.update();
@@ -72,5 +77,34 @@ export class CaseItemsPage {
         this.$elem.find('.addItem').on('click', () => {
             this.addItemForm.open();
         });
+    }
+
+    public addItem(template) {
+        const $item = $(template);
+
+        this.$itemsTable.append($item);
+
+        const item = new Item($item, {
+            onChange: () => {
+                this.update();
+            },
+            onRemove: () => {
+                this.removeItem(item);
+            },
+        });
+
+        this.items.push(item);
+    }
+
+    private removeItem(item) {
+        const newItems = [];
+
+        for (let i = 0; i < this.items.length; i++) {
+            if (this.items[i] === item) continue;
+
+            newItems.push(this.items[i])
+        }
+
+        this.items = newItems;
     }
 }

@@ -8,13 +8,15 @@ export class Item {
     private readonly range: Range;
     private readonly itemId;
     private readonly onChange;
+    private readonly onRemove;
     public readonly price;
     public probability;
 
     constructor(elem, options) {
-        const { onChange } = options;
+        const { onChange, onRemove } = options;
 
         this.onChange = onChange;
+        this.onRemove = onRemove;
         this.$elem = $(elem);
         this.$input = this.$elem.find('input[type="number"]');
         this.probability = parseFloat(this.$elem.data('probability'));
@@ -59,7 +61,8 @@ export class Item {
         Axios.post('/admin/case/remove-item', {
             itemId: this.itemId,
         }).then(() => {
-            document.location.reload();
+            this.$elem.remove();
+            this.onRemove();
         });
     }
 

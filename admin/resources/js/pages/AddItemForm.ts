@@ -1,6 +1,7 @@
 import $ from 'umbrellajs';
 import Axios from '@scripts/utils/Axios';
 import Toastify from 'toastify-js';
+import App from '@scripts/App';
 
 export class AddItemForm {
     private readonly $elem;
@@ -123,7 +124,7 @@ export class AddItemForm {
                             caseId: this.caseId,
                             csItemId: item.id,
                         }).then(({ data }) => {
-                            document.location.reload();
+                            App.modules.pages.caseItems.addItem(data.template);
                         });
                     })
                 }

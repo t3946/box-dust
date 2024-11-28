@@ -11,8 +11,17 @@ function initIfExists<T>(e, constructor: any): T {
     return new constructor(e);
 }
 
+type TModules = {
+    pages: {
+        caseItems: CaseItemsPage,
+    }
+}
 class Main {
-    public modules = {};
+    public modules: TModules = {
+        pages: {
+            caseItems: null,
+        },
+    };
 
     constructor() {
         document.addEventListener('DOMContentLoaded', () => {
@@ -28,7 +37,7 @@ const App = (function() {
             if (instance == null) {
                 instance = new Main();
 
-                initIfExists('.caseItemsPage', CaseItemsPage);
+                instance.modules.pages.caseItems = initIfExists('.caseItemsPage', CaseItemsPage);
 
                 initIfExists('.csItemEditPage', CsItemEdit);
 
