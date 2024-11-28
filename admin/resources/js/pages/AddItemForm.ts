@@ -36,7 +36,7 @@ export class AddItemForm {
                 this.loadVariants();
             });
 
-        this.$form.find('input, select').on('change', () => {
+        this.$form.find('input, select').on('change input', () => {
             this.loadVariants();
         });
 
@@ -119,7 +119,7 @@ export class AddItemForm {
                     $item.addClass('item_rarity_' + item.rarity);
                     $items.append($item);
 
-                    $item.on('click', () => {
+                    $item.find('.addItemButton').on('click', () => {
                         Axios.post('/admin/case/add-item', {
                             caseId: this.caseId,
                             csItemId: item.id,

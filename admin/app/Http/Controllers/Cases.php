@@ -18,7 +18,7 @@ class Cases extends Controller
             ->whereNotIn('id', $ids);
 
         if ($text = request()->post('text')) {
-            $filters = array_map(fn ($field) => "$field like \"%$text%\"", ['name', 'name_ru']);
+            $filters = array_map(fn ($field) => "$field like \"%$text%\"", ['name', 'name_ru', 'type', 'id']);
             $query->whereRaw('(' . implode(' || ', $filters) . ')');
         }
 

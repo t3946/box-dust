@@ -13,10 +13,13 @@
     <div class="title">
         <a href="{{route('voyager.cs-items.edit', ['id' => $csItem->id])}}" target="_blank"
            class="decoration-0 flex flex-col"
-           title="{{ $csItem->type . ' ' . $csItem->name }}">
-            <div>{{ $csItem->name }}</div>
+           title="{{ $csItem->type . ' ' . $csItem->name }}"
+        >
+            <div class="text-[12px]">
+                {{ $csItem->type }}
+            </div>
 
-            {{ $csItem->type }}
+            {{ $csItem->name }}
         </a>
     </div>
 
